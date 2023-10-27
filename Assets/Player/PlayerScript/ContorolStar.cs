@@ -36,6 +36,9 @@ public class ContorolStar : MonoBehaviour
             shotGaugeSet = true;
         }
 
+        // 実験
+        Debug.Log($"aaa{Input.mousePosition}");
+
         // マウスを離した地点の座標から、発射方向を計算
         if (Input.GetMouseButtonUp(0))
         {
