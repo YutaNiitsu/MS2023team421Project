@@ -33,6 +33,9 @@ public class TargetScript : MonoBehaviour
                 // ‘¬“x‚ð‚O‚É‚·‚é
                 rb.velocity = Vector3.zero;
             }
+
+            // Ž©•ª‚ð”ñ•\Ž¦‚É‚·‚é
+            gameObject.SetActive(false);
         }
     }
 }
