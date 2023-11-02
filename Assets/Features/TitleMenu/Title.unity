@@ -120,6 +120,7 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+<<<<<<< HEAD
 --- !u!1 &184333786
 GameObject:
   m_ObjectHideFlags: 0
@@ -1137,6 +1138,8 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1724538087}
   m_CullTransparentMesh: 1
+=======
+>>>>>>> nakamoto
 --- !u!1 &1817962406
 GameObject:
   m_ObjectHideFlags: 0
@@ -1234,5 +1237,8 @@ SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
   - {fileID: 1817962409}
+<<<<<<< HEAD
   - {fileID: 863322278}
   - {fileID: 1102754784}
+=======
+>>>>>>> nakamoto
