@@ -4,18 +4,18 @@ using System.Security.Cryptography;
 using UnityEngine;
 // 線の構造体
 [System.Serializable]
-public class Line
+public struct Line
 {
     // 線の始点
-    public Vector2 start { get; protected set; }
+    public Vector3 start;
     // 線の終点
-    public Vector2 end { get; protected set; }
+    public Vector3 end;
     // 始点にある星をはめ込む型の要素番号
-    public int startTargetIndex { get; protected set; }
+    public int startTargetIndex;
     // 終点にある星をはめ込む型の要素番号
-    public int endTargetIndex { get; protected set; }
+    public int endTargetIndex;
 
-    public void Create(Vector2 _start, Vector2 _end, int _startTargetIndex, int _endTargetIndex)
+    public void Create(Vector3 _start, Vector3 _end, int _startTargetIndex, int _endTargetIndex)
     {
         start = _start;
         end = _end;
@@ -56,6 +56,11 @@ public class SaveConstellationData
         lines = _lines;
 
         Conversion();
+    }
+    // IDを設定
+    public void SetID(uint _id)
+    {
+        id = _id;
     }
 
     // JSONに変換できるように変換
