@@ -18,8 +18,7 @@ public class CreateConstellationScript : MonoBehaviour
     public LineRenderer LineRendererPrefab;
     //ボタン
     public Button SaveButton;
-    public Button PutTargetInLineButton;
-    public Button PutTargetInLoopButton;
+    public Button PutTargeButton;
     public Button DeterminationButton;
     //入力欄
     public GameObject InputName;
@@ -38,9 +37,6 @@ public class CreateConstellationScript : MonoBehaviour
     //LineRendererの点の番号
     private int LineRendererPointIndex = 0;
 
-    //配置モード
-    private int Mode = 2;
-
     //セーブデータから読み込んだデータ
     private SaveConstellationData SavedConstellationData = null;
 
@@ -54,80 +50,41 @@ public class CreateConstellationScript : MonoBehaviour
         DeterminationButton.interactable = false;
     }
 
-    //配置モード切り替え
-    public void ChangeMode(int num)
+    //配置ボタン押された時
+    public void ClickPutTargetButton()
     {
-        Mode = num;
-        switch (Mode)
-        {
-            case 0:
-                // 線状に配置するモード
-                SaveButton.interactable = false;
-                PutTargetInLineButton.interactable = false;
-                PutTargetInLoopButton.interactable = false;
-                DeterminationButton.interactable = true;
+        SaveButton.interactable = false;
+        PutTargeButton.interactable = false;
+        DeterminationButton.interactable = true;
 
-                //線のインスタンスを生成
-                Array.Resize<LineRenderer>(ref LineRenderers, LineRenderers.Length + 1);
-                Array.Resize<Line>(ref Lines, Lines.Length + 1);
-                LineRenderers[LineRendererIndex] = Instantiate(LineRendererPrefab.gameObject).GetComponent<LineRenderer>();
-                LineRenderers[LineRendererIndex].positionCount = 0;
-                break;
-            case 1:
-                // 環状に配置するモード
-                SaveButton.interactable = false;
-                PutTargetInLineButton.interactable = false;
-                PutTargetInLoopButton.interactable = false;
-                DeterminationButton.interactable = true;
-
-                //線のインスタンスを生成
-                Array.Resize<LineRenderer>(ref LineRenderers, LineRenderers.Length + 1);
-                Array.Resize<Line>(ref Lines, Lines.Length + 1);
-                LineRenderers[LineRendererIndex] = Instantiate(LineRendererPrefab.gameObject).GetComponent<LineRenderer>();
-                LineRenderers[LineRendererIndex].positionCount = 0;
-                break;
-            case 2:
-                // 決定ボタン押された
-                SaveButton.interactable = true;
-                PutTargetInLoopButton.interactable = true;
-                PutTargetInLineButton.interactable = true;
-                DeterminationButton.interactable = false;
-
-
-                //LineRendererの要素番号を進める
-                LineRendererIndex++;
-                //LineRendererの点の要素番号を0にする
-                LineRendererPointIndex = 0;
-                break;
-            default:
-                break;
-        }
-
-       
-
+        //線のインスタンスを生成
+        Array.Resize<LineRenderer>(ref LineRenderers, LineRenderers.Length + 1);
+        Array.Resize<Line>(ref Lines, Lines.Length + 1);
+        LineRenderers[LineRendererIndex] = Instantiate(LineRendererPrefab.gameObject).GetComponent<LineRenderer>();
+        LineRenderers[LineRendererIndex].positionCount = 0;
     }
 
+    //配置決定ボタン押された時
+    public void ClickPutTargetDeterminationButton()
+    {
+        SaveButton.interactable = true;
+        PutTargeButton.interactable = true;
+        DeterminationButton.interactable = false;
+
+
+        //LineRendererの要素番号を進める
+        LineRendererIndex++;
+        //LineRendererの点の要素番号を0にする
+        LineRendererPointIndex = 0;
+    }
+  
     //はめ込む型を設置する
     public void PutTarget(Vector3 pos)
     {
-        switch (Mode)
-        {
-            case 0:
-                // 線状に配置するモード
-                PutTargetInLine(pos);
-                break;
-            case 1:
-                // 環状に配置するモード
-                PutTargetInLoop(pos);
-                break;
-            default:
-                break;
-        }
-    }
+        // 配置ボタンが有効（押されていない時）になっていたら実行しない
+        if (PutTargeButton.interactable)
+            return;
 
-    //はめ込む型を線状に設置する
-    private void PutTargetInLine(Vector3 pos)
-    {
         //はめ込む型を配置
         Array.Resize<GameObject>(ref Targets, Targets.Length + 1);
         Targets[Targets.Length - 1] = Instantiate(TargetPrefab, pos, Quaternion.identity);
@@ -155,12 +112,6 @@ public class CreateConstellationScript : MonoBehaviour
         }
     }
 
-    //はめ込む型を環状に設置する
-    private void PutTargetInLoop(Vector3 pos)
-    {
-        
-    }
-
     // 初期化
     public void Initialize()
     {
@@ -181,7 +132,6 @@ public class CreateConstellationScript : MonoBehaviour
         LineRendererIndex = 0;
         LineIndex = 0;
         LineRendererPointIndex = 0;
-        Mode = 2;
 
         DeterminationButton.interactable = false;
         SavedConstellationData = null;
@@ -221,7 +171,6 @@ public class CreateConstellationScript : MonoBehaviour
         return saveConstellationData;
     }
 
-
     //セーブデータから読み込んで表示
     public void LoadConstellation(SaveConstellationData savedConstellationData)
     {
@@ -231,6 +180,7 @@ public class CreateConstellationScript : MonoBehaviour
         Lines = savedConstellationData.lines;
         Array.Resize<GameObject>(ref Targets, targets.Length);
 
+        //はめ込む型をインスタンス生成
         int index = 0;
         foreach (ST_Constellation i in targets)
         {
@@ -239,6 +189,7 @@ public class CreateConstellationScript : MonoBehaviour
             index++;
         }
 
+        //線をインスタンス生成
         LineRenderers = new LineRenderer[1];
         LineRenderers[0] = Instantiate(LineRendererPrefab.gameObject).GetComponent<LineRenderer>();
         LineRenderers[0].startWidth = LineWidth;
@@ -268,6 +219,7 @@ public class CreateConstellationScript : MonoBehaviour
                     pointIndex = 0;
                     _lineRendererIndex++;
 
+                    //新たに線をインスタンス生成
                     Array.Resize<LineRenderer>(ref LineRenderers, _lineRendererIndex + 1);
                     LineRenderers[_lineRendererIndex] = new LineRenderer();
                     LineRenderers[_lineRendererIndex] = Instantiate(LineRendererPrefab.gameObject).GetComponent<LineRenderer>();
