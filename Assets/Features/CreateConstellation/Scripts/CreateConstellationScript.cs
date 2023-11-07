@@ -1,12 +1,38 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 using static UnityEditor.PlayerSettings;
 using static UnityEngine.GraphicsBuffer;
+
+public class ConstellationLine : MonoBehaviour
+{
+    public Line line { get; protected set; }
+    public LineRenderer lineRenderer { get; protected set; }
+
+    private ConstellationLine() { }
+    public ConstellationLine(LineRenderer prefab, Vector3 _start, Vector3 _end, int _startTargetIndex, int _endTargetIndex, float _lineWidth) 
+    {
+        lineRenderer = Instantiate(prefab.gameObject).GetComponent<LineRenderer>();
+        line = new Line();
+        line.Create(_start, _end, _startTargetIndex, _endTargetIndex);
+
+        lineRenderer.startWidth = _lineWidth;
+        lineRenderer.endWidth = _lineWidth;
+        lineRenderer.positionCount = 2;
+        lineRenderer.SetPosition(0, _start);
+        lineRenderer.SetPosition(1, _end);
+    }
+
+    public void Destroy()
+    {
+        Destroy(lineRenderer.gameObject);
+    }
+}
 
 public class CreateConstellationScript : MonoBehaviour
 {
@@ -24,18 +50,12 @@ public class CreateConstellationScript : MonoBehaviour
     public GameObject InputName;
     // 設置されたはめ込む型
     private GameObject[] Targets;
-    //セーブ用のはめ込む型
-    //private ST_Constellation[] Constellations;
-    // 星をつなぐ線のラインレンダラー
-    private LineRenderer[] LineRenderers;
-    //セーブ用の星をつなぐ線
-    private Line[] Lines;
-    //LineRenderersの要素番号
-    private int LineRendererIndex = 0;
-    //Linesの要素番号
-    private int LineIndex = 0;
-    //LineRendererの点の番号
-    private int LineRendererPointIndex = 0;
+    //カーソルで選択されたはめ込む型の要素番号
+    private int SelectedTargetIndex;
+    private GameObject SelectedTarget;
+    // 星をつなぐ線
+    private ConstellationLine[] ConstellationLines;
+    private int ConstellationLinesIndex;
 
     //セーブデータから読み込んだデータ
     private SaveConstellationData SavedConstellationData = null;
@@ -44,10 +64,13 @@ public class CreateConstellationScript : MonoBehaviour
     void Start()
     {
         Targets = new GameObject[0];
-        LineRenderers = new LineRenderer[0];
-        Lines = new Line[0];
+        ConstellationLines = new ConstellationLine[0];
+        ConstellationLinesIndex = 0;
 
         DeterminationButton.interactable = false;
+        SelectedTarget = null;
+        SelectedTargetIndex = -1;
+
     }
 
     //配置ボタン押された時
@@ -56,12 +79,6 @@ public class CreateConstellationScript : MonoBehaviour
         SaveButton.interactable = false;
         PutTargeButton.interactable = false;
         DeterminationButton.interactable = true;
-
-        //線のインスタンスを生成
-        Array.Resize<LineRenderer>(ref LineRenderers, LineRenderers.Length + 1);
-        Array.Resize<Line>(ref Lines, Lines.Length + 1);
-        LineRenderers[LineRendererIndex] = Instantiate(LineRendererPrefab.gameObject).GetComponent<LineRenderer>();
-        LineRenderers[LineRendererIndex].positionCount = 0;
     }
 
     //配置決定ボタン押された時
@@ -70,12 +87,6 @@ public class CreateConstellationScript : MonoBehaviour
         SaveButton.interactable = true;
         PutTargeButton.interactable = true;
         DeterminationButton.interactable = false;
-
-
-        //LineRendererの要素番号を進める
-        LineRendererIndex++;
-        //LineRendererの点の要素番号を0にする
-        LineRendererPointIndex = 0;
     }
   
     //はめ込む型を設置する
@@ -85,31 +96,162 @@ public class CreateConstellationScript : MonoBehaviour
         if (PutTargeButton.interactable)
             return;
 
-        //はめ込む型を配置
-        Array.Resize<GameObject>(ref Targets, Targets.Length + 1);
-        Targets[Targets.Length - 1] = Instantiate(TargetPrefab, pos, Quaternion.identity);
+        //前に選択されていたはめ込む型の要素番号を保存
+        int preSelectedTargetIndex = SelectedTargetIndex;
 
-        // 線を配置
-        LineRenderers[LineRendererIndex].startWidth = LineWidth;
-        LineRenderers[LineRendererIndex].endWidth = LineWidth;
-        LineRenderers[LineRendererIndex].positionCount++;
-        pos.z += 5f;
-        LineRenderers[LineRendererIndex].SetPosition(LineRendererPointIndex, pos);
-        LineRendererPointIndex++;
-        // 点が２つ以上の時は線の情報を更新する
-        if (LineRenderers[LineRendererIndex].positionCount > 1)
+        if (CheckCursorHitTarget())
         {
-            Array.Resize<Line>(ref Lines, LineIndex + 1);
-            Vector3 start = LineRenderers[LineRendererIndex].GetPosition(LineRenderers[LineRendererIndex].positionCount - 2);
-            Vector3 end = LineRenderers[LineRendererIndex].GetPosition(LineRenderers[LineRendererIndex].positionCount - 1);
-            int startTargetIndex = Targets.Length - 2;
-            int endTargetIndex = Targets.Length - 1;
-            int index = LineRenderers[LineRendererIndex].positionCount - 2;
-            Lines[LineIndex] = new Line();
-            //始点、終点、始点のはめ込む型と終点のはめ込む型の要素番号を保存
-            Lines[LineIndex].Create(start, end, startTargetIndex, endTargetIndex);
-            LineIndex++;
+            //カーソルが既に設置されたはめ込む型と当たっていたとき
+            //選択されたはめ込む型が無かったら線のインスタンスは生成しない
+            if (SelectedTargetIndex == -1)
+            {
+                return;
+            }
+            //前に選択されていたはめ込む型がなかったら線のインスタンスは生成しない
+            if (preSelectedTargetIndex == -1)
+            {
+                return;
+            }
+            // カーソルが当たったはめ込む型に線を繋げる
+
+            foreach (ConstellationLine i in ConstellationLines)
+            {
+                if ((i.line.startTargetIndex == preSelectedTargetIndex && i.line.endTargetIndex == SelectedTargetIndex)
+                    || (i.line.startTargetIndex == SelectedTargetIndex && i.line.endTargetIndex == preSelectedTargetIndex))
+                {
+                    //既に線が生成されていたら実行しない
+                    return;
+                }
+            }
+
+            //始点
+            Vector3 start = Targets[preSelectedTargetIndex].transform.position;
+            start.z += 5f;
+            //終点
+            Vector3 end = Targets[SelectedTargetIndex].transform.position;
+            end.z += 5f;
+            //始点のはめ込む型の要素番号
+            int startTargetIndex = preSelectedTargetIndex;
+            //終点のはめ込む型の要素番号
+            int endTargetIndex = SelectedTargetIndex;
+            //線のインスタンス生成
+            CreateLine(start, end, startTargetIndex, endTargetIndex);
         }
+        else
+        {
+            //はめ込む型を配置
+            Array.Resize<GameObject>(ref Targets, Targets.Length + 1);
+            Targets[Targets.Length - 1] = Instantiate(TargetPrefab, pos, Quaternion.identity);
+            Targets[Targets.Length - 1].GetComponent<TargetInCreateModeScript>().SetIndex(Targets.Length - 1);
+
+
+            //選択されたはめ込む型が無かったら線のインスタンスは生成しない
+            if (SelectedTargetIndex == -1)
+            {
+                return;
+            }
+
+            // 線を配置
+            //始点
+            Vector3 start = Targets[SelectedTargetIndex].transform.position;
+            start.z += 5f;
+            //終点
+            Vector3 end = pos;
+            end.z += 5f;
+            //始点のはめ込む型の要素番号
+            int startTargetIndex = SelectedTargetIndex;
+            //終点のはめ込む型の要素番号
+            int endTargetIndex = Targets.Length - 1;
+            //線のインスタンス生成
+            CreateLine(start, end, startTargetIndex, endTargetIndex);
+        }
+    }
+
+    //はめ込む型を削除する
+    public void DeleteTarget()
+    {
+        // 配置ボタンが有効（押されていない時）になっていたら実行しない
+        if (PutTargeButton.interactable)
+            return;
+
+        if (CheckCursorHitTarget())
+        {
+            //未選択状態だったら実行しない
+            if (SelectedTargetIndex == -1)
+            {
+                return;
+            }
+
+            //選択されたはめ込む型を含む線を全て消す
+            ConstellationLine[] clTemp = new ConstellationLine[ConstellationLines.Length];
+            int index = 0;
+            foreach (ConstellationLine i in ConstellationLines)
+            {
+                if (i.line.startTargetIndex == SelectedTargetIndex 
+                    || i.line.endTargetIndex == SelectedTargetIndex)
+                {
+                    i.Destroy();
+                }
+                else
+                {
+                    clTemp[index] = i;
+                    index++;
+                }
+            }
+            //サイズ変更
+            Array.Resize<ConstellationLine>(ref ConstellationLines, index);
+            for (int i = 0; i < ConstellationLines.Length; i++)
+            {
+                ConstellationLines[i] = clTemp[i];
+            }
+
+            //選択されたはめ込む型を削除する
+            Destroy(Targets[SelectedTargetIndex]);
+            GameObject[] targetTemp = new GameObject[Targets.Length];
+            index = 0;
+            foreach (GameObject i in Targets)
+            {
+                targetTemp[index] = i;
+            }
+
+            Array.Resize<GameObject>(ref Targets, Targets.Length - 1);
+            int newIndex = 0;
+            for (int oldIndex = 0; oldIndex < targetTemp.Length; oldIndex++)
+            {
+                //選択されたはめ込む型の要素番号と一致したら飛ばす
+                if (index != SelectedTargetIndex)
+                {
+                    Targets[newIndex] = targetTemp[oldIndex];
+                    Targets[newIndex].GetComponent<TargetInCreateModeScript>().SetIndex(newIndex);
+                    foreach (ConstellationLine i in ConstellationLines)
+                    {
+                        //線情報の要素番号を更新
+                        if (i.line.startTargetIndex == oldIndex)
+                        {
+                            i.line.SetIndex(newIndex, i.line.endTargetIndex);
+                        }
+                        if (i.line.endTargetIndex == oldIndex)
+                        {
+                            i.line.SetIndex(i.line.startTargetIndex, newIndex);
+                        }
+                    }
+
+                    newIndex++;
+                }
+            }
+
+            //未選択状態にする
+            SelectedTargetIndex = -1;
+        }
+    }
+
+    //線作成
+    private void CreateLine(Vector3 _start, Vector3 _end, int _startTargetIndex, int _endTargetIndex)
+    {
+        Array.Resize<ConstellationLine>(ref ConstellationLines, ConstellationLinesIndex + 1);
+        ConstellationLines[ConstellationLinesIndex] 
+            = new ConstellationLine(LineRendererPrefab, _start, _end, _startTargetIndex, _endTargetIndex, LineWidth);
+        ConstellationLinesIndex++;
     }
 
     // 初期化
@@ -120,21 +262,18 @@ public class CreateConstellationScript : MonoBehaviour
         {
             Destroy(i);
         }
-        foreach (LineRenderer i in LineRenderers)
+        foreach (ConstellationLine i in ConstellationLines)
         {
-            Destroy(i.gameObject);
+            i.Destroy();
         }
-
+        ConstellationLines = new ConstellationLine[0];
+        ConstellationLinesIndex = 0;
         Targets = new GameObject[0];
-        LineRenderers = new LineRenderer[0];
-        Lines = new Line[0];
-
-        LineRendererIndex = 0;
-        LineIndex = 0;
-        LineRendererPointIndex = 0;
 
         DeterminationButton.interactable = false;
         SavedConstellationData = null;
+        SelectedTarget = null;
+        SelectedTargetIndex = -1;
     }
 
     // セーブデータ作成
@@ -163,9 +302,17 @@ public class CreateConstellationScript : MonoBehaviour
         {
             id = SavedConstellationData.id;
         }
-            
 
-        saveConstellationData.Create(year, month, day, id, name, constellations, Lines);
+        Line[] lines = new Line[ConstellationLines.Length];
+
+        index = 0;
+        foreach (ConstellationLine i in ConstellationLines)
+        {
+            lines[index] = i.line;
+            index++;
+        }
+
+        saveConstellationData.Create(year, month, day, id, name, constellations, lines);
 
 
         return saveConstellationData;
@@ -177,7 +324,7 @@ public class CreateConstellationScript : MonoBehaviour
         Initialize();
         SavedConstellationData = savedConstellationData;
         ST_Constellation[] targets = savedConstellationData.constellations;
-        Lines = savedConstellationData.lines;
+        Line[] lines = savedConstellationData.lines;
         Array.Resize<GameObject>(ref Targets, targets.Length);
 
         //はめ込む型をインスタンス生成
@@ -185,69 +332,16 @@ public class CreateConstellationScript : MonoBehaviour
         foreach (ST_Constellation i in targets)
         {
             Targets[index] = Instantiate(TargetPrefab, i.position, Quaternion.identity);
-
+            Targets[index].GetComponent<TargetInCreateModeScript>().SetIndex(index);
             index++;
         }
 
-        //線をインスタンス生成
-        LineRenderers = new LineRenderer[1];
-        LineRenderers[0] = Instantiate(LineRendererPrefab.gameObject).GetComponent<LineRenderer>();
-        LineRenderers[0].startWidth = LineWidth;
-        LineRenderers[0].endWidth = LineWidth;
-        int preEndTargetIndex = -1;
-        int _lineRendererIndex = 0;
-        int pointIndex = 0;
-        foreach (Line i in Lines)
+        //線を配置
+        //線のインスタンス生成
+        foreach (Line i in lines)
         {
-            if (preEndTargetIndex != -1)
-            {
-                //前の線の終点と現在の線の始点が同じなら繋がっている
-                if (preEndTargetIndex == i.startTargetIndex)
-                {
-                    LineRenderers[_lineRendererIndex].positionCount++;
-                    LineRenderers[_lineRendererIndex].SetPosition(pointIndex, i.start);
-                    pointIndex++;
-                    LineRenderers[_lineRendererIndex].positionCount++;
-                    LineRenderers[_lineRendererIndex].SetPosition(pointIndex, i.end);
-                    pointIndex++;
-
-                    preEndTargetIndex = i.endTargetIndex;
-                }
-                //繋がっていなかった
-                else
-                {
-                    pointIndex = 0;
-                    _lineRendererIndex++;
-
-                    //新たに線をインスタンス生成
-                    Array.Resize<LineRenderer>(ref LineRenderers, _lineRendererIndex + 1);
-                    LineRenderers[_lineRendererIndex] = new LineRenderer();
-                    LineRenderers[_lineRendererIndex] = Instantiate(LineRendererPrefab.gameObject).GetComponent<LineRenderer>();
-                    LineRenderers[_lineRendererIndex].startWidth = LineWidth;
-                    LineRenderers[_lineRendererIndex].endWidth = LineWidth;
-
-                    LineRenderers[_lineRendererIndex].positionCount++;
-                    LineRenderers[_lineRendererIndex].SetPosition(pointIndex, i.start);
-                    pointIndex++;
-                    LineRenderers[_lineRendererIndex].positionCount++;
-                    LineRenderers[_lineRendererIndex].SetPosition(pointIndex, i.end);
-                    pointIndex++;
-
-                    preEndTargetIndex = i.endTargetIndex;
-                }
-            }
-            else
-            {
-                //初回時
-                LineRenderers[_lineRendererIndex].positionCount++;
-                LineRenderers[_lineRendererIndex].SetPosition(pointIndex, i.start);
-                pointIndex++;
-                LineRenderers[_lineRendererIndex].positionCount++;
-                LineRenderers[_lineRendererIndex].SetPosition(pointIndex, i.end);
-                pointIndex++;
-               
-                preEndTargetIndex = i.endTargetIndex;
-            }
+            //線のインスタンス生成
+            CreateLine(i.start, i.end, i.startTargetIndex, i.endTargetIndex);
         }
     }
 
@@ -259,5 +353,47 @@ public class CreateConstellationScript : MonoBehaviour
             return false;
         }
         return true;
+    }
+    
+    //カーソルとはめ込む型の当たり判定
+    private bool CheckCursorHitTarget()
+    {
+        //レイキャスト
+        var ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+        RaycastHit2D hit = Physics2D.Raycast(ray.origin, ray.direction);
+
+        if (hit.collider != null)
+        {
+            //カーソルとはめ込む型が当たっていた
+            if (hit.collider.CompareTag("Target"))
+            {
+                TargetInCreateModeScript targetScript = hit.collider.gameObject.GetComponent<TargetInCreateModeScript>();
+               
+                if (SelectedTargetIndex == -1)
+                {
+                    //何も選択されてなかった
+                    SelectedTargetIndex = targetScript.Index;
+                    targetScript.SetIsSelected(true);
+                }
+                else if (SelectedTargetIndex != targetScript.Index)
+                {
+                    //前クリックしたものと違うものだった
+                    //前クリックしたものを未選択状態にする
+                    Targets[SelectedTargetIndex].GetComponent<TargetInCreateModeScript>().SetIsSelected(false);
+                    SelectedTargetIndex = targetScript.Index;
+                    targetScript.SetIsSelected(true);
+                }
+                else if (SelectedTargetIndex == targetScript.Index)
+                {
+                    //前クリックしたものと同じだったら選択解除
+                    targetScript.SetIsSelected(false);
+                    SelectedTargetIndex = -1;
+                    
+                }
+                return true;
+            }
+        }
+
+        return false;
     }
 }

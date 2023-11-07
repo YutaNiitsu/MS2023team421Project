@@ -5,6 +5,7 @@ using UnityEngine;
 public class TargetInCreateModeScript : MonoBehaviour
 {
     private SpriteRenderer spriteRenderer;
+    public int Index{ get; protected set; }
     // Start is called before the first frame update
     void Start()
     {
@@ -21,5 +22,9 @@ public class TargetInCreateModeScript : MonoBehaviour
         {
             spriteRenderer.color = new Color(1f, 0f, 0f, 1f);
         }
+    }
+    public void SetIndex(int index)
+    {
+        Index = index;
     }
 }

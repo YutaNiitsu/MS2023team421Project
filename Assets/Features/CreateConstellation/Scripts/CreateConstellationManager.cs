@@ -28,8 +28,6 @@ public class CreateConstellationManager : MonoBehaviour
     private ConstellationSaveManager constellationSaveManager;
     private CreateConstellationScript createConstellationScript;
 
-    private GameObject CursorHitTarget;
-    public bool IsCursorHit;
 
     // Start is called before the first frame update
     void Start()
@@ -42,52 +40,77 @@ public class CreateConstellationManager : MonoBehaviour
 
         SelectConstellationButtons = new SelectButtonScript[0];
 
-        IsCursorHit = false;
-        CursorHitTarget = null;
+       
     }
     private void FixedUpdate()
     {
-        if (Input.GetMouseButtonDown(0))
-        {
-            //カーソルとはめ込む型の当たり判定
-            IsCursorHit = false;
-            //レイキャスト
-            var ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-            RaycastHit2D hit = Physics2D.Raycast(ray.origin, ray.direction);
+        //if (Input.GetMouseButtonDown(0))
+        //{
+        //    //カーソルとはめ込む型の当たり判定
+        //    IsCursorHit = false;
+        //    //レイキャスト
+        //    var ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+        //    RaycastHit2D hit = Physics2D.Raycast(ray.origin, ray.direction);
 
-            if (hit.collider != null)
-            {
-                if (hit.collider.CompareTag("Target"))
-                {
-                    if (CursorHitTarget == null)
-                    {
-                        //nullだった
-                        CursorHitTarget = hit.collider.gameObject;
-                        CursorHitTarget.GetComponent<TargetInCreateModeScript>().SetIsSelected(true);
-                    }
-                    else if (CursorHitTarget != hit.collider.gameObject)
-                    {
-                        //前クリックしたものと違うものだった
-                        CursorHitTarget.GetComponent<TargetInCreateModeScript>().SetIsSelected(false);
-                        hit.collider.GetComponent<TargetInCreateModeScript>().SetIsSelected(true);
-                        CursorHitTarget = hit.collider.gameObject;
-                    }
-                    else if (CursorHitTarget == hit.collider.gameObject)
-                    {
-                        //前クリックしたものと同じだった
-                        CursorHitTarget.GetComponent<TargetInCreateModeScript>().SetIsSelected(false);
-                        CursorHitTarget = null;
-                    }
+        //    if (hit.collider != null)
+        //    {
+        //        //はめ込む型の上だった
+        //        if (hit.collider.CompareTag("Target"))
+        //        {
+        //            if (CursorHitTarget == null)
+        //            {
+        //                //nullだった
+        //                CursorHitTarget = hit.collider.gameObject;
+        //                CursorHitTarget.GetComponent<TargetInCreateModeScript>().SetIsSelected(true);
+        //            }
+        //            else if (CursorHitTarget != hit.collider.gameObject)
+        //            {
+        //                //前クリックしたものと違うものだった
+        //                CursorHitTarget.GetComponent<TargetInCreateModeScript>().SetIsSelected(false);
+        //                hit.collider.GetComponent<TargetInCreateModeScript>().SetIsSelected(true);
+        //                CursorHitTarget = hit.collider.gameObject;
+        //            }
+        //            else if (CursorHitTarget == hit.collider.gameObject)
+        //            {
+        //                //前クリックしたものと同じだった
+        //                CursorHitTarget.GetComponent<TargetInCreateModeScript>().SetIsSelected(false);
+        //                CursorHitTarget = null;
+        //            }
                     
-                    IsCursorHit = true;
-                    Debug.Log(CursorHitTarget);
-                }
-            }
-        }
+        //            IsCursorHit = true;
+        //            Debug.Log(CursorHitTarget);
+
+        //            return;
+        //        }
+        //    }
+
+
+        //    // 画面上に配置されたボタンが押された
+        //    if (EventSystem.current.IsPointerOverGameObject())
+        //    {
+        //        return;
+        //    }
+        //    //マウス座標の取得
+        //    Vector3 mousePos = Input.mousePosition;
+        //    //スクリーン座標をワールド座標に変換
+        //    Vector3 worldPos = Camera.main.ScreenToWorldPoint(new Vector3(mousePos.x, mousePos.y, 10f));
+        //    createConstellationScript.PutTarget(worldPos);
+        //}
     }
     // Update is called once per frame
     void Update()
     {
+        //右クリックで設置
+        if (Input.GetMouseButtonDown(1))
+        {
+            // 画面上に配置されたボタンが押された時は実行しない
+            if (EventSystem.current.IsPointerOverGameObject())
+            {
+                return;
+            }
+            createConstellationScript.DeleteTarget();
+        }
+        //左クリックで設置
         if (Input.GetMouseButtonDown(0))
         {
             // 画面上に配置されたボタンが押された時は実行しない
@@ -214,17 +237,24 @@ public class CreateConstellationManager : MonoBehaviour
     {
         SaveConstellationData[] newDatas = new SaveConstellationData[ConstellationDatas.Length - 1];
         int index = 0;
-        foreach (SaveConstellationData i in ConstellationDatas)
+        //データ無くなっていたら飛ばす
+        if (newDatas.Length != 0)
         {
-            if (i.id != deleteID)
+            foreach (SaveConstellationData i in ConstellationDatas)
             {
-                //削除する要素番号以外を代入
-                newDatas[index] = i;
-                index++;
+                if (i.id != deleteID)
+                {
+                    //削除する要素番号以外を代入
+                    newDatas[index] = i;
+                    index++;
+                }
             }
         }
+
+        Array.Resize<SaveConstellationData>(ref ConstellationDatas, ConstellationDatas.Length - 1);
         ConstellationDatas = newDatas;
         //セーブする
+        //newDatas = new SaveConstellationData[0];
         constellationSaveManager.OnSaveNewData(newDatas);
         //一覧スクロールを非表示
         ConstellationListDisplay.SetActive(false);

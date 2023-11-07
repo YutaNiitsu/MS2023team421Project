@@ -22,6 +22,12 @@ public struct Line
         startTargetIndex = _startTargetIndex;
         endTargetIndex = _endTargetIndex;
     }
+
+    public void SetIndex(int _startTargetIndex, int _endTargetIndex)
+    {
+        startTargetIndex = _startTargetIndex;
+        endTargetIndex = _endTargetIndex;
+    }
 }
 
 // セーブデータのクラス
@@ -61,6 +67,8 @@ public class SaveConstellationData
     public void SetID(uint _id)
     {
         id = _id;
+        Debug.Log(id);
+        Conversion();
     }
 
     // JSONに変換できるように変換
