@@ -166,6 +166,7 @@ public class CreateConstellationScript : MonoBehaviour
             
             //線のインスタンス生成
             CreateLine(start, end, startTargetIndex, endTargetIndex);
+            Debug.Log("CreateLine");
         }
     }
 
@@ -187,29 +188,25 @@ public class CreateConstellationScript : MonoBehaviour
             //選択されたはめ込む型を含む線を全て消す
             {
                 //リストから削除する線を一時的に保存するための配列
-                ConstellationLine[] removeList = new ConstellationLine[ConstellationLines.Count];
+                int[] removeList = new int[ConstellationLines.Count];
                 int index = 0;
-                foreach (ConstellationLine i in ConstellationLines)
+                for (int i = 0; i < ConstellationLines.Count; i++)
                 {
-                    if (i.line.startTargetIndex == SelectedTargetIndex)
+                    ConstellationLine cl = ConstellationLines[i];
+                    if ((cl.line.startTargetIndex == SelectedTargetIndex)
+                        || (cl.line.endTargetIndex == SelectedTargetIndex))
                     {
-                        //線のオブジェクトを削除
-                        i.Destroy();
                         removeList[index] = i;
+                        cl.Destroy();
+                        Debug.Log("LineDestroy");
                         index++;
                     }
-                    if (i.line.endTargetIndex == SelectedTargetIndex)
-                    {
-                        //線のオブジェクトを削除
-                        i.Destroy();
-                        removeList[index] = i;
-                        index++;
-                    }
+                    
                 }
                 //リストから削除する線を取り除く
                 for (int i = 0; i < index; i++)
                 {
-                    ConstellationLines.Remove(removeList[i]);
+                    ConstellationLines.RemoveAt(removeList[i]);
                 }
             }
 

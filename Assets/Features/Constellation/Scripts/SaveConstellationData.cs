@@ -4,16 +4,16 @@ using System.Security.Cryptography;
 using UnityEngine;
 // 線の構造体
 [System.Serializable]
-public struct Line
+public class Line
 {
     // 線の始点
-    public Vector3 start;
+    public Vector3 start { get; protected set; }
     // 線の終点
-    public Vector3 end;
+    public Vector3 end { get; protected set; }
     // 始点にある星をはめ込む型の要素番号
-    public int startTargetIndex;
+    public int startTargetIndex { get; protected set; }
     // 終点にある星をはめ込む型の要素番号
-    public int endTargetIndex;
+    public int endTargetIndex { get; protected set; }
 
     public void Create(Vector3 _start, Vector3 _end, int _startTargetIndex, int _endTargetIndex)
     {
