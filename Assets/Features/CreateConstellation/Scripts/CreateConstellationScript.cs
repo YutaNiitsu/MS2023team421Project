@@ -183,43 +183,48 @@ public class CreateConstellationScript : MonoBehaviour
             }
 
             //選択されたはめ込む型を含む線を全て消す
-            ConstellationLine[] clTemp = new ConstellationLine[ConstellationLines.Length];
-            int index = 0;
-            foreach (ConstellationLine i in ConstellationLines)
             {
-                if (i.line.startTargetIndex == SelectedTargetIndex 
-                    || i.line.endTargetIndex == SelectedTargetIndex)
+                ConstellationLine[] clTemp = new ConstellationLine[ConstellationLines.Length];
+                int index = 0;
+                foreach (ConstellationLine i in ConstellationLines)
                 {
-                    i.Destroy();
+                    if (i.line.startTargetIndex == SelectedTargetIndex
+                        || i.line.endTargetIndex == SelectedTargetIndex)
+                    {
+                        i.Destroy();
+                    }
+                    else
+                    {
+                        clTemp[index] = i;
+                        index++;
+                    }
                 }
-                else
+                //サイズ変更
+                Array.Resize<ConstellationLine>(ref ConstellationLines, index);
+                for (int i = 0; i < index; i++)
                 {
-                    clTemp[index] = i;
-                    index++;
+                    ConstellationLines[i] = clTemp[i];
                 }
-            }
-            //サイズ変更
-            Array.Resize<ConstellationLine>(ref ConstellationLines, index);
-            for (int i = 0; i < ConstellationLines.Length; i++)
-            {
-                ConstellationLines[i] = clTemp[i];
             }
 
-            //選択されたはめ込む型を削除する
-            Destroy(Targets[SelectedTargetIndex]);
+
+            
             GameObject[] targetTemp = new GameObject[Targets.Length];
-            index = 0;
-            foreach (GameObject i in Targets)
             {
-                targetTemp[index] = i;
+                int index = 0;
+                foreach (GameObject i in Targets)
+                {
+                    targetTemp[index] = i;
+                }
             }
+            
 
             Array.Resize<GameObject>(ref Targets, Targets.Length - 1);
             int newIndex = 0;
             for (int oldIndex = 0; oldIndex < targetTemp.Length; oldIndex++)
             {
                 //選択されたはめ込む型の要素番号と一致したら飛ばす
-                if (index != SelectedTargetIndex)
+                if (oldIndex != SelectedTargetIndex)
                 {
                     Targets[newIndex] = targetTemp[oldIndex];
                     Targets[newIndex].GetComponent<TargetInCreateModeScript>().SetIndex(newIndex);
@@ -239,7 +244,8 @@ public class CreateConstellationScript : MonoBehaviour
                     newIndex++;
                 }
             }
-
+            //選択されたはめ込む型を削除する
+            Destroy(targetTemp[SelectedTargetIndex]);
             //未選択状態にする
             SelectedTargetIndex = -1;
         }
