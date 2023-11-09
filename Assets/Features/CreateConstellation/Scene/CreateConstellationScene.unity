@@ -943,8 +943,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1167130467}
-        m_TargetAssemblyTypeName: CreateConstellationScript, Assembly-CSharp
+      - m_Target: {fileID: 1167130465}
+        m_TargetAssemblyTypeName: CreateConstellationManager, Assembly-CSharp
         m_MethodName: ClickPutTargetDeterminationButton
         m_Mode: 1
         m_Arguments:
@@ -2456,10 +2456,10 @@ MonoBehaviour:
   SelectButton: {fileID: 8950086126292657042, guid: c8263d06c41284143ac3e7f137fbb3f9, type: 3}
   DeterminationButton: {fileID: 1609246264}
   NewButton: {fileID: 1225861734}
-  SaveButton: {fileID: 340117047}
-  LoadButton: {fileID: 1241477104}
   PutTargeButton: {fileID: 1995133632}
   PutDeterminationButton: {fileID: 336356355}
+  SaveButton: {fileID: 340117047}
+  LoadButton: {fileID: 1241477104}
   DeleteSavedDataButton: {fileID: 1451531680}
   saveConstellationDIsplay: {fileID: 867605404}
 --- !u!4 &1167130466
@@ -4419,8 +4419,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1167130467}
-        m_TargetAssemblyTypeName: CreateConstellationScript, Assembly-CSharp
+      - m_Target: {fileID: 1167130465}
+        m_TargetAssemblyTypeName: CreateConstellationManager, Assembly-CSharp
         m_MethodName: ClickPutTargetButton
         m_Mode: 1
         m_Arguments:
