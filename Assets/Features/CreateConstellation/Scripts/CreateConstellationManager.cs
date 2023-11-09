@@ -18,6 +18,13 @@ public class CreateConstellationManager : MonoBehaviour
     public GameObject SelectButton;
     //選択した星座に決定するボタン
     public Button DeterminationButton;
+    //ボタン
+    public Button NewButton;
+    public Button PutTargeButton;
+    public Button PutDeterminationButton;
+    public Button SaveButton;
+    public Button LoadButton;
+    public Button DeleteSavedDataButton;
     //セーブ画面
     public SaveConstellationDIsplayScript saveConstellationDIsplay;
 
@@ -40,7 +47,8 @@ public class CreateConstellationManager : MonoBehaviour
 
         SelectConstellationButtons = new SelectButtonScript[0];
 
-       
+        DeterminationButton.interactable = false;
+        SetButtonInteractable(true, true, false, true, true, true);
     }
     private void FixedUpdate()
     {
@@ -103,6 +111,9 @@ public class CreateConstellationManager : MonoBehaviour
         //右クリックで設置
         if (Input.GetMouseButtonDown(1))
         {
+            // 配置ボタンが有効（押されていない時）になっていたら実行しない
+            if (PutTargeButton.interactable)
+                return;
             // 画面上に配置されたボタンが押された時は実行しない
             if (EventSystem.current.IsPointerOverGameObject())
             {
@@ -113,6 +124,11 @@ public class CreateConstellationManager : MonoBehaviour
         //左クリックで設置
         if (Input.GetMouseButtonDown(0))
         {
+
+            // 配置ボタンが有効（押されていない時）になっていたら実行しない
+            if (PutTargeButton.interactable)
+                return;
+
             // 画面上に配置されたボタンが押された時は実行しない
             if (EventSystem.current.IsPointerOverGameObject())
             {
@@ -130,6 +146,19 @@ public class CreateConstellationManager : MonoBehaviour
     public void New()
     {
         createConstellationScript.Initialize();
+        SetButtonInteractable(true, true, false, true, true, true);
+    }
+
+    //配置ボタン押された時
+    public void ClickPutTargetButton()
+    {
+        SetButtonInteractable(false, false, true, false, false, false);
+    }
+
+    //配置決定ボタン押された時
+    public void ClickPutTargetDeterminationButton()
+    {
+        SetButtonInteractable(true, true, false, true, true, true);
     }
 
     // 星座のデータを新規で保存
@@ -189,6 +218,7 @@ public class CreateConstellationManager : MonoBehaviour
     {
         //セーブ画面を消す
         saveConstellationDIsplay.gameObject.SetActive(false);
+        SetButtonInteractable(true, true, false, true, true, true);
     }
     // 星座のデータを選択して表示
     private void DisplayList()
@@ -218,6 +248,8 @@ public class CreateConstellationManager : MonoBehaviour
     //選択ボタン押した時の処理
     public void ClickSelectButton(UnityAction clickAction)
     {
+        //追加した処理を全部削除
+        DeterminationButton.onClick.RemoveAllListeners();
         //決定ボタンを有効にする
         DeterminationButton.interactable = true;
         //決定ボタン押したときに処理する関数を追加
@@ -262,6 +294,7 @@ public class CreateConstellationManager : MonoBehaviour
     //ロードボタン押したときの処理
     public void ClickLoadButton()
     {
+        SetButtonInteractable(false, false, false, false, false, false);
         DisplayList();
 
         int index = 0;
@@ -277,6 +310,7 @@ public class CreateConstellationManager : MonoBehaviour
     //セーブボタン押したときの処理
     public void ClickSaveButton()
     {
+        SetButtonInteractable(false, false, false, false, false, false);
         saveConstellationDIsplay.gameObject.SetActive(true);
         if (createConstellationScript.IsSavedData())
             saveConstellationDIsplay.SetVisibility(SaveConstellationType.SavedData);
@@ -288,6 +322,7 @@ public class CreateConstellationManager : MonoBehaviour
     //セーブデータを削除ボタン押した時の処理
     public void DeleteSavedData()
     {
+        SetButtonInteractable(false, false, false, false, false, false);
         DisplayList();
 
         int index = 0;
@@ -298,7 +333,7 @@ public class CreateConstellationManager : MonoBehaviour
             SelectConstellationButtons[index].AddClickAction(() => ClickSelectButton(() => DeleteSelectConstellation(i.id)));
             index++;
         }
-       
+        
     }
 
     //セーブデータ一覧表示をキャンセル
@@ -306,6 +341,7 @@ public class CreateConstellationManager : MonoBehaviour
     {
         //一覧スクロールを非表示
         ConstellationListDisplay.SetActive(false);
+        SetButtonInteractable(true, true, false, true, true, true);
     }
 
     public void LoadSprite(string path)
@@ -323,5 +359,20 @@ public class CreateConstellationManager : MonoBehaviour
         {
             //return null;
         }
+    }
+    //ボタンの有効無効を切り替え
+    private void SetButtonInteractable(bool newButton,
+    bool putTargeButton,
+    bool putDeterminationButton,
+    bool saveButton,
+    bool loadButton,
+    bool deleteSavedDataButton)
+    {
+        NewButton.interactable = newButton;
+        PutTargeButton.interactable = putTargeButton;
+        PutDeterminationButton.interactable = putDeterminationButton;
+        SaveButton.interactable = saveButton;
+        LoadButton.interactable = loadButton;
+        DeleteSavedDataButton.interactable = deleteSavedDataButton;
     }
 }

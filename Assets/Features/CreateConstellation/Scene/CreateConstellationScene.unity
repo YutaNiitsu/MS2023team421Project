@@ -2455,6 +2455,12 @@ MonoBehaviour:
   ScrollViewportContents: {fileID: 1384729688}
   SelectButton: {fileID: 8950086126292657042, guid: c8263d06c41284143ac3e7f137fbb3f9, type: 3}
   DeterminationButton: {fileID: 1609246264}
+  NewButton: {fileID: 1225861734}
+  SaveButton: {fileID: 340117047}
+  LoadButton: {fileID: 1241477104}
+  PutTargeButton: {fileID: 1995133632}
+  PutDeterminationButton: {fileID: 336356355}
+  DeleteSavedDataButton: {fileID: 1451531680}
   saveConstellationDIsplay: {fileID: 867605404}
 --- !u!4 &1167130466
 Transform:
@@ -2486,9 +2492,6 @@ MonoBehaviour:
   LineWidth: 0.1
   TargetPrefab: {fileID: 3385524718279560607, guid: b37765b64abeabb42b0d31a7ffd97662, type: 3}
   LineRendererPrefab: {fileID: 8738179956497816048, guid: 6f957253f8313fd44be44c2083a4b004, type: 3}
-  SaveButton: {fileID: 340117047}
-  PutTargeButton: {fileID: 1995133632}
-  DeterminationButton: {fileID: 336356355}
   InputName: {fileID: 1284868109}
 --- !u!1 &1225861732
 GameObject:
