@@ -13,25 +13,33 @@ using static UnityEngine.GraphicsBuffer;
 public class ConstellationLine : MonoBehaviour
 {
     public Line line { get; protected set; }
-    public LineRenderer lineRenderer { get; protected set; }
+    public GameObject LineObject { get; protected set; }
 
     private ConstellationLine() { }
-    public ConstellationLine(LineRenderer prefab, Vector3 _start, Vector3 _end, int _startTargetIndex, int _endTargetIndex, float _lineWidth) 
+    public ConstellationLine(GameObject prefab, Vector3 _start, Vector3 _end, int _startTargetIndex, int _endTargetIndex, float _lineWidth) 
     {
-        lineRenderer = Instantiate(prefab.gameObject).GetComponent<LineRenderer>();
+        LineObject = Instantiate(prefab);
         line = new Line();
         line.Create(_start, _end, _startTargetIndex, _endTargetIndex);
 
+        LineRenderer lineRenderer = LineObject.GetComponent<LineRenderer>();
         lineRenderer.startWidth = _lineWidth;
         lineRenderer.endWidth = _lineWidth;
         lineRenderer.positionCount = 2;
         lineRenderer.SetPosition(0, _start);
         lineRenderer.SetPosition(1, _end);
+        Debug.Log(LineObject);
     }
 
     public void Destroy()
     {
-        Destroy(lineRenderer.gameObject);
+        Debug.Log(LineObject);
+        if (LineObject != null)
+        {
+            Destroy(LineObject);
+            
+        }
+        
     }
 }
 
@@ -42,7 +50,7 @@ public class CreateConstellationScript : MonoBehaviour
     // はめ込む型のプレハブ
     public GameObject TargetPrefab;
     // 星をつなぐ線のプレハブ
-    public LineRenderer LineRendererPrefab;
+    public GameObject LineRendererPrefab;
     //ボタン
     public Button SaveButton;
     public Button PutTargeButton;
@@ -51,9 +59,9 @@ public class CreateConstellationScript : MonoBehaviour
     public GameObject InputName;
     // 設置されたはめ込む型
     private List<TargetInCreateModeScript> Targets;
-    private int TargetIndex;
-    //カーソルで選択されたはめ込む型の要素番号
-    private int SelectedTargetIndex;
+    private int TargetKey;
+    //カーソルで選択されたはめ込む型
+    private TargetInCreateModeScript SelectedTarget;
     // 星をつなぐ線
     private List<ConstellationLine> ConstellationLines;
 
@@ -67,8 +75,8 @@ public class CreateConstellationScript : MonoBehaviour
         ConstellationLines = new List<ConstellationLine>();
 
         DeterminationButton.interactable = false;
-        SelectedTargetIndex = -1;
-        TargetIndex = 0;
+        SelectedTarget = null;
+        TargetKey = 0;
     }
 
     //配置ボタン押された時
@@ -95,19 +103,19 @@ public class CreateConstellationScript : MonoBehaviour
             return;
 
         //前に選択されていたはめ込む型の要素番号を保存
-        int preSelectedTargetIndex = SelectedTargetIndex;
+        TargetInCreateModeScript preSelectedTarget= SelectedTarget;
 
         if (CheckCursorHitTarget())
         {
             // カーソルが当たったはめ込む型に線を繋げる
             //カーソルが既に設置されたはめ込む型と当たっていたとき
             //選択されたはめ込む型が無かったら線のインスタンスは生成しない
-            if (SelectedTargetIndex == -1)
+            if (SelectedTarget == null)
             {
                 return;
             }
             //前に選択されていたはめ込む型がなかったら線のインスタンスは生成しない
-            if (preSelectedTargetIndex == -1)
+            if (preSelectedTarget == null)
             {
                 return;
             }
@@ -115,8 +123,8 @@ public class CreateConstellationScript : MonoBehaviour
             
             foreach (ConstellationLine i in ConstellationLines)
             {
-                if ((i.line.startTargetIndex == preSelectedTargetIndex && i.line.endTargetIndex == SelectedTargetIndex)
-                    || (i.line.startTargetIndex == SelectedTargetIndex && i.line.endTargetIndex == preSelectedTargetIndex))
+                if ((i.line.startTargetIndex == preSelectedTarget.Key && i.line.endTargetIndex == SelectedTarget.Key)
+                    || (i.line.startTargetIndex == SelectedTarget.Key && i.line.endTargetIndex == preSelectedTarget.Key))
                 {
                     //既に線が生成されていたら実行しない
                     return;
@@ -124,41 +132,42 @@ public class CreateConstellationScript : MonoBehaviour
             }
 
             //始点
-            Vector3 start = findTargetAtKey(preSelectedTargetIndex).gameObject.transform.position;
+            Vector3 start = preSelectedTarget.gameObject.transform.position;
             start.z += 5f;
             //終点
-            Vector3 end = findTargetAtKey(SelectedTargetIndex).gameObject.transform.position;
+            Vector3 end = SelectedTarget.gameObject.transform.position;
             end.z += 5f;
             //始点のはめ込む型の要素番号
-            int startTargetIndex = preSelectedTargetIndex;
+            int startTargetKey = preSelectedTarget.Key;
             //終点のはめ込む型の要素番号
-            int endTargetIndex = SelectedTargetIndex;
+            int endTargetKey = SelectedTarget.Key;
             //線のインスタンス生成
-            CreateLine(start, end, startTargetIndex, endTargetIndex);
+            CreateLine(start, end, startTargetKey, endTargetKey);
         }
         else
         {
             //はめ込む型を配置
             TargetInCreateModeScript temp = Instantiate(TargetPrefab, pos, Quaternion.identity).GetComponent<TargetInCreateModeScript>();
-            temp.SetKey(TargetIndex);
+            temp.SetKey(TargetKey);
             Targets.Add(temp);
 
-            //始点のはめ込む型の要素番号
-            int startTargetIndex = SelectedTargetIndex;
+            
             //終点のはめ込む型の要素番号
-            int endTargetIndex = TargetIndex;
+            int endTargetIndex = TargetKey;
             //はめ込む型の要素番号を進める
-            TargetIndex++;
+            TargetKey++;
 
             //選択されたはめ込む型が無かったら線のインスタンスは生成しない
-            if (SelectedTargetIndex == -1)
+            if (SelectedTarget == null)
             {
                 return;
             }
+            //始点のはめ込む型の要素番号
+            int startTargetIndex = SelectedTarget.Key;
 
             // 線を配置
             //始点
-            Vector3 start = findTargetAtKey(SelectedTargetIndex).gameObject.transform.position;
+            Vector3 start = SelectedTarget.gameObject.transform.position;
             start.z += 5f;
             //終点
             Vector3 end = pos;
@@ -166,7 +175,7 @@ public class CreateConstellationScript : MonoBehaviour
             
             //線のインスタンス生成
             CreateLine(start, end, startTargetIndex, endTargetIndex);
-            Debug.Log("CreateLine");
+            
         }
     }
 
@@ -180,42 +189,44 @@ public class CreateConstellationScript : MonoBehaviour
         if (CheckCursorHitTarget())
         {
             //未選択状態だったら実行しない
-            if (SelectedTargetIndex == -1)
+            if (SelectedTarget == null)
             {
                 return;
             }
 
             //選択されたはめ込む型を含む線を全て消す
             {
-                //リストから削除する線を一時的に保存するための配列
-                int[] removeList = new int[ConstellationLines.Count];
+                //リストから削除しない線を一時的に保存するための配列
+                ConstellationLine[] temp = new ConstellationLine[ConstellationLines.Count];
                 int index = 0;
-                for (int i = 0; i < ConstellationLines.Count; i++)
+                foreach (ConstellationLine i in ConstellationLines)
                 {
-                    ConstellationLine cl = ConstellationLines[i];
-                    if ((cl.line.startTargetIndex == SelectedTargetIndex)
-                        || (cl.line.endTargetIndex == SelectedTargetIndex))
+                    if ((i.line.startTargetIndex != SelectedTarget.Key)
+                        && (i.line.endTargetIndex != SelectedTarget.Key))
                     {
-                        removeList[index] = i;
-                        cl.Destroy();
-                        Debug.Log("LineDestroy");
+                        //リストに残す
+                        temp[index] = i;
                         index++;
                     }
-                    
+                    else
+                    {
+                        //削除する
+                        i.Destroy();
+                    }
                 }
                 //リストから削除する線を取り除く
+                ConstellationLines = new List<ConstellationLine>();
                 for (int i = 0; i < index; i++)
                 {
-                    ConstellationLines.RemoveAt(removeList[i]);
+                    ConstellationLines.Add(temp[i]);
                 }
             }
 
             //選択されたはめ込む型を削除する
-            TargetInCreateModeScript temp = findTargetAtKey(SelectedTargetIndex);
-            Destroy(temp.gameObject);
-            Targets.Remove(temp);
+            Targets.Remove(SelectedTarget);
+            Destroy(SelectedTarget.gameObject);
             //未選択状態にする
-            SelectedTargetIndex = -1;
+            SelectedTarget = null;
         }
     }
 
@@ -243,8 +254,8 @@ public class CreateConstellationScript : MonoBehaviour
 
         DeterminationButton.interactable = false;
         SavedConstellationData = null;
-        SelectedTargetIndex = -1;
-        TargetIndex = 0;
+        SelectedTarget = null;
+        TargetKey = 0;
     }
 
     // セーブデータ作成
@@ -343,25 +354,25 @@ public class CreateConstellationScript : MonoBehaviour
                 if (targetScript == null)
                     return false;
 
-                if (SelectedTargetIndex == -1)
+                if (SelectedTarget == null)
                 {
                     //何も選択されてなかった
-                    SelectedTargetIndex = targetScript.Key;
+                    SelectedTarget = targetScript;
                     targetScript.SetIsSelected(true);
                 }
-                else if (SelectedTargetIndex != targetScript.Key)
+                else if (SelectedTarget.Key != targetScript.Key)
                 {
                     //前クリックしたものと違うものだった
                     //前クリックしたものを未選択状態にする
-                    findTargetAtKey(SelectedTargetIndex).SetIsSelected(false);
-                    SelectedTargetIndex = targetScript.Key;
+                    SelectedTarget.SetIsSelected(false);
+                    SelectedTarget = targetScript;
                     targetScript.SetIsSelected(true);
                 }
-                else if (SelectedTargetIndex == targetScript.Key)
+                else if (SelectedTarget.Key == targetScript.Key)
                 {
                     //前クリックしたものと同じだったら選択解除
                     targetScript.SetIsSelected(false);
-                    SelectedTargetIndex = -1;
+                    SelectedTarget = null;
                     
                 }
                 else
@@ -375,16 +386,5 @@ public class CreateConstellationScript : MonoBehaviour
         return false;
     }
 
-    private TargetInCreateModeScript findTargetAtKey(int key)
-    {
-        foreach (TargetInCreateModeScript i in Targets)
-        {
-            if (i.Key == key)
-            {
-                return i;
-            }
-           
-        }
-        return null;
-    }
+    
 }
