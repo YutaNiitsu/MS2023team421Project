@@ -4,10 +4,30 @@ using System.Security.Cryptography;
 using UnityEngine;
 // 線の構造体
 [System.Serializable]
-public struct Line
+public class Line
 {
-    public Vector2 start;
-    public Vector2 end;
+    // 線の始点
+    public Vector3 start { get; protected set; }
+    // 線の終点
+    public Vector3 end { get; protected set; }
+    // 始点にある星をはめ込む型の要素番号
+    public int startTargetIndex { get; protected set; }
+    // 終点にある星をはめ込む型の要素番号
+    public int endTargetIndex { get; protected set; }
+
+    public void Create(Vector3 _start, Vector3 _end, int _startTargetIndex, int _endTargetIndex)
+    {
+        start = _start;
+        end = _end;
+        startTargetIndex = _startTargetIndex;
+        endTargetIndex = _endTargetIndex;
+    }
+
+    public void SetIndex(int _startTargetIndex, int _endTargetIndex)
+    {
+        startTargetIndex = _startTargetIndex;
+        endTargetIndex = _endTargetIndex;
+    }
 }
 
 // セーブデータのクラス
@@ -16,8 +36,8 @@ public class SaveConstellationData
 {
     // 制作した年月日
     public int year { get; protected set; }
-    public byte month { get; protected set; }
-    public byte day { get; protected set; }
+    public int month { get; protected set; }
+    public int day { get; protected set; }
     // ID
     public uint id { get; protected set; }
     // 名前
@@ -30,7 +50,7 @@ public class SaveConstellationData
     public SaveConstellationData_Conv DataConv { get; protected set; }
 
     // saveデータ作成
-    public void Create(int _year, byte _month, byte _day,
+    public void Create(int _year, int _month, int _day,
         uint _id, string _name, ST_Constellation[] _constellations, Line[] _lines)
     {
         year = _year;
@@ -41,6 +61,13 @@ public class SaveConstellationData
         constellations = _constellations;
         lines = _lines;
 
+        Conversion();
+    }
+    // IDを設定
+    public void SetID(uint _id)
+    {
+        id = _id;
+        Debug.Log(id);
         Conversion();
     }
 
@@ -76,8 +103,8 @@ public class SaveConstellationData_Conv
 {
     // 制作した年月日
     public int year;
-    public byte month;
-    public byte day;
+    public int month;
+    public int day;
     // ID
     public uint id;
     // 名前

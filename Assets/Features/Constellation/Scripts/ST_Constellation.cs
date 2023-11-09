@@ -5,7 +5,7 @@ using UnityEngine;
 public struct ST_Constellation
 {
     public Vector2 position;
-
+    public int Index;
     //public string ToJSON()
     //{
     //    string json = JsonUtility.ToJson(position);
