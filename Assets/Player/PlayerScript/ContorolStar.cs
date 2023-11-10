@@ -8,14 +8,16 @@ public class ContorolStar : MonoBehaviour
 {
     public PlayerStock PlayerStockScript;
 
-    Rigidbody2D rigid2d;
-    Vector2 startPos;
-    Vector2 startDirection;
+    public bool MoveTG;
 
-    //public Slider shotGauge;
-    float speed = 4.5f;
-   // float gaugeLength = 0.0f;
-    bool shotGaugeSet = false;
+    Rigidbody2D rigid2d;
+    // Vector2 startPos;
+    // Vector2 startDirection;
+
+    // //public Slider shotGauge;
+    // float speed = 4.5f;
+    //// float gaugeLength = 0.0f;
+    // bool shotGaugeSet = false;
 
     Vector3 direction;
     Vector3 normal;
@@ -23,53 +25,13 @@ public class ContorolStar : MonoBehaviour
     void Start()
     {
         this.rigid2d = GetComponent<Rigidbody2D>();
+        MoveTG = false;
 
     }
 
     void Update()
     {
-
-        // マウスを押した地点の座標を記録
-        if (Input.GetMouseButtonDown(0))
-        {
-            this.startPos = Input.mousePosition;
-            shotGaugeSet = true;
-        }
-
-        // 実験
-        Debug.Log($"aaa{Input.mousePosition}");
-
-        // マウスを離した地点の座標から、発射方向を計算
-        if (Input.GetMouseButtonUp(0))
-        {
-            Vector2 endPos = Input.mousePosition;
-            //Vector2 aaaa = new Vector2(100, 100);
-            //startDirection = -1 * (endPos - startPos).normalized;
-            startDirection = -1 * (endPos - startPos);
-            this.rigid2d.AddForce(startDirection * speed);
-            //this.rigid2d.AddForce(aaaa);
-            //this.rigid2d.velocity = (startDirection * speed);
-            shotGaugeSet = false;
-            Debug.Log(startDirection);
-        }
-
-        ////移動
-        //this.rigid2d.velocity = (startDirection * speed);
-        ////減速
         FixedUpdate();
-
-        // マウスが押されている間 ショットゲージを呼ぶ
-        if (shotGaugeSet)
-        {
-            shotGaugeValue();
-        }
-
-        // テスト用：スペースキー押下で停止
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            this.rigid2d.velocity *= 0;
-        }
-
     }
 
     void FixedUpdate()
@@ -109,6 +71,24 @@ public class ContorolStar : MonoBehaviour
         //direction = rb.velocity;
     }
 
+    public void ChangeMoveTG()
+    {
+        if (MoveTG == false)
+        {
+            MoveTG = true;
+            this.gameObject.tag = "StarStop";
+        }
+        else if (MoveTG == true)
+        {
+            MoveTG = false;
+            this.gameObject.tag = "Star";
+        }
+    }
+
+    public void AddForce(Vector2 UpdateForce)
+    {
+        this.rigid2d.AddForce(UpdateForce);
+    }
 }
 
 
