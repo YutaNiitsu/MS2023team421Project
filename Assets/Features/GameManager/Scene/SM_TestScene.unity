@@ -276,8 +276,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: deb83c58a722cf644973d1312b2c2845, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Range: {x: 500, y: 500}
-  Threshold: 0.9
+  stageSettings:
+  - missions:
+    - DischargeNumber: 10
+      TargetNum: 0
+    Range: {x: 500, y: 500}
+    Threshold: 0.9
 --- !u!114 &1729873280
 MonoBehaviour:
   m_ObjectHideFlags: 0

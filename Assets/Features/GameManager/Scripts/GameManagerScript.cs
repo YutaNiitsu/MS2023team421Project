@@ -9,10 +9,8 @@ using UnityEngine.UIElements;
 // ゲーム全体を制御する
 public class GameManagerScript : MonoBehaviour
 {
-    [Header("星を配置するエリアの広さ")]
-    public Vector2 Range;
-    [Header("星の密度(0～1)")]
-    public float Threshold;
+    [Header("ステージセッティング")]
+    public StageSetting[] stageSettings;
 
     private ProceduralGenerator ProceduralGenerator;
     private SaveConstellationData[] ConstellationDatas;
@@ -37,7 +35,7 @@ public class GameManagerScript : MonoBehaviour
             int index = UnityEngine.Random.Range(0, ConstellationDatas.Length);
             // オブジェクトを配置
             ProceduralGenerator.GenerateTargets(ConstellationDatas[index].constellations);
-            ProceduralGenerator.GenerateStars(Range, Threshold);
+            ProceduralGenerator.GenerateStars(stageSettings[0].Range, stageSettings[0].Threshold);
         }
     }
 
@@ -50,7 +48,7 @@ public class GameManagerScript : MonoBehaviour
             {
                 IsFinished = true;
                 //ゲームオーバー処理
-
+                GameOver();
             }
         }
 
@@ -74,6 +72,7 @@ public class GameManagerScript : MonoBehaviour
 
         if (isComp)
         {
+            //全部はまっていた
             IsFinished = true;
             //クリア処理
 
@@ -104,4 +103,14 @@ public class GameManagerScript : MonoBehaviour
         return IsFinished;
     }
 
+    //ゲームオーバー処理
+    private void GameOver()
+    {
+
+    }
+    //ゲームクリア処理
+    private void Complete()
+    {
+
+    }
 }
