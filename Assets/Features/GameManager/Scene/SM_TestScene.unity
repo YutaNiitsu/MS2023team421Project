@@ -227,7 +227,7 @@ GameObject:
   - component: {fileID: 1729873281}
   m_Layer: 0
   m_Name: GameManager
-  m_TagString: Untagged
+  m_TagString: GameManager
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -247,6 +247,8 @@ MonoBehaviour:
   Target: {fileID: 2988362997890976423, guid: 37262830ed0bd914395e06eefc6608ea, type: 3}
   Star:
   - {fileID: 6696950863105630152, guid: 370431a0a26143749940b9f638bc2e95, type: 3}
+  RareStarArea:
+  - {fileID: 5090043123189685980, guid: d143bde5c849f7d4290ba725c4cbc5d8, type: 3}
 --- !u!4 &1729873278
 Transform:
   m_ObjectHideFlags: 0
@@ -274,6 +276,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: deb83c58a722cf644973d1312b2c2845, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  stageSettings:
+  - missions:
+    - DischargeNumber: 10
+      TargetNum: 0
+    Range: {x: 500, y: 500}
+    Threshold: 0.9
 --- !u!114 &1729873280
 MonoBehaviour:
   m_ObjectHideFlags: 0

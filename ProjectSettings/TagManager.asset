@@ -6,6 +6,9 @@ TagManager:
   tags:
   - Point
   - dark hole
+  - Star
+  - Target
+  - GameManager
   layers:
   - Default
   - TransparentFX

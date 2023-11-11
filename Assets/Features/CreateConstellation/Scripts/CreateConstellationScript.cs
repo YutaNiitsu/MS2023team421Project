@@ -12,15 +12,18 @@ using static UnityEngine.GraphicsBuffer;
 
 public class ConstellationLine : MonoBehaviour
 {
-    public Line line { get; protected set; }
+    public Line line;
     public GameObject LineObject { get; protected set; }
 
     private ConstellationLine() { }
-    public ConstellationLine(GameObject prefab, Vector3 _start, Vector3 _end, int _startTargetIndex, int _endTargetIndex, float _lineWidth) 
+    public ConstellationLine(GameObject prefab, Vector3 _start, Vector3 _end, int _startTargetKey, int _endTargetKey, float _lineWidth) 
     {
         LineObject = Instantiate(prefab);
         line = new Line();
-        line.Create(_start, _end, _startTargetIndex, _endTargetIndex);
+        line.start = _start;
+        line.end = _end;
+        line.startTargetKey = _startTargetKey;
+        line.endTargetKey = _endTargetKey;
 
         LineRenderer lineRenderer = LineObject.GetComponent<LineRenderer>();
         lineRenderer.startWidth = _lineWidth;
@@ -51,10 +54,7 @@ public class CreateConstellationScript : MonoBehaviour
     public GameObject TargetPrefab;
     // 星をつなぐ線のプレハブ
     public GameObject LineRendererPrefab;
-    //ボタン
-    public Button SaveButton;
-    public Button PutTargeButton;
-    public Button DeterminationButton;
+    
     //入力欄
     public GameObject InputName;
     // 設置されたはめ込む型
@@ -74,33 +74,15 @@ public class CreateConstellationScript : MonoBehaviour
         Targets = new List<TargetInCreateModeScript>();
         ConstellationLines = new List<ConstellationLine>();
 
-        DeterminationButton.interactable = false;
         SelectedTarget = null;
         TargetKey = 0;
     }
 
-    //配置ボタン押された時
-    public void ClickPutTargetButton()
-    {
-        SaveButton.interactable = false;
-        PutTargeButton.interactable = false;
-        DeterminationButton.interactable = true;
-    }
-
-    //配置決定ボタン押された時
-    public void ClickPutTargetDeterminationButton()
-    {
-        SaveButton.interactable = true;
-        PutTargeButton.interactable = true;
-        DeterminationButton.interactable = false;
-    }
+    
   
     //はめ込む型を設置する
     public void PutTarget(Vector3 pos)
     {
-        // 配置ボタンが有効（押されていない時）になっていたら実行しない
-        if (PutTargeButton.interactable)
-            return;
 
         //前に選択されていたはめ込む型の要素番号を保存
         TargetInCreateModeScript preSelectedTarget= SelectedTarget;
@@ -123,8 +105,8 @@ public class CreateConstellationScript : MonoBehaviour
             
             foreach (ConstellationLine i in ConstellationLines)
             {
-                if ((i.line.startTargetIndex == preSelectedTarget.Key && i.line.endTargetIndex == SelectedTarget.Key)
-                    || (i.line.startTargetIndex == SelectedTarget.Key && i.line.endTargetIndex == preSelectedTarget.Key))
+                if ((i.line.startTargetKey == preSelectedTarget.Key && i.line.endTargetKey == SelectedTarget.Key)
+                    || (i.line.startTargetKey == SelectedTarget.Key && i.line.endTargetKey == preSelectedTarget.Key))
                 {
                     //既に線が生成されていたら実行しない
                     return;
@@ -182,10 +164,7 @@ public class CreateConstellationScript : MonoBehaviour
     //はめ込む型を削除する
     public void DeleteTarget()
     {
-        // 配置ボタンが有効（押されていない時）になっていたら実行しない
-        if (PutTargeButton.interactable)
-            return;
-
+        
         if (CheckCursorHitTarget())
         {
             //未選択状態だったら実行しない
@@ -201,8 +180,8 @@ public class CreateConstellationScript : MonoBehaviour
                 int index = 0;
                 foreach (ConstellationLine i in ConstellationLines)
                 {
-                    if ((i.line.startTargetIndex != SelectedTarget.Key)
-                        && (i.line.endTargetIndex != SelectedTarget.Key))
+                    if ((i.line.startTargetKey != SelectedTarget.Key)
+                        && (i.line.endTargetKey != SelectedTarget.Key))
                     {
                         //リストに残す
                         temp[index] = i;
@@ -252,7 +231,6 @@ public class CreateConstellationScript : MonoBehaviour
         ConstellationLines = new List<ConstellationLine>();
         Targets = new List<TargetInCreateModeScript>();
 
-        DeterminationButton.interactable = false;
         SavedConstellationData = null;
         SelectedTarget = null;
         TargetKey = 0;
@@ -271,7 +249,7 @@ public class CreateConstellationScript : MonoBehaviour
         foreach(TargetInCreateModeScript i in Targets)
         {
             constellations[index].position = i.gameObject.transform.position;
-            constellations[index].Index = i.Key;
+            constellations[index].Key = i.Key;
             index++;
         }
 
@@ -310,13 +288,11 @@ public class CreateConstellationScript : MonoBehaviour
         Line[] lines = savedConstellationData.lines;
 
         //はめ込む型をインスタンス生成
-        int index = 0;
         foreach (ST_Constellation i in targets)
         {
             TargetInCreateModeScript temp = Instantiate(TargetPrefab, i.position, Quaternion.identity).GetComponent<TargetInCreateModeScript>();
-            temp.SetKey(i.Index);
+            temp.SetKey(i.Key);
             Targets.Add(temp);
-            index++;
         }
 
         //線を配置
@@ -324,7 +300,7 @@ public class CreateConstellationScript : MonoBehaviour
         foreach (Line i in lines)
         {
             //線のインスタンス生成
-            CreateLine(i.start, i.end, i.startTargetIndex, i.endTargetIndex);
+            CreateLine(i.start, i.end, i.startTargetKey, i.endTargetKey);
         }
     }
 

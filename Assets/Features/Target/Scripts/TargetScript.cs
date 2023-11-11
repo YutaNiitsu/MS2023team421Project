@@ -4,16 +4,12 @@ using UnityEngine;
 
 public class TargetScript : MonoBehaviour
 {
+    private GameManagerScript GameManager;
+    private bool Goal;
     // Start is called before the first frame update
     void Start()
     {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        Goal = false;
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -34,8 +30,23 @@ public class TargetScript : MonoBehaviour
                 rb.velocity = Vector3.zero;
             }
 
+            //スコア加算
+            int rare = obj.GetComponent<StarScript>().Rarity;
+            GameManager.AddScore(rare);
+
+            Goal = true;
             // 自分を非表示にする
             gameObject.SetActive(false);
         }
+    }
+
+    public void Set(GameManagerScript gameManager)
+    {
+        GameManager = gameManager;
+    }
+
+    public bool IsGoal()
+    {
+        return Goal;
     }
 }
