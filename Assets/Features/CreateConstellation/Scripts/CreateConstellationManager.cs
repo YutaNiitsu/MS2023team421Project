@@ -10,6 +10,9 @@ using static SaveConstellationDIsplayScript;
 
 public class CreateConstellationManager : MonoBehaviour
 {
+    [Header("星座データのファイル名")]
+    public string SavedFileName;
+
     //読み込んだ星座データ一覧を表示選択するためのスクロール
     public GameObject ConstellationListDisplay;
     //スクロールにアイテムを追加するときにつかう
@@ -40,7 +43,12 @@ public class CreateConstellationManager : MonoBehaviour
     void Start()
     {
         // 星座データの読み込み
-        ConstellationDatas = GetComponent<ConstellationLoadManager>().LoadData();
+        ConstellationDatas = GetComponent<ConstellationLoadManager>().LoadData(SavedFileName);
+
+        if (ConstellationDatas == null)
+        {
+            ConstellationDatas = new SaveConstellationData[0];
+        }
 
         createConstellationScript = GetComponent<CreateConstellationScript>();
         constellationSaveManager = GetComponent<ConstellationSaveManager>();
@@ -135,7 +143,7 @@ public class CreateConstellationManager : MonoBehaviour
         ConstellationDatas[ConstellationDatas.Length - 1] = createConstellationScript.CreateSaveData();
         ConstellationDatas[ConstellationDatas.Length - 1].SetID(id);
         //データをセーブ
-        constellationSaveManager.OnSaveNewData(ConstellationDatas);
+        constellationSaveManager.OnSaveNewData(ConstellationDatas, SavedFileName);
         //セーブ画面を消す
         saveConstellationDIsplay.gameObject.SetActive(false);
     }
@@ -155,7 +163,7 @@ public class CreateConstellationManager : MonoBehaviour
         }
         ConstellationDatas[index] = data;
 
-        constellationSaveManager.OnSaveNewData(ConstellationDatas);
+        constellationSaveManager.OnSaveNewData(ConstellationDatas, SavedFileName);
         //セーブ画面を消す
         saveConstellationDIsplay.gameObject.SetActive(false);
         SetButtonInteractable(true, true, false, true, true, true);
@@ -235,7 +243,7 @@ public class CreateConstellationManager : MonoBehaviour
         ConstellationDatas = newDatas;
         //セーブする
         //newDatas = new SaveConstellationData[0];
-        constellationSaveManager.OnSaveNewData(newDatas);
+        constellationSaveManager.OnSaveNewData(newDatas, SavedFileName);
         //一覧スクロールを非表示
         ConstellationListDisplay.SetActive(false);
         SetButtonInteractable(true, true, false, true, true, true);

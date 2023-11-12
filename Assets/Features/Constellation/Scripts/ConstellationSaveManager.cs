@@ -26,7 +26,7 @@ public class ConstellationSaveManager : MonoBehaviour
         }
 
 
-        SaveFilePath = "Assets/Features/Constellation/Scripts/SavedConstellation.save";
+        SaveFilePath = "Assets/Features/Constellation/SaveData/";
     }
     // Start is called before the first frame update
     void Start()
@@ -34,7 +34,7 @@ public class ConstellationSaveManager : MonoBehaviour
         
     }
     // 星座のデータを保存
-    public void OnSaveNewData(SaveConstellationData[] data)
+    public void OnSaveNewData(SaveConstellationData[] data, string fileName)
     {
         SaveConstellationData_ConvArray constellationData_ConvArray = new SaveConstellationData_ConvArray();
         constellationData_ConvArray.saveConstellationDatas = new SaveConstellationData_Conv[data.Length];
@@ -48,7 +48,8 @@ public class ConstellationSaveManager : MonoBehaviour
         // バイナリ形式でシリアル化
         BinaryFormatter bf = new BinaryFormatter();
         // 指定したパスにファイルを作成
-        FileStream file = File.Create(SaveFilePath);
+        string fp = SaveFilePath + fileName;
+        FileStream file = File.Create(fp);
         // Closeが確実に呼ばれるように例外処理を用いる
         try
         {

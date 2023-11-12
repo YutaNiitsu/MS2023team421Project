@@ -11,6 +11,8 @@ public class GameManagerScript : MonoBehaviour
 {
     [Header("ステージセッティング")]
     public StageSetting[] stageSettings;
+    [Header("星座データのファイル名")]
+    public string SavedFileName;
 
     private ProceduralGenerator ProceduralGenerator;
     private SaveConstellationData[] ConstellationDatas;
@@ -29,8 +31,8 @@ public class GameManagerScript : MonoBehaviour
 
         ProceduralGenerator = GetComponent<ProceduralGenerator>();
 
-        ConstellationDatas = GetComponent<ConstellationLoadManager>().LoadData();
-        if (ConstellationDatas.Length > 0)
+        ConstellationDatas = GetComponent<ConstellationLoadManager>().LoadData(SavedFileName);
+        if (ConstellationDatas != null && ConstellationDatas.Length > 0)
         {
             int index = UnityEngine.Random.Range(0, ConstellationDatas.Length);
             // オブジェクトを配置

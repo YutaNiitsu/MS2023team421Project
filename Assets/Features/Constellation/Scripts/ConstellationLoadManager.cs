@@ -22,9 +22,7 @@ public class ConstellationLoadManager : MonoBehaviour
         {
             Destroy(gameObject);
         }
-
-
-        SaveFilePath = "Assets/Features/Constellation/Scripts/SavedConstellation.save";
+        SaveFilePath = "Assets/Features/Constellation/SaveData/";
     }
     // Start is called before the first frame update
     void Start()
@@ -32,16 +30,18 @@ public class ConstellationLoadManager : MonoBehaviour
         
     }
     // 星座のデータを読み込み
-    public SaveConstellationData[] LoadData()
+    public SaveConstellationData[] LoadData(string fileName)
     {
         SaveConstellationData[] data = null;
         string dataJSON;
-        if (File.Exists(SaveFilePath))
+        string fp = SaveFilePath + fileName;
+        // 指定したパスのファイルが存在するかどうか
+        if (File.Exists(fp))
         {
             // バイナリ形式でデシリアライズ
             BinaryFormatter bf = new BinaryFormatter();
             // 指定したパスのファイルストリームを開く
-            FileStream file = File.Open(SaveFilePath, FileMode.Open);
+            FileStream file = File.Open(fp, FileMode.Open);
             try
             {
                 // 指定したファイルストリームをオブジェクトにデシリアライズ。
