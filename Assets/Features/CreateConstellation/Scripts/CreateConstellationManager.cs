@@ -29,8 +29,8 @@ public class CreateConstellationManager : MonoBehaviour
     public Button LoadButton;
     public Button DeleteSavedDataButton;
     //セーブ画面
-    public SaveConstellationDIsplayScript saveConstellationDIsplay;
-
+    public SaveConstellationDIsplayScript SaveConstellationDisplay;
+    //一覧表示に使うボタンのプレハブ
     private SelectButtonScript[] SelectConstellationButtons;
 
     // 星座データ
@@ -62,32 +62,27 @@ public class CreateConstellationManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //右クリックで設置
+        //セーブ画面開いていたら実行しない
+        if (SaveConstellationDisplay.gameObject.activeSelf)
+            return;
+        //星座データ一覧が表示されちたら実行しない
+        if (ConstellationListDisplay.activeSelf)
+            return;
+        // 配置ボタンが有効（押されていない時）になっていたら実行しない
+        if (PutTargeButton.interactable)
+            return;
+        // 画面上に配置されたボタンが押された時は実行しない
+        if (EventSystem.current.IsPointerOverGameObject())
+            return;
+
+        //右クリックで削除
         if (Input.GetMouseButtonDown(1))
         {
-            // 配置ボタンが有効（押されていない時）になっていたら実行しない
-            if (PutTargeButton.interactable)
-                return;
-            // 画面上に配置されたボタンが押された時は実行しない
-            if (EventSystem.current.IsPointerOverGameObject())
-            {
-                return;
-            }
             createConstellationScript.DeleteTarget();
         }
         //左クリックで設置
         if (Input.GetMouseButtonDown(0))
         {
-
-            // 配置ボタンが有効（押されていない時）になっていたら実行しない
-            if (PutTargeButton.interactable)
-                return;
-
-            // 画面上に配置されたボタンが押された時は実行しない
-            if (EventSystem.current.IsPointerOverGameObject())
-            {
-                return;
-            }
             //マウス座標の取得
             Vector3 mousePos = Input.mousePosition;
             //スクリーン座標をワールド座標に変換
@@ -145,7 +140,8 @@ public class CreateConstellationManager : MonoBehaviour
         //データをセーブ
         constellationSaveManager.OnSaveNewData(ConstellationDatas, SavedFileName);
         //セーブ画面を消す
-        saveConstellationDIsplay.gameObject.SetActive(false);
+        SaveConstellationDisplay.gameObject.SetActive(false);
+        SetButtonInteractable(true, true, false, true, true, true);
     }
     // 星座のデータを上書き保存
     public void OnSaveOverwrite()
@@ -165,14 +161,14 @@ public class CreateConstellationManager : MonoBehaviour
 
         constellationSaveManager.OnSaveNewData(ConstellationDatas, SavedFileName);
         //セーブ画面を消す
-        saveConstellationDIsplay.gameObject.SetActive(false);
+        SaveConstellationDisplay.gameObject.SetActive(false);
         SetButtonInteractable(true, true, false, true, true, true);
     }
     // セーブをキャンセル
     public void OnSaveCancel()
     {
         //セーブ画面を消す
-        saveConstellationDIsplay.gameObject.SetActive(false);
+        SaveConstellationDisplay.gameObject.SetActive(false);
         SetButtonInteractable(true, true, false, true, true, true);
     }
     // 星座のデータを選択して表示
@@ -268,11 +264,11 @@ public class CreateConstellationManager : MonoBehaviour
     public void ClickSaveButton()
     {
         SetButtonInteractable(false, false, false, false, false, false);
-        saveConstellationDIsplay.gameObject.SetActive(true);
+        SaveConstellationDisplay.gameObject.SetActive(true);
         if (createConstellationScript.IsSavedData())
-            saveConstellationDIsplay.SetVisibility(SaveConstellationType.SavedData);
+            SaveConstellationDisplay.SetVisibility(SaveConstellationType.SavedData);
         else
-            saveConstellationDIsplay.SetVisibility(SaveConstellationType.NewData);
+            SaveConstellationDisplay.SetVisibility(SaveConstellationType.NewData);
 
     }
 
@@ -300,7 +296,7 @@ public class CreateConstellationManager : MonoBehaviour
         ConstellationListDisplay.SetActive(false);
         SetButtonInteractable(true, true, false, true, true, true);
     }
-
+    //参照画像読み込む（使ってない）
     public void LoadSprite(string path)
     {
         try

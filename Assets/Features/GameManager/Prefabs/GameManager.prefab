@@ -48,11 +48,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   stageSettings:
-  - missions:
-    - DischargeNumber: 10
-      TargetNum: 0
+  - missions1: []
+    missions2: []
     Range: {x: 500, y: 500}
     Threshold: 0.9
+  SavedFileName: SavedConstellation.save
 --- !u!114 &6697352170113118778
 MonoBehaviour:
   m_ObjectHideFlags: 0

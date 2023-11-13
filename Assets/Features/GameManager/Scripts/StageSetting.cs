@@ -28,7 +28,7 @@ public struct StageSetting
     public Mission1[] missions1;
 
     [Header("ミッションで完成させる星座を星をはめ込む型の数で指定する場合")]
-    public Mission1[] missions2;
+    public Mission2[] missions2;
 
     [Header("星を配置するエリアの広さ")]
     public Vector2 Range;

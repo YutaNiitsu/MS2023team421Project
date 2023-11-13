@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Reflection;
 using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
@@ -16,10 +17,15 @@ public class GameManagerScript : MonoBehaviour
 
     private ProceduralGenerator ProceduralGenerator;
     private SaveConstellationData[] ConstellationDatas;
+    private MissionScript Mission;
     private uint Score;
     private int DischargeNumber;
     private Rigidbody2D FinalDischargedStar;
     private bool IsFinished;
+    private int StageNumber;
+    private int MissinNumber;
+    private Mission1[] Missions1;
+    private Mission2[] Missions2;
 
     // Start is called before the first frame update
     void Start()
@@ -28,17 +34,22 @@ public class GameManagerScript : MonoBehaviour
         DischargeNumber = 20;
         FinalDischargedStar = null;
         IsFinished = false;
+        StageNumber = 0;
+        MissinNumber = 0;
 
         ProceduralGenerator = GetComponent<ProceduralGenerator>();
-
         ConstellationDatas = GetComponent<ConstellationLoadManager>().LoadData(SavedFileName);
-        if (ConstellationDatas != null && ConstellationDatas.Length > 0)
-        {
-            int index = UnityEngine.Random.Range(0, ConstellationDatas.Length);
-            // オブジェクトを配置
-            ProceduralGenerator.GenerateTargets(ConstellationDatas[index].constellations);
-            ProceduralGenerator.GenerateStars(stageSettings[0].Range, stageSettings[0].Threshold);
-        }
+        Mission = GetComponent<MissionScript>();
+        // 星を配置
+        ProceduralGenerator.GenerateStars(stageSettings[StageNumber].Range, stageSettings[StageNumber].Threshold);
+
+
+        //ミッション
+        // 星座を配置
+        SaveConstellationData determination = null;
+        determination = Mission.SetMission(stageSettings[StageNumber], ConstellationDatas);
+        if (determination != null)
+            ProceduralGenerator.GenerateTargets(determination.constellations);
     }
 
     // Update is called once per frame
@@ -46,6 +57,7 @@ public class GameManagerScript : MonoBehaviour
     {
         if (FinalDischargedStar != null && !IsFinished)
         {
+            //星が停止した
             if (Vector2.Dot(FinalDischargedStar.velocity, FinalDischargedStar.velocity) <= 0.1f)
             {
                 IsFinished = true;
@@ -76,7 +88,7 @@ public class GameManagerScript : MonoBehaviour
         {
             //全部はまっていた
             IsFinished = true;
-            //クリア処理
+            //ミッションクリア処理
 
         }
     }
@@ -108,11 +120,16 @@ public class GameManagerScript : MonoBehaviour
     //ゲームオーバー処理
     private void GameOver()
     {
+        Debug.Log("GameOver");
+    }
+    //ミッションクリア処理
+    private void MissionComplete()
+    {
 
     }
     //ゲームクリア処理
     private void Complete()
     {
-
+        Debug.Log("Clear");
     }
 }

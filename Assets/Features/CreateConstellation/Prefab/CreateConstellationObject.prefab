@@ -338,6 +338,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4e20d3ddb889af04b949cb7bb878cd9a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  SavedFileName: SavedConstellation.save
   ConstellationListDisplay: {fileID: 3267671513288762647}
   ScrollViewportContents: {fileID: 3486840974792357638}
   SelectButton: {fileID: 8950086126292657042, guid: c8263d06c41284143ac3e7f137fbb3f9, type: 3}
