@@ -4,13 +4,14 @@ using UnityEngine;
 
 public class MissionScript : MonoBehaviour
 {
+    private ProceduralGenerator ProceduralGenerator;
     private int MissinNumber;
     private Mission1[] Missions1;
     private Mission2[] Missions2;
     // Start is called before the first frame update
     void Start()
     {
-        
+        ProceduralGenerator = GetComponent<ProceduralGenerator>();
     }
 
     //ƒ~ƒbƒVƒ‡ƒ“‚ðÝ’è‚·‚é
@@ -92,4 +93,16 @@ public class MissionScript : MonoBehaviour
 
         return null;
     }
+    
+    //public bool IsMissionComplete()
+    //{
+    //    //if (Missions1.Length > 0 && )
+    //    //{
+    //    //    return 
+    //    //}
+    //    //else if (Missions2.Length > 0)
+    //    //{
+
+    //    //}
+    //}
 }
