@@ -44,7 +44,7 @@ public class MissionScript : MonoBehaviour
         if (ConstellationDatas != null && ConstellationDatas.Length > 0)
         {
             Determination = null;
-            if (Missions1.Length > 0 && Missions1.Length <= MissinIndex + 1)
+            if (Missions1 != null && Missions1.Length > 0 && Missions1.Length > MissinIndex)
             {
                 //ミッションで完成させる星座を名前で指定
                 string[] name = Missions1[MissinIndex].Name;
@@ -70,7 +70,7 @@ public class MissionScript : MonoBehaviour
                     Determination = ConstellationDatas[rand];
                 }
             }
-            else if (Missions2.Length > 0 && Missions2.Length <= MissinIndex + 1)
+            else if (Missions2 != null && Missions2.Length > 0 && Missions2.Length > MissinIndex)
             {
                 //ミッションで完成させる星座を星をはめ込む型の数で指定
                 int min = Missions2[MissinIndex].minNumber;
@@ -97,6 +97,8 @@ public class MissionScript : MonoBehaviour
 
         if (Determination != null)
         {
+            string s = "ミッション " + MissinIndex.ToString();
+            Debug.Log(s);
             //星座の生成
             ProceduralGenerator.GenerateTargets(Determination.constellations);
             return true;
@@ -104,6 +106,7 @@ public class MissionScript : MonoBehaviour
         return false;
     }
 
+    //ミッションクリアしたかどうか
     public bool IsMissionComplete()
     {
         bool isComp = true;
@@ -128,19 +131,33 @@ public class MissionScript : MonoBehaviour
         return false;
     }
 
+    //ミッション全てクリアしたかどうか
     public bool IsAllMissionsComplete()
     {
-        if (!IsMissionComplete())
-            return false;
+        //if (!IsMissionComplete())
+        //    return false;
 
-        if (Missions1.Length < MissinIndex + 1)
+        if (Missions1 != null && Missions1.Length < MissinIndex + 1)
         {
             return true;
         }
-        else if (Missions2.Length < MissinIndex + 1)
+        else if (Missions2 != null && Missions2.Length < MissinIndex + 1)
         {
             return true;
         }
         return false;
+    }
+
+    public int GetDischargeNumber()
+    {
+        if (Missions1 != null && Missions1.Length > 0)
+        {
+            return Missions1[MissinIndex].DischargeNumber;
+        }
+        else if (Missions2 != null && Missions2.Length > 0)
+        {
+            return Missions2[MissinIndex].DischargeNumber;
+        }
+        return 0;
     }
 }

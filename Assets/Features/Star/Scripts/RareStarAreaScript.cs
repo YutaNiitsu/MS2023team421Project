@@ -11,8 +11,9 @@ public class RareStarAreaScript : MonoBehaviour
     void Start()
     {
         //エリア表示用のスプライトを見えなくする
+#if false
         RareStarAreaSprite.GetComponent<SpriteRenderer>().color = new Color(0.0f, 0.0f, 0.0f, 0.0f);
-
+#endif
         //Stars = new List<StarScript>();
         //int num = Contents.transform.childCount;
         //for (int i = 0; i < num; i++)

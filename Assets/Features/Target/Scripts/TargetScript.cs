@@ -12,6 +12,15 @@ public class TargetScript : MonoBehaviour
         Goal = false;
     }
 
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            Goal = true;
+            GameManager.AddScore(1);
+        }
+    }
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
         GameObject obj = collision.gameObject;
@@ -19,6 +28,7 @@ public class TargetScript : MonoBehaviour
         // 星だった時
         if (obj.CompareTag("Star"))
         {
+            Goal = true;
             // 位置をターゲットに合わせる
             Vector3 pos = gameObject.transform.position;
             obj.transform.position = pos;
@@ -34,7 +44,7 @@ public class TargetScript : MonoBehaviour
             int rare = obj.GetComponent<StarScript>().Rarity;
             GameManager.AddScore(rare);
 
-            Goal = true;
+            
             // 自分を非表示にする
             gameObject.SetActive(false);
         }

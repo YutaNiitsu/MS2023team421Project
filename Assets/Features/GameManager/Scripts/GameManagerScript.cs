@@ -11,7 +11,7 @@ using UnityEngine.UIElements;
 public class GameManagerScript : MonoBehaviour
 {
     [Header("ステージセッティング")]
-    public StageSetting[] stageSettings;
+    public StageSetting[] StageSettings;
     [Header("星座データのファイル名")]
     public string SavedFileName;
 
@@ -19,7 +19,7 @@ public class GameManagerScript : MonoBehaviour
     private SaveConstellationData[] ConstellationDatas;
     private MissionScript Mission;
     private uint Score;
-    private int DischargeNumber;
+    private int DischargeNumber;       //プレイヤーが星を発射できる回数
     private Rigidbody2D FinalDischargedStar;
     private bool IsFinished;
     private int StageNumber;
@@ -31,7 +31,7 @@ public class GameManagerScript : MonoBehaviour
     void Start()
     {
         Score = 0;
-        DischargeNumber = 20;
+        DischargeNumber = 0;
         FinalDischargedStar = null;
         IsFinished = false;
         StageNumber = 0;
@@ -41,12 +41,13 @@ public class GameManagerScript : MonoBehaviour
         ConstellationDatas = GetComponent<ConstellationLoadManager>().LoadData(SavedFileName);
         Mission = GetComponent<MissionScript>();
         // 星を配置
-        ProceduralGenerator.GenerateStars(stageSettings[StageNumber].Range, stageSettings[StageNumber].Threshold);
+        ProceduralGenerator.GenerateStars(StageSettings[StageNumber].Range, StageSettings[StageNumber].Threshold);
 
 
         //ミッション
         // 星座を配置
-        Mission.SetMission(stageSettings[StageNumber], ConstellationDatas);
+        Mission.SetMission(StageSettings[StageNumber], ConstellationDatas);
+        DischargeNumber = Mission.GetDischargeNumber();
         //ミッション実行
         if (!Mission.ExecuteMission())
         {
@@ -78,6 +79,18 @@ public class GameManagerScript : MonoBehaviour
         //全てのはめ込む型に星がはまっているか
         if (Mission.IsMissionComplete())
         {
+
+            //ミッション全てクリアしたかどうか
+            if (Mission.IsAllMissionsComplete())
+            {
+                StageComplete();
+                return;
+            }
+            else
+            {
+                MissionComplete();
+            }
+
             if (!Mission.ExecuteMission())
             {
                 Debug.Log("ミッションが設定されていない");
@@ -117,11 +130,22 @@ public class GameManagerScript : MonoBehaviour
     //ミッションクリア処理
     private void MissionComplete()
     {
-
+        Debug.Log("ミッション成功");
+        //発射可能回数更新
+        DischargeNumber = Mission.GetDischargeNumber();
     }
-    //ゲームクリア処理
-    private void Complete()
+    //ステージクリア処理
+    private void StageComplete()
     {
-        Debug.Log("Clear");
+        Debug.Log("ステージクリア");
+        //StageNumber++;
+        //if (StageSettings.Length > StageNumber)
+        //{
+        //    //次のステージへ
+        //}
+        //else
+        //{
+        //    //
+        //}
     }
 }
