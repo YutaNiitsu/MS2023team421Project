@@ -46,10 +46,12 @@ public class GameManagerScript : MonoBehaviour
 
         //ミッション
         // 星座を配置
-        SaveConstellationData determination = null;
-        determination = Mission.SetMission(stageSettings[StageNumber], ConstellationDatas);
-        if (determination != null)
-            ProceduralGenerator.GenerateTargets(determination.constellations);
+        Mission.SetMission(stageSettings[StageNumber], ConstellationDatas);
+        //ミッション実行
+        if (!Mission.ExecuteMission())
+        {
+            Debug.Log("ミッションが設定されていない");
+        }
     }
 
     // Update is called once per frame
@@ -73,23 +75,13 @@ public class GameManagerScript : MonoBehaviour
     {
         Score += 10;
 
-        bool isComp = true;
-        foreach (TargetScript i in ProceduralGenerator.GetTargets())
+        //全てのはめ込む型に星がはまっているか
+        if (Mission.IsMissionComplete())
         {
-            if (!i.IsGoal())
+            if (!Mission.ExecuteMission())
             {
-                //星がはまっていないものがあったら失敗
-                isComp = false;
-                break;
+                Debug.Log("ミッションが設定されていない");
             }
-        }
-
-        if (isComp)
-        {
-            //全部はまっていた
-            IsFinished = true;
-            //ミッションクリア処理
-
         }
     }
 

@@ -26,6 +26,14 @@ public class ProceduralGenerator : MonoBehaviour
     //threshold : ¯‚Ì–§“x‚ª•Ï‚í‚é
     public void GenerateTargets(ST_Constellation[] targets)
     {
+        if (Targets != null && Targets.Count > 0)
+        {
+            foreach (TargetScript i in Targets)
+            {
+                Destroy(i.gameObject);
+            }
+        }
+
         Targets = new List<TargetScript>();
         // ¯‚ğ‚Í‚ß‚ŞŒ^¶¬
         foreach (ST_Constellation i in targets)
