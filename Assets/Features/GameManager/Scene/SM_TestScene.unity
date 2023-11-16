@@ -212,23 +212,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1162177759 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 164170489949264287, guid: 23cd3a265e427634aade1d6e486d211d, type: 3}
-  m_PrefabInstance: {fileID: 5551909910691791233}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &1162177765
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1162177759}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 35b5709de20a46544aaf1962108e8e8a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &5551909910691791233
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -242,52 +225,32 @@ PrefabInstance:
       value: GameManager
       objectReference: {fileID: 0}
     - target: {fileID: 5105850875108164340, guid: 23cd3a265e427634aade1d6e486d211d, type: 3}
-      propertyPath: StageSettings.Array.size
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5105850875108164340, guid: 23cd3a265e427634aade1d6e486d211d, type: 3}
-      propertyPath: StageSettings.Array.data[0].Range.x
+      propertyPath: StageSettings.Range.x
       value: 500
       objectReference: {fileID: 0}
     - target: {fileID: 5105850875108164340, guid: 23cd3a265e427634aade1d6e486d211d, type: 3}
-      propertyPath: StageSettings.Array.data[0].Range.y
+      propertyPath: StageSettings.Range.y
       value: 500
       objectReference: {fileID: 0}
     - target: {fileID: 5105850875108164340, guid: 23cd3a265e427634aade1d6e486d211d, type: 3}
-      propertyPath: StageSettings.Array.data[0].Threshold
+      propertyPath: StageSettings.Threshold
       value: 0.9
       objectReference: {fileID: 0}
     - target: {fileID: 5105850875108164340, guid: 23cd3a265e427634aade1d6e486d211d, type: 3}
-      propertyPath: StageSettings.Array.data[0].missions1.Array.size
-      value: 3
+      propertyPath: StageSettings.DischargeNumber
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 5105850875108164340, guid: 23cd3a265e427634aade1d6e486d211d, type: 3}
-      propertyPath: stageSettings.Array.data[0].missions1.Array.size
-      value: 3
+      propertyPath: StageSettings.Type.Array.size
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 5105850875108164340, guid: 23cd3a265e427634aade1d6e486d211d, type: 3}
-      propertyPath: StageSettings.Array.data[0].missions1.Array.data[0].DischargeNumber
-      value: 10
+      propertyPath: StageSettings.ConstellationName
+      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 5105850875108164340, guid: 23cd3a265e427634aade1d6e486d211d, type: 3}
-      propertyPath: StageSettings.Array.data[0].missions1.Array.data[1].DischargeNumber
-      value: 11
-      objectReference: {fileID: 0}
-    - target: {fileID: 5105850875108164340, guid: 23cd3a265e427634aade1d6e486d211d, type: 3}
-      propertyPath: StageSettings.Array.data[0].missions1.Array.data[2].DischargeNumber
-      value: 12
-      objectReference: {fileID: 0}
-    - target: {fileID: 5105850875108164340, guid: 23cd3a265e427634aade1d6e486d211d, type: 3}
-      propertyPath: stageSettings.Array.data[0].missions1.Array.data[0].DischargeNumber
-      value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 5105850875108164340, guid: 23cd3a265e427634aade1d6e486d211d, type: 3}
-      propertyPath: stageSettings.Array.data[0].missions1.Array.data[1].DischargeNumber
-      value: 11
-      objectReference: {fileID: 0}
-    - target: {fileID: 5105850875108164340, guid: 23cd3a265e427634aade1d6e486d211d, type: 3}
-      propertyPath: stageSettings.Array.data[0].missions1.Array.data[2].DischargeNumber
-      value: 12
+      propertyPath: 'StageSettings.Type.Array.data[1]'
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 8602336333666789749, guid: 23cd3a265e427634aade1d6e486d211d, type: 3}
       propertyPath: m_LocalPosition.x
@@ -329,13 +292,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 6656774905500346099, guid: 23cd3a265e427634aade1d6e486d211d, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 164170489949264287, guid: 23cd3a265e427634aade1d6e486d211d, type: 3}
-      insertIndex: 3
-      addedObject: {fileID: 1162177765}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 23cd3a265e427634aade1d6e486d211d, type: 3}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
