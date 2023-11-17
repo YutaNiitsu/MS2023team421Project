@@ -23,10 +23,14 @@ public class ContorolPlayer : MonoBehaviour
     Vector3 direction;
     Vector3 normal;
     Vector3 mousePos;
+
+    private GameManagerScript GameManager;
+ 
     void Start()
     {
         //maxDistance = GetComponent<GameObject>().transform.lossyScale.x / 2.0f;
         maxDistance = this.transform.localScale.x;
+        GameManager = GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameManagerScript>();
     }
 
     // Update is called once per frame
@@ -84,7 +88,9 @@ public class ContorolPlayer : MonoBehaviour
             if (ContorolStarScript != null)
             {
                 ContorolStarScript.AddForce(startDirection * speed);
+                GameManager.Discharge(ContorolStarScript.rigid2d);
                 ContorolStarScript = null;
+                
             }
         }
 

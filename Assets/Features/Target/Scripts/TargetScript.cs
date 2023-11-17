@@ -31,7 +31,7 @@ public class TargetScript : MonoBehaviour
         // 星だった時
         if (obj.CompareTag("Star"))
         {
-            obj.tag = "StarStop";
+            obj.tag = "Untagged";
             Goal = true;
             // 位置をターゲットに合わせる
             Vector3 pos = gameObject.transform.position;

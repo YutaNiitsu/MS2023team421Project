@@ -31,7 +31,7 @@ public struct StageSetting
     public int DischargeNumber;
     [Header("星を配置するエリアの広さ")]
     public Vector2 Range;
-    [Header("星の密度(0～1)")]
+    [Header("閾値（0.0～1.0）、この値が低いほど生成される星が多くなる")]
     public float Threshold;
     [Header("ミッションセッティング")]
     [Header("ミッションの種類選択")]

@@ -6,11 +6,11 @@ using UnityEngine.UIElements;
 
 public class ContorolStar : MonoBehaviour
 {
-    public PlayerStock PlayerStockScript;
+    //public PlayerStock PlayerStockScript;
     public GameManagerScript UseGameManagerScript;
     public bool MoveTG;
 
-    Rigidbody2D rigid2d;
+    public Rigidbody2D rigid2d { get; protected set; }
     // Vector2 startPos;
     // Vector2 startDirection;
 
