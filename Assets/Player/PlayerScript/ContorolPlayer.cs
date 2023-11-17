@@ -33,25 +33,7 @@ public class ContorolPlayer : MonoBehaviour
     void Update()
     {
         PlayerContorol();
-        //FixedUpdate();
-
-        //if (Input.GetMouseButtonDown(0))
-        //{
-
-        //    //clickedGameObject = null;
-
-        //    Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-        //    RaycastHit2D hit2d = Physics2D.Raycast((Vector2)ray.origin, (Vector2)ray.direction);
-
-        //    if (hit2d)
-        //    {
-        //        clickedGameObject = hit2d.transform.gameObject;
-        //    }
-
-        //    //Debug.Log(clickedGameObject);
-        //    ContorolStarScript = clickedGameObject.GetComponent<ContorolStar>();
-        //    ContorolStarScript.AddForce(startDirection * speed);
-        //}
+      
 
         CursorContorol();
     }
@@ -77,7 +59,8 @@ public class ContorolPlayer : MonoBehaviour
             if (hit2d)
             {
                 clickedGameObject = hit2d.transform.gameObject;
-                if (clickedGameObject.gameObject.CompareTag("Player"))
+                if (clickedGameObject.gameObject.CompareTag("Player")
+                    || clickedGameObject.gameObject.CompareTag("Star"))
                     ContorolStarScript = clickedGameObject.GetComponent<ContorolStar>();
             }
 
@@ -135,7 +118,7 @@ public class ContorolPlayer : MonoBehaviour
     void CursorContorol()
     {
         Vector3 mousePos = Input.mousePosition;
-        mousePos.z = -1.0f;
+        mousePos.z = 10.0f;
         Vector3 objPos = Camera.main.ScreenToWorldPoint(mousePos);
         transform.position = new Vector2(objPos.x, objPos.y);
     }
