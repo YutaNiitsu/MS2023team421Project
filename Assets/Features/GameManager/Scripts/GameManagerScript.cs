@@ -20,7 +20,7 @@ public class GameManagerScript : MonoBehaviour
 
 
     [Header("ステージセッティング")]
-    public StageSetting StageSettings;
+    public StageSetting Setting;
     [Header("星座データのファイル名")]
     public string SavedFileName;
     [Header("はめ込む型にはまった時に取得するスコア")]
@@ -36,29 +36,27 @@ public class GameManagerScript : MonoBehaviour
     private int DischargeNumber;       //プレイヤーが星を発射できる回数
     private Rigidbody2D FinalDischargedStar;
     private bool IsFinished;
-    private int MissinNumber;
-    private Mission1[] Missions1;
-    private Mission2[] Missions2;
+    private bool IsStageComplete;
 
     // Start is called before the first frame update
     void Start()
     {
         Score = 0;
-        DischargeNumber = StageSettings.DischargeNumber;
+        DischargeNumber = Setting.DischargeNumber;
         FinalDischargedStar = null;
         IsFinished = false;
-        MissinNumber = 0;
+        IsStageComplete = false;
 
         ProceduralGenerator = GetComponent<ProceduralGenerator>();
         ConstellationDatas = GetComponent<ConstellationLoadManager>().LoadData(SavedFileName);
         
         // 星を配置
-        ProceduralGenerator.GenerateStars(StageSettings.Range, StageSettings.Threshold);
+        ProceduralGenerator.GenerateStars(Setting.Range, Setting.Threshold);
 
         SaveConstellationData temp = null;
         foreach (SaveConstellationData i in ConstellationDatas)
         {
-            if (i.name == StageSettings.ConstellationName)
+            if (i.name == Setting.ConstellationName)
             {
                 temp = i;
             }
@@ -68,9 +66,13 @@ public class GameManagerScript : MonoBehaviour
         ProceduralGenerator.GenerateTargets(temp.constellations);
 
         //ミッション
-        foreach (MissionType i in StageSettings.MissionTypes)
+        int len = Setting.MissionTypes.Length;
+        Missions = new MissionScript[len];
+        int index = 0;
+        foreach (MissionType i in Setting.MissionTypes)
         {
-
+            Missions[index] = new MissionScript(i);
+            index++;
         }
     }
 
@@ -143,25 +145,7 @@ public class GameManagerScript : MonoBehaviour
             StageComplete();
         }
 
-        //if (Mission.IsMissionComplete())
-        //{
-
-        //    //ミッション全てクリアしたかどうか
-        //    if (Mission.IsAllMissionsComplete())
-        //    {
-        //        StageComplete();
-        //        return;
-        //    }
-        //    else
-        //    {
-        //        MissionComplete();
-        //    }
-
-        //    if (!Mission.ExecuteMission())
-        //    {
-        //        Debug.Log("ミッションが設定されていない");
-        //    }
-        //}
+       
     }
 
     //星を飛ばすときの処理
@@ -183,25 +167,29 @@ public class GameManagerScript : MonoBehaviour
     }
 
     //ゲーム終了したかどうか
-    //public bool GetIsFinished()
-    //{
-    //    return IsFinished;
-    //}
+    public bool GetIsFinished()
+    {
+        return IsFinished;
+    }
 
-    
-    //ミッションクリア処理
-    //private void MissionComplete()
-    //{
-    //    Debug.Log("ミッション成功");
-    //    //発射可能回数更新
-    //    DischargeNumber = Mission.GetDischargeNumber();
-    //}
+    //ステージ終了したかどうか
+    public bool GetIsStageComplete()
+    {
+        return IsStageComplete;
+    }
+
+    //発射可能回数
+    public int GetDischargeNumber()
+    {
+        return DischargeNumber;
+    }
+
     //ステージクリア処理
     private void StageComplete()
     {
         Debug.Log("ステージクリア");
         Debug.Log(Score);
-
+        IsStageComplete = true;
     }
 
     //ゲームオーバー処理

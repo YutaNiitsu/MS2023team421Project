@@ -24,7 +24,7 @@ public class MissionScript : MonoBehaviour
 
     private MissionScript() { }
 
-    MissionScript(MissionType type)
+    public MissionScript(MissionType type)
     {
         Type = type;
     }
@@ -36,18 +36,49 @@ public class MissionScript : MonoBehaviour
         GameManager = gameObject.GetComponent<GameManagerScript>();
     }
 
-    //ミッションの実行
-    public void ExecuteMission(MissionType type)
-    {
+    ////ミッションの実行
+    //public void ExecuteMission(MissionType type)
+    //{
        
-    }
+    //}
 
     //ミッションクリアしたかどうか
     public bool IsMissionComplete()
     {
-       
+        bool success = false;
 
-        return false;
+        switch (Type)
+        {
+            case MissionType.ステージクリア:
+                if (GameManager.GetIsStageComplete())
+                {
+                    Debug.Log("ステージクリアした");
+                    success = true;
+                }
+                break;
+            case MissionType.障害物衝突回数ｎ回以下:
+                
+                break;
+            case MissionType.特別ポイントにユニーク星をはめ込む:
+                
+                break;
+            case MissionType.ｎターン以内にクリア:
+                if (GameManager.Setting.DischargeNumberWithinClear >= GameManager.GetDischargeNumber())
+                {
+                    string s = GameManager.Setting.DischargeNumberWithinClear.ToString();
+                    s += "ターン以内にクリアした";
+                    Debug.Log(s);
+                    success = true;
+                }
+                break;
+            case MissionType.障害物ｎ回以上壊す:
+
+                break;
+            default:
+                break;
+        }
+
+        return success;
     }
 
 }
