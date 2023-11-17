@@ -6,6 +6,8 @@ public class TargetScript : MonoBehaviour
 {
     private GameManagerScript GameManager;
     private bool Goal;
+    //特別ポイントに指定されているかどうか
+    private bool IsSpecialPoint;
     // Start is called before the first frame update
     void Start()
     {
@@ -14,10 +16,11 @@ public class TargetScript : MonoBehaviour
 
     private void Update()
     {
+        //テスト用
         if (Input.GetKeyDown(KeyCode.Space))
         {
             Goal = true;
-            GameManager.AddScore(1);
+            GameManager.AddScore(StarRarity.Normal, false);
         }
     }
 
@@ -28,6 +31,7 @@ public class TargetScript : MonoBehaviour
         // 星だった時
         if (obj.CompareTag("Star"))
         {
+            obj.tag = "StarStop";
             Goal = true;
             // 位置をターゲットに合わせる
             Vector3 pos = gameObject.transform.position;
@@ -41,8 +45,8 @@ public class TargetScript : MonoBehaviour
             }
 
             //スコア加算
-            int rare = obj.GetComponent<StarScript>().Rarity;
-            GameManager.AddScore(rare);
+            StarRarity rare = obj.GetComponent<StarScript>().Rarity;
+            GameManager.AddScore(rare, IsSpecialPoint);
 
             
             // 自分を非表示にする
@@ -50,13 +54,21 @@ public class TargetScript : MonoBehaviour
         }
     }
 
-    public void Set(GameManagerScript gameManager)
+    //生成時の設定
+    //gameManager : ゲームマネージャーを参照する
+    //isSpecialPoint : 特別ポイントにするかどうか
+    public void Set(GameManagerScript gameManager, bool isSpecialPoint)
     {
         GameManager = gameManager;
+        IsSpecialPoint = isSpecialPoint;
     }
 
     public bool IsGoal()
     {
         return Goal;
+    }
+    public bool GetIsSpecialPoint()
+    {
+        return IsSpecialPoint;
     }
 }

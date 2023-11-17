@@ -1,7 +1,9 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using TreeEditor;
 using UnityEngine;
+using UnityEngine.UIElements;
 using static UnityEditor.PlayerSettings;
 // ゲーム開始時に星とそれをはめ込む場所を配置するシステム
 public class ProceduralGenerator : MonoBehaviour
@@ -39,11 +41,15 @@ public class ProceduralGenerator : MonoBehaviour
         foreach (ST_Constellation i in targets)
         {
             TargetScript obj = Instantiate(Target, i.position, Quaternion.identity).GetComponent<TargetScript>();
-            obj.Set(GameManager);
+            obj.Set(GameManager, false);
             Targets.Add(obj);
         }
 
     }
+
+    //星を生成
+    //range : 生成範囲
+    //threshold : 閾値
     public void GenerateStars(Vector2 range, float threshold)
     {
         //スクリーンのサイズをワールド内のサイズに変換
@@ -56,14 +62,24 @@ public class ProceduralGenerator : MonoBehaviour
                 Vector2 pos = new Vector2(x - range.x / 2, y - range.y / 2);
                 if (pos.x > -worldScreen.x && pos.x < worldScreen.x
                     && pos.y > -worldScreen.y && pos.y < worldScreen.y)
-                    // スクリーンには生成しない
+                    // カメラスクリーンには生成しない
                     continue;
 
                 float noise = Mathf.PerlinNoise((float)x * 0.7f, (float)y * 0.7f);
                 //閾値より大きかったら生成
                 if (noise > threshold)
                 {
-                    Instantiate(Star[0], new Vector3(pos.x, pos.y, 0.0f), Quaternion.identity);
+                    float len = Vector2.Dot(pos, pos);
+                    float rand = UnityEngine.Random.Range(0.0f, 1.0f);
+                    if (len > Math.Pow(300, 2) && rand > 0.5)
+                    {
+                        Instantiate(RareStarArea[0], new Vector3(pos.x, pos.y, 0.0f), Quaternion.identity);
+                    }
+                    else
+                    {
+                        Instantiate(Star[0], new Vector3(pos.x, pos.y, 0.0f), Quaternion.identity);
+                    }
+                    
                 }
             }
         }

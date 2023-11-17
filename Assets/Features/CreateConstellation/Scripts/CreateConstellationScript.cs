@@ -31,12 +31,12 @@ public class ConstellationLine : MonoBehaviour
         lineRenderer.positionCount = 2;
         lineRenderer.SetPosition(0, _start);
         lineRenderer.SetPosition(1, _end);
-        Debug.Log(LineObject);
+        //Debug.Log(LineObject);
     }
 
     public void Destroy()
     {
-        Debug.Log(LineObject);
+        //Debug.Log(LineObject);
         if (LineObject != null)
         {
             Destroy(LineObject);

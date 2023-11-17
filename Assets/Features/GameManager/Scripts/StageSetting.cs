@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static MissionScript;
+
 [System.Serializable]
 public struct Mission1
 {
@@ -23,15 +25,22 @@ public struct Mission2
 [System.Serializable]
 public struct StageSetting
 {
-    [Header("ミッションセッティング")]
-    [Header("ミッションで完成させる星座を名前で指定する場合")]
-    public Mission1[] missions1;
-
-    [Header("ミッションで完成させる星座を星をはめ込む型の数で指定する場合")]
-    public Mission2[] missions2;
-
+    [Header("設置する星座の名前")]
+    public string ConstellationName;
+    [Header("プレイヤーが星を発射できる回数")]
+    public int DischargeNumber;
     [Header("星を配置するエリアの広さ")]
     public Vector2 Range;
     [Header("星の密度(0～1)")]
     public float Threshold;
+    [Header("ミッションセッティング")]
+    [Header("ミッションの種類選択")]
+    public MissionType[] MissionTypes;
+    [Header("ミッションの種類ごとの設定")]
+    [Header("障害物衝突回数ｎ回以下")]
+    public float ObstacleCollisionNumber;
+    [Header("ｎターン以内にクリア")]
+    public int DischargeNumberWithinClear;
+    [Header("障害物ｎ回以上壊す")]
+    public int ObstacleDestroyNumber;
 }

@@ -349,7 +349,7 @@ MonoBehaviour:
   SaveButton: {fileID: 1055526197468287020}
   LoadButton: {fileID: 80538982819848461}
   DeleteSavedDataButton: {fileID: 5770455931062811084}
-  saveConstellationDIsplay: {fileID: 7965850631048131980}
+  SaveConstellationDisplay: {fileID: 7965850631048131980}
 --- !u!114 &1364986793861322032
 MonoBehaviour:
   m_ObjectHideFlags: 0

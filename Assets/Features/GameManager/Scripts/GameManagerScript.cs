@@ -7,51 +7,72 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SocialPlatforms.Impl;
 using UnityEngine.UIElements;
+using static MissionScript;
 // ゲーム全体を制御する
 public class GameManagerScript : MonoBehaviour
 {
+    [System.Serializable]
+    public struct ST_StarRarity
+    {
+        public StarRarity rarity;
+        public int score;
+    }
+
+
     [Header("ステージセッティング")]
-    public StageSetting[] StageSettings;
+    public StageSetting Setting;
     [Header("星座データのファイル名")]
     public string SavedFileName;
+    [Header("はめ込む型にはまった時に取得するスコア")]
+    public ST_StarRarity[] TaregtScore;
+    [Header("特別ポイントにはまった時に取得するスコア")]
+    public ST_StarRarity[] SpecialTaregtScore;
+    
 
     private ProceduralGenerator ProceduralGenerator;
     private SaveConstellationData[] ConstellationDatas;
-    private MissionScript Mission;
-    private uint Score;
+    private MissionScript[] Missions;
+    private int Score;
     private int DischargeNumber;       //プレイヤーが星を発射できる回数
     private Rigidbody2D FinalDischargedStar;
     private bool IsFinished;
-    private int StageNumber;
-    private int MissinNumber;
-    private Mission1[] Missions1;
-    private Mission2[] Missions2;
+    private bool IsStageComplete;
 
     // Start is called before the first frame update
     void Start()
     {
         Score = 0;
-        DischargeNumber = 0;
+        DischargeNumber = Setting.DischargeNumber;
         FinalDischargedStar = null;
         IsFinished = false;
-        StageNumber = 0;
-        MissinNumber = 0;
+        IsStageComplete = false;
 
         ProceduralGenerator = GetComponent<ProceduralGenerator>();
         ConstellationDatas = GetComponent<ConstellationLoadManager>().LoadData(SavedFileName);
-        Mission = GetComponent<MissionScript>();
+        
         // 星を配置
-        ProceduralGenerator.GenerateStars(StageSettings[StageNumber].Range, StageSettings[StageNumber].Threshold);
+        ProceduralGenerator.GenerateStars(Setting.Range, Setting.Threshold);
 
+        SaveConstellationData temp = null;
+        foreach (SaveConstellationData i in ConstellationDatas)
+        {
+            if (i.name == Setting.ConstellationName)
+            {
+                temp = i;
+            }
+        }
+
+        if (temp != null)
+        ProceduralGenerator.GenerateTargets(temp.constellations);
 
         //ミッション
-        // 星座を配置
-        Mission.SetMission(StageSettings[StageNumber], ConstellationDatas);
-        DischargeNumber = Mission.GetDischargeNumber();
-        //ミッション実行
-        if (!Mission.ExecuteMission())
+        int len = Setting.MissionTypes.Length;
+        Missions = new MissionScript[len];
+        int index = 0;
+        foreach (MissionType i in Setting.MissionTypes)
         {
-            Debug.Log("ミッションが設定されていない");
+            Missions[index] = new MissionScript(i);
+            index++;
         }
     }
 
@@ -65,37 +86,66 @@ public class GameManagerScript : MonoBehaviour
             {
                 IsFinished = true;
                 //ゲームオーバー処理
-                GameOver();
+                StartCoroutine(GameOver());
             }
         }
 
     }
 
     //はめ込む型に星がはまるとスコア加算
-    public void AddScore(int starRarity)
+    //starRarity : はまった星のレアリティ
+    //isSpecialPoint : はめ込む型が特別ポイントかどうか
+    public void AddScore(StarRarity starRarity, bool isSpecialPoint)
     {
-        Score += 10;
-
-        //全てのはめ込む型に星がはまっているか
-        if (Mission.IsMissionComplete())
+        switch (starRarity)
         {
-
-            //ミッション全てクリアしたかどうか
-            if (Mission.IsAllMissionsComplete())
+            case StarRarity.Normal:
+                if (isSpecialPoint)
+                    Score += SpecialTaregtScore[0].score;
+                else
+                    Score += TaregtScore[0].score;
+                break;
+            case StarRarity.Rare:
+                if (isSpecialPoint)
+                    Score += SpecialTaregtScore[1].score;
+                else
+                    Score += TaregtScore[1].score;
+                break;
+            case StarRarity.Unique:
+                if (isSpecialPoint)
+                    Score += SpecialTaregtScore[2].score;
+                else
+                    Score += TaregtScore[2].score;
+                break;
+            case StarRarity.Legendary:
+                if (isSpecialPoint)
+                    Score += SpecialTaregtScore[3].score;
+                else
+                    Score += TaregtScore[3].score;
+                break;
+            default:
+                break;
+        }
+        //全てのはめ込む型に星がはまっているか
+        bool isComp = true;
+        foreach (TargetScript i in ProceduralGenerator.GetTargets())
+        {
+            if (!i.IsGoal())
             {
-                StageComplete();
-                return;
-            }
-            else
-            {
-                MissionComplete();
-            }
-
-            if (!Mission.ExecuteMission())
-            {
-                Debug.Log("ミッションが設定されていない");
+                //星がはまっていないものがあったら失敗
+                isComp = false;
+                break;
             }
         }
+
+        if (isComp)
+        {
+            //全部はまっていた
+            IsFinished = true;
+            StageComplete();
+        }
+
+       
     }
 
     //星を飛ばすときの処理
@@ -111,7 +161,7 @@ public class GameManagerScript : MonoBehaviour
         }
     }
 
-    public uint GetScore()
+    public int GetScore()
     {
         return Score;
     }
@@ -122,30 +172,30 @@ public class GameManagerScript : MonoBehaviour
         return IsFinished;
     }
 
-    //ゲームオーバー処理
-    private void GameOver()
+    //ステージ終了したかどうか
+    public bool GetIsStageComplete()
     {
-        Debug.Log("GameOver");
+        return IsStageComplete;
     }
-    //ミッションクリア処理
-    private void MissionComplete()
+
+    //発射可能回数
+    public int GetDischargeNumber()
     {
-        Debug.Log("ミッション成功");
-        //発射可能回数更新
-        DischargeNumber = Mission.GetDischargeNumber();
+        return DischargeNumber;
     }
+
     //ステージクリア処理
     private void StageComplete()
     {
         Debug.Log("ステージクリア");
-        //StageNumber++;
-        //if (StageSettings.Length > StageNumber)
-        //{
-        //    //次のステージへ
-        //}
-        //else
-        //{
-        //    //
-        //}
+        Debug.Log(Score);
+        IsStageComplete = true;
+    }
+
+    //ゲームオーバー処理
+    IEnumerator GameOver()
+    {
+        yield return new WaitForSeconds(1);
+        Debug.Log("GameOver");
     }
 }
