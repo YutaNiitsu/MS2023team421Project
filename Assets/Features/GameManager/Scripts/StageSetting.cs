@@ -38,7 +38,7 @@ public struct StageSetting
     public MissionType[] MissionTypes;
     [Header("ミッションの種類ごとの設定")]
     [Header("障害物衝突回数ｎ回以下")]
-    public float ObstacleCollisionNumber;
+    public int ObstacleCollisionNumber;
     [Header("ｎターン以内にクリア")]
     public int DischargeNumberWithinClear;
     [Header("障害物ｎ回以上壊す")]

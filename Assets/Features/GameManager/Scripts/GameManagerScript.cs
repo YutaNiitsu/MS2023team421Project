@@ -32,11 +32,13 @@ public class GameManagerScript : MonoBehaviour
     private ProceduralGenerator ProceduralGenerator;
     private SaveConstellationData[] ConstellationDatas;
     private MissionScript[] Missions;
-    private int Score;
-    private int DischargeNumber;       //プレイヤーが星を発射できる回数
+    public int Score { get; protected set; }
+    public int DischargeNumber { get; protected set; }       //プレイヤーが星を発射できる回数
     private Rigidbody2D FinalDischargedStar;
-    private bool IsFinished;
-    private bool IsStageComplete;
+    public bool IsFinished { get; protected set; }
+    public bool IsStageComplete { get; protected set; }
+    public int ObstacleCollisionNumber { get; protected set; } //障害物衝突回数
+    public int ObstacleDestroyNumber { get; protected set; }     //障害物破壊回数
 
     // Start is called before the first frame update
     void Start()
@@ -46,6 +48,8 @@ public class GameManagerScript : MonoBehaviour
         FinalDischargedStar = null;
         IsFinished = false;
         IsStageComplete = false;
+        ObstacleCollisionNumber = 3;
+        ObstacleDestroyNumber = 3;
 
         ProceduralGenerator = GetComponent<ProceduralGenerator>();
         ConstellationDatas = GetComponent<ConstellationLoadManager>().LoadData(SavedFileName);
@@ -71,7 +75,7 @@ public class GameManagerScript : MonoBehaviour
         int index = 0;
         foreach (MissionType i in Setting.MissionTypes)
         {
-            Missions[index] = new MissionScript(i);
+            Missions[index] = new MissionScript(i, this);
             index++;
         }
     }
@@ -161,35 +165,18 @@ public class GameManagerScript : MonoBehaviour
         }
     }
 
-    public int GetScore()
-    {
-        return Score;
-    }
-
-    //ゲーム終了したかどうか
-    public bool GetIsFinished()
-    {
-        return IsFinished;
-    }
-
-    //ステージ終了したかどうか
-    public bool GetIsStageComplete()
-    {
-        return IsStageComplete;
-    }
-
-    //発射可能回数
-    public int GetDischargeNumber()
-    {
-        return DischargeNumber;
-    }
-
+   
     //ステージクリア処理
     private void StageComplete()
     {
         Debug.Log("ステージクリア");
         Debug.Log(Score);
         IsStageComplete = true;
+
+        foreach (MissionScript i in Missions)
+        {
+            i.IsMissionComplete();
+        }
     }
 
     //ゲームオーバー処理

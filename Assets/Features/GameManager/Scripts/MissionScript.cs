@@ -24,16 +24,17 @@ public class MissionScript : MonoBehaviour
 
     private MissionScript() { }
 
-    public MissionScript(MissionType type)
+    public MissionScript(MissionType type, GameManagerScript gameManager)
     {
         Type = type;
+        GameManager = gameManager;
     }
 
     // Start is called before the first frame update
     void Start()
     {
         ProceduralGenerator = gameObject.GetComponent<ProceduralGenerator>();
-        GameManager = gameObject.GetComponent<GameManagerScript>();
+        //GameManager = gameObject.GetComponent<GameManagerScript>();
     }
 
     ////ミッションの実行
@@ -50,20 +51,25 @@ public class MissionScript : MonoBehaviour
         switch (Type)
         {
             case MissionType.ステージクリア:
-                if (GameManager.GetIsStageComplete())
+                if (GameManager.IsStageComplete)
                 {
                     Debug.Log("ステージクリアした");
                     success = true;
                 }
                 break;
             case MissionType.障害物衝突回数ｎ回以下:
-                
+                if (GameManager.Setting.ObstacleCollisionNumber >= GameManager.ObstacleCollisionNumber)
+                {
+                    string s = GameManager.Setting.ObstacleCollisionNumber.ToString();
+                    s += "回障害物に衝突した";
+                    Debug.Log(s);
+                }
                 break;
             case MissionType.特別ポイントにユニーク星をはめ込む:
                 
                 break;
             case MissionType.ｎターン以内にクリア:
-                if (GameManager.Setting.DischargeNumberWithinClear >= GameManager.GetDischargeNumber())
+                if (GameManager.Setting.DischargeNumberWithinClear >= GameManager.DischargeNumber)
                 {
                     string s = GameManager.Setting.DischargeNumberWithinClear.ToString();
                     s += "ターン以内にクリアした";
@@ -72,7 +78,12 @@ public class MissionScript : MonoBehaviour
                 }
                 break;
             case MissionType.障害物ｎ回以上壊す:
-
+                if (GameManager.Setting.ObstacleDestroyNumber >= GameManager.ObstacleDestroyNumber)
+                {
+                    string s = GameManager.Setting.ObstacleDestroyNumber.ToString();
+                    s += "回障害物を壊した";
+                    Debug.Log(s);
+                }
                 break;
             default:
                 break;
