@@ -471,6 +471,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1246885993402690261, guid: 96b319521bafd3f48b23504e9d219fe4, type: 3}
+      propertyPath: SavedFileName
+      value: seiza.save
+      objectReference: {fileID: 0}
+    - target: {fileID: 1246885993402690261, guid: 96b319521bafd3f48b23504e9d219fe4, type: 3}
       propertyPath: SaveConstellationDisplay
       value: 
       objectReference: {fileID: 1520343110}
