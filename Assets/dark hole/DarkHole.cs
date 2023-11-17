@@ -5,7 +5,7 @@ using UnityEngine.SceneManagement;
 public class DarkHole : MonoBehaviour
 {
 
-
+    [SerializeField]
     GameObject Player;
 
 
@@ -13,7 +13,7 @@ public class DarkHole : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        Player = GameObject.FindGameObjectWithTag("Player");
+
     }
 
     // Update is called once per frame
