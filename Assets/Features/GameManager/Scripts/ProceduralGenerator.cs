@@ -41,7 +41,7 @@ public class ProceduralGenerator : MonoBehaviour
         foreach (ST_Constellation i in targets)
         {
             TargetScript obj = Instantiate(Target, i.position, Quaternion.identity).GetComponent<TargetScript>();
-            obj.Set(GameManager, false);
+            obj.Set(GameManager, true);
             Targets.Add(obj);
         }
 
