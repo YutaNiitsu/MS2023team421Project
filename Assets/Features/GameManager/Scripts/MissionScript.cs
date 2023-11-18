@@ -20,14 +20,12 @@ public class MissionScript : MonoBehaviour
     private ProceduralGenerator ProceduralGenerator;
     private SaveConstellationData[] ConstellationDatas;
     private SaveConstellationData Determination;
-    private GameManagerScript GameManager;
 
     private MissionScript() { }
 
-    public MissionScript(MissionType type, GameManagerScript gameManager)
+    public MissionScript(MissionType type)
     {
         Type = type;
-        GameManager = gameManager;
     }
 
     // Start is called before the first frame update
@@ -47,40 +45,45 @@ public class MissionScript : MonoBehaviour
     public bool IsMissionComplete()
     {
         bool success = false;
+        GameManagerScript gameManager = GameManagerScript.instance;
 
         switch (Type)
         {
             case MissionType.ステージクリア:
-                if (GameManager.IsStageComplete)
+                if (gameManager.IsStageComplete)
                 {
                     Debug.Log("ステージクリアした");
                     success = true;
                 }
                 break;
             case MissionType.障害物衝突回数ｎ回以下:
-                if (GameManager.Setting.ObstacleCollisionNumber >= GameManager.ObstacleCollisionNumber)
+                if (gameManager.Setting.ObstacleCollisionNumber >= gameManager.ObstacleCollisionNumber)
                 {
-                    string s = GameManager.Setting.ObstacleCollisionNumber.ToString();
+                    string s = gameManager.Setting.ObstacleCollisionNumber.ToString();
                     s += "回障害物に衝突した";
                     Debug.Log(s);
                 }
                 break;
             case MissionType.特別ポイントにユニーク星をはめ込む:
-                
+                if (ProceduralGenerator.IsRareStarGoaledOnSpecialTargetAll())
+                {
+                    Debug.Log("特別ポイントにユニーク星をはめ込んだ");
+                    success = true;
+                }
                 break;
             case MissionType.ｎターン以内にクリア:
-                if (GameManager.Setting.DischargeNumberWithinClear >= GameManager.DischargeNumber)
+                if (gameManager.Setting.DischargeNumberWithinClear >= gameManager.DischargeNumber)
                 {
-                    string s = GameManager.Setting.DischargeNumberWithinClear.ToString();
+                    string s = gameManager.Setting.DischargeNumberWithinClear.ToString();
                     s += "ターン以内にクリアした";
                     Debug.Log(s);
                     success = true;
                 }
                 break;
             case MissionType.障害物ｎ回以上壊す:
-                if (GameManager.Setting.ObstacleDestroyNumber >= GameManager.ObstacleDestroyNumber)
+                if (gameManager.Setting.ObstacleDestroyNumber >= gameManager.ObstacleDestroyNumber)
                 {
-                    string s = GameManager.Setting.ObstacleDestroyNumber.ToString();
+                    string s = gameManager.Setting.ObstacleDestroyNumber.ToString();
                     s += "回障害物を壊した";
                     Debug.Log(s);
                 }
@@ -91,5 +94,6 @@ public class MissionScript : MonoBehaviour
 
         return success;
     }
+
 
 }

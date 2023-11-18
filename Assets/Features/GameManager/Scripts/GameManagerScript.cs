@@ -40,6 +40,26 @@ public class GameManagerScript : MonoBehaviour
     public int ObstacleCollisionNumber { get; protected set; } //áŠQ•¨Õ“Ë‰ñ”
     public int ObstacleDestroyNumber { get; protected set; }     //áŠQ•¨”j‰ó‰ñ”
 
+
+
+    //ƒVƒ“ƒOƒ‹ƒgƒ“
+    public static GameManagerScript instance;
+    private void Awake()
+    {
+        if (instance == null)
+        {
+            instance = this;
+            DontDestroyOnLoad(gameObject);
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+    }
+
+
+
+
     // Start is called before the first frame update
     void Start()
     {
@@ -75,7 +95,7 @@ public class GameManagerScript : MonoBehaviour
         int index = 0;
         foreach (MissionType i in Setting.MissionTypes)
         {
-            Missions[index] = new MissionScript(i, this);
+            Missions[index] = new MissionScript(i);
             index++;
         }
     }
@@ -130,19 +150,9 @@ public class GameManagerScript : MonoBehaviour
             default:
                 break;
         }
-        //‘S‚Ä‚Ì‚Í‚ß‚ŞŒ^‚É¯‚ª‚Í‚Ü‚Á‚Ä‚¢‚é‚©
-        bool isComp = true;
-        foreach (TargetScript i in ProceduralGenerator.GetTargets())
-        {
-            if (!i.IsGoal())
-            {
-                //¯‚ª‚Í‚Ü‚Á‚Ä‚¢‚È‚¢‚à‚Ì‚ª‚ ‚Á‚½‚ç¸”s
-                isComp = false;
-                break;
-            }
-        }
 
-        if (isComp)
+        //‘S‚Ä‚Ì‚Í‚ß‚ŞŒ^‚É¯‚ª‚Í‚Ü‚Á‚Ä‚¢‚é‚©
+        if (ProceduralGenerator.IsAllGoaled())
         {
             //‘S•”‚Í‚Ü‚Á‚Ä‚¢‚½
             IsFinished = true;

@@ -14,12 +14,12 @@ public class ProceduralGenerator : MonoBehaviour
     public GameObject[] Star;
     [Header("レア星のプレハブ")]
     public GameObject[] RareStarArea;
-    private List<TargetScript> Targets;
-    private GameManagerScript GameManager;
+    public List<TargetScript> Targets { get; protected set; }
+
     // Start is called before the first frame update
     void Start()
     {
-        GameManager = gameObject.GetComponent<GameManagerScript>();
+        
     }
 
     // オブジェクトを配置
@@ -41,7 +41,7 @@ public class ProceduralGenerator : MonoBehaviour
         foreach (ST_Constellation i in targets)
         {
             TargetScript obj = Instantiate(Target, i.position, Quaternion.identity).GetComponent<TargetScript>();
-            obj.Set(GameManager, true);
+            obj.Set(false);
             Targets.Add(obj);
         }
 
@@ -69,9 +69,10 @@ public class ProceduralGenerator : MonoBehaviour
                 //閾値より大きかったら生成
                 if (noise > threshold)
                 {
-                    float len = Vector2.Dot(pos, pos);
+                    float lenSq = Vector2.Dot(pos, pos);
+                    float len = Vector2.Distance(pos, new Vector2(0.0f, 0.0f));
                     float rand = UnityEngine.Random.Range(0.0f, 1.0f);
-                    if (len > Math.Pow(300, 2) && rand > 0.5)
+                    if (lenSq > Math.Pow(200, 2) && rand > (400.0f - (len - 200.0f) * 0.3f) / 400.0f)
                     {
                         Instantiate(RareStarArea[0], new Vector3(pos.x, pos.y, 0.0f), Quaternion.identity);
                     }
@@ -87,8 +88,35 @@ public class ProceduralGenerator : MonoBehaviour
 
     }
 
-    public List<TargetScript> GetTargets()
+    //全てのはめ込む型に星がはまっているか
+    public bool IsAllGoaled()
     {
-        return Targets;
+        bool success = true;
+        foreach (TargetScript i in Targets)
+        {
+            if (!i.Goaled)
+            {
+                //星がはまっていないものがあったら失敗
+                success = false;
+                break;
+            }
+        }
+
+        return success;
+    }
+
+    //特別ポイントに指定されているはめ込む型全てにユニーク以上のレアリティの星がはまっているかどうか
+    public bool IsRareStarGoaledOnSpecialTargetAll()
+    {
+        bool success = true;
+        foreach (TargetScript i in Targets)
+        {
+            if (!i.RareStarGoaled && i.IsSpecialPoint)
+            {
+                success = false;
+            }
+        }
+
+        return success;
     }
 }

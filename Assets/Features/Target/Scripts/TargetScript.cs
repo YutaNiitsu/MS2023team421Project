@@ -4,14 +4,17 @@ using UnityEngine;
 
 public class TargetScript : MonoBehaviour
 {
-    private GameManagerScript GameManager;
-    private bool Goal;
+    //星がすでにはまっているかどうか
+    public bool Goaled { get; protected set; }
+    //はまっている星がユニーク以上のレアリティかどうか
+    public bool RareStarGoaled { get; protected set; }
     //特別ポイントに指定されているかどうか
-    private bool IsSpecialPoint;
+    public bool IsSpecialPoint { get; protected set; }
     // Start is called before the first frame update
     void Start()
     {
-        Goal = false;
+        Goaled = false;
+        RareStarGoaled = false;
     }
 
     private void Update()
@@ -19,8 +22,8 @@ public class TargetScript : MonoBehaviour
         //テスト用
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            Goal = true;
-            GameManager.AddScore(StarRarity.Normal, false);
+            Goaled = true;
+            GameManagerScript.instance.AddScore(StarRarity.Normal, false);
         }
     }
 
@@ -32,7 +35,7 @@ public class TargetScript : MonoBehaviour
         if (obj.CompareTag("Star"))
         {
             obj.tag = "Untagged";
-            Goal = true;
+            Goaled = true;
             // 位置をターゲットに合わせる
             Vector3 pos = gameObject.transform.position;
             obj.transform.position = pos;
@@ -46,9 +49,14 @@ public class TargetScript : MonoBehaviour
 
             //スコア加算
             StarRarity rare = obj.GetComponent<StarScript>().Rarity;
-            GameManager.AddScore(rare, IsSpecialPoint);
 
+            GameManagerScript.instance.AddScore(rare, IsSpecialPoint);
             
+            if ((int)rare >= 2)
+            {
+                RareStarGoaled = true;
+            }
+
             // 自分を非表示にする
             gameObject.SetActive(false);
         }
@@ -57,18 +65,8 @@ public class TargetScript : MonoBehaviour
     //生成時の設定
     //gameManager : ゲームマネージャーを参照する
     //isSpecialPoint : 特別ポイントにするかどうか
-    public void Set(GameManagerScript gameManager, bool isSpecialPoint)
+    public void Set(bool isSpecialPoint)
     {
-        GameManager = gameManager;
         IsSpecialPoint = isSpecialPoint;
-    }
-
-    public bool IsGoal()
-    {
-        return Goal;
-    }
-    public bool GetIsSpecialPoint()
-    {
-        return IsSpecialPoint;
     }
 }

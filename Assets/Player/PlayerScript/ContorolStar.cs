@@ -7,8 +7,8 @@ using UnityEngine.UIElements;
 public class ContorolStar : MonoBehaviour
 {
     //public PlayerStock PlayerStockScript;
-    public GameManagerScript UseGameManagerScript;
-    public bool MoveTG;
+    //public GameManagerScript UseGameManagerScript;
+    private bool MoveTG;
 
     public Rigidbody2D rigid2d { get; protected set; }
     // Vector2 startPos;
@@ -62,10 +62,10 @@ public class ContorolStar : MonoBehaviour
         Vector3 result = Vector3.Reflect(direction, normal);
 
         rigid2d.velocity = result;
-        UseGameManagerScript.Discharge(rigid2d);
+        //UseGameManagerScript.Discharge(rigid2d);
         if (other.gameObject.CompareTag("Target"))
         {
-            UseGameManagerScript.Discharge(rigid2d); 
+            //UseGameManagerScript.Discharge(rigid2d); 
             //PlayerStockScript.Sporn();
             //Destroy(this.gameObject);
         }
