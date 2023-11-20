@@ -27,9 +27,9 @@ public class GameManagerScript : MonoBehaviour
     public ST_StarRarity[] TaregtScore;
     [Header("特別ポイントにはまった時に取得するスコア")]
     public ST_StarRarity[] SpecialTaregtScore;
-    
 
-    private ProceduralGenerator ProceduralGenerator;
+
+    public ProceduralGenerator ProceduralGenerator { get; protected set; }
     private SaveConstellationData[] ConstellationDatas;
     private MissionScript[] Missions;
     public int Score { get; protected set; }
@@ -68,8 +68,8 @@ public class GameManagerScript : MonoBehaviour
         FinalDischargedStar = null;
         IsFinished = false;
         IsStageComplete = false;
-        ObstacleCollisionNumber = 3;
-        ObstacleDestroyNumber = 3;
+        ObstacleCollisionNumber = 0;
+        ObstacleDestroyNumber = 0;
 
         ProceduralGenerator = GetComponent<ProceduralGenerator>();
         ConstellationDatas = GetComponent<ConstellationLoadManager>().LoadData(SavedFileName);

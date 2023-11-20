@@ -17,7 +17,6 @@ public class MissionScript : MonoBehaviour
     }
 
     private MissionType Type;
-    private ProceduralGenerator ProceduralGenerator;
     private SaveConstellationData[] ConstellationDatas;
     private SaveConstellationData Determination;
 
@@ -31,7 +30,7 @@ public class MissionScript : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        ProceduralGenerator = gameObject.GetComponent<ProceduralGenerator>();
+        //ProceduralGenerator = gameObject.GetComponent<ProceduralGenerator>();
         //GameManager = gameObject.GetComponent<GameManagerScript>();
     }
 
@@ -65,7 +64,7 @@ public class MissionScript : MonoBehaviour
                 }
                 break;
             case MissionType.特別ポイントにユニーク星をはめ込む:
-                if (ProceduralGenerator.IsRareStarGoaledOnSpecialTargetAll())
+                if (gameManager.ProceduralGenerator.IsRareStarGoaledOnSpecialTargetAll())
                 {
                     Debug.Log("特別ポイントにユニーク星をはめ込んだ");
                     success = true;

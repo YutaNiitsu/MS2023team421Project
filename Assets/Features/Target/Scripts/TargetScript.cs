@@ -6,15 +6,15 @@ public class TargetScript : MonoBehaviour
 {
     //星がすでにはまっているかどうか
     public bool Goaled { get; protected set; }
-    //はまっている星がユニーク以上のレアリティかどうか
-    public bool RareStarGoaled { get; protected set; }
+    //はまっている星を参照する
+    public StarScript StarGoaled { get; protected set; }
     //特別ポイントに指定されているかどうか
     public bool IsSpecialPoint { get; protected set; }
     // Start is called before the first frame update
     void Start()
     {
         Goaled = false;
-        RareStarGoaled = false;
+        StarGoaled = null;
     }
 
     private void Update()
@@ -47,23 +47,19 @@ public class TargetScript : MonoBehaviour
                 rb.velocity = Vector3.zero;
             }
 
+            StarGoaled = obj.GetComponent<StarScript>();
+
             //スコア加算
-            StarRarity rare = obj.GetComponent<StarScript>().Rarity;
+            StarRarity rare = StarGoaled.Rarity;
 
             GameManagerScript.instance.AddScore(rare, IsSpecialPoint);
             
-            if ((int)rare >= 2)
-            {
-                RareStarGoaled = true;
-            }
-
             // 自分を非表示にする
             gameObject.SetActive(false);
         }
     }
 
     //生成時の設定
-    //gameManager : ゲームマネージャーを参照する
     //isSpecialPoint : 特別ポイントにするかどうか
     public void Set(bool isSpecialPoint)
     {

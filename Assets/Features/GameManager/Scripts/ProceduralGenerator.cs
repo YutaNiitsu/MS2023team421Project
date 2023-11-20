@@ -111,9 +111,14 @@ public class ProceduralGenerator : MonoBehaviour
         bool success = true;
         foreach (TargetScript i in Targets)
         {
-            if (!i.RareStarGoaled && i.IsSpecialPoint)
+            //特別ポイントに指定されている
+            if (i.IsSpecialPoint)
             {
-                success = false;
+                //ユニーク以上のレアリティの星がはまっていなかった
+                if (i.StarGoaled != null && (int)i.StarGoaled.Rarity < 2)
+                {
+                    success = false;
+                }
             }
         }
 
