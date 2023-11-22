@@ -108,17 +108,24 @@ public class ProceduralGenerator : MonoBehaviour
     //特別ポイントに指定されているはめ込む型全てにユニーク以上のレアリティの星がはまっているかどうか
     public bool IsRareStarGoaledOnSpecialTargetAll()
     {
-        bool success = true;
+        bool success = false;
         foreach (TargetScript i in Targets)
         {
-            //特別ポイントに指定されている
-            if (i.IsSpecialPoint)
+            if (!i.Goaled)
             {
-                //ユニーク以上のレアリティの星がはまっていなかった
-                if (i.StarGoaled != null && (int)i.StarGoaled.Rarity < 2)
-                {
-                    success = false;
-                }
+                //星がはまっていなかったらとばす
+                continue;
+            }
+
+            if (i.IsRareStarGoaledOnSpecialTarget())
+            {
+                success = true;
+            }
+            else
+            {
+                //はまっている星がユニーク以上のレアリティではなかったら失敗
+                success = false;
+                break;
             }
         }
 

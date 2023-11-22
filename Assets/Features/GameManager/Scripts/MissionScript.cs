@@ -17,8 +17,7 @@ public class MissionScript : MonoBehaviour
     }
 
     private MissionType Type;
-    private SaveConstellationData[] ConstellationDatas;
-    private SaveConstellationData Determination;
+    
 
     private MissionScript() { }
 
@@ -26,19 +25,6 @@ public class MissionScript : MonoBehaviour
     {
         Type = type;
     }
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        //ProceduralGenerator = gameObject.GetComponent<ProceduralGenerator>();
-        //GameManager = gameObject.GetComponent<GameManagerScript>();
-    }
-
-    ////ミッションの実行
-    //public void ExecuteMission(MissionType type)
-    //{
-       
-    //}
 
     //ミッションクリアしたかどうか
     public bool IsMissionComplete()
@@ -58,7 +44,7 @@ public class MissionScript : MonoBehaviour
             case MissionType.障害物衝突回数ｎ回以下:
                 if (gameManager.Setting.ObstacleCollisionNumber >= gameManager.ObstacleCollisionNumber)
                 {
-                    string s = gameManager.Setting.ObstacleCollisionNumber.ToString();
+                    string s = gameManager.ObstacleCollisionNumber.ToString();
                     s += "回障害物に衝突した";
                     Debug.Log(s);
                 }
@@ -80,9 +66,9 @@ public class MissionScript : MonoBehaviour
                 }
                 break;
             case MissionType.障害物ｎ回以上壊す:
-                if (gameManager.Setting.ObstacleDestroyNumber >= gameManager.ObstacleDestroyNumber)
+                if (gameManager.Setting.ObstacleDestroyNumber <= gameManager.ObstacleDestroyNumber)
                 {
-                    string s = gameManager.Setting.ObstacleDestroyNumber.ToString();
+                    string s = gameManager.ObstacleDestroyNumber.ToString();
                     s += "回障害物を壊した";
                     Debug.Log(s);
                 }
