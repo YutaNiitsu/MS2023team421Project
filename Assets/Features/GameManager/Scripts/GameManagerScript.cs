@@ -75,7 +75,7 @@ public class GameManagerScript : MonoBehaviour
         ConstellationDatas = GetComponent<ConstellationLoadManager>().LoadData(SavedFileName);
         
         // êØÇîzíu
-        ProceduralGenerator.GenerateStars(Setting.Range, Setting.Threshold);
+        ProceduralGenerator.GenerateStars(Setting.StageSize, Setting.Threshold);
 
         SaveConstellationData temp = null;
         foreach (SaveConstellationData i in ConstellationDatas)

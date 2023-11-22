@@ -45,6 +45,8 @@ public class TargetScript : MonoBehaviour
             {
                 // ë¨ìxÇÇOÇ…Ç∑ÇÈ
                 rb.velocity = Vector3.zero;
+                //è’ìÀÇµÇƒÇ‡ìÆÇ©Ç»Ç¢ÇÊÇ§Ç…Ç∑ÇÈ
+                rb.bodyType = RigidbodyType2D.Static;
             }
 
             StarGoaled = obj.GetComponent<StarScript>();
