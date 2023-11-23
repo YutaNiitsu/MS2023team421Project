@@ -32,6 +32,7 @@ public class GameManagerScript : MonoBehaviour
     public ProceduralGenerator ProceduralGenerator { get; protected set; }
     private SaveConstellationData[] ConstellationDatas;
     private MissionScript[] Missions;
+    private DrawConstellationLine DrawLine;
     public int Score { get; protected set; }
     public int DischargeNumber { get; protected set; }       //プレイヤーが星を発射できる回数
     private Rigidbody2D FinalDischargedStar;
@@ -73,7 +74,8 @@ public class GameManagerScript : MonoBehaviour
 
         ProceduralGenerator = GetComponent<ProceduralGenerator>();
         ConstellationDatas = GetComponent<ConstellationLoadManager>().LoadData(SavedFileName);
-        
+        DrawLine = GetComponent<DrawConstellationLine>();
+
         // 星を配置
         ProceduralGenerator.GenerateStars(Setting.StageSize, Setting.Threshold);
 
@@ -156,7 +158,7 @@ public class GameManagerScript : MonoBehaviour
         {
             //全部はまっていた
             IsFinished = true;
-            StageComplete();
+            StartCoroutine(StageComplete());
         }
 
        
@@ -175,18 +177,23 @@ public class GameManagerScript : MonoBehaviour
         }
     }
 
-   
+
     //ステージクリア処理
-    private void StageComplete()
+    IEnumerator StageComplete()
     {
         Debug.Log("ステージクリア");
         Debug.Log(Score);
         IsStageComplete = true;
 
+        DrawLine.DrawLine();
+
         foreach (MissionScript i in Missions)
         {
             i.IsMissionComplete();
         }
+
+        yield return new WaitForSeconds(1);
+        Debug.Log("ステージクリア処理終了");
     }
 
     //ゲームオーバー処理
