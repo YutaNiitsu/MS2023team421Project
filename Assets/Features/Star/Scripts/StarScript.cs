@@ -14,8 +14,12 @@ public class StarScript : MonoBehaviour
    
     [Header("星のレアリティ")]
     public StarRarity Rarity;
+    [Header("移動中のパーティクルのプレハブ")]
     public ParticleSystem Particle;
+   
+
     private Rigidbody2D rb;
+    private bool IsPlaying;
 
     //Start is called before the first frame update
     void Start()
@@ -26,6 +30,7 @@ public class StarScript : MonoBehaviour
         //    particle = Particle.main;
         //    particle.loop = false;
         //}
+        IsPlaying = false;
         rb = gameObject.GetComponent<Rigidbody2D>();
     }
 
@@ -36,7 +41,7 @@ public class StarScript : MonoBehaviour
         //if (Particle != null) particle = Particle.main;
         if (rb != null)
         {
-            if (Vector2.Dot(rb.velocity, rb.velocity) > 1.0f)
+            if (rb.velocity.magnitude > 1.0f)
             {
                 PlayParticle();
             }
@@ -60,8 +65,9 @@ public class StarScript : MonoBehaviour
 
     public void PlayParticle()
     {
-        if (Particle != null && !Particle.isPlaying)
+        if (Particle != null && !IsPlaying)
         {
+            IsPlaying = true;
             Particle.Play();
             Debug.Log("PlayParticle");
         }
@@ -69,8 +75,9 @@ public class StarScript : MonoBehaviour
 
     public void StopParticle()
     {
-        if (Particle != null && Particle.isPlaying)
+        if (Particle != null && IsPlaying)
         {
+            IsPlaying = false;
             Particle.Stop();
             Debug.Log("StopParticle");
         }
