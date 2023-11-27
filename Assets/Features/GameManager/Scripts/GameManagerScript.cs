@@ -207,4 +207,12 @@ public class GameManagerScript : MonoBehaviour
         yield return new WaitForSeconds(1);
         Debug.Log("GameOver");
     }
+
+
+    //è·äQï®Ç∆è’ìÀÇµÇΩéû
+    public void CollisionObstacle()
+    {
+        ObstacleCollisionNumber++;
+        Debug.Log("è’ìÀ");
+    }
 }
