@@ -14,7 +14,7 @@ public class ProceduralGenerator : MonoBehaviour
     public GameObject[] Star;
     [Header("レア星のプレハブ")]
     public GameObject[] RareStarArea;
-    public List<TargetScript> Targets { get; protected set; }
+    public TargetScript[] Targets { get; protected set; }
 
     // Start is called before the first frame update
     void Start()
@@ -26,9 +26,9 @@ public class ProceduralGenerator : MonoBehaviour
     //targets : はめ込む型のセーブデータ
     //range : 星の生成範囲
     //threshold : 星の密度が変わる
-    public void GenerateTargets(ST_Constellation[] targets)
+    public void GenerateTargets(SaveConstellationData data)
     {
-        if (Targets != null && Targets.Count > 0)
+        if (Targets != null && Targets.Length > 0)
         {
             foreach (TargetScript i in Targets)
             {
@@ -36,13 +36,15 @@ public class ProceduralGenerator : MonoBehaviour
             }
         }
 
-        Targets = new List<TargetScript>();
+        Targets = new TargetScript[data.targets.Length];
         // 星をはめ込む型生成
-        foreach (ST_Constellation i in targets)
+        int index = 0;
+        foreach (ST_Constellation i in data.targets)
         {
             TargetScript obj = Instantiate(Target, i.position, Quaternion.identity).GetComponent<TargetScript>();
             obj.Set(false);
-            Targets.Add(obj);
+            Targets[index] = obj;
+            index++;
         }
 
     }

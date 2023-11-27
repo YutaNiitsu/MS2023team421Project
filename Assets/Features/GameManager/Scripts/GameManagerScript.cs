@@ -30,7 +30,8 @@ public class GameManagerScript : MonoBehaviour
 
 
     public ProceduralGenerator ProceduralGenerator { get; protected set; }
-    private SaveConstellationData[] ConstellationDatas;
+    public SaveConstellationData[] ConstellationDatas { get; protected set; }
+    public SaveConstellationData GenerateConstellation { get; protected set; }  //ê∂ê¨Ç≥ÇÍÇΩêØç¿
     private MissionScript[] Missions;
     private DrawConstellationLine DrawLine;
     public int Score { get; protected set; }
@@ -89,7 +90,11 @@ public class GameManagerScript : MonoBehaviour
         }
 
         if (temp != null)
-        ProceduralGenerator.GenerateTargets(temp.constellations);
+        {
+            ProceduralGenerator.GenerateTargets(temp);
+            GenerateConstellation = temp;
+        }
+       
 
         //É~ÉbÉVÉáÉì
         int len = Setting.MissionTypes.Length;

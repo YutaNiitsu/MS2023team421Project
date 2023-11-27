@@ -27,12 +27,22 @@ public class DrawConstellationLine : MonoBehaviour
 
     IEnumerator DrawLineCoroutine(float time)
     {
-        int count = ProceduralGenerator.Targets.Count;
-        for (int i = 0; i < count - 1; i++)
+        ST_Constellation[] targets = GameManagerScript.instance.GenerateConstellation.targets;
+        Line[] lines = GameManagerScript.instance.GenerateConstellation.lines;
+
+        foreach (Line i in lines)
         {
             //ü¶¬
-            Vector3 start = ProceduralGenerator.Targets[i].transform.position;
-            Vector3 end = ProceduralGenerator.Targets[i + 1].transform.position;
+            Vector3 start = new Vector3();
+            Vector3 end = new Vector3();
+            foreach (ST_Constellation tar in targets)
+            {
+                if (tar.Key == i.startTargetKey)
+                    start = tar.position;
+                if (tar.Key == i.endTargetKey)
+                    end = tar.position;
+            }
+
             GameObject LineObject = Instantiate(LinePrefab);
             LineRenderer lineRenderer = LineObject.GetComponent<LineRenderer>();
             lineRenderer.startWidth = 0.1f;
@@ -42,5 +52,6 @@ public class DrawConstellationLine : MonoBehaviour
             lineRenderer.SetPosition(1, end);
             yield return new WaitForSeconds(time);
         }
+
     }
 }
