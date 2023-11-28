@@ -628,6 +628,14 @@ PrefabInstance:
       propertyPath: 'Setting.MissionTypes.Array.data[4]'
       value: 4
       objectReference: {fileID: 0}
+    - target: {fileID: 6233373690351437950, guid: 23cd3a265e427634aade1d6e486d211d, type: 3}
+      propertyPath: DrawSpeed
+      value: 0.03
+      objectReference: {fileID: 0}
+    - target: {fileID: 6233373690351437950, guid: 23cd3a265e427634aade1d6e486d211d, type: 3}
+      propertyPath: ParticlePrefab
+      value: 
+      objectReference: {fileID: 8663533263603270977, guid: 53678195771d7a34b9f6e0b6182ee1f8, type: 3}
     - target: {fileID: 8602336333666789749, guid: 23cd3a265e427634aade1d6e486d211d, type: 3}
       propertyPath: m_LocalPosition.x
       value: -1.1748348

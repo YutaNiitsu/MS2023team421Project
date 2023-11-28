@@ -20,7 +20,7 @@ public class TargetScript : MonoBehaviour
     private void Update()
     {
         //テスト用
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetKeyDown(KeyCode.F1))
         {
             Goaled = true;
             GameManagerScript.instance.AddScore(StarRarity.Normal, false);
