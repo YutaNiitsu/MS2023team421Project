@@ -13,7 +13,8 @@ public struct StageSetting
     public int DischargeNumber;
     [Header("星を配置するエリアの広さ")]
     public Vector2 StageSize;
-    [Header("閾値（0.0～1.0）、この値が低いほど生成される星が多くなる")]
+    [Header("閾値、この値が低いほど生成される星が多くなる")]
+    [SerializeField, Range(0f, 1f)]
     public float Threshold;
     [Header("ミッションセッティング")]
     [Header("ミッションの種類選択")]
