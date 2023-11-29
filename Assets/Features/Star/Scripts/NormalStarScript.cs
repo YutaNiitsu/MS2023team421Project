@@ -24,5 +24,11 @@ public class NormalStarScript : MonoBehaviour
             Destroy(collision.collider.gameObject);
             Destroy(particle.gameObject, 1.0f);
         }
+        if (collision.collider.CompareTag("Obstacle"))
+        {
+            //áŠQ•¨‚ÌÕ“Ë‰ñ”ƒJƒEƒ“ƒg
+            GameManagerScript.instance.CollisionObstacle();
+
+        }
     }
 }
