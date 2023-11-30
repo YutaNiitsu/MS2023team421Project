@@ -32,6 +32,7 @@ public class TargetScript : MonoBehaviour
         GameObject obj = collision.gameObject;
 
         // ¯‚¾‚Á‚½
+        
         if (obj.CompareTag("Star"))
         {
             obj.tag = "Untagged";

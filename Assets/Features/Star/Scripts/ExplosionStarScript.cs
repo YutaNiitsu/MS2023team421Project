@@ -1,16 +1,17 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using static UnityEngine.ParticleSystem;
 
-public class BouncingStarScript : MonoBehaviour
+public class ExplosionStarScript : MonoBehaviour
 {
-    [Header("衝突パーティクルのプレハブ")]
+    [Header("爆発のパーティクルのプレハブ")]
     public ParticleSystem Particle;
+    [Header("爆発範囲")]
+    public float Range;
     // Start is called before the first frame update
     void Start()
     {
-       
+        
     }
 
     private void OnCollisionEnter2D(Collision2D collision)

@@ -3,14 +3,14 @@ using System.Collections.Generic;
 using UnityEngine;
 using static UnityEngine.ParticleSystem;
 
-public class BouncingStarScript : MonoBehaviour
+public class TransfixStarScript : MonoBehaviour
 {
     [Header("衝突パーティクルのプレハブ")]
     public ParticleSystem Particle;
     // Start is called before the first frame update
     void Start()
     {
-       
+        
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
@@ -25,13 +25,20 @@ public class BouncingStarScript : MonoBehaviour
                 particle.Play();
                 Destroy(particle.gameObject, 1.0f);
             }
-
+            Destroy(gameObject);
         }
         if (collision.collider.CompareTag("Obstacle"))
         {
-            //障害物の衝突回数カウント
-            GameManagerScript.instance.CollisionObstacle();
-
+            //衝突パーティクル生成
+            if (Particle != null)
+            {
+                ParticleSystem particle = Instantiate(Particle, gameObject.transform.position, new Quaternion());
+                particle.Play();
+                Destroy(particle.gameObject, 1.0f);
+            }
+            //障害物の破壊回数カウント
+            GameManagerScript.instance.DestroyObstacle();
+            Destroy(gameObject);
         }
     }
 }
