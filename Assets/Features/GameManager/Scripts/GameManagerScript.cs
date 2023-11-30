@@ -215,4 +215,11 @@ public class GameManagerScript : MonoBehaviour
         ObstacleCollisionNumber++;
         Debug.Log("Õ“Ë");
     }
+
+    //áŠQ•¨‚ğ”j‰ó‚µ‚½
+    public void DestroyObstacle()
+    {
+        ObstacleDestroyNumber++;
+        Debug.Log("”j‰ó");
+    }
 }

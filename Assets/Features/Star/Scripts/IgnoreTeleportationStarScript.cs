@@ -3,14 +3,14 @@ using System.Collections.Generic;
 using UnityEngine;
 using static UnityEngine.ParticleSystem;
 
-public class BouncingStarScript : MonoBehaviour
+public class IgnoreTeleportationStarScript : MonoBehaviour
 {
-    [Header("衝突パーティクルのプレハブ")]
+    [Header("消滅自のパーティクルのプレハブ")]
     public ParticleSystem Particle;
     // Start is called before the first frame update
     void Start()
     {
-       
+        
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
@@ -25,6 +25,8 @@ public class BouncingStarScript : MonoBehaviour
                 particle.Play();
                 Destroy(particle.gameObject, 1.0f);
             }
+            Destroy(gameObject);
+            Destroy(collision.collider.gameObject);
 
         }
         if (collision.collider.CompareTag("Obstacle"))

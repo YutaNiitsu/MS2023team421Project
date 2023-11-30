@@ -14,7 +14,8 @@ public class NormalStarScript : MonoBehaviour
     }
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.collider.CompareTag("Star"))
+        //はめ込む型にはまってUntaggedになってたら実行しない
+        if (collision.collider.CompareTag("Star") && gameObject.tag != "Untagged")
         {
             //GameManagerScript.instance.CollisionObstacle();
             //衝突パーティクル生成
