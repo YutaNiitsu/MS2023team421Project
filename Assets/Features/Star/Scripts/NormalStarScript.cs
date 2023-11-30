@@ -18,11 +18,21 @@ public class NormalStarScript : MonoBehaviour
         {
             //GameManagerScript.instance.CollisionObstacle();
             //衝突パーティクル生成
-            ParticleSystem particle = Instantiate(Particle, gameObject.transform.position, new Quaternion());
-            particle.Play();
+            if (Particle != null)
+            {
+                ParticleSystem particle = Instantiate(Particle, gameObject.transform.position, new Quaternion());
+                particle.Play();
+                Destroy(particle.gameObject, 1.0f);
+            }
             Destroy(gameObject);
             Destroy(collision.collider.gameObject);
-            Destroy(particle.gameObject, 1.0f);
+            
+        }
+        if (collision.collider.CompareTag("Obstacle"))
+        {
+            //障害物の衝突回数カウント
+            GameManagerScript.instance.CollisionObstacle();
+
         }
     }
 }

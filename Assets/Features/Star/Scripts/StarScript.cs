@@ -56,11 +56,11 @@ public class StarScript : MonoBehaviour
     //障害物衝突テスト用
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.collider.CompareTag("Obstacle"))
-        {
-            GameManagerScript.instance.CollisionObstacle();
+        //if (collision.collider.CompareTag("Obstacle"))
+        //{
+        //    GameManagerScript.instance.CollisionObstacle();
 
-        }
+        //}
     }
 
     public void PlayParticle()
