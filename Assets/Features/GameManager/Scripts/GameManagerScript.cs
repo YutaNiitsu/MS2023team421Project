@@ -27,16 +27,40 @@ public class GameManagerScript : MonoBehaviour
     public ST_StarRarity[] TaregtScore;
     [Header("特別ポイントにはまった時に取得するスコア")]
     public ST_StarRarity[] SpecialTaregtScore;
-    
 
-    private ProceduralGenerator ProceduralGenerator;
-    private SaveConstellationData[] ConstellationDatas;
+
+    public ProceduralGenerator ProceduralGenerator { get; protected set; }
+    public SaveConstellationData[] ConstellationDatas { get; protected set; }
+    public SaveConstellationData GenerateConstellation { get; protected set; }  //生成された星座
     private MissionScript[] Missions;
-    private int Score;
-    private int DischargeNumber;       //プレイヤーが星を発射できる回数
+    private DrawConstellationLine DrawLine;
+    public int Score { get; protected set; }
+    public int DischargeNumber { get; protected set; }       //プレイヤーが星を発射できる回数
     private Rigidbody2D FinalDischargedStar;
-    private bool IsFinished;
-    private bool IsStageComplete;
+    public bool IsFinished { get; protected set; }
+    public bool IsStageComplete { get; protected set; }
+    public int ObstacleCollisionNumber { get; protected set; } //障害物衝突回数
+    public int ObstacleDestroyNumber { get; protected set; }     //障害物破壊回数
+
+
+
+    //シングルトン
+    public static GameManagerScript instance;
+    private void Awake()
+    {
+        if (instance == null)
+        {
+            instance = this;
+            DontDestroyOnLoad(gameObject);
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+    }
+
+
+
 
     // Start is called before the first frame update
     void Start()
@@ -46,12 +70,15 @@ public class GameManagerScript : MonoBehaviour
         FinalDischargedStar = null;
         IsFinished = false;
         IsStageComplete = false;
+        ObstacleCollisionNumber = 0;
+        ObstacleDestroyNumber = 0;
 
         ProceduralGenerator = GetComponent<ProceduralGenerator>();
         ConstellationDatas = GetComponent<ConstellationLoadManager>().LoadData(SavedFileName);
-        
+        DrawLine = GetComponent<DrawConstellationLine>();
+
         // 星を配置
-        ProceduralGenerator.GenerateStars(Setting.Range, Setting.Threshold);
+        ProceduralGenerator.GenerateStars(Setting.StageSize, Setting.Threshold);
 
         SaveConstellationData temp = null;
         foreach (SaveConstellationData i in ConstellationDatas)
@@ -63,7 +90,11 @@ public class GameManagerScript : MonoBehaviour
         }
 
         if (temp != null)
-        ProceduralGenerator.GenerateTargets(temp.constellations);
+        {
+            ProceduralGenerator.GenerateTargets(temp);
+            GenerateConstellation = temp;
+        }
+       
 
         //ミッション
         int len = Setting.MissionTypes.Length;
@@ -126,23 +157,13 @@ public class GameManagerScript : MonoBehaviour
             default:
                 break;
         }
-        //全てのはめ込む型に星がはまっているか
-        bool isComp = true;
-        foreach (TargetScript i in ProceduralGenerator.GetTargets())
-        {
-            if (!i.IsGoal())
-            {
-                //星がはまっていないものがあったら失敗
-                isComp = false;
-                break;
-            }
-        }
 
-        if (isComp)
+        //全てのはめ込む型に星がはまっているか
+        if (ProceduralGenerator.IsAllGoaled())
         {
             //全部はまっていた
             IsFinished = true;
-            StageComplete();
+            StartCoroutine(StageComplete());
         }
 
        
@@ -161,35 +182,23 @@ public class GameManagerScript : MonoBehaviour
         }
     }
 
-    public int GetScore()
-    {
-        return Score;
-    }
-
-    //ゲーム終了したかどうか
-    public bool GetIsFinished()
-    {
-        return IsFinished;
-    }
-
-    //ステージ終了したかどうか
-    public bool GetIsStageComplete()
-    {
-        return IsStageComplete;
-    }
-
-    //発射可能回数
-    public int GetDischargeNumber()
-    {
-        return DischargeNumber;
-    }
 
     //ステージクリア処理
-    private void StageComplete()
+    IEnumerator StageComplete()
     {
         Debug.Log("ステージクリア");
         Debug.Log(Score);
         IsStageComplete = true;
+
+        DrawLine.DrawLine();
+
+        foreach (MissionScript i in Missions)
+        {
+            i.IsMissionComplete();
+        }
+
+        yield return new WaitForSeconds(1);
+        Debug.Log("ステージクリア処理終了");
     }
 
     //ゲームオーバー処理
@@ -197,5 +206,13 @@ public class GameManagerScript : MonoBehaviour
     {
         yield return new WaitForSeconds(1);
         Debug.Log("GameOver");
+    }
+
+
+    //障害物と衝突した時
+    public void CollisionObstacle()
+    {
+        ObstacleCollisionNumber++;
+        Debug.Log("衝突");
     }
 }

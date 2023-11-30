@@ -11,8 +11,10 @@ GameObject:
   - component: {fileID: 8602336333666789749}
   - component: {fileID: 5105850875108164340}
   - component: {fileID: 6697352170113118778}
+  - component: {fileID: 8073720796057074138}
   - component: {fileID: 1155826595568522749}
   - component: {fileID: 6944012632135934433}
+  - component: {fileID: 6233373690351437950}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: GameManager
@@ -47,15 +49,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: deb83c58a722cf644973d1312b2c2845, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  StageSettings:
+  Setting:
     ConstellationName: 
-    DischargeNumber: 0
-    Range: {x: 0, y: 0}
-    Threshold: 0
-    Type: 
-    ObstacleCollisionNumber: 0
-    DischargeNumberWithinClear: 0
-    ObstacleDestroyNumber: 0
+    DischargeNumber: 30
+    StageSize: {x: 500, y: 500}
+    Threshold: 0.9
+    MissionTypes: 0000000001000000020000000300000004000000
+    ObstacleCollisionNumber: 3
+    DischargeNumberWithinClear: 3
+    ObstacleDestroyNumber: 3
   SavedFileName: SavedConstellation.save
   TaregtScore:
   - rarity: 0
@@ -92,6 +94,18 @@ MonoBehaviour:
   - {fileID: 6696950863105630152, guid: 370431a0a26143749940b9f638bc2e95, type: 3}
   RareStarArea:
   - {fileID: 5090043123189685980, guid: d143bde5c849f7d4290ba725c4cbc5d8, type: 3}
+--- !u!114 &8073720796057074138
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 164170489949264287}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 35b5709de20a46544aaf1962108e8e8a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &1155826595568522749
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -116,3 +130,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1def918726bad0745bb9b92a9f9ff6e6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &6233373690351437950
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 164170489949264287}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3090730a634f96b43b9200f9d29b66a0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  DrawSpeed: 0.57
+  LinePrefab: {fileID: 7414780173931433481, guid: 141301743f7c99d4ab5a1c72af2e8e4e, type: 3}

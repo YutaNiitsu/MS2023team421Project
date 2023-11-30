@@ -6,11 +6,11 @@ using UnityEngine.UIElements;
 
 public class ContorolStar : MonoBehaviour
 {
-    public PlayerStock PlayerStockScript;
+    //public PlayerStock PlayerStockScript;
+    //public GameManagerScript UseGameManagerScript;
+    private bool MoveTG;
 
-    public bool MoveTG;
-
-    Rigidbody2D rigid2d;
+    public Rigidbody2D rigid2d { get; protected set; }
     // Vector2 startPos;
     // Vector2 startDirection;
 
@@ -19,6 +19,8 @@ public class ContorolStar : MonoBehaviour
     //// float gaugeLength = 0.0f;
     // bool shotGaugeSet = false;
 
+    private StarScript _StarScript;
+
     Vector3 direction;
     Vector3 normal;
 
@@ -26,11 +28,12 @@ public class ContorolStar : MonoBehaviour
     {
         this.rigid2d = GetComponent<Rigidbody2D>();
         MoveTG = false;
-
+        _StarScript = GetComponent<StarScript>();
     }
 
     void Update()
     {
+        //UseGameManagerScript.Discharge(rigid2d);
         FixedUpdate();
     }
 
@@ -61,11 +64,12 @@ public class ContorolStar : MonoBehaviour
         Vector3 result = Vector3.Reflect(direction, normal);
 
         rigid2d.velocity = result;
-
-        if (other.gameObject.CompareTag("Point"))
+        //UseGameManagerScript.Discharge(rigid2d);
+        if (other.gameObject.CompareTag("Target"))
         {
-            PlayerStockScript.Sporn();
-            Destroy(this.gameObject);
+            //UseGameManagerScript.Discharge(rigid2d); 
+            //PlayerStockScript.Sporn();
+            //Destroy(this.gameObject);
         }
         //// directionÇÃçXêV
         //direction = rb.velocity;
@@ -88,6 +92,15 @@ public class ContorolStar : MonoBehaviour
     public void AddForce(Vector2 UpdateForce)
     {
         this.rigid2d.AddForce(UpdateForce);
+        _StarScript.PlayParticle();
+    }
+
+    public void StopMove(Vector2 UpdatePos)
+    {
+        transform.position = UpdatePos;
+
+        this.rigid2d.velocity *= 0.0f;
+        this.gameObject.tag = "StarStop";
     }
 }
 

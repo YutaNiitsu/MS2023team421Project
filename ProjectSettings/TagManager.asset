@@ -9,6 +9,7 @@ TagManager:
   - Star
   - Target
   - GameManager
+  - Obstacle
   layers:
   - Default
   - TransparentFX

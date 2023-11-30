@@ -14,19 +14,72 @@ public class StarScript : MonoBehaviour
    
     [Header("星のレアリティ")]
     public StarRarity Rarity;
-  
-    //private Rigidbody2D rb;
-    // Start is called before the first frame update
-    //void Start()
-    //{
-    //    rb = gameObject.GetComponent<Rigidbody2D>();
-    //    //AddForce(new Vector2(0, -1), 100);
-    //}
+    [Header("移動中のパーティクルのプレハブ")]
+    public ParticleSystem Particle;
+   
 
-    //// Update is called once per frame
-    //void Update()
-    //{
+    private Rigidbody2D rb;
+    private bool IsPlaying;
 
-    //}
+    //Start is called before the first frame update
+    void Start()
+    {
+        //ParticleSystem.MainModule particle;
+        //if (Particle != null)
+        //{
+        //    particle = Particle.main;
+        //    particle.loop = false;
+        //}
+        IsPlaying = false;
+        rb = gameObject.GetComponent<Rigidbody2D>();
+    }
 
+    // Update is called once per frame
+    void Update()
+    {
+        //ParticleSystem.MainModule particle;
+        //if (Particle != null) particle = Particle.main;
+        if (rb != null)
+        {
+            if (rb.velocity.magnitude > 1.0f)
+            {
+                PlayParticle();
+            }
+            else
+            {
+                StopParticle();
+            }
+        }
+        
+    }
+
+    //障害物衝突テスト用
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        //if (collision.collider.CompareTag("Obstacle"))
+        //{
+        //    GameManagerScript.instance.CollisionObstacle();
+
+        //}
+    }
+
+    public void PlayParticle()
+    {
+        if (Particle != null && !IsPlaying)
+        {
+            IsPlaying = true;
+            Particle.Play();
+            Debug.Log("PlayParticle");
+        }
+    }
+
+    public void StopParticle()
+    {
+        if (Particle != null && IsPlaying)
+        {
+            IsPlaying = false;
+            Particle.Stop();
+            Debug.Log("StopParticle");
+        }
+    }
 }
