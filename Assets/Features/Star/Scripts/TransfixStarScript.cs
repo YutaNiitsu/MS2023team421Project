@@ -26,7 +26,7 @@ public class TransfixStarScript : MonoBehaviour
                 particle.Play();
                 Destroy(particle.gameObject, 1.0f);
             }
-            Destroy(gameObject);
+            //Destroy(gameObject);
         }
         if (collision.collider.CompareTag("Obstacle"))
         {
@@ -39,7 +39,7 @@ public class TransfixStarScript : MonoBehaviour
             }
             //áŠQ•¨‚Ì”j‰ó‰ñ”ƒJƒEƒ“ƒg
             GameManagerScript.instance.DestroyObstacle();
-            Destroy(gameObject);
+            //Destroy(gameObject);
         }
     }
 }

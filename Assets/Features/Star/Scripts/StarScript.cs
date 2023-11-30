@@ -18,7 +18,7 @@ public class StarScript : MonoBehaviour
     public ParticleSystem Particle;
    
 
-    private Rigidbody2D rb;
+    public Rigidbody2D Rigidbody { get; protected set; }
     private bool IsPlaying;
 
     //Start is called before the first frame update
@@ -31,7 +31,7 @@ public class StarScript : MonoBehaviour
         //    particle.loop = false;
         //}
         IsPlaying = false;
-        rb = gameObject.GetComponent<Rigidbody2D>();
+        Rigidbody = gameObject.GetComponent<Rigidbody2D>();
     }
 
     // Update is called once per frame
@@ -39,9 +39,9 @@ public class StarScript : MonoBehaviour
     {
         //ParticleSystem.MainModule particle;
         //if (Particle != null) particle = Particle.main;
-        if (rb != null)
+        if (Rigidbody != null)
         {
-            if (rb.velocity.magnitude > 1.0f)
+            if (Rigidbody.velocity.magnitude > 1.0f)
             {
                 PlayParticle();
             }
