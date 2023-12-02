@@ -7,18 +7,52 @@ public class TransfixStarScript : MonoBehaviour
 {
     [Header("衝突パーティクルのプレハブ")]
     public ParticleSystem Particle;
+
+    private StarScript _StarScript;
+    private CircleCollider2D Collider2D;
     // Start is called before the first frame update
     void Start()
     {
-        
+        _StarScript = GetComponent<StarScript>();
+        foreach (CircleCollider2D i in GetComponents<CircleCollider2D>())
+        {
+            //トリガーじゃない法を参照
+            if (!i.isTrigger)
+            {
+                Collider2D = i;
+            }
+        }
+    }
+
+    private void Update()
+    {
+        if (_StarScript != null)
+        {
+            if (_StarScript.IsMoving)
+            {
+                //動いている時はシールドだけ衝突
+                Collider2D.includeLayers = LayerMask.GetMask("Shield");
+                Collider2D.excludeLayers = LayerMask.GetMask("Default");
+            }
+            else
+            {
+                //動いていない時は全部衝突
+                Collider2D.includeLayers = LayerMask.GetMask("Nothing");
+                Collider2D.excludeLayers = LayerMask.GetMask("Nothing");
+            }
+        }
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
+        
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
         //はめ込む型にはまってUntaggedになってたら実行しない
-        if (collision.collider.CompareTag("Star") && gameObject.tag != "Untagged")
+        if (collision.CompareTag("Star") && gameObject.tag != "Untagged")
         {
-            //GameManagerScript.instance.CollisionObstacle();
             //衝突パーティクル生成
             if (Particle != null)
             {
@@ -26,9 +60,9 @@ public class TransfixStarScript : MonoBehaviour
                 particle.Play();
                 Destroy(particle.gameObject, 1.0f);
             }
-            //Destroy(gameObject);
+            Destroy(collision.gameObject);
         }
-        if (collision.collider.CompareTag("Obstacle"))
+        if (collision.CompareTag("Obstacle"))
         {
             //衝突パーティクル生成
             if (Particle != null)
@@ -39,7 +73,12 @@ public class TransfixStarScript : MonoBehaviour
             }
             //障害物の破壊回数カウント
             GameManagerScript.instance.DestroyObstacle();
-            //Destroy(gameObject);
+            Destroy(collision.gameObject);
         }
+    }
+
+    private void OnTriggerStay2D(Collider2D collision)
+    {
+        
     }
 }

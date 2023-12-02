@@ -27,7 +27,7 @@ public class IgnoreTeleportationStarScript : MonoBehaviour
                 Destroy(particle.gameObject, 1.0f);
             }
             Destroy(gameObject);
-            Destroy(collision.collider.gameObject);
+            //Destroy(collision.collider.gameObject);
 
         }
         if (collision.collider.CompareTag("Obstacle"))

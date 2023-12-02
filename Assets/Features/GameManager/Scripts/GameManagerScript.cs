@@ -41,7 +41,7 @@ public class GameManagerScript : MonoBehaviour
     public bool IsStageComplete { get; protected set; }
     public int ObstacleCollisionNumber { get; protected set; } //áŠQ•¨Õ“Ë‰ñ”
     public int ObstacleDestroyNumber { get; protected set; }     //áŠQ•¨”j‰ó‰ñ”
-
+    private MovableObstacleManagerScript MovableObstacleMgr;
 
 
     //ƒVƒ“ƒOƒ‹ƒgƒ“
@@ -76,6 +76,7 @@ public class GameManagerScript : MonoBehaviour
         ProceduralGenerator = GetComponent<ProceduralGenerator>();
         ConstellationDatas = GetComponent<ConstellationLoadManager>().LoadData(SavedFileName);
         DrawLine = GetComponent<DrawConstellationLine>();
+        MovableObstacleMgr = GetComponent<MovableObstacleManagerScript>();
 
         // ¯‚ğ”z’u
         ProceduralGenerator.GenerateStars(Setting.StageSize, Setting.Threshold);
@@ -179,6 +180,12 @@ public class GameManagerScript : MonoBehaviour
         if (DischargeNumber <= 0)
         {
             FinalDischargedStar = rb;
+        }
+        else
+        {
+            //“®‚­áŠQ•¨¶¬
+            int direction = (int)UnityEngine.Random.Range(0.0f, 7.0f);
+            MovableObstacleMgr.Generate(direction);
         }
     }
 
