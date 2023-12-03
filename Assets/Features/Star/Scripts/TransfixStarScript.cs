@@ -45,7 +45,16 @@ public class TransfixStarScript : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        
+        if (collision.gameObject.layer == 6)
+        {
+            if (Particle != null)
+            {
+                ParticleSystem particle = Instantiate(Particle, gameObject.transform.position, new Quaternion());
+                particle.Play();
+                Destroy(particle.gameObject, 1.0f);
+            }
+            Destroy(collision.gameObject, 0.5f);
+        }
     }
 
     private void OnTriggerEnter2D(Collider2D collision)

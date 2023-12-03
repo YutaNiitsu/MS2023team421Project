@@ -4,17 +4,24 @@ using UnityEngine;
 
 public class TargetScript : MonoBehaviour
 {
+    [Header("シールド")]
+    public GameObject Shield;
     //星がすでにはまっているかどうか
     public bool Goaled { get; protected set; }
     //はまっている星を参照する
     public StarScript StarGoaled { get; protected set; }
     //特別ポイントに指定されているかどうか
     public bool IsSpecialPoint { get; protected set; }
+    //シールド張るかどうか
+    public bool IsShield { get; protected set; }
+    private CircleCollider2D Collider2D;
+
     // Start is called before the first frame update
     void Start()
     {
         Goaled = false;
         StarGoaled = null;
+        Collider2D = GetComponent<CircleCollider2D>();
     }
 
     private void Update()
@@ -64,9 +71,14 @@ public class TargetScript : MonoBehaviour
 
     //生成時の設定
     //isSpecialPoint : 特別ポイントにするかどうか
-    public void Set(bool isSpecialPoint)
+    public void Set(bool isSpecialPoint, bool isShield)
     {
         IsSpecialPoint = isSpecialPoint;
+        IsShield = isShield;
+        Shield.SetActive(isShield);
+        Collider2D = GetComponent<CircleCollider2D>();
+        if (isShield)
+            Collider2D.enabled = false;
     }
 
     //特別ポイントに指定されている時、ユニーク以上のレアリティの星がはまっているかどうか

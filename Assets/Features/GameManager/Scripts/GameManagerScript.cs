@@ -185,7 +185,7 @@ public class GameManagerScript : MonoBehaviour
         {
             //ìÆÇ≠è·äQï®ê∂ê¨
             int direction = (int)UnityEngine.Random.Range(0.0f, 7.0f);
-            MovableObstacleMgr.Generate(direction);
+            //MovableObstacleMgr.Generate(direction);
         }
     }
 
