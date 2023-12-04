@@ -135,6 +135,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: da6904fa6dea47d47bcea3de17845016, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  normalSprite: {fileID: -5603963362486882821, guid: d614973a454a7d2429c068d0b6213f44, type: 3}
+  SpecialPointSprite: {fileID: -8994931286537307887, guid: 2f52957023323154aa9ceb52a16f2264, type: 3}
   Shield: {fileID: 3515769647202005841}
 --- !u!1001 &4326244646111949314
 PrefabInstance:

@@ -550,12 +550,20 @@ PrefabInstance:
       value: 0.874
       objectReference: {fileID: 0}
     - target: {fileID: 5105850875108164340, guid: 23cd3a265e427634aade1d6e486d211d, type: 3}
+      propertyPath: Setting.ShieldNumber
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5105850875108164340, guid: 23cd3a265e427634aade1d6e486d211d, type: 3}
       propertyPath: Setting.DischargeNumber
       value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 5105850875108164340, guid: 23cd3a265e427634aade1d6e486d211d, type: 3}
       propertyPath: Setting.ConstellationName
       value: ohituzi
+      objectReference: {fileID: 0}
+    - target: {fileID: 5105850875108164340, guid: 23cd3a265e427634aade1d6e486d211d, type: 3}
+      propertyPath: Setting.SpecialPointNumber
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 5105850875108164340, guid: 23cd3a265e427634aade1d6e486d211d, type: 3}
       propertyPath: Setting.ObstacleDestroyNumber

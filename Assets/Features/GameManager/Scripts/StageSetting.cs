@@ -16,6 +16,10 @@ public struct StageSetting
     [Header("閾値、この値が低いほど生成される星が多くなる")]
     [SerializeField, Range(0f, 1f)]
     public float Threshold;
+    [Header("特別ポイントの数")]
+    public int SpecialPointNumber;
+    [Header("シールドの数")]
+    public int ShieldNumber;
     [Header("ミッションセッティング")]
     [Header("ミッションの種類選択")]
     public MissionType[] MissionTypes;

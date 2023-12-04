@@ -12,8 +12,14 @@ public class ProceduralGenerator : MonoBehaviour
     public GameObject Target;
     [Header("星のプレハブ")]
     public GameObject[] Star;
-    [Header("レア星のプレハブ")]
+    [Header("レア星生成エリアのプレハブ")]
     public GameObject[] RareStarArea;
+    [Header("動かない障害物のプレハブ")]
+    public GameObject NormalObstacle;
+    [Header("ダークホールのプレハブ")]
+    public GameObject DarkHoleObstacle;
+    [Header("ワープ障害物のプレハブ")]
+    public GameObject TeleportationObstacle;
     public TargetScript[] Targets { get; protected set; }
 
     // Start is called before the first frame update
@@ -22,7 +28,7 @@ public class ProceduralGenerator : MonoBehaviour
         
     }
 
-    // オブジェクトを配置
+    //はめ込む型を配置
     //targets : はめ込む型のセーブデータ
     //range : 星の生成範囲
     //threshold : 星の密度が変わる
@@ -38,16 +44,37 @@ public class ProceduralGenerator : MonoBehaviour
 
         Targets = new TargetScript[data.targets.Length];
         // 星をはめ込む型生成
+        StageSetting setting = GameManagerScript.instance.Setting;
+        //特別ポイント、シールドにする型の要素番号リスト
+        List<int> specialPoints = SelectRandomElements(setting.SpecialPointNumber, 0, Targets.Length - 1);
+        List<int> shields = SelectRandomElements(setting.ShieldNumber, 0, Targets.Length - 1);
+
+
         int index = 0;
         foreach (ST_Constellation i in data.targets)
         {
             TargetScript obj = Instantiate(Target, i.position, Quaternion.identity).GetComponent<TargetScript>();
-            obj.Set(false, true);
+
+            //特別ポイント、シールドにする型の要素番号リストからindexに一致する要素番号が見つかったら設定する
+            bool isSpecialPoint = false;
+            bool isShield = false;
+            if (specialPoints.Contains(index))
+                isSpecialPoint = true;
+       
+            if (shields.Contains(index))
+                isShield = true;
+
+            obj.Set(isSpecialPoint, isShield);
             Targets[index] = obj;
             index++;
         }
 
     }
+    //生成位置を決定
+    //private void SetRandomPositions(out Vector2[] positions)
+    //{
+
+    //}
 
     //星を生成
     //range : 生成範囲
@@ -132,5 +159,28 @@ public class ProceduralGenerator : MonoBehaviour
         }
 
         return success;
+    }
+
+    //ランダムな要素を指定された個数だけ選択
+    public List<int> SelectRandomElements(int count, int min, int max)
+    {
+        List<int> result = new List<int>();
+        List<int> data = new List<int>();
+        //minからmaxまでの数字データ作成
+        for (int i = min; i < max + 1; i++)
+        {
+            data.Add(i);
+        }
+
+        for (int i = 0; i < count; i++)
+        {
+            if (data.Count == 0)
+                break;
+
+            int rand = UnityEngine.Random.Range(0, data.Count - 1);
+            result.Add(data[rand]);
+            data.RemoveAt(rand);
+        }
+        return result;
     }
 }

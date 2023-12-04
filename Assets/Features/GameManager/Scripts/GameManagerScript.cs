@@ -90,22 +90,35 @@ public class GameManagerScript : MonoBehaviour
             }
         }
 
+        //名前が一致する星座なかったらランダム
+        {
+            if (temp == null)
+            {
+                int index = UnityEngine.Random.Range(0, ConstellationDatas.Length - 1);
+                temp = ConstellationDatas[index];
+            }
+        }
+        
+
         if (temp != null)
         {
             ProceduralGenerator.GenerateTargets(temp);
             GenerateConstellation = temp;
         }
-       
+
 
         //ミッション
-        int len = Setting.MissionTypes.Length;
-        Missions = new MissionScript[len];
-        int index = 0;
-        foreach (MissionType i in Setting.MissionTypes)
         {
-            Missions[index] = new MissionScript(i);
-            index++;
+            int len = Setting.MissionTypes.Length;
+            Missions = new MissionScript[len];
+            int index = 0;
+            foreach (MissionType i in Setting.MissionTypes)
+            {
+                Missions[index] = new MissionScript(i);
+                index++;
+            }
         }
+       
     }
 
     // Update is called once per frame

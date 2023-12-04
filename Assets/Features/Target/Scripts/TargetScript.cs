@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class TargetScript : MonoBehaviour
 {
+    [Header("スプライト")]
+    public Sprite normalSprite;
+    public Sprite SpecialPointSprite;
     [Header("シールド")]
     public GameObject Shield;
     //星がすでにはまっているかどうか
@@ -71,14 +74,39 @@ public class TargetScript : MonoBehaviour
 
     //生成時の設定
     //isSpecialPoint : 特別ポイントにするかどうか
+    //isShield : シールド張るかどうか
     public void Set(bool isSpecialPoint, bool isShield)
     {
         IsSpecialPoint = isSpecialPoint;
         IsShield = isShield;
-        Shield.SetActive(isShield);
+
+        //特別ポイント
+        SpriteRenderer sprite = GetComponent<SpriteRenderer>();
+        if (isSpecialPoint)
+        {
+            sprite.sprite = SpecialPointSprite;
+        }
+        else
+        {
+            sprite.sprite = normalSprite;
+        }
+
+        //シールド
         Collider2D = GetComponent<CircleCollider2D>();
         if (isShield)
-            Collider2D.enabled = false;
+        {
+            Shield.SetActive(true);
+            if (isShield)
+                Collider2D.enabled = false;
+
+        }
+        else
+        {
+            Shield.SetActive(false);
+            if (isShield)
+                Collider2D.enabled = true;
+        }
+        
     }
 
     //特別ポイントに指定されている時、ユニーク以上のレアリティの星がはまっているかどうか

@@ -15,7 +15,10 @@ public class TargetShieldScript : MonoBehaviour
 
     private void OnDestroy()
     {
+        //ƒV[ƒ‹ƒhÁ‚¦‚é‚Ìˆ—
         if (Collider2D != null)
             Collider2D.enabled = true;
+
+
     }
 }
