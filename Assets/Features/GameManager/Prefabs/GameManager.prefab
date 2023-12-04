@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 1155826595568522749}
   - component: {fileID: 6944012632135934433}
   - component: {fileID: 6233373690351437950}
+  - component: {fileID: 2218092290281794374}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: GameManager
@@ -50,15 +51,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Setting:
-    ConstellationName: 
-    DischargeNumber: 30
+    ConstellationName: ohituzi
+    DischargeNumber: 10
     StageSize: {x: 500, y: 500}
-    Threshold: 0.9
+    Threshold: 0.874
+    SpecialPointNumber: 2
+    ShieldNumber: 2
     MissionTypes: 0000000001000000020000000300000004000000
     ObstacleCollisionNumber: 3
     DischargeNumberWithinClear: 3
     ObstacleDestroyNumber: 3
-  SavedFileName: SavedConstellation.save
+  SavedFileName: test1.save
   TaregtScore:
   - rarity: 0
     score: 50
@@ -90,10 +93,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Target: {fileID: 2988362997890976423, guid: 37262830ed0bd914395e06eefc6608ea, type: 3}
-  Star:
-  - {fileID: 6696950863105630152, guid: 370431a0a26143749940b9f638bc2e95, type: 3}
+  NormalStar: {fileID: 6696950863105630152, guid: 370431a0a26143749940b9f638bc2e95, type: 3}
+  BouncingStar: {fileID: 4242490677005298425, guid: a04566e1d08a6d34a897ff3c6a4b0d04, type: 3}
+  TransfixStar: {fileID: 4009491355611403489, guid: f09b17d21a1ceb34e97ec7cd5c1fb176, type: 3}
+  IgnoreTeleportationStar: {fileID: 4078075083635244832, guid: f751b100c5315b14287ddd915ad1c896, type: 3}
+  ExplosionStar: {fileID: 3110444582905043598, guid: 27b1babe94188cc459e6ab7b663c463a, type: 3}
   RareStarArea:
   - {fileID: 5090043123189685980, guid: d143bde5c849f7d4290ba725c4cbc5d8, type: 3}
+  NormalObstacle: {fileID: 2507695156877649083, guid: e41a97d06a7505e4aaeb1531ef73c391, type: 3}
+  DarkHoleObstacle: {fileID: 8860778915469388107, guid: 6c827ecef8574f745a033e9974b80028, type: 3}
+  TeleportationObstacle: {fileID: 9029200387554804583, guid: 885c9e59ba82b694daaea919ac5cf58e, type: 3}
 --- !u!114 &8073720796057074138
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -142,5 +151,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3090730a634f96b43b9200f9d29b66a0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  DrawSpeed: 0.57
+  DrawSpeed: 0.03
   LinePrefab: {fileID: 7414780173931433481, guid: 141301743f7c99d4ab5a1c72af2e8e4e, type: 3}
+  ParticlePrefab: {fileID: 8663533263603270977, guid: 53678195771d7a34b9f6e0b6182ee1f8, type: 3}
+--- !u!114 &2218092290281794374
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 164170489949264287}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9046fa8fc8512da48902d4d7995eeb0f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  MovableObstacle: {fileID: 3684766900624390978, guid: b9c30b7ce168e6e45a25256448dd7a52, type: 3}
+  Speed: 5
+  Number: 8
+  Size: 3
+  WarningTime: 1
+  Interval: 0.2

@@ -215,7 +215,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Rarity: 0
-  Particle: {fileID: 6704296595268089541}
+  MovingParticle: {fileID: 6704296595268089541}
+  ExplosionParticle: {fileID: 0}
 --- !u!114 &4476582949901477044
 MonoBehaviour:
   m_ObjectHideFlags: 0

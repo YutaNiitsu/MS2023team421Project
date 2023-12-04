@@ -534,77 +534,21 @@ PrefabInstance:
       value: GameManager
       objectReference: {fileID: 0}
     - target: {fileID: 5105850875108164340, guid: 23cd3a265e427634aade1d6e486d211d, type: 3}
-      propertyPath: SavedFileName
-      value: test1.save
-      objectReference: {fileID: 0}
-    - target: {fileID: 5105850875108164340, guid: 23cd3a265e427634aade1d6e486d211d, type: 3}
-      propertyPath: Setting.Range.x
-      value: 500
-      objectReference: {fileID: 0}
-    - target: {fileID: 5105850875108164340, guid: 23cd3a265e427634aade1d6e486d211d, type: 3}
-      propertyPath: Setting.Range.y
-      value: 500
-      objectReference: {fileID: 0}
-    - target: {fileID: 5105850875108164340, guid: 23cd3a265e427634aade1d6e486d211d, type: 3}
-      propertyPath: Setting.Threshold
-      value: 0.874
-      objectReference: {fileID: 0}
-    - target: {fileID: 5105850875108164340, guid: 23cd3a265e427634aade1d6e486d211d, type: 3}
-      propertyPath: Setting.ShieldNumber
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 5105850875108164340, guid: 23cd3a265e427634aade1d6e486d211d, type: 3}
-      propertyPath: Setting.DischargeNumber
-      value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 5105850875108164340, guid: 23cd3a265e427634aade1d6e486d211d, type: 3}
-      propertyPath: Setting.ConstellationName
-      value: ohituzi
-      objectReference: {fileID: 0}
-    - target: {fileID: 5105850875108164340, guid: 23cd3a265e427634aade1d6e486d211d, type: 3}
-      propertyPath: Setting.SpecialPointNumber
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 5105850875108164340, guid: 23cd3a265e427634aade1d6e486d211d, type: 3}
-      propertyPath: Setting.ObstacleDestroyNumber
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 5105850875108164340, guid: 23cd3a265e427634aade1d6e486d211d, type: 3}
-      propertyPath: Setting.MissionTypes.Array.size
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 5105850875108164340, guid: 23cd3a265e427634aade1d6e486d211d, type: 3}
-      propertyPath: Setting.ObstacleCollisionNumber
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 5105850875108164340, guid: 23cd3a265e427634aade1d6e486d211d, type: 3}
-      propertyPath: Setting.DischargeNumberWithinClear
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 5105850875108164340, guid: 23cd3a265e427634aade1d6e486d211d, type: 3}
-      propertyPath: 'Setting.MissionTypes.Array.data[1]'
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5105850875108164340, guid: 23cd3a265e427634aade1d6e486d211d, type: 3}
-      propertyPath: 'Setting.MissionTypes.Array.data[2]'
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 5105850875108164340, guid: 23cd3a265e427634aade1d6e486d211d, type: 3}
-      propertyPath: 'Setting.MissionTypes.Array.data[3]'
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 5105850875108164340, guid: 23cd3a265e427634aade1d6e486d211d, type: 3}
-      propertyPath: 'Setting.MissionTypes.Array.data[4]'
+      propertyPath: Setting.RarityThreshold.Array.size
       value: 4
       objectReference: {fileID: 0}
-    - target: {fileID: 6233373690351437950, guid: 23cd3a265e427634aade1d6e486d211d, type: 3}
-      propertyPath: DrawSpeed
-      value: 0.03
+    - target: {fileID: 5105850875108164340, guid: 23cd3a265e427634aade1d6e486d211d, type: 3}
+      propertyPath: 'Setting.RarityThreshold.Array.data[1]'
+      value: 0.595
       objectReference: {fileID: 0}
-    - target: {fileID: 6233373690351437950, guid: 23cd3a265e427634aade1d6e486d211d, type: 3}
-      propertyPath: ParticlePrefab
-      value: 
-      objectReference: {fileID: 8663533263603270977, guid: 53678195771d7a34b9f6e0b6182ee1f8, type: 3}
+    - target: {fileID: 5105850875108164340, guid: 23cd3a265e427634aade1d6e486d211d, type: 3}
+      propertyPath: 'Setting.RarityThreshold.Array.data[2]'
+      value: 0.855
+      objectReference: {fileID: 0}
+    - target: {fileID: 5105850875108164340, guid: 23cd3a265e427634aade1d6e486d211d, type: 3}
+      propertyPath: 'Setting.RarityThreshold.Array.data[3]'
+      value: 0.947
+      objectReference: {fileID: 0}
     - target: {fileID: 8602336333666789749, guid: 23cd3a265e427634aade1d6e486d211d, type: 3}
       propertyPath: m_LocalPosition.x
       value: -1.1748348
@@ -648,34 +592,8 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 164170489949264287, guid: 23cd3a265e427634aade1d6e486d211d, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1605341547}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 23cd3a265e427634aade1d6e486d211d, type: 3}
---- !u!1 &1605341539 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 164170489949264287, guid: 23cd3a265e427634aade1d6e486d211d, type: 3}
-  m_PrefabInstance: {fileID: 1214343751}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &1605341547
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1605341539}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9046fa8fc8512da48902d4d7995eeb0f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  MovableObstacle: {fileID: 3684766900624390978, guid: b9c30b7ce168e6e45a25256448dd7a52, type: 3}
-  Speed: 5
-  Number: 8
-  Size: 3
-  WarningTime: 1
-  Interval: 0.2
 --- !u!1001 &1686423214
 PrefabInstance:
   m_ObjectHideFlags: 0

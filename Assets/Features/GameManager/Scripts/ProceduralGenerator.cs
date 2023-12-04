@@ -11,7 +11,12 @@ public class ProceduralGenerator : MonoBehaviour
     [Header("星をはめ込む型のプレハブ")]
     public GameObject Target;
     [Header("星のプレハブ")]
-    public GameObject[] Star;
+    public GameObject NormalStar;
+    public GameObject BouncingStar;
+    public GameObject TransfixStar;
+    public GameObject IgnoreTeleportationStar;
+    public GameObject ExplosionStar;
+
     [Header("レア星生成エリアのプレハブ")]
     public GameObject[] RareStarArea;
     [Header("動かない障害物のプレハブ")]
@@ -107,14 +112,12 @@ public class ProceduralGenerator : MonoBehaviour
                     }
                     else
                     {
-                        Instantiate(Star[0], new Vector3(pos.x, pos.y, 0.0f), Quaternion.identity);
+                        Instantiate(NormalStar, new Vector3(pos.x, pos.y, 0.0f), Quaternion.identity);
                     }
                     
                 }
             }
         }
-
-
     }
 
     //全てのはめ込む型に星がはまっているか
@@ -181,6 +184,32 @@ public class ProceduralGenerator : MonoBehaviour
             result.Add(data[rand]);
             data.RemoveAt(rand);
         }
+        return result;
+    }
+
+    public StarRarity SetStarRarity(Vector3 pos)
+    {
+        StarRarity result = StarRarity.Unique;
+        Vector2 stageSize = GameManagerScript.instance.Setting.StageSize;
+        float[] p = GameManagerScript.instance.Setting.RarityThreshold;
+        float lenSq = Vector2.Dot(pos, pos);
+        float len = Vector2.Distance(pos, new Vector2(0.0f, 0.0f));
+       
+        float t = lenSq / (stageSize.x * 0.5f * stageSize.y * 0.5f);
+
+        
+        int index = 0;
+        foreach (float i in p)
+        {
+            float y = (float)Math.Exp(-Math.Pow(i * 2.0f - t * 2.0f, 2));
+            float rand = UnityEngine.Random.Range(0.9f - t, 1.0f);
+            if (y >= rand)
+                break;
+            index++;
+        }
+
+        result = (StarRarity)index;
+
         return result;
     }
 }

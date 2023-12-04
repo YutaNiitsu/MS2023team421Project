@@ -16,6 +16,9 @@ public struct StageSetting
     [Header("閾値、この値が低いほど生成される星が多くなる")]
     [SerializeField, Range(0f, 1f)]
     public float Threshold;
+    [Header("星のレアリティ設定するための閾値")]
+    [SerializeField, Range(0f, 1f)]
+    public float[] RarityThreshold;
     [Header("特別ポイントの数")]
     public int SpecialPointNumber;
     [Header("シールドの数")]

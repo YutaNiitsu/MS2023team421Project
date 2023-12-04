@@ -42,12 +42,14 @@ public class StarScript : MonoBehaviour
 
         foreach (CircleCollider2D i in GetComponents<CircleCollider2D>())
         {
-            //トリガーじゃない法を参照
+            //トリガーじゃない方を参照
             if (!i.isTrigger)
             {
                 Collider2D = i;
             }
         }
+
+        SetRarity();
     }
 
     // Update is called once per frame
@@ -110,5 +112,28 @@ public class StarScript : MonoBehaviour
         }
     }
 
-    
+    public void SetRarity()
+    {
+        Rarity = GameManagerScript.instance.ProceduralGenerator.SetStarRarity(gameObject.transform.position);
+
+        SpriteRenderer sprite = GetComponent<SpriteRenderer>();
+        switch (Rarity)
+        {
+            case StarRarity.Normal:
+                sprite.color = Color.white;
+                break;
+            case StarRarity.Rare:
+                sprite.color = Color.green;
+                break;
+            case StarRarity.Unique:
+                sprite.color = Color.blue;
+                break;
+            case StarRarity.Legendary:
+                sprite.color = Color.yellow;
+                break;
+            default:
+                break;
+        }
+
+    }
 }
