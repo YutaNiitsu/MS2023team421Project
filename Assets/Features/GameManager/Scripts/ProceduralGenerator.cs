@@ -1,3 +1,4 @@
+using NUnit.Framework;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -16,7 +17,10 @@ public class ProceduralGenerator : MonoBehaviour
     public GameObject TransfixStar;
     public GameObject IgnoreTeleportationStar;
     public GameObject ExplosionStar;
-
+    [Header("障害物のプレハブ")]
+    public GameObject Obstacle;
+    public GameObject Teleportation;
+    public GameObject DarkHole;
     [Header("レア星生成エリアのプレハブ")]
     public GameObject[] RareStarArea;
     [Header("動かない障害物のプレハブ")]
@@ -76,47 +80,126 @@ public class ProceduralGenerator : MonoBehaviour
 
     }
     //生成位置を決定
-    //private void SetRandomPositions(out Vector2[] positions)
-    //{
-
-    //}
-
-    //星を生成
-    //range : 生成範囲
-    //threshold : 閾値
-    public void GenerateStars(Vector2 range, float threshold)
+    private void SetRandomPositions(out Vector2[] positions, Vector2 stageSize, float threshold)
     {
+        positions = new Vector2[0];
+        //既に設置された星を参照
+        List<GameObject> stars = new List<GameObject>();
+        GameObject.FindGameObjectsWithTag("Star", stars);
+        //既に設置された障害物を参照
+        List<GameObject> obstacles = new List<GameObject>();
+        GameObject.FindGameObjectsWithTag("Obstacle", obstacles);
+        int index = 0;
         //スクリーンのサイズをワールド内のサイズに変換
         Vector3 worldScreen = Camera.main.ScreenToWorldPoint(new Vector3(Screen.currentResolution.width, Screen.currentResolution.height, 0.0f));
         // 星を生成
-        for (int y = 0; y < (int)range.y; y += 2)
+        for (int y = 0; y < (int)stageSize.y; y += 2)
         {
-            for (int x = 0; x < (int)range.x; x += 2)
+            for (int x = 0; x < (int)stageSize.x; x += 2)
             {
-                Vector2 pos = new Vector2(x - range.x / 2, y - range.y / 2);
+                Vector2 pos = new Vector2(x - stageSize.x / 2, y - stageSize.y / 2);
+                bool success = true;
+                foreach (GameObject j in stars)
+                {
+                    Vector2 dis = new Vector2(j.transform.position.x, j.transform.position.y) + pos;
+                    float lenSq = Vector2.Dot(dis, dis);
+                    //既に置かれてる星と距離近かったら失敗
+                    if (lenSq < 9.0f)
+                        success = false;
+                }
+                foreach (GameObject j in obstacles)
+                {
+                    Vector2 dis = new Vector2(j.transform.position.x, j.transform.position.y) + pos;
+                    float lenSq = Vector2.Dot(dis, dis);
+                    //既に置かれてる障害物と距離近かったら失敗
+                    if (lenSq < 9.0f)
+                        success = false;
+                }
+
+                //失敗したらとばす
+                if (!success)
+                    continue;
+
                 if (pos.x > -worldScreen.x && pos.x < worldScreen.x
                     && pos.y > -worldScreen.y && pos.y < worldScreen.y)
                     // カメラスクリーンには生成しない
                     continue;
 
                 float noise = Mathf.PerlinNoise((float)x * 0.7f, (float)y * 0.7f);
-                //閾値より大きかったら生成
+                
                 if (noise > threshold)
                 {
-                    float lenSq = Vector2.Dot(pos, pos);
-                    float len = Vector2.Distance(pos, new Vector2(0.0f, 0.0f));
-                    float rand = UnityEngine.Random.Range(0.0f, 1.0f);
-                    if (lenSq > Math.Pow(200, 2) && rand > (400.0f - (len - 200.0f) * 0.3f) / 400.0f)
-                    {
-                        Instantiate(RareStarArea[0], new Vector3(pos.x, pos.y, 0.0f), Quaternion.identity);
-                    }
-                    else
-                    {
-                        Instantiate(NormalStar, new Vector3(pos.x, pos.y, 0.0f), Quaternion.identity);
-                    }
-                    
+                    //閾値より大きかった
+                    Array.Resize(ref positions, positions.Length + 1);
+                    positions[index] = pos;
+                    index++;
                 }
             }
+        }
+    }
+
+    //星と障害物を生成
+    //range : 生成範囲
+    //threshold : 閾値
+    public void GenerateStars(Vector2 stageSize, float threshold)
+    {
+        Vector2[] positions;
+        //生成位置を決定
+        SetRandomPositions(out positions, stageSize, threshold);
+        //既に何か生成されているかどうかの判別用
+        bool[] determination = new bool[positions.Length];
+
+        //障害物の生成
+        int index = 0;
+        GameObject[] obstacles = new GameObject[2] { Obstacle, DarkHole }; 
+        foreach (Vector2 i in positions)
+        {
+            int rand = UnityEngine.Random.Range(0, 10);
+            if (!determination[index] && rand < 2)
+            {
+                Instantiate(obstacles[rand], new Vector3(i.x, i.y, 0.0f), Quaternion.identity);
+                determination[index] = true;
+            }
+            index++;
+        }
+
+        //ワープ障害物の生成
+        for (int i = 0; i < 10; i++)
+        {
+            int rand = UnityEngine.Random.Range(0, 10);
+            if (rand == 0)
+            {
+                //2か所位置決める
+                List<int> indexs = SelectRandomElements(2, 0, positions.Length - 1);
+                //何も置かれてなかったら生成
+                if (!determination[indexs[0]] && !determination[indexs[1]])
+                {
+                    GameObject obj = Instantiate(Teleportation, new Vector3(0.0f, 0.0f, 0.0f), Quaternion.identity);
+                    Color color = new Color();
+                    color.r = UnityEngine.Random.Range(0f, 1f);
+                    color.g = UnityEngine.Random.Range(0f, 1f);
+                    color.b = UnityEngine.Random.Range(0f, 1f);
+                    color.a = 1.0f;
+                    obj.GetComponent<TeleportationScript>().Set(color);
+                    determination[indexs[0]] = true;
+                    determination[indexs[1]] = true;
+                }
+            }
+        }
+
+
+        //星の生成
+        GameObject[] stars = new GameObject[5] { NormalStar, BouncingStar, TransfixStar, IgnoreTeleportationStar, ExplosionStar };
+        
+        index = 0;
+        foreach (Vector2 i in positions)
+        {
+            if (!determination[index])
+            {
+                int rand = UnityEngine.Random.Range(0, 4);
+                Instantiate(stars[rand], new Vector3(i.x, i.y, 0.0f), Quaternion.identity);
+            }  
+            index++;
         }
     }
 
@@ -190,8 +273,15 @@ public class ProceduralGenerator : MonoBehaviour
     public StarRarity SetStarRarity(Vector3 pos)
     {
         StarRarity result = StarRarity.Unique;
-        Vector2 stageSize = GameManagerScript.instance.Setting.StageSize;
-        float[] p = GameManagerScript.instance.Setting.RarityThreshold;
+        StageSetting setting = GameManagerScript.instance.Setting;
+        Vector2 stageSize = setting.StageSize;
+        float[] p = new float[4]{
+        setting.NormalThreshold,
+        setting.RareThreshold,
+        setting.UniqueThreshold,
+        setting.LegendaryThreshold
+        };
+
         float lenSq = Vector2.Dot(pos, pos);
         float len = Vector2.Distance(pos, new Vector2(0.0f, 0.0f));
        

@@ -55,6 +55,10 @@ MonoBehaviour:
     DischargeNumber: 10
     StageSize: {x: 500, y: 500}
     Threshold: 0.874
+    NormalThreshold: 0
+    RareThreshold: 0.752
+    UniqueThreshold: 0.861
+    LegendaryThreshold: 0.949
     SpecialPointNumber: 2
     ShieldNumber: 2
     MissionTypes: 0000000001000000020000000300000004000000
@@ -98,6 +102,9 @@ MonoBehaviour:
   TransfixStar: {fileID: 4009491355611403489, guid: f09b17d21a1ceb34e97ec7cd5c1fb176, type: 3}
   IgnoreTeleportationStar: {fileID: 4078075083635244832, guid: f751b100c5315b14287ddd915ad1c896, type: 3}
   ExplosionStar: {fileID: 3110444582905043598, guid: 27b1babe94188cc459e6ab7b663c463a, type: 3}
+  Obstacle: {fileID: 2507695156877649083, guid: e41a97d06a7505e4aaeb1531ef73c391, type: 3}
+  Teleportation: {fileID: 9029200387554804583, guid: 885c9e59ba82b694daaea919ac5cf58e, type: 3}
+  DarkHole: {fileID: 8860778915469388107, guid: 6c827ecef8574f745a033e9974b80028, type: 3}
   RareStarArea:
   - {fileID: 5090043123189685980, guid: d143bde5c849f7d4290ba725c4cbc5d8, type: 3}
   NormalObstacle: {fileID: 2507695156877649083, guid: e41a97d06a7505e4aaeb1531ef73c391, type: 3}
