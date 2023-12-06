@@ -297,12 +297,14 @@ public class ProceduralGenerator : MonoBehaviour
         int result = 0;
         foreach (float x in p)
         {
-            float y = (float)Math.Exp(-Math.Pow((x - t) * 2.0f, 2));
-            float rand = UnityEngine.Random.Range(0.0f, 1.0f);
+            float y = (float)Math.Exp(-Math.Pow((x * 2.0f - t) * 1.0f, 2));
+            float rand = UnityEngine.Random.Range(0.1f, 1.0f);
             if (y >= rand)
                 break;
             result++;
         }
+        if (result == 4)
+            result = 0;
 
         return result;
     }
