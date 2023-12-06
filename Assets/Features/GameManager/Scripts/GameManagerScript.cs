@@ -79,7 +79,7 @@ public class GameManagerScript : MonoBehaviour
         MovableObstacleMgr = GetComponent<MovableObstacleManagerScript>();
 
         // êØÇîzíu
-        ProceduralGenerator.GenerateStars(Setting.StageSize, Setting.Threshold);
+        ProceduralGenerator.CreateStar(Setting.StageSize, Setting.Threshold);
 
         SaveConstellationData temp = null;
         foreach (SaveConstellationData i in ConstellationDatas)
@@ -102,7 +102,7 @@ public class GameManagerScript : MonoBehaviour
 
         if (temp != null)
         {
-            ProceduralGenerator.GenerateTargets(temp);
+            ProceduralGenerator.CreateTargets(temp);
             GenerateConstellation = temp;
         }
 

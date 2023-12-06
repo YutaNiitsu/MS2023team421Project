@@ -13,9 +13,12 @@ public class TeleportationScript : MonoBehaviour
         
     }
 
-    public void Set(Color color)
+    public void Set(Vector2 gate1Pos, Vector2 gate2Pos, Color color)
     {
         Gate1.GetComponent<SpriteRenderer>().color = color;
         Gate2.GetComponent<SpriteRenderer>().color = color;
+
+        Gate1.transform.position = gate1Pos;
+        Gate2.transform.position = gate2Pos;
     }
 }

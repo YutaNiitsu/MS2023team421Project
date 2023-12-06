@@ -41,7 +41,7 @@ public class ProceduralGenerator : MonoBehaviour
     //targets : はめ込む型のセーブデータ
     //range : 星の生成範囲
     //threshold : 星の密度が変わる
-    public void GenerateTargets(SaveConstellationData data)
+    public void CreateTargets(SaveConstellationData data)
     {
         if (Targets != null && Targets.Length > 0)
         {
@@ -141,7 +141,7 @@ public class ProceduralGenerator : MonoBehaviour
     //星と障害物を生成
     //range : 生成範囲
     //threshold : 閾値
-    public void GenerateStars(Vector2 stageSize, float threshold)
+    public void CreateStar(Vector2 stageSize, float threshold)
     {
         Vector2[] positions;
         //生成位置を決定
@@ -151,42 +151,42 @@ public class ProceduralGenerator : MonoBehaviour
 
         //障害物の生成
         int index = 0;
-        GameObject[] obstacles = new GameObject[2] { Obstacle, DarkHole }; 
-        foreach (Vector2 i in positions)
-        {
-            int rand = UnityEngine.Random.Range(0, 10);
-            if (!determination[index] && rand < 2)
-            {
-                Instantiate(obstacles[rand], new Vector3(i.x, i.y, 0.0f), Quaternion.identity);
-                determination[index] = true;
-            }
-            index++;
-        }
 
-        //ワープ障害物の生成
-        for (int i = 0; i < 10; i++)
-        {
-            int rand = UnityEngine.Random.Range(0, 10);
-            if (rand == 0)
-            {
-                //2か所位置決める
-                List<int> indexs = SelectRandomElements(2, 0, positions.Length - 1);
-                //何も置かれてなかったら生成
-                if (!determination[indexs[0]] && !determination[indexs[1]])
-                {
-                    GameObject obj = Instantiate(Teleportation, new Vector3(0.0f, 0.0f, 0.0f), Quaternion.identity);
-                    Color color = new Color();
-                    color.r = UnityEngine.Random.Range(0f, 1f);
-                    color.g = UnityEngine.Random.Range(0f, 1f);
-                    color.b = UnityEngine.Random.Range(0f, 1f);
-                    color.a = 1.0f;
-                    obj.GetComponent<TeleportationScript>().Set(color);
-                    determination[indexs[0]] = true;
-                    determination[indexs[1]] = true;
-                }
-            }
-        }
+        //GameObject[] obstacles = new GameObject[3] { Obstacle, DarkHole, Teleportation };
+        //foreach (Vector2 i in positions)
+        //{
 
+        //    int rand = UnityEngine.Random.Range(0, 10);
+        //    if (!determination[index])
+        //    {
+        //        if (rand < 2)
+        //        {
+        //            //障害物の生成
+        //            Instantiate(obstacles[rand], new Vector3(i.x, i.y, 0.0f), Quaternion.identity);
+        //            determination[index] = true;
+        //        }
+        //        else if (rand == 2)
+        //        {
+        //            //ワープ障害物の生成
+        //            //2か所位置決める
+        //            List<int> indexs = SelectRandomElements(2, 0, positions.Length - 1);
+        //            //何も置かれてなかったら生成
+        //            if (!determination[indexs[0]] && !determination[indexs[1]])
+        //            {
+        //                GameObject obj = Instantiate(Teleportation, new Vector3(0.0f, 0.0f, 0.0f), Quaternion.identity);
+        //                Color color = new Color();
+        //                color.r = UnityEngine.Random.Range(0f, 1f);
+        //                color.g = UnityEngine.Random.Range(0f, 1f);
+        //                color.b = UnityEngine.Random.Range(0f, 1f);
+        //                color.a = 1.0f;
+        //                obj.GetComponent<TeleportationScript>().Set(positions[indexs[0]], positions[indexs[1]], color);
+        //                determination[indexs[0]] = true;
+        //                determination[indexs[1]] = true;
+        //            }
+        //        }
+        //    }
+        //    index++;
+        //}
 
         //星の生成
         GameObject[] stars = new GameObject[5] { NormalStar, BouncingStar, TransfixStar, IgnoreTeleportationStar, ExplosionStar };
@@ -276,29 +276,33 @@ public class ProceduralGenerator : MonoBehaviour
         StageSetting setting = GameManagerScript.instance.Setting;
         Vector2 stageSize = setting.StageSize;
         float[] p = new float[4]{
-        setting.NormalThreshold,
-        setting.RareThreshold,
-        setting.UniqueThreshold,
-        setting.LegendaryThreshold
+        setting.NormalPoint,
+        setting.RarePoint,
+        setting.UniquePoint,
+        setting.LegendaryPoint
         };
 
         float lenSq = Vector2.Dot(pos, pos);
-        float len = Vector2.Distance(pos, new Vector2(0.0f, 0.0f));
-       
         float t = lenSq / (stageSize.x * 0.5f * stageSize.y * 0.5f);
 
-        
-        int index = 0;
-        foreach (float i in p)
+        result = (StarRarity)SelectRandomExp(p,t);
+
+        return result;
+    }
+
+    //p : x値の配列
+    //t : 極大値の位置をずらす
+    int SelectRandomExp(float[] p, float t)
+    {
+        int result = 0;
+        foreach (float x in p)
         {
-            float y = (float)Math.Exp(-Math.Pow(i * 2.0f - t * 2.0f, 2));
-            float rand = UnityEngine.Random.Range(0.9f - t, 1.0f);
+            float y = (float)Math.Exp(-Math.Pow((x - t) * 2.0f, 2));
+            float rand = UnityEngine.Random.Range(0.0f, 1.0f);
             if (y >= rand)
                 break;
-            index++;
+            result++;
         }
-
-        result = (StarRarity)index;
 
         return result;
     }
