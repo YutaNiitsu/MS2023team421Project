@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 5647359787305138154}
   m_Layer: 6
   m_Name: Shield
-  m_TagString: Untagged
+  m_TagString: Target
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -134,8 +134,3 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 890a27991e1c8de47911c7d1246c8aa7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Sprites:
-  - {fileID: -3164809056393425246, guid: ea1599986d721184f8d7a0ee32655475, type: 3}
-  - {fileID: -5225540622116197949, guid: be1db0343fbf55d46b2307d475431fad, type: 3}
-  - {fileID: 8793915729297761979, guid: a3dee5ad27c13224e9fb875c9d418e17, type: 3}
-  - {fileID: 2750298860172458669, guid: bd2e497ab6757e04e9c84aa5c4b5a444, type: 3}

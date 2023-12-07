@@ -44,7 +44,7 @@ public class ContorolPlayer : MonoBehaviour
     // ショットゲージ関数
     void shotGaugeValue()
     {
-        //Debug.Log("呼び出し確認");
+        Debug.Log("呼び出し確認");
     }
 
     void PlayerContorol()

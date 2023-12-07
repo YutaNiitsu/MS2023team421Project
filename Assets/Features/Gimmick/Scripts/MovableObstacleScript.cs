@@ -15,9 +15,6 @@ public class MovableObstacleScript : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        //if (collision.CompareTag("Star"))
-        //{
-        //    Destroy(collision.gameObject);
-        //}
+
     }
 }
