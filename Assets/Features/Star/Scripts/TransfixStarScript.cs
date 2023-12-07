@@ -45,6 +45,7 @@ public class TransfixStarScript : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
+        //ÉVÅ[ÉãÉhÇæÇ¡ÇΩéû
         if (collision.gameObject.layer == 6)
         {
             if (Particle != null)
@@ -53,7 +54,9 @@ public class TransfixStarScript : MonoBehaviour
                 particle.Play();
                 Destroy(particle.gameObject, 1.0f);
             }
-            Destroy(collision.gameObject, 0.5f);
+
+            collision.gameObject.GetComponent<TargetShieldScript>();
+            //Destroy(collision.gameObject, 0.5f);
         }
     }
 
