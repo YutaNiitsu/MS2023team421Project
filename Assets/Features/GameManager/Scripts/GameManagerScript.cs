@@ -137,7 +137,7 @@ public class GameManagerScript : MonoBehaviour
                 StartCoroutine(GameOver());
             }
         }
-        
+
     }
 
     //‚Í‚ß‚ŞŒ^‚É¯‚ª‚Í‚Ü‚é‚ÆƒXƒRƒA‰ÁZ
@@ -203,7 +203,7 @@ public class GameManagerScript : MonoBehaviour
             int direction = UnityEngine.Random.Range(0, 7 + 8 * 2);
             if (direction <= 7)
             {
-                MovableObstacleMgr.Create(direction);
+                MovableObstacleMgr.Generate(direction);
             }
 
         }

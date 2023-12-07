@@ -32,9 +32,6 @@ public struct StageSetting
     public int SpecialPointNumber;
     [Header("シールドの数")]
     public int ShieldNumber;
-    [Header("シールドのHealthPoint")]
-    [SerializeField, Range(1, 4)]
-    public int ShieldHealthPoint;
     [Header("ミッションセッティング")]
     [Header("ミッションの種類選択")]
     public MissionType[] MissionTypes;

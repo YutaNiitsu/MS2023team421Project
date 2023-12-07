@@ -150,6 +150,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Shield
       objectReference: {fileID: 0}
+    - target: {fileID: 919698906720452947, guid: b2f985cfef2d17a41aaaab0f2f93d74e, type: 3}
+      propertyPath: m_TagString
+      value: Untagged
+      objectReference: {fileID: 0}
     - target: {fileID: 7625406851340096193, guid: b2f985cfef2d17a41aaaab0f2f93d74e, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0

@@ -55,7 +55,7 @@ public class TransfixStarScript : MonoBehaviour
                 Destroy(particle.gameObject, 1.0f);
             }
 
-            collision.gameObject.GetComponent<TargetShieldScript>().AddDamage();
+            collision.gameObject.GetComponent<TargetShieldScript>();
             //Destroy(collision.gameObject, 0.5f);
         }
     }
