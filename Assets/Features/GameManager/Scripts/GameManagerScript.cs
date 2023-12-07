@@ -4,7 +4,9 @@ using System.Collections.Generic;
 using System.Reflection;
 using TMPro;
 using Unity.VisualScripting;
+using UnityEditor.SearchService;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.SocialPlatforms.Impl;
 using UnityEngine.UIElements;
 using static MissionScript;
@@ -27,7 +29,8 @@ public class GameManagerScript : MonoBehaviour
     public ST_StarRarity[] TaregtScore;
     [Header("特別ポイントにはまった時に取得するスコア")]
     public ST_StarRarity[] SpecialTaregtScore;
-
+    [Header("次のSceneの名前")]
+    public string NextSceneName;
 
     public ProceduralGenerator ProceduralGenerator { get; protected set; }
     public SaveConstellationData[] ConstellationDatas { get; protected set; }
@@ -118,7 +121,7 @@ public class GameManagerScript : MonoBehaviour
                 index++;
             }
         }
-       
+        //SceneManager.LoadScene();
     }
 
     // Update is called once per frame
@@ -241,5 +244,11 @@ public class GameManagerScript : MonoBehaviour
     {
         ObstacleDestroyNumber++;
         Debug.Log("破壊");
+    }
+
+    //次のシーンへ移行
+    public void NextScene()
+    {
+        SceneManager.LoadScene(NextSceneName);
     }
 }
