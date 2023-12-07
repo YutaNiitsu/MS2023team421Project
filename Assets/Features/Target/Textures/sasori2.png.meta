@@ -128,7 +128,8 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      sasori2_0: -4638809224435227152
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

@@ -75,7 +75,7 @@ public class TargetScript : MonoBehaviour
     //生成時の設定
     //isSpecialPoint : 特別ポイントにするかどうか
     //isShield : シールド張るかどうか
-    public void Set(bool isSpecialPoint, bool isShield)
+    public void Set(bool isSpecialPoint, bool isShield, int shield_HP)
     {
         IsSpecialPoint = isSpecialPoint;
         IsShield = isShield;
@@ -96,6 +96,7 @@ public class TargetScript : MonoBehaviour
         if (isShield)
         {
             Shield.SetActive(true);
+            Shield.GetComponent<TargetShieldScript>().Set(shield_HP);
             if (isShield)
                 Collider2D.enabled = false;
 

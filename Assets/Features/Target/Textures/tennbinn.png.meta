@@ -128,7 +128,8 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      tennbinn_0: 9011504456670464292
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

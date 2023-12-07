@@ -81,9 +81,9 @@ public class StarScript : MonoBehaviour
         
     }
 
-
-    private void OnTriggerEnter2D(Collider2D collision)
+    private void OnCollisionEnter2D(Collision2D collision)
     {
+        //ìÆÇ≠è·äQï®ÇæÇ¡ÇΩ
         if (collision.gameObject.layer == 8)
         {
             if (ExplosionParticle != null)
@@ -93,6 +93,22 @@ public class StarScript : MonoBehaviour
                 Destroy(particle.gameObject, 1.0f);
             }
             Destroy(gameObject);
+            
+        }
+    }
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        //ìÆÇ≠è·äQï®ÇæÇ¡ÇΩ
+        if (collision.gameObject.layer == 8)
+        {
+            if (ExplosionParticle != null)
+            {
+                ParticleSystem particle = Instantiate(ExplosionParticle, gameObject.transform.position, new Quaternion());
+                particle.Play();
+                Destroy(particle.gameObject, 1.0f);
+            }
+            Destroy(gameObject);
+            
         }
     }
 
@@ -102,7 +118,7 @@ public class StarScript : MonoBehaviour
         {
             IsPlaying = true;
             MovingParticle.Play();
-            Debug.Log("PlayParticle");
+            //Debug.Log("PlayParticle");
         }
     }
 
@@ -112,7 +128,7 @@ public class StarScript : MonoBehaviour
         {
             IsPlaying = false;
             MovingParticle.Stop();
-            Debug.Log("StopParticle");
+            //Debug.Log("StopParticle");
         }
     }
 

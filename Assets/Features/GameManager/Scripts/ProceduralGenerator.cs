@@ -23,12 +23,7 @@ public class ProceduralGenerator : MonoBehaviour
     public GameObject DarkHole;
     [Header("レア星生成エリアのプレハブ")]
     public GameObject[] RareStarArea;
-    [Header("動かない障害物のプレハブ")]
-    public GameObject NormalObstacle;
-    [Header("ダークホールのプレハブ")]
-    public GameObject DarkHoleObstacle;
-    [Header("ワープ障害物のプレハブ")]
-    public GameObject TeleportationObstacle;
+
     public TargetScript[] Targets { get; protected set; }
 
     // Start is called before the first frame update
@@ -73,7 +68,7 @@ public class ProceduralGenerator : MonoBehaviour
             if (shields.Contains(index))
                 isShield = true;
 
-            obj.Set(isSpecialPoint, isShield);
+            obj.Set(isSpecialPoint, isShield, setting.ShieldHealthPoint);
             Targets[index] = obj;
             index++;
         }
