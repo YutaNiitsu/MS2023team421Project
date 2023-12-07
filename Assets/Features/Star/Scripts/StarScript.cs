@@ -17,6 +17,10 @@ public class StarScript : MonoBehaviour
    
     [Header("星のレアリティ")]
     public StarRarity Rarity;
+    [Header("星のレアリティごとのパーティクルのプレハブ")]
+    public GameObject RareParticle;
+    public GameObject UniqueParticle;
+    public GameObject LegendaryParticle;
     [Header("移動中のパーティクル")]
     public ParticleSystem MovingParticle;
     [Header("消滅自のパーティクルのプレハブ")]
@@ -115,20 +119,28 @@ public class StarScript : MonoBehaviour
     public void SetRarity()
     {
         Rarity = GameManagerScript.instance.ProceduralGenerator.SetStarRarity(gameObject.transform.position);
-
+        GameObject obj;
         SpriteRenderer sprite = GetComponent<SpriteRenderer>();
+
+        //パーティクル生成して子にする
         switch (Rarity)
         {
             case StarRarity.Normal:
-                sprite.color = Color.white;
+                //sprite.color = Color.white;
                 break;
             case StarRarity.Rare:
-                sprite.color = Color.green;
+                obj = Instantiate(RareParticle, gameObject.transform.position, new Quaternion());
+                obj.transform.parent = gameObject.transform;
+                //sprite.color = Color.green;
                 break;
             case StarRarity.Unique:
+                obj = Instantiate(UniqueParticle, gameObject.transform.position, new Quaternion());
+                obj.transform.parent = gameObject.transform;
                 sprite.color = Color.blue;
                 break;
             case StarRarity.Legendary:
+                obj = Instantiate(LegendaryParticle, gameObject.transform.position, new Quaternion());
+                obj.transform.parent = gameObject.transform;
                 sprite.color = Color.yellow;
                 break;
             default:

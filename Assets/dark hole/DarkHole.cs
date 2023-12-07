@@ -34,7 +34,7 @@ public class DarkHole : MonoBehaviour
         {
             //Debug.Log("è¡Ç¶Ç‹Ç∑");
             //Player.SetActive(false);
-            GameOver.isGameOver = true;
+            //GameOver.isGameOver = true;
 
             Destroy(other.gameObject);
         }

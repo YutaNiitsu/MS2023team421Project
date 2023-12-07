@@ -79,7 +79,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: -2413806693520163455, guid: a86470a33a6bf42c4b3595704624658b, type: 3}
+  m_Sprite: {fileID: 8157624433508900965, guid: 6053a02065e034d40ae8baf58fe64aa3, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -191,6 +191,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Rarity: 0
+  RareParticle: {fileID: 8887991482013375442, guid: 2d2944ac51524764b85ba9e49e977b38, type: 3}
+  UniqueParticle: {fileID: 5260364838592502423, guid: 2ea6eac1b18bd654f97b2e01251b7791, type: 3}
+  LegendaryParticle: {fileID: 1353305731699379709, guid: 482989270e1868c44ba38436e5d15852, type: 3}
   MovingParticle: {fileID: 301180912678538620}
   ExplosionParticle: {fileID: 0}
 --- !u!1001 &8941070140788672573

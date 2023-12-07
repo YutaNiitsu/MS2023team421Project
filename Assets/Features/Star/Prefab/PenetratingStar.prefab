@@ -215,6 +215,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Rarity: 0
+  RareParticle: {fileID: 8887991482013375442, guid: 2d2944ac51524764b85ba9e49e977b38, type: 3}
+  UniqueParticle: {fileID: 5260364838592502423, guid: 2ea6eac1b18bd654f97b2e01251b7791, type: 3}
+  LegendaryParticle: {fileID: 1353305731699379709, guid: 482989270e1868c44ba38436e5d15852, type: 3}
   MovingParticle: {fileID: 6704296595268089541}
   ExplosionParticle: {fileID: 0}
 --- !u!114 &4476582949901477044
