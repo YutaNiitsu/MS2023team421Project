@@ -128,7 +128,8 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      hutago_0: -1448339594910195066
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

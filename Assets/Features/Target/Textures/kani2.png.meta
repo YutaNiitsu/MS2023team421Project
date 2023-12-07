@@ -128,7 +128,8 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      kani2_0: 2075289519855212307
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

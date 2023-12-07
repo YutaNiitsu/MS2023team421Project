@@ -128,7 +128,8 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      hituji_0: 4628389302510208598
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
