@@ -23,6 +23,7 @@ public class UIManagerScript : MonoBehaviour
         }
     }
 
+    //ゲーム時
     // Start is called before the first frame update
     void Start()
     {
@@ -31,6 +32,7 @@ public class UIManagerScript : MonoBehaviour
         Result.SetActive(false);
     }
 
+    //リザルト表示
     public void DisplayResult()
     {
         MiniMap.SetActive(false);

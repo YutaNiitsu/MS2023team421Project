@@ -86,9 +86,10 @@ public class DrawConstellationLine : MonoBehaviour
 
                 if (CurLineIndex >= lines.Length)
                 {
+                    //線の描画完了
                     Particle.Stop();
                     Destroy(Particle.gameObject, 1.0f);
-                    state = 0;
+                    state = 4;
                 }
                 break;
             default:
@@ -103,6 +104,15 @@ public class DrawConstellationLine : MonoBehaviour
         //パーティクル生成
         Particle = Instantiate(ParticlePrefab, CurPos, new Quaternion());
         //StartCoroutine(DrawLineCoroutine(Mathf.Lerp(10.0f, 0.01f, 1.0f - Mathf.Pow(1.0f - DrawSpeed, 5))));
+    }
+
+    //線描画完了
+    public bool FinishDraw()
+    {
+        if (state == 4)
+            return true;
+
+        return false;
     }
 
     IEnumerator DrawLineCoroutine(float time)

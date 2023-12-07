@@ -200,8 +200,12 @@ public class GameManagerScript : MonoBehaviour
         else
         {
             //動く障害物生成
-            int direction = (int)UnityEngine.Random.Range(0.0f, 7.0f);
-            //MovableObstacleMgr.Generate(direction);
+            int direction = UnityEngine.Random.Range(0, 7 + 8 * 2);
+            if (direction <= 7)
+            {
+                MovableObstacleMgr.Generate(direction);
+            }
+
         }
     }
 
@@ -220,7 +224,12 @@ public class GameManagerScript : MonoBehaviour
             i.IsMissionComplete();
         }
 
-        yield return new WaitForSeconds(1);
+        while (!DrawLine.FinishDraw())
+        {
+            yield return new WaitForSeconds(0.1f);
+        }
+
+        yield return new WaitForSeconds(0);
         Debug.Log("ステージクリア処理終了");
         UIManagerScript.instance.DisplayResult();
     }
@@ -251,5 +260,16 @@ public class GameManagerScript : MonoBehaviour
     public void NextScene()
     {
         SceneManager.LoadScene(NextSceneName);
+    }
+
+    public void Retry()
+    {
+        string sceneName = SceneManager.GetActiveScene().name;
+        SceneManager.LoadScene(sceneName);
+    }
+
+    public void TitleScene()
+    {
+        SceneManager.LoadScene("Title");
     }
 }
