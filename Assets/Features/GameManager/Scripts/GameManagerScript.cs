@@ -222,6 +222,7 @@ public class GameManagerScript : MonoBehaviour
 
         yield return new WaitForSeconds(1);
         Debug.Log("ステージクリア処理終了");
+        UIManagerScript.instance.DisplayResult();
     }
 
     //ゲームオーバー処理
