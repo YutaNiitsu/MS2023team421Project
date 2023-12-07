@@ -49,17 +49,17 @@ public class MovableObstacleManagerScript : MonoBehaviour
 
     //áŠQ•¨¶¬
     //8•ûŒü‚©‚ç‘I‘ğ
-    public void Generate(int dir)
+    public void Create(int dir)
     {
         if (dir < 0 || dir > 7)
             return;
 
         if (_Coroutine != null) StopCoroutine(_Coroutine);
-        _Coroutine = StartCoroutine(GenerateCoroutine(dir));
+        _Coroutine = StartCoroutine(CreateCoroutine(dir));
        
     }
 
-    IEnumerator GenerateCoroutine(int dir)
+    IEnumerator CreateCoroutine(int dir)
     {
         Vector3 screenSize = new Vector3(Screen.currentResolution.width, Screen.currentResolution.height, 0.0f);
 

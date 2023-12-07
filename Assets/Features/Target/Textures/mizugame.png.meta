@@ -128,7 +128,8 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      mizugame_0: -4137953408507684806
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
