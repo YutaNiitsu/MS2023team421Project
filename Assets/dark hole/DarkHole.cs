@@ -30,11 +30,13 @@ public class DarkHole : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D other)
     {
         //
-        if (other.gameObject.tag == "Player")
+        if (other.gameObject.tag == "Star")
         {
-            Debug.Log("è¡Ç¶Ç‹Ç∑");
-            Player.SetActive(false);
+            //Debug.Log("è¡Ç¶Ç‹Ç∑");
+            //Player.SetActive(false);
             GameOver.isGameOver = true;
+
+            Destroy(other.gameObject);
         }
     }
 

@@ -299,19 +299,19 @@ public class CreateConstellationManager : MonoBehaviour
     //参照画像読み込む（使ってない）
     public void LoadSprite(string path)
     {
-        try
-        {
-            var rawData = System.IO.File.ReadAllBytes(path);
-            Texture2D texture2D = new Texture2D(0, 0);
-            texture2D.LoadImage(rawData);
-            var sprite = Sprite.Create(texture2D, new Rect(0f, 0f, texture2D.width, texture2D.height),
-                new Vector2(0.5f, 0.5f), 100f);
-            //return sprite;
-        }
-        catch (Exception e)
-        {
-            //return null;
-        }
+        //try
+        //{
+        //    var rawData = System.IO.File.ReadAllBytes(path);
+        //    Texture2D texture2D = new Texture2D(0, 0);
+        //    texture2D.LoadImage(rawData);
+        //    var sprite = Sprite.Create(texture2D, new Rect(0f, 0f, texture2D.width, texture2D.height),
+        //        new Vector2(0.5f, 0.5f), 100f);
+        //    //return sprite;
+        //}
+        //catch (Exception e)
+        //{
+        //    //return null;
+        //}
     }
     //ボタンの有効無効を切り替え
     private void SetButtonInteractable(bool newButton,

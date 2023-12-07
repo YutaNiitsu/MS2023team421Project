@@ -9,6 +9,7 @@ public class ResultScript : MonoBehaviour
     public Image ConstellationImage;
     public Text ScoreText;
     public GameObject ButtonObjects;
+    public float FadeSpeed;
 
     private float ImageAlpha;
     // Start is called before the first frame update
@@ -31,7 +32,7 @@ public class ResultScript : MonoBehaviour
     {
         while (ImageAlpha < 1.0f)
         {
-            ImageAlpha += 0.02f;
+            ImageAlpha += FadeSpeed;
             ConstellationImage.color = new Color(1.0f, 1.0f, 1.0f, ImageAlpha);
             yield return new WaitForSeconds(0.02f);
         }
@@ -43,6 +44,4 @@ public class ResultScript : MonoBehaviour
         Debug.Log("ƒŠƒUƒ‹ƒg•\Ž¦Š®—¹");
 
     }
-
-
 }
