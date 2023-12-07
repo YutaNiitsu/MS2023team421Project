@@ -16,6 +16,7 @@ GameObject:
   - component: {fileID: 6944012632135934433}
   - component: {fileID: 6233373690351437950}
   - component: {fileID: 2218092290281794374}
+  - component: {fileID: 4204737251373357927}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: GameManager
@@ -52,13 +53,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Setting:
     ConstellationName: ohituzi
+    ConstellationImage: {fileID: 4628389302510208598, guid: 4f45c5cc93566444f92c4e5ff64963d9, type: 3}
     DischargeNumber: 10
-    StageSize: {x: 500, y: 500}
-    Threshold: 0.874
-    NormalThreshold: 0
-    RareThreshold: 0.752
-    UniqueThreshold: 0.861
-    LegendaryThreshold: 0.949
+    StageSize: {x: 150, y: 150}
+    Threshold: 0.779
+    NormalPoint: 0
+    RarePoint: 0.623
+    UniquePoint: 0.826
+    LegendaryPoint: 0.919
     SpecialPointNumber: 2
     ShieldNumber: 2
     MissionTypes: 0000000001000000020000000300000004000000
@@ -84,6 +86,7 @@ MonoBehaviour:
     score: 600
   - rarity: 3
     score: 1500
+  NextSceneName: 
 --- !u!114 &6697352170113118778
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -179,3 +182,18 @@ MonoBehaviour:
   Size: 3
   WarningTime: 1
   Interval: 0.2
+--- !u!114 &4204737251373357927
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 164170489949264287}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ab528bad617b7c442b698f5ed41266e3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  MiniMap: {fileID: 0}
+  WarningMark: {fileID: 0}
+  Result: {fileID: 0}

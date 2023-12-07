@@ -2,13 +2,15 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using static MissionScript;
-
+using UnityEngine.UI;
 
 [System.Serializable]
 public struct StageSetting
 {
     [Header("設置する星座の名前")]
     public string ConstellationName;
+    [Header("設置する星座の画像")]
+    public Sprite ConstellationImage;
     [Header("プレイヤーが星を発射できる回数")]
     public int DischargeNumber;
     [Header("星を配置するエリアの広さ")]

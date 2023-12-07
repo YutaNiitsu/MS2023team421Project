@@ -152,41 +152,41 @@ public class ProceduralGenerator : MonoBehaviour
         //è·äQï®ÇÃê∂ê¨
         int index = 0;
 
-        //GameObject[] obstacles = new GameObject[3] { Obstacle, DarkHole, Teleportation };
-        //foreach (Vector2 i in positions)
-        //{
+        GameObject[] obstacles = new GameObject[3] { Obstacle, DarkHole, Teleportation };
+        foreach (Vector2 i in positions)
+        {
 
-        //    int rand = UnityEngine.Random.Range(0, 10);
-        //    if (!determination[index])
-        //    {
-        //        if (rand < 2)
-        //        {
-        //            //è·äQï®ÇÃê∂ê¨
-        //            Instantiate(obstacles[rand], new Vector3(i.x, i.y, 0.0f), Quaternion.identity);
-        //            determination[index] = true;
-        //        }
-        //        else if (rand == 2)
-        //        {
-        //            //ÉèÅ[Évè·äQï®ÇÃê∂ê¨
-        //            //2Ç©èäà íuåàÇﬂÇÈ
-        //            List<int> indexs = SelectRandomElements(2, 0, positions.Length - 1);
-        //            //âΩÇ‡íuÇ©ÇÍÇƒÇ»Ç©Ç¡ÇΩÇÁê∂ê¨
-        //            if (!determination[indexs[0]] && !determination[indexs[1]])
-        //            {
-        //                GameObject obj = Instantiate(Teleportation, new Vector3(0.0f, 0.0f, 0.0f), Quaternion.identity);
-        //                Color color = new Color();
-        //                color.r = UnityEngine.Random.Range(0f, 1f);
-        //                color.g = UnityEngine.Random.Range(0f, 1f);
-        //                color.b = UnityEngine.Random.Range(0f, 1f);
-        //                color.a = 1.0f;
-        //                obj.GetComponent<TeleportationScript>().Set(positions[indexs[0]], positions[indexs[1]], color);
-        //                determination[indexs[0]] = true;
-        //                determination[indexs[1]] = true;
-        //            }
-        //        }
-        //    }
-        //    index++;
-        //}
+            int rand = UnityEngine.Random.Range(0, 10);
+            if (!determination[index])
+            {
+                if (rand < 2)
+                {
+                    //è·äQï®ÇÃê∂ê¨
+                    Instantiate(obstacles[rand], new Vector3(i.x, i.y, 0.0f), Quaternion.identity);
+                    determination[index] = true;
+                }
+                else if (rand == 2)
+                {
+                    //ÉèÅ[Évè·äQï®ÇÃê∂ê¨
+                    //2Ç©èäà íuåàÇﬂÇÈ
+                    List<int> indexs = SelectRandomElements(2, 0, positions.Length - 1);
+                    //âΩÇ‡íuÇ©ÇÍÇƒÇ»Ç©Ç¡ÇΩÇÁê∂ê¨
+                    if (!determination[indexs[0]] && !determination[indexs[1]])
+                    {
+                        GameObject obj = Instantiate(Teleportation, new Vector3(0.0f, 0.0f, 0.0f), Quaternion.identity);
+                        Color color = new Color();
+                        color.r = UnityEngine.Random.Range(0f, 1f);
+                        color.g = UnityEngine.Random.Range(0f, 1f);
+                        color.b = UnityEngine.Random.Range(0f, 1f);
+                        color.a = 1.0f;
+                        obj.GetComponent<TeleportationScript>().Set(positions[indexs[0]], positions[indexs[1]], color);
+                        determination[indexs[0]] = true;
+                        determination[indexs[1]] = true;
+                    }
+                }
+            }
+            index++;
+        }
 
         //êØÇÃê∂ê¨
         GameObject[] stars = new GameObject[5] { NormalStar, BouncingStar, TransfixStar, IgnoreTeleportationStar, ExplosionStar };
