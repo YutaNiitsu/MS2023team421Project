@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using static TMPro.SpriteAssetUtilities.TexturePacker_JsonArray;
+using static UnityEditor.PlayerSettings;
 using static UnityEngine.ParticleSystem;
 
 public class TeleportationGateScript : MonoBehaviour
@@ -51,26 +52,28 @@ public class TeleportationGateScript : MonoBehaviour
         Vector2 vel = new Vector2(rb.velocity.x, rb.velocity.y);
         star.transform.position = gameObject.transform.position;
         rb.velocity = Vector2.zero;
+        star.SetActive(false);
         //“ü‚éŽž
         while (Frame < 30)
         {
             yield return new WaitForSeconds(1.0f / 60.0f);
             Frame++;
         }
-        star.SetActive(false);
+       
         Frame = 0;
         //oŒû‚Ü‚ÅƒJƒƒ‰ˆÚ“®
-        while (Frame < 30)
-        {
-            Vector3 pos = new Vector3(exitPos.x, exitPos.y, camera.transform.position.z);
-            camera.transform.position = Vector3.Lerp(camera.transform.position, pos, (float)Frame / 30.0f);
-            yield return new WaitForSeconds(1.0f / 60.0f);
-            Frame++;
-        }
-
+        //while (Frame < 30)
+        //{
+        //    Vector3 pos = new Vector3(exitPos.x, exitPos.y, camera.transform.position.z);
+        //    camera.transform.position = Vector3.Lerp(camera.transform.position, pos, (float)Frame / 30.0f);
+        //    yield return new WaitForSeconds(1.0f / 60.0f);
+        //    Frame++;
+        //}
+        Vector3 pos = new Vector3(exitPos.x, exitPos.y, camera.transform.position.z);
+        camera.transform.position = pos;
         //o‚é‚Æ‚«
         Frame = 0;
-        star.SetActive(true);
+        
         star.transform.position = exitPos;
         while (Frame < 30)
         {
@@ -78,6 +81,7 @@ public class TeleportationGateScript : MonoBehaviour
             Frame++;
         }
         yield return new WaitForSeconds(0);
+        star.SetActive(true);
         rb.velocity = vel;
     }
 }
