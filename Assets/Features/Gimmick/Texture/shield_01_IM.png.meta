@@ -110,10 +110,10 @@ TextureImporter:
       name: shield_01_IM_0
       rect:
         serializedVersion: 2
-        x: 305
-        y: 1589
-        width: 14
-        height: 11
+        x: 0
+        y: 800
+        width: 800
+        height: 800
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -131,10 +131,10 @@ TextureImporter:
       name: shield_01_IM_1
       rect:
         serializedVersion: 2
-        x: 0
-        y: 795
-        width: 1591
-        height: 783
+        x: 800
+        y: 800
+        width: 800
+        height: 800
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -152,10 +152,10 @@ TextureImporter:
       name: shield_01_IM_2
       rect:
         serializedVersion: 2
-        x: 1593
-        y: 795
-        width: 1602
-        height: 781
+        x: 1600
+        y: 800
+        width: 800
+        height: 800
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -173,10 +173,10 @@ TextureImporter:
       name: shield_01_IM_3
       rect:
         serializedVersion: 2
-        x: 1
-        y: 0
-        width: 802
-        height: 772
+        x: 2400
+        y: 800
+        width: 800
+        height: 800
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -190,10 +190,94 @@ TextureImporter:
       indices: 
       edges: []
       weights: []
+    - serializedVersion: 2
+      name: shield_01_IM_4
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 800
+        height: 800
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 29418ef74f5c5bf4c9feed7ebeab76bd
+      internalID: -283336903
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: shield_01_IM_5
+      rect:
+        serializedVersion: 2
+        x: 800
+        y: 0
+        width: 800
+        height: 800
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a103110380d2e1044a1bfe6a595a18b2
+      internalID: -1648994005
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: shield_01_IM_6
+      rect:
+        serializedVersion: 2
+        x: 1600
+        y: 0
+        width: 800
+        height: 800
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 17135786ec6b59a459051b3383d9fa14
+      internalID: -121592478
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: shield_01_IM_7
+      rect:
+        serializedVersion: 2
+        x: 2400
+        y: 0
+        width: 800
+        height: 800
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0ea0f450ab434594fa0e752a2912a980
+      internalID: -1325178485
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: ea8a5a51255db714a982a7d55ad6dc0b
     internalID: 0
     vertices: []
     indices: 
@@ -205,6 +289,10 @@ TextureImporter:
       shield_01_IM_1: -2868779171481939588
       shield_01_IM_2: 64044700931306182
       shield_01_IM_3: -2113731891384402880
+      shield_01_IM_4: -283336903
+      shield_01_IM_5: -1648994005
+      shield_01_IM_6: -121592478
+      shield_01_IM_7: -1325178485
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
