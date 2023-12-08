@@ -7,7 +7,7 @@ public class TargetShieldScript : MonoBehaviour
     private TargetScript Target;
     private CircleCollider2D Collider2D;
     private int HealthPoint;   //破壊されるまでの回数
-
+    private Coroutine _Coroutine;
     // Start is called before the first frame update
     void Start()
     {
@@ -27,13 +27,20 @@ public class TargetShieldScript : MonoBehaviour
     //シールドにダメージ加える
     public void AddDamage()
     {
+        if (_Coroutine != null) StopCoroutine(_Coroutine);
         HealthPoint--;
-        Destroy(gameObject, 0.5f);
+        if (HealthPoint <= 0)
+        {
+            Destroy(gameObject, 0.5f);
+        }
+        else
+        {
+            _Coroutine = StartCoroutine(AddDamageCoroutine());
+        }
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
+    IEnumerator AddDamageCoroutine()
     {
-        
+        yield return new WaitForSeconds(1.0f / 60.0f);
     }
-
 }

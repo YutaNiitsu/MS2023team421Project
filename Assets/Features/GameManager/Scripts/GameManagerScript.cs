@@ -203,7 +203,7 @@ public class GameManagerScript : MonoBehaviour
             int direction = UnityEngine.Random.Range(0, 7 + 8 * 2);
             if (direction <= 7)
             {
-                MovableObstacleMgr.Generate(direction);
+                MovableObstacleMgr.Create(direction);
             }
 
         }
