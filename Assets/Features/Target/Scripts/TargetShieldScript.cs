@@ -7,12 +7,16 @@ public class TargetShieldScript : MonoBehaviour
     private TargetScript Target;
     private CircleCollider2D Collider2D;
     private int HealthPoint;   //破壊されるまでの回数
+    private int MaxHealthPoint;
     private Coroutine _Coroutine;
+    private Animator ShieldAnimation;
+
     // Start is called before the first frame update
     void Start()
     {
-        HealthPoint = 1;
+        //HealthPoint = 1;
         Collider2D = transform.parent.gameObject.GetComponent<CircleCollider2D>();
+        ShieldAnimation = gameObject.GetComponent<Animator>();
     }
 
     private void OnDestroy()
@@ -27,20 +31,26 @@ public class TargetShieldScript : MonoBehaviour
     //シールドにダメージ加える
     public void AddDamage()
     {
-        if (_Coroutine != null) StopCoroutine(_Coroutine);
         HealthPoint--;
+        ShieldAnimation.SetInteger("HP", HealthPoint);
         if (HealthPoint <= 0)
         {
             Destroy(gameObject, 0.5f);
         }
-        else
-        {
-            _Coroutine = StartCoroutine(AddDamageCoroutine());
-        }
+        
     }
 
-    IEnumerator AddDamageCoroutine()
+    public void Set(int shieldHP)
     {
-        yield return new WaitForSeconds(1.0f / 60.0f);
+        HealthPoint = shieldHP;
+        MaxHealthPoint = shieldHP;
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.collider.CompareTag("Star"))
+        {
+            AddDamage();
+        }
     }
 }

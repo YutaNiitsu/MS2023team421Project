@@ -27,11 +27,13 @@ public struct StageSetting
     public float UniquePoint;
     [SerializeField, Range(0f, 1f)]
     public float LegendaryPoint;
-
     [Header("特別ポイントの数")]
     public int SpecialPointNumber;
     [Header("シールドの数")]
     public int ShieldNumber;
+    [Header("シールドの耐久値")]
+    [SerializeField, Range(1, 4)]
+    public int ShieldHealthPoint;
     [Header("ミッションセッティング")]
     [Header("ミッションの種類選択")]
     public MissionType[] MissionTypes;

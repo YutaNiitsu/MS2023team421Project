@@ -55,7 +55,7 @@ MonoBehaviour:
     ConstellationName: ohituzi
     ConstellationImage: {fileID: 4628389302510208598, guid: 4f45c5cc93566444f92c4e5ff64963d9, type: 3}
     DischargeNumber: 10
-    StageSize: {x: 150, y: 150}
+    StageSize: {x: 200, y: 200}
     Threshold: 0.779
     NormalPoint: 0
     RarePoint: 0.623
@@ -63,6 +63,7 @@ MonoBehaviour:
     LegendaryPoint: 0.919
     SpecialPointNumber: 2
     ShieldNumber: 2
+    ShieldHealthPoint: 4
     MissionTypes: 0000000001000000020000000300000004000000
     ObstacleCollisionNumber: 3
     DischargeNumberWithinClear: 3
@@ -86,7 +87,7 @@ MonoBehaviour:
     score: 600
   - rarity: 3
     score: 1500
-  NextSceneName: 
+  NextSceneName: Title
 --- !u!114 &6697352170113118778
 MonoBehaviour:
   m_ObjectHideFlags: 0

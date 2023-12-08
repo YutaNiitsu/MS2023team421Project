@@ -73,7 +73,7 @@ public class ProceduralGenerator : MonoBehaviour
             if (shields.Contains(index))
                 isShield = true;
 
-            obj.Set(isSpecialPoint, isShield);
+            obj.Set(isSpecialPoint, isShield, setting.ShieldHealthPoint);
             Targets[index] = obj;
             index++;
         }
