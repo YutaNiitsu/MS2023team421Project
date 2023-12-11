@@ -30,7 +30,7 @@ public class MissionScript : MonoBehaviour
     public bool IsMissionComplete()
     {
         bool success = false;
-        GameManagerScript gameManager = GameManagerScript.instance;
+        StageManagerScript gameManager = GameManagerScript.instance.StageManager;
 
         switch (Type)
         {

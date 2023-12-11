@@ -26,7 +26,7 @@ public class ResultScript : MonoBehaviour
         ScoreText.gameObject.SetActive(false);
         ButtonObjects.SetActive(false);
         missionResult.gameObject.SetActive(false);
-        ConstellationImage.sprite = GameManagerScript.instance.Setting.ConstellationImage;
+        ConstellationImage.sprite = GameManagerScript.instance.StageManager.Setting.ConstellationImage;
         ConstellationImage.color = new Color(1.0f, 1.0f, 1.0f, ImageAlpha);
         StartCoroutine(FadeIn());
     }
@@ -48,7 +48,7 @@ public class ResultScript : MonoBehaviour
 
         yield return new WaitForSeconds(0.0f);
         ScoreText.gameObject.SetActive(true);
-        ScoreText.text = GameManagerScript.instance.Score.ToString();
+        ScoreText.text = GameManagerScript.instance.StageManager.Score.ToString();
         ButtonObjects.SetActive(true);
         missionResult.gameObject.SetActive(true);
         Debug.Log("ƒŠƒUƒ‹ƒg•\Ž¦Š®—¹");

@@ -53,7 +53,7 @@ public class ProceduralGenerator : MonoBehaviour
 
         Targets = new TargetScript[data.targets.Length];
         // 星をはめ込む型生成
-        StageSetting setting = GameManagerScript.instance.Setting;
+        StageSetting setting = GameManagerScript.instance.StageManager.Setting;
         //特別ポイント、シールドにする型の要素番号リスト
         List<int> specialPoints = SelectRandomElements(setting.SpecialPointNumber, 0, Targets.Length - 1);
         List<int> shields = SelectRandomElements(setting.ShieldNumber, 0, Targets.Length - 1);
@@ -273,7 +273,7 @@ public class ProceduralGenerator : MonoBehaviour
     public StarRarity SetStarRarity(Vector3 pos)
     {
         StarRarity result = StarRarity.Unique;
-        StageSetting setting = GameManagerScript.instance.Setting;
+        StageSetting setting = GameManagerScript.instance.StageManager.Setting;
         Vector2 stageSize = setting.StageSize;
         float[] p = new float[4]{
         setting.NormalPoint,

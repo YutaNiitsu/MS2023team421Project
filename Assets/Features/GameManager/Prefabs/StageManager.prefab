@@ -1,0 +1,188 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &164170489949264287
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8602336333666789749}
+  - component: {fileID: 5105850875108164340}
+  - component: {fileID: 6697352170113118778}
+  - component: {fileID: 1155826595568522749}
+  - component: {fileID: 6944012632135934433}
+  - component: {fileID: 6233373690351437950}
+  - component: {fileID: 2218092290281794374}
+  - component: {fileID: 4204737251373357927}
+  m_Layer: 0
+  m_Name: StageManager
+  m_TagString: StageManager
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8602336333666789749
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 164170489949264287}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -1.1748348, y: 1.6280963, z: -0.10040799}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &5105850875108164340
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 164170489949264287}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: deb83c58a722cf644973d1312b2c2845, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Setting:
+    ConstellationName: ohituzi
+    ConstellationImage: {fileID: 4628389302510208598, guid: 4f45c5cc93566444f92c4e5ff64963d9, type: 3}
+    DischargeNumber: 10
+    StageSize: {x: 200, y: 200}
+    Threshold: 0.779
+    NormalPoint: 0
+    RarePoint: 0.623
+    UniquePoint: 0.826
+    LegendaryPoint: 0.919
+    SpecialPointNumber: 2
+    ShieldNumber: 2
+    ShieldHealthPoint: 4
+    MissionTypes: 0000000001000000020000000300000004000000
+    ObstacleCollisionNumber: 3
+    DischargeNumberWithinClear: 3
+    ObstacleDestroyNumber: 3
+  SavedFileName: test1.save
+  TaregtScore:
+  - rarity: 0
+    score: 50
+  - rarity: 1
+    score: 100
+  - rarity: 2
+    score: 200
+  - rarity: 3
+    score: 500
+  SpecialTaregtScore:
+  - rarity: 0
+    score: 150
+  - rarity: 1
+    score: 300
+  - rarity: 2
+    score: 600
+  - rarity: 3
+    score: 1500
+  NextSceneName: Title
+--- !u!114 &6697352170113118778
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 164170489949264287}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7707f01bc6777eb43b47e2b1ed66b8a7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Target: {fileID: 2988362997890976423, guid: 37262830ed0bd914395e06eefc6608ea, type: 3}
+  NormalStar: {fileID: 6696950863105630152, guid: 370431a0a26143749940b9f638bc2e95, type: 3}
+  BouncingStar: {fileID: 4242490677005298425, guid: a04566e1d08a6d34a897ff3c6a4b0d04, type: 3}
+  TransfixStar: {fileID: 4009491355611403489, guid: f09b17d21a1ceb34e97ec7cd5c1fb176, type: 3}
+  IgnoreTeleportationStar: {fileID: 4078075083635244832, guid: f751b100c5315b14287ddd915ad1c896, type: 3}
+  ExplosionStar: {fileID: 3110444582905043598, guid: 27b1babe94188cc459e6ab7b663c463a, type: 3}
+  Obstacle: {fileID: 2507695156877649083, guid: e41a97d06a7505e4aaeb1531ef73c391, type: 3}
+  Teleportation: {fileID: 9029200387554804583, guid: 885c9e59ba82b694daaea919ac5cf58e, type: 3}
+  DarkHole: {fileID: 8860778915469388107, guid: 6c827ecef8574f745a033e9974b80028, type: 3}
+  RareStarArea:
+  - {fileID: 5090043123189685980, guid: d143bde5c849f7d4290ba725c4cbc5d8, type: 3}
+  NormalObstacle: {fileID: 2507695156877649083, guid: e41a97d06a7505e4aaeb1531ef73c391, type: 3}
+  DarkHoleObstacle: {fileID: 8860778915469388107, guid: 6c827ecef8574f745a033e9974b80028, type: 3}
+  TeleportationObstacle: {fileID: 9029200387554804583, guid: 885c9e59ba82b694daaea919ac5cf58e, type: 3}
+--- !u!114 &1155826595568522749
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 164170489949264287}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fd34378b3af7abf43975d45c30640927, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &6944012632135934433
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 164170489949264287}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1def918726bad0745bb9b92a9f9ff6e6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &6233373690351437950
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 164170489949264287}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3090730a634f96b43b9200f9d29b66a0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  DrawSpeed: 0.03
+  LinePrefab: {fileID: 7414780173931433481, guid: 141301743f7c99d4ab5a1c72af2e8e4e, type: 3}
+  ParticlePrefab: {fileID: 8663533263603270977, guid: 53678195771d7a34b9f6e0b6182ee1f8, type: 3}
+--- !u!114 &2218092290281794374
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 164170489949264287}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9046fa8fc8512da48902d4d7995eeb0f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  MovableObstacle: {fileID: 3684766900624390978, guid: b9c30b7ce168e6e45a25256448dd7a52, type: 3}
+  Speed: 5
+  Number: 8
+  Size: 3
+  WarningTime: 1
+  Interval: 0.2
+--- !u!114 &4204737251373357927
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 164170489949264287}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ab528bad617b7c442b698f5ed41266e3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  MiniMap: {fileID: 0}
+  WarningMark: {fileID: 0}
+  Result: {fileID: 0}
+  Pause: {fileID: 0}

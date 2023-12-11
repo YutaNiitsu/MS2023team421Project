@@ -31,7 +31,7 @@ public class BouncingStarScript : MonoBehaviour
         if (collision.collider.CompareTag("Obstacle"))
         {
             //áŠQ•¨‚ÌÕ“Ë‰ñ”ƒJƒEƒ“ƒg
-            GameManagerScript.instance.CollisionObstacle();
+            GameManagerScript.instance.StageManager.CollisionObstacle();
 
         }
     }

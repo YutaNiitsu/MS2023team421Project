@@ -18,7 +18,7 @@ public class MissionResultScript : MonoBehaviour
 
     public void Set(bool IsComp, MissionType type)
     {
-        GameManagerScript gameManager = GameManagerScript.instance;
+        StageManagerScript gameManager = GameManagerScript.instance.StageManager;
 
         if (IsComp)
         {

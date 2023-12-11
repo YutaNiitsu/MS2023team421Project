@@ -84,7 +84,7 @@ public class TransfixStarScript : MonoBehaviour
                 Destroy(particle.gameObject, 1.0f);
             }
             //áŠQ•¨‚Ì”j‰ó‰ñ”ƒJƒEƒ“ƒg
-            GameManagerScript.instance.DestroyObstacle();
+            GameManagerScript.instance.StageManager.DestroyObstacle();
             Destroy(collision.gameObject);
         }
     }

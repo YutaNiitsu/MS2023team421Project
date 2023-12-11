@@ -33,7 +33,7 @@ public class TargetScript : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.F1))
         {
             Goaled = true;
-            GameManagerScript.instance.AddScore(StarRarity.Normal, false);
+            GameManagerScript.instance.StageManager.AddScore(StarRarity.Normal, false);
         }
     }
 
@@ -65,7 +65,7 @@ public class TargetScript : MonoBehaviour
             //スコア加算
             StarRarity rare = StarGoaled.Rarity;
 
-            GameManagerScript.instance.AddScore(rare, IsSpecialPoint);
+            GameManagerScript.instance.StageManager.AddScore(rare, IsSpecialPoint);
             
             // 自分を非表示にする
             gameObject.SetActive(false);

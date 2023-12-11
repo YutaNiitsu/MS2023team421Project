@@ -40,8 +40,8 @@ public class DrawConstellationLine : MonoBehaviour
 
     private void Update()
     {
-        ST_Constellation[] targets = GameManagerScript.instance.GenerateConstellation.targets;
-        Line[] lines = GameManagerScript.instance.GenerateConstellation.lines;
+        ST_Constellation[] targets = GameManagerScript.instance.StageManager.GenerateConstellation.targets;
+        Line[] lines = GameManagerScript.instance.StageManager.GenerateConstellation.lines;
 
         switch (state)
         {
@@ -99,7 +99,7 @@ public class DrawConstellationLine : MonoBehaviour
 
     public void DrawLine()
     {
-        ProceduralGenerator = GameManagerScript.instance.ProceduralGenerator;
+        ProceduralGenerator = GameManagerScript.instance.StageManager.ProceduralGenerator;
         state = 1;
         //パーティクル生成
         Particle = Instantiate(ParticlePrefab, CurPos, new Quaternion());
@@ -117,8 +117,8 @@ public class DrawConstellationLine : MonoBehaviour
 
     IEnumerator DrawLineCoroutine(float time)
     {
-        ST_Constellation[] targets = GameManagerScript.instance.GenerateConstellation.targets;
-        Line[] lines = GameManagerScript.instance.GenerateConstellation.lines;
+        ST_Constellation[] targets = GameManagerScript.instance.StageManager.GenerateConstellation.targets;
+        Line[] lines = GameManagerScript.instance.StageManager.GenerateConstellation.lines;
 
         foreach (Line i in lines)
         {

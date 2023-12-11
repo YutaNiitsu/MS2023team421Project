@@ -9,22 +9,6 @@ public class UIManagerScript : MonoBehaviour
     public GameObject Result;
     public GameObject Pause;
 
-    //シングルトン
-    public static UIManagerScript instance;
-    private void Awake()
-    {
-        if (instance == null)
-        {
-            instance = this;
-            DontDestroyOnLoad(gameObject);
-        }
-        else
-        {
-            Destroy(gameObject);
-        }
-    }
-
-    //ゲーム時
     // Start is called before the first frame update
     void Start()
     {

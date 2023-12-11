@@ -118,7 +118,7 @@ public class StarScript : MonoBehaviour
 
     public void SetRarity()
     {
-        Rarity = GameManagerScript.instance.ProceduralGenerator.SetStarRarity(gameObject.transform.position);
+        Rarity = GameManagerScript.instance.StageManager.ProceduralGenerator.SetStarRarity(gameObject.transform.position);
         GameObject obj;
         SpriteRenderer sprite = GetComponent<SpriteRenderer>();
 

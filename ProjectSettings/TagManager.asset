@@ -8,8 +8,8 @@ TagManager:
   - dark hole
   - Star
   - Target
-  - GameManager
   - Obstacle
+  - StageManager
   layers:
   - Default
   - TransparentFX
