@@ -16,8 +16,8 @@ public class MissionScript : MonoBehaviour
         [InspectorName("")]  MissionTypeMax
     }
 
-    private MissionType Type;
-    
+    public MissionType Type { get; protected set; }
+
 
     private MissionScript() { }
 

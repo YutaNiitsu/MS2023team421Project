@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Reflection;
 using TMPro;
 using Unity.VisualScripting;
+using UnityEditor;
 using UnityEditor.SearchService;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -138,6 +139,11 @@ public class GameManagerScript : MonoBehaviour
             }
         }
 
+        //テスト用
+        if (Input.GetKeyDown(KeyCode.P))
+        {
+            PauseGame();
+        }
     }
 
     //はめ込む型に星がはまるとスコア加算
@@ -221,17 +227,21 @@ public class GameManagerScript : MonoBehaviour
 
         foreach (MissionScript i in Missions)
         {
-            i.IsMissionComplete();
+            //リザルトにミッション項目追加
+            ResultScript result = UIManagerScript.instance.Result.GetComponent<ResultScript>();
+            result.AddMissionResult(i.IsMissionComplete(), i.Type);
         }
 
+        //線の描画完了を待つ
         while (!DrawLine.FinishDraw())
         {
             yield return new WaitForSeconds(0.1f);
         }
 
         yield return new WaitForSeconds(0);
-        Debug.Log("ステージクリア処理終了");
+        
         UIManagerScript.instance.DisplayResult();
+        Debug.Log("ステージクリア処理終了");
     }
 
     //ゲームオーバー処理
@@ -266,10 +276,31 @@ public class GameManagerScript : MonoBehaviour
     {
         string sceneName = SceneManager.GetActiveScene().name;
         SceneManager.LoadScene(sceneName);
+        Destroy(gameObject);
     }
 
     public void TitleScene()
     {
         SceneManager.LoadScene("Title");
+        Destroy(gameObject);
+    }
+
+    public void PauseGame()
+    {
+        if (Time.timeScale != 0)
+        {
+            UIManagerScript.instance.DisplayPauseMenu();
+            Time.timeScale = 0;
+        }
+        else
+        {
+            UIManagerScript.instance.HiddenPauseMenu();
+            Time.timeScale = 1;
+        }
+    }
+    public void ResumeGame()
+    {
+        UIManagerScript.instance.HiddenPauseMenu();
+        Time.timeScale = 1;
     }
 }
