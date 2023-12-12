@@ -47,15 +47,17 @@ public class StageManagerScript : MonoBehaviour
     public int ObstacleDestroyNumber { get; protected set; }     //障害物破壊回数
     private MovableObstacleManagerScript MovableObstacleMgr;
     public UIManagerScript UIManager { get; protected set; }
+    public TutorialScript Tutorial { get; protected set; }
 
     private void Awake()
     {
         GameManagerScript.instance.Set(this);
     }
-
+    
     // Start is called before the first frame update
     void Start()
     {
+
         Score = 0;
         DischargeNumber = Setting.DischargeNumber;
         FinalDischargedStar = null;
@@ -65,12 +67,18 @@ public class StageManagerScript : MonoBehaviour
         ObstacleDestroyNumber = 0;
         
         ProceduralGenerator = GetComponent<ProceduralGenerator>();
-        ConstellationDatas = GetComponent<ConstellationLoadManager>().LoadData(SavedFileName);
+        ConstellationDatas = ConstellationLoadManager.instance.LoadData(SavedFileName);
         DrawLine = GetComponent<DrawConstellationLine>();
         MovableObstacleMgr = GetComponent<MovableObstacleManagerScript>();
-        UIManager = GetComponent<UIManagerScript>();
-        // 星を配置
-        ProceduralGenerator.CreateStar(Setting.StageSize, Setting.Threshold);
+        UIManager = GameObject.FindGameObjectWithTag("UIManager").GetComponent<UIManagerScript>();
+        Tutorial = GetComponent<TutorialScript>();
+
+        //チュートリアルの時は生成しない
+        if (Tutorial != null)
+            return;
+
+        //星と障害物を配置
+        ProceduralGenerator.CreateStarObstacle(Setting.StageSize, Setting.Threshold);
 
         SaveConstellationData temp = null;
         foreach (SaveConstellationData i in ConstellationDatas)
@@ -81,6 +89,7 @@ public class StageManagerScript : MonoBehaviour
             }
         }
 
+        //はめ込む型を配置
         //名前が一致する星座なかったらランダム
         {
             if (temp == null)
@@ -89,8 +98,6 @@ public class StageManagerScript : MonoBehaviour
                 temp = ConstellationDatas[index];
             }
         }
-        
-
         if (temp != null)
         {
             ProceduralGenerator.CreateTargets(temp);
@@ -98,7 +105,7 @@ public class StageManagerScript : MonoBehaviour
         }
 
 
-        //ミッション
+        //ミッションを決定
         {
             int len = Setting.MissionTypes.Length;
             Missions = new MissionScript[len];
@@ -109,7 +116,6 @@ public class StageManagerScript : MonoBehaviour
                 index++;
             }
         }
-        //SceneManager.LoadScene();
     }
 
     // Update is called once per frame
@@ -122,14 +128,14 @@ public class StageManagerScript : MonoBehaviour
             {
                 IsFinished = true;
                 //ゲームオーバー処理
-                StartCoroutine(GameOver());
+                GameOver();
             }
         }
 
         //テスト用
         if (Input.GetKeyDown(KeyCode.P))
         {
-            PauseGame();
+            UIManager.PauseGame();
         }
     }
 
@@ -193,7 +199,7 @@ public class StageManagerScript : MonoBehaviour
         else
         {
             //動く障害物生成
-            int direction = UnityEngine.Random.Range(0, 7 + 8 * 2);
+            int direction = UnityEngine.Random.Range(0, 7 + (int)(100 * Setting.ProbabilityMovableObstacle));
             if (direction <= 7)
             {
                 MovableObstacleMgr.Create(direction);
@@ -232,9 +238,10 @@ public class StageManagerScript : MonoBehaviour
     }
 
     //ゲームオーバー処理
-    IEnumerator GameOver()
+    void GameOver()
     {
-        yield return new WaitForSeconds(1);
+        Time.timeScale = 0;
+        UIManager.DisplayGameOver();
         Debug.Log("GameOver");
     }
 
@@ -253,39 +260,4 @@ public class StageManagerScript : MonoBehaviour
         Debug.Log("破壊");
     }
 
-    //次のシーンへ移行
-    public void NextScene()
-    {
-        SceneManager.LoadScene(NextSceneName);
-    }
-
-    public void Retry()
-    {
-        string sceneName = SceneManager.GetActiveScene().name;
-        SceneManager.LoadScene(sceneName);
-    }
-
-    public void TitleScene()
-    {
-        SceneManager.LoadScene("Title");
-    }
-
-    public void PauseGame()
-    {
-        if (Time.timeScale != 0)
-        {
-            UIManager.DisplayPauseMenu();
-            Time.timeScale = 0;
-        }
-        else
-        {
-            UIManager.HiddenPauseMenu();
-            Time.timeScale = 1;
-        }
-    }
-    public void ResumeGame()
-    {
-        UIManager.HiddenPauseMenu();
-        Time.timeScale = 1;
-    }
 }

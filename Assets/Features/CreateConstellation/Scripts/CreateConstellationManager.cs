@@ -51,7 +51,7 @@ public class CreateConstellationManager : MonoBehaviour
         }
 
         createConstellationScript = GetComponent<CreateConstellationScript>();
-        constellationSaveManager = GetComponent<ConstellationSaveManager>();
+        constellationSaveManager = ConstellationSaveManager.instance;
 
         SelectConstellationButtons = new SelectButtonScript[0];
 

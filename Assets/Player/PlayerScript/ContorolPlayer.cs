@@ -87,7 +87,7 @@ public class ContorolPlayer : MonoBehaviour
             if (ContorolStarScript != null)
             {
                 ContorolStarScript.AddForce(startDirection * speed);
-                GameManagerScript.instance.Discharge(ContorolStarScript.rigid2d);
+                GameManagerScript.instance.StageManager.Discharge(ContorolStarScript.rigid2d);
                 ContorolStarScript = null;
                 
             }

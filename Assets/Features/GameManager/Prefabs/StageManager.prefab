@@ -11,11 +11,8 @@ GameObject:
   - component: {fileID: 8602336333666789749}
   - component: {fileID: 5105850875108164340}
   - component: {fileID: 6697352170113118778}
-  - component: {fileID: 1155826595568522749}
-  - component: {fileID: 6944012632135934433}
   - component: {fileID: 6233373690351437950}
   - component: {fileID: 2218092290281794374}
-  - component: {fileID: 4204737251373357927}
   m_Layer: 0
   m_Name: StageManager
   m_TagString: StageManager
@@ -63,6 +60,10 @@ MonoBehaviour:
     SpecialPointNumber: 2
     ShieldNumber: 2
     ShieldHealthPoint: 4
+    Obstacle: 1
+    MovableObstacle: 1
+    Teleportation: 1
+    DarkHole: 1
     MissionTypes: 0000000001000000020000000300000004000000
     ObstacleCollisionNumber: 3
     DischargeNumberWithinClear: 3
@@ -113,30 +114,6 @@ MonoBehaviour:
   NormalObstacle: {fileID: 2507695156877649083, guid: e41a97d06a7505e4aaeb1531ef73c391, type: 3}
   DarkHoleObstacle: {fileID: 8860778915469388107, guid: 6c827ecef8574f745a033e9974b80028, type: 3}
   TeleportationObstacle: {fileID: 9029200387554804583, guid: 885c9e59ba82b694daaea919ac5cf58e, type: 3}
---- !u!114 &1155826595568522749
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 164170489949264287}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fd34378b3af7abf43975d45c30640927, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &6944012632135934433
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 164170489949264287}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1def918726bad0745bb9b92a9f9ff6e6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &6233373690351437950
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -170,19 +147,3 @@ MonoBehaviour:
   Size: 3
   WarningTime: 1
   Interval: 0.2
---- !u!114 &4204737251373357927
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 164170489949264287}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ab528bad617b7c442b698f5ed41266e3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  MiniMap: {fileID: 0}
-  WarningMark: {fileID: 0}
-  Result: {fileID: 0}
-  Pause: {fileID: 0}

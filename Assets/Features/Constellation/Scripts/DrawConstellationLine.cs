@@ -40,6 +40,9 @@ public class DrawConstellationLine : MonoBehaviour
 
     private void Update()
     {
+        if (GameManagerScript.instance.StageManager.GenerateConstellation == null)
+            return;
+
         ST_Constellation[] targets = GameManagerScript.instance.StageManager.GenerateConstellation.targets;
         Line[] lines = GameManagerScript.instance.StageManager.GenerateConstellation.lines;
 

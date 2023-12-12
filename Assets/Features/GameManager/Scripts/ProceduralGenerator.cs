@@ -2,6 +2,7 @@ using NUnit.Framework;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Reflection;
 using TreeEditor;
 using UnityEngine;
 using UnityEngine.UIElements;
@@ -92,7 +93,7 @@ public class ProceduralGenerator : MonoBehaviour
         int index = 0;
         //スクリーンのサイズをワールド内のサイズに変換
         Vector3 worldScreen = Camera.main.ScreenToWorldPoint(new Vector3(Screen.currentResolution.width, Screen.currentResolution.height, 0.0f));
-        // 星を生成
+        
         for (int y = 0; y < (int)stageSize.y; y += 2)
         {
             for (int x = 0; x < (int)stageSize.x; x += 2)
@@ -141,31 +142,57 @@ public class ProceduralGenerator : MonoBehaviour
     //星と障害物を生成
     //range : 生成範囲
     //threshold : 閾値
-    public void CreateStar(Vector2 stageSize, float threshold)
+    public void CreateStarObstacle(Vector2 stageSize, float threshold)
     {
+        StageSetting setting = GameManagerScript.instance.StageManager.Setting;
         Vector2[] positions;
+        //星の生成
+        GameObject[] stars = new GameObject[5] { NormalStar, BouncingStar, TransfixStar, IgnoreTeleportationStar, ExplosionStar };
         //生成位置を決定
         SetRandomPositions(out positions, stageSize, threshold);
         //既に何か生成されているかどうかの判別用
         bool[] determination = new bool[positions.Length];
 
-        //障害物の生成
+        //星と障害物の生成
         int index = 0;
-
-        GameObject[] obstacles = new GameObject[3] { Obstacle, DarkHole, Teleportation };
         foreach (Vector2 i in positions)
         {
-
-            int rand = UnityEngine.Random.Range(0, 10);
+            float max = setting.ProbabilityObstacle + setting.ProbabilityDarkHole + setting.ProbabilityTeleportation + setting.ProbabilityStar;
+            float rand = UnityEngine.Random.Range(0.0f, max);
             if (!determination[index])
             {
-                if (rand < 2)
+                float min = 0.0f;
+                max = setting.ProbabilityStar;
+                //星の生成
+                if (setting.ProbabilityStar > 0.0f
+                    && max >= rand)
                 {
-                    //障害物の生成
-                    Instantiate(obstacles[rand], new Vector3(i.x, i.y, 0.0f), Quaternion.identity);
+                    CreateStars(new Vector3(i.x, i.y, 0.0f));
                     determination[index] = true;
                 }
-                else if (rand == 2)
+                min += setting.ProbabilityStar;
+                max = setting.ProbabilityObstacle;
+                //動かない障害物の生成
+                if (setting.ProbabilityObstacle > 0.0f
+                    && rand > min && max >= rand)
+                {
+                    Instantiate(Obstacle, new Vector3(i.x, i.y, 0.0f), Quaternion.identity);
+                    determination[index] = true;
+                }
+                min += setting.ProbabilityObstacle;
+                max += setting.ProbabilityDarkHole;
+                //ダークホール生成
+                if (setting.ProbabilityDarkHole > 0.0f 
+                    && rand > min && max >= rand)
+                {
+                    Instantiate(DarkHole, new Vector3(i.x, i.y, 0.0f), Quaternion.identity);
+                    determination[index] = true;
+                }
+                min += setting.ProbabilityDarkHole;
+                max += setting.ProbabilityTeleportation;
+                //ワープ生成
+                if (setting.ProbabilityTeleportation > 0.0f
+                    && rand > min && max >= rand)
                 {
                     //ワープ障害物の生成
                     //2か所位置決める
@@ -184,22 +211,58 @@ public class ProceduralGenerator : MonoBehaviour
                         determination[indexs[1]] = true;
                     }
                 }
+                
             }
             index++;
         }
-
-        //星の生成
-        GameObject[] stars = new GameObject[5] { NormalStar, BouncingStar, TransfixStar, IgnoreTeleportationStar, ExplosionStar };
-        
-        index = 0;
-        foreach (Vector2 i in positions)
+    }
+    //星の生成
+    void CreateStars(Vector3 pos)
+    {
+        StageSetting setting = GameManagerScript.instance.StageManager.Setting;
+        float max = setting.ProbabilityNormalStar + setting.ProbabilityBouncingStar + setting.ProbabilityIgnoreTeleportationStar
+            + setting.ProbabilityTransfixStar + setting.ProbabilityExplosionStar;
+        float rand = UnityEngine.Random.Range(0.0f, max);
+        float min = 0.0f;
+        max = setting.ProbabilityNormalStar;
+        //ノーマルの生成
+        if (setting.ProbabilityNormalStar > 0.0f
+            && max >= rand)
         {
-            if (!determination[index])
-            {
-                int rand = UnityEngine.Random.Range(0, 4);
-                Instantiate(stars[rand], new Vector3(i.x, i.y, 0.0f), Quaternion.identity);
-            }  
-            index++;
+            int type = UnityEngine.Random.Range(0, 4);
+            Instantiate(NormalStar, pos, Quaternion.identity);
+        }
+        min += setting.ProbabilityNormalStar;
+        max = setting.ProbabilityBouncingStar;
+        //バウンスの生成
+        if (setting.ProbabilityBouncingStar > 0.0f
+            && rand > min && max >= rand)
+        {
+            Instantiate(BouncingStar, pos, Quaternion.identity);
+        }
+        min += setting.ProbabilityBouncingStar;
+        max += setting.ProbabilityIgnoreTeleportationStar;
+        //ワープ無視生成
+        if (setting.ProbabilityIgnoreTeleportationStar > 0.0f
+            && rand > min && max >= rand)
+        {
+            Instantiate(IgnoreTeleportationStar, pos, Quaternion.identity);
+        }
+        min += setting.ProbabilityIgnoreTeleportationStar;
+        max += setting.ProbabilityTransfixStar;
+        //貫通生成
+        if (setting.ProbabilityTransfixStar > 0.0f
+            && rand > min && max >= rand)
+        {
+            Instantiate(TransfixStar, pos, Quaternion.identity);
+        }
+        min += setting.ProbabilityTransfixStar;
+        max += setting.ProbabilityExplosionStar;
+        //爆発生成
+        if (setting.ProbabilityExplosionStar > 0.0f
+            && rand > min && max >= rand)
+        {
+            Instantiate(ExplosionStar, pos, Quaternion.identity);
         }
     }
 

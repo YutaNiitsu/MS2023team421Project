@@ -47,6 +47,7 @@ public class MissionScript : MonoBehaviour
                     string s = gameManager.Setting.ObstacleCollisionNumber.ToString();
                     s = "障害物衝突が" + s + "回以内";
                     Debug.Log(s);
+                    success = true;
                 }
                 break;
             case MissionType.特別ポイントにユニーク星をはめ込む:

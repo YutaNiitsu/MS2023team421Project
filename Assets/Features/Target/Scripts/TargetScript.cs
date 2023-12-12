@@ -114,7 +114,8 @@ public class TargetScript : MonoBehaviour
     //特別ポイントに指定されている時、ユニーク以上のレアリティの星がはまっているかどうか
     public bool IsRareStarGoaledOnSpecialTarget()
     {
-        if (IsSpecialPoint && Goaled && (int)StarGoaled.Rarity >= 2)
+        if (IsSpecialPoint && Goaled 
+            && StarGoaled != null &&(int)StarGoaled.Rarity >= 2)
             return true;
 
         return false;
