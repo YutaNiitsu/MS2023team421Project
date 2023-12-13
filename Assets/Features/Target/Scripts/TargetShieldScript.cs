@@ -50,6 +50,7 @@ public class TargetShieldScript : MonoBehaviour
     {
         if (collision.collider.CompareTag("Star"))
         {
+            SoundManager.instance.PlaySE("HitShield");
             AddDamage();
         }
     }

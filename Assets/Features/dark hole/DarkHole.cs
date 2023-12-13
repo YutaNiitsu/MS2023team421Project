@@ -35,7 +35,7 @@ public class DarkHole : MonoBehaviour
             //Debug.Log("è¡Ç¶Ç‹Ç∑");
             //Player.SetActive(false);
             //GameOver.isGameOver = true;
-
+            SoundManager.instance.PlaySE("HitDarkHole");
             Destroy(other.gameObject);
         }
     }

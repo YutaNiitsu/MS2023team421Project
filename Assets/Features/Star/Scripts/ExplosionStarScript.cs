@@ -1,6 +1,7 @@
 using NUnit.Framework;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class ExplosionStarScript : MonoBehaviour
@@ -8,20 +9,27 @@ public class ExplosionStarScript : MonoBehaviour
     [Header("爆発のパーティクルのプレハブ")]
     public ParticleSystem Particle;
 
-    private List<GameObject> DestroyList;
+    private CircleCollider2D Collider2D;
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        foreach (CircleCollider2D i in GetComponents<CircleCollider2D>())
+        {
+            //トリガーの方を参照
+            if (i.isTrigger)
+            {
+                Collider2D = i;
+            }
+        }
+        Collider2D.enabled = false;
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
         //はめ込む型にはまってUntaggedになってたら実行しない
-        if (collision.collider.CompareTag("Star") && gameObject.tag != "Untagged")
+        if ((collision.collider.CompareTag("Star") || collision.collider.CompareTag("Obstacle")) && gameObject.tag != "Untagged")
         {
-            //GameManagerScript.instance.CollisionObstacle();
             //衝突パーティクル生成
             if (Particle != null)
             {
@@ -29,34 +37,21 @@ public class ExplosionStarScript : MonoBehaviour
                 particle.Play();
                 Destroy(particle.gameObject, 1.0f);
             }
-            foreach (GameObject i in DestroyList)
-            {
-                Destroy(i);
-            }
+            Collider2D.enabled = true;
+            SoundManager.instance.PlaySE("Explosion");
+            Destroy(gameObject, 0.1f);
         }
-        if (collision.collider.CompareTag("Obstacle"))
-        {
-            //障害物の衝突回数カウント
-            GameManagerScript.instance.StageManager.CollisionObstacle();
-
-        }
+        
     }
 
+    //爆破範囲内のオブジェクトを削除
     private void OnTriggerEnter2D(Collider2D collision)
     {
         //はめ込む型にはまってUntaggedになってたら実行しない
-        if (collision.CompareTag("Star") && gameObject.tag != "Untagged")
+        if ((collision.CompareTag("Star") || collision.CompareTag("Obstacle")) 
+            && gameObject.tag != "Untagged" && collision.gameObject.GetComponent<ExplosionStarScript>() == null)
         {
-            DestroyList.Add(collision.gameObject);
-        }
-    }
-
-    private void OnTriggerExit2D(Collider2D collision)
-    {
-        //はめ込む型にはまってUntaggedになってたら実行しない
-        if (collision.CompareTag("Star") && gameObject.tag != "Untagged")
-        {
-            DestroyList.Remove(collision.gameObject);
+            Destroy(collision.gameObject);
         }
     }
 }

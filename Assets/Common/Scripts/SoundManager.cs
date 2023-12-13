@@ -116,4 +116,20 @@ public class SoundManager : MonoBehaviour
             Debug.LogWarning($"‚»‚Ì•Ê–¼‚Í“o˜^‚³‚ê‚Ä‚¢‚Ü‚¹‚ñ:{name}");
         }
     }
+    public void StopBGM(string name)
+    {
+        if (BGM_Dictionary.TryGetValue(name, out var soundData)) //ŠÇ——pDictionary ‚©‚çA•Ê–¼‚Å’Tõ
+        {
+            for (var i = 0; i < audioSourceList.Length; ++i)
+            {
+                if (audioSourceList[i].isPlaying == true && audioSourceList[i].clip == soundData.audioClip)
+                    audioSourceList[i].Stop();
+            }
+        }
+        else
+        {
+            Debug.LogWarning($"‚»‚Ì•Ê–¼‚Í“o˜^‚³‚ê‚Ä‚¢‚Ü‚¹‚ñ:{name}");
+        }
+       
+    }
 }

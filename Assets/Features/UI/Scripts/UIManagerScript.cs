@@ -30,6 +30,7 @@ public class UIManagerScript : MonoBehaviour
     //リザルト表示
     public void DisplayResult()
     {
+        
         HUD.SetActive(false);
         MiniMap.SetActive(false);
         WarningMark.SetActive(false);
@@ -68,22 +69,26 @@ public class UIManagerScript : MonoBehaviour
     //次のシーンへ移行
     public void NextScene()
     {
+        SoundManager.instance.PlaySE("Select");
         SceneManager.LoadScene(StageManager.NextSceneName);
     }
 
     public void Retry()
     {
+        SoundManager.instance.PlaySE("Select");
         string sceneName = SceneManager.GetActiveScene().name;
         SceneManager.LoadScene(sceneName);
     }
 
     public void TitleScene()
     {
+        SoundManager.instance.PlaySE("Select");
         SceneManager.LoadScene("Title");
     }
 
     public void PauseGame()
     {
+        SoundManager.instance.PlaySE("Select");
         if (Time.timeScale != 0)
         {
             StageManager.UIManager.DisplayPauseMenu();
@@ -97,6 +102,7 @@ public class UIManagerScript : MonoBehaviour
     }
     public void ResumeGame()
     {
+        SoundManager.instance.PlaySE("Select");
         StageManager.UIManager.HiddenPauseMenu();
         Time.timeScale = 1;
     }

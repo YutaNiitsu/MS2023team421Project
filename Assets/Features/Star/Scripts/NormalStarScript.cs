@@ -15,8 +15,9 @@ public class NormalStarScript : MonoBehaviour
     private void OnCollisionEnter2D(Collision2D collision)
     {
         //はめ込む型にはまってUntaggedになってたら実行しない
-        if (collision.collider.CompareTag("Star") && gameObject.tag != "Untagged")
+        if ((collision.collider.CompareTag("Star") || collision.collider.CompareTag("Obstacle")) && gameObject.tag != "Untagged")
         {
+            SoundManager.instance.PlaySE("Explosion");
             //GameManagerScript.instance.CollisionObstacle();
             //衝突パーティクル生成
             if (Particle != null)
@@ -29,11 +30,11 @@ public class NormalStarScript : MonoBehaviour
             //Destroy(collision.collider.gameObject);
             
         }
-        if (collision.collider.CompareTag("Obstacle"))
-        {
-            //障害物の衝突回数カウント
-            GameManagerScript.instance.StageManager.CollisionObstacle();
+        //if (collision.collider.CompareTag("Obstacle"))
+        //{
+        //    //障害物の衝突回数カウント
+        //    GameManagerScript.instance.StageManager.CollisionObstacle();
 
-        }
+        //}
     }
 }

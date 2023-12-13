@@ -51,46 +51,46 @@ MonoBehaviour:
   BGM_Datas:
   - name: BGM1
     audioClip: {fileID: 8300000, guid: 944b54a741552d94fa005a2af9c05f3d, type: 3}
-    volume: 1
-    pitch: 0
+    volume: 0.13
+    pitch: 1
   SE_Datas:
   - name: Explosion
     audioClip: {fileID: 8300000, guid: 664a356c80af26d40a9aa121faa2980d, type: 3}
     volume: 1
-    pitch: 0
+    pitch: 1
   - name: HitShield
     audioClip: {fileID: 8300000, guid: 87cadc88c87dc7c46ab5e2ae7b5ef58d, type: 3}
     volume: 1
-    pitch: 0
+    pitch: 1
   - name: Complete
     audioClip: {fileID: 8300000, guid: 029109e8baac7ad48b9b01919aff99d7, type: 3}
     volume: 1
-    pitch: 0
+    pitch: 1
   - name: HitDarkHole
     audioClip: {fileID: 8300000, guid: 8b23bbd309b57bf418b66b7654770bd8, type: 3}
     volume: 1
-    pitch: 0
+    pitch: 1
   - name: GameOver
     audioClip: {fileID: 8300000, guid: fe76c6f29db605546948d0906b9d8606, type: 3}
     volume: 1
-    pitch: 0
+    pitch: 1
   - name: Determination
     audioClip: {fileID: 8300000, guid: 75a6b8f44d604894a973127fe949d0dc, type: 3}
     volume: 1
-    pitch: 0
+    pitch: 1
   - name: CreateLine
     audioClip: {fileID: 8300000, guid: 38680d2362689fe4dba8f0645e71823e, type: 3}
     volume: 1
-    pitch: 0
+    pitch: 1
   - name: Select
     audioClip: {fileID: 8300000, guid: 7553ef929bfb06741809d074b43a1564, type: 3}
     volume: 1
-    pitch: 0
+    pitch: 1
   - name: Collision
     audioClip: {fileID: 8300000, guid: c98c3990fd3fdf54f8371abdd45c0296, type: 3}
     volume: 1
-    pitch: 0
+    pitch: 1
   - name: Teleportation
     audioClip: {fileID: 8300000, guid: 1f64045569185d44286172147e757b57, type: 3}
-    volume: 0.572
-    pitch: 0
+    volume: 1
+    pitch: 1

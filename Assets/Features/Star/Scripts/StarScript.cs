@@ -84,6 +84,7 @@ public class StarScript : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
+        //ìÆÇ≠è·äQï®Ç…è’ìÀ
         if (collision.gameObject.layer == 8)
         {
             if (ExplosionParticle != null)

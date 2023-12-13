@@ -116,6 +116,8 @@ public class StageManagerScript : MonoBehaviour
                 index++;
             }
         }
+
+        SoundManager.instance.PlayBGM("BGM1");
     }
 
     // Update is called once per frame
@@ -136,6 +138,10 @@ public class StageManagerScript : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.P))
         {
             UIManager.PauseGame();
+        }
+        if (Input.GetKeyDown(KeyCode.F2))
+        {
+            SoundManager.instance.StopBGM("BGM1");
         }
     }
 
@@ -212,10 +218,11 @@ public class StageManagerScript : MonoBehaviour
     //ステージクリア処理
     IEnumerator StageComplete()
     {
+        SoundManager.instance.StopBGM("BGM1");
+        SoundManager.instance.PlaySE("Complete");
         Debug.Log("ステージクリア");
         Debug.Log(Score);
         IsStageComplete = true;
-
         DrawLine.DrawLine();
 
         foreach (MissionScript i in Missions)
@@ -240,6 +247,8 @@ public class StageManagerScript : MonoBehaviour
     //ゲームオーバー処理
     void GameOver()
     {
+        SoundManager.instance.StopBGM("BGM1");
+        SoundManager.instance.PlaySE("GameOver");
         Time.timeScale = 0;
         UIManager.DisplayGameOver();
         Debug.Log("GameOver");

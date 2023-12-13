@@ -86,13 +86,14 @@ public class DrawConstellationLine : MonoBehaviour
             case 3:
                 CurLineIndex++;
                 state = 1;
-
+                SoundManager.instance.PlaySE("CreateLine");
                 if (CurLineIndex >= lines.Length)
                 {
                     //ü‚Ì•`‰æŠ®—¹
                     Particle.Stop();
                     Destroy(Particle.gameObject, 1.0f);
                     state = 4;
+                    
                 }
                 break;
             default:

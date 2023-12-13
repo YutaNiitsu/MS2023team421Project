@@ -18,6 +18,7 @@ public class BouncingStarScript : MonoBehaviour
         //はめ込む型にはまってUntaggedになってたら実行しない
         if (collision.collider.CompareTag("Star") && gameObject.tag != "Untagged")
         {
+            SoundManager.instance.PlaySE("Collision");
             //GameManagerScript.instance.CollisionObstacle();
             //衝突パーティクル生成
             if (Particle != null)
@@ -30,6 +31,7 @@ public class BouncingStarScript : MonoBehaviour
         }
         if (collision.collider.CompareTag("Obstacle"))
         {
+            SoundManager.instance.PlaySE("Collision");
             //障害物の衝突回数カウント
             GameManagerScript.instance.StageManager.CollisionObstacle();
 

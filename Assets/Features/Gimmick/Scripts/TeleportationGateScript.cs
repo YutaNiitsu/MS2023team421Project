@@ -49,12 +49,14 @@ public class TeleportationGateScript : MonoBehaviour
 
     IEnumerator StartTeleportation(GameObject star, GameObject camera, Vector3 exitPos, Rigidbody2D rb)
     {
+        SoundManager.instance.PlaySE("Teleportation");
+
         Vector2 vel = new Vector2(rb.velocity.x, rb.velocity.y);
         star.transform.position = gameObject.transform.position;
         rb.velocity = Vector2.zero;
         star.SetActive(false);
         //“ü‚éŽž
-        while (Frame < 30)
+        while (Frame < 60)
         {
             yield return new WaitForSeconds(1.0f / 60.0f);
             Frame++;
@@ -75,7 +77,7 @@ public class TeleportationGateScript : MonoBehaviour
         Frame = 0;
         
         star.transform.position = exitPos;
-        while (Frame < 30)
+        while (Frame < 60)
         {
             yield return new WaitForSeconds(1.0f / 60.0f);
             Frame++;

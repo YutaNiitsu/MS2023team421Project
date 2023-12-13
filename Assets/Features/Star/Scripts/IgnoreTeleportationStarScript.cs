@@ -18,6 +18,7 @@ public class IgnoreTeleportationStarScript : MonoBehaviour
         //はめ込む型にはまってUntaggedになってたら実行しない
         if (collision.collider.CompareTag("Star") && gameObject.tag != "Untagged")
         {
+            SoundManager.instance.PlaySE("Explosion");
             //GameManagerScript.instance.CollisionObstacle();
             //衝突パーティクル生成
             if (Particle != null)
