@@ -94,7 +94,7 @@ MonoBehaviour:
   - rarity: 3
     score: 1500
   NextSceneName: Stage2
-  BGM_Name: 
+  BGM_Name: OuterSpace
 --- !u!114 &6697352170113118778
 MonoBehaviour:
   m_ObjectHideFlags: 0

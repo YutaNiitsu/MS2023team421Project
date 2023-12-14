@@ -53,6 +53,10 @@ MonoBehaviour:
     audioClip: {fileID: 8300000, guid: 944b54a741552d94fa005a2af9c05f3d, type: 3}
     volume: 0.13
     pitch: 1
+  - name: OuterSpace
+    audioClip: {fileID: 8300000, guid: ade1d5e1b31737245b16788b78e9647b, type: 3}
+    volume: 0.493
+    pitch: 1
   SE_Datas:
   - name: Explosion
     audioClip: {fileID: 8300000, guid: 664a356c80af26d40a9aa121faa2980d, type: 3}

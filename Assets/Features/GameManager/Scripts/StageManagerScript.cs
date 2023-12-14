@@ -54,7 +54,7 @@ public class StageManagerScript : MonoBehaviour
 
     private void Awake()
     {
-        //GameManagerScript.instance.Set(this);
+        GameManagerScript.instance.Set(this);
     }
     
     // Start is called before the first frame update
@@ -79,6 +79,9 @@ public class StageManagerScript : MonoBehaviour
 
         //チュートリアルの時は生成しない
         if (Tutorial != null)
+            return;
+        //星座データ無かったら生成しない
+        if (ConstellationDatas == null)
             return;
 
         //星と障害物を配置
