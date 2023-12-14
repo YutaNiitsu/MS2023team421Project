@@ -32,6 +32,8 @@ public class StageManagerScript : MonoBehaviour
     public ST_StarRarity[] SpecialTaregtScore;
     [Header("次のSceneの名前")]
     public string NextSceneName;
+    [Header("BGMの名前")]
+    public string BGM_Name;
 
     public ProceduralGenerator ProceduralGenerator { get; protected set; }
     public SaveConstellationData[] ConstellationDatas { get; protected set; }
@@ -48,16 +50,17 @@ public class StageManagerScript : MonoBehaviour
     private MovableObstacleManagerScript MovableObstacleMgr;
     public UIManagerScript UIManager { get; protected set; }
     public TutorialScript Tutorial { get; protected set; }
+    private GameObject MainCamera;
 
     private void Awake()
     {
-        GameManagerScript.instance.Set(this);
+        //GameManagerScript.instance.Set(this);
     }
     
     // Start is called before the first frame update
     void Start()
     {
-
+        GameManagerScript.instance.Set(this);
         Score = 0;
         DischargeNumber = Setting.DischargeNumber;
         FinalDischargedStar = null;
@@ -72,6 +75,7 @@ public class StageManagerScript : MonoBehaviour
         MovableObstacleMgr = GetComponent<MovableObstacleManagerScript>();
         UIManager = GameObject.FindGameObjectWithTag("UIManager").GetComponent<UIManagerScript>();
         Tutorial = GetComponent<TutorialScript>();
+        MainCamera = GameObject.FindGameObjectWithTag("MainCamera");
 
         //チュートリアルの時は生成しない
         if (Tutorial != null)
@@ -117,7 +121,7 @@ public class StageManagerScript : MonoBehaviour
             }
         }
 
-        SoundManager.instance.PlayBGM("BGM1");
+        SoundManager.instance.PlayBGM(BGM_Name);
     }
 
     // Update is called once per frame
@@ -141,7 +145,7 @@ public class StageManagerScript : MonoBehaviour
         }
         if (Input.GetKeyDown(KeyCode.F2))
         {
-            SoundManager.instance.StopBGM("BGM1");
+            SoundManager.instance.StopBGM(BGM_Name);
         }
     }
 
@@ -218,10 +222,13 @@ public class StageManagerScript : MonoBehaviour
     //ステージクリア処理
     IEnumerator StageComplete()
     {
-        SoundManager.instance.StopBGM("BGM1");
+        SoundManager.instance.StopBGM(BGM_Name);
         SoundManager.instance.PlaySE("Complete");
         Debug.Log("ステージクリア");
         Debug.Log(Score);
+
+        //カメラの位置を初期位置にする
+        MainCamera.transform.position = new Vector3(0.0f, 0.0f, -11.0f);
         IsStageComplete = true;
         DrawLine.DrawLine();
 

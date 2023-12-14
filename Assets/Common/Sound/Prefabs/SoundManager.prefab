@@ -79,7 +79,7 @@ MonoBehaviour:
     volume: 1
     pitch: 1
   - name: CreateLine
-    audioClip: {fileID: 8300000, guid: 38680d2362689fe4dba8f0645e71823e, type: 3}
+    audioClip: {fileID: 8300000, guid: 9f37ed5fc1a98c646859bd8eb24483b1, type: 3}
     volume: 1
     pitch: 1
   - name: Select
@@ -87,7 +87,7 @@ MonoBehaviour:
     volume: 1
     pitch: 1
   - name: Collision
-    audioClip: {fileID: 8300000, guid: c98c3990fd3fdf54f8371abdd45c0296, type: 3}
+    audioClip: {fileID: 8300000, guid: 055f85f9c89f83e47a1d0942008dc1b3, type: 3}
     volume: 1
     pitch: 1
   - name: Teleportation
