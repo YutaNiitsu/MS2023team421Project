@@ -49,16 +49,47 @@ public class StageManagerScript : MonoBehaviour
     public int ObstacleDestroyNumber { get; protected set; }     //障害物破壊回数
     private MovableObstacleManagerScript MovableObstacleMgr;
     public UIManagerScript UIManager { get; protected set; }
-    public TutorialScript Tutorial { get; protected set; }
     private GameObject MainCamera;
 
     private void Awake()
     {
         GameManagerScript.instance.Set(this);
+
     }
     
     // Start is called before the first frame update
     void Start()
+    {
+        Initialize();
+        CreateObjects();
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+        if (FinalDischargedStar != null && !IsFinished)
+        {
+            //星が停止した
+            if (Vector2.Dot(FinalDischargedStar.velocity, FinalDischargedStar.velocity) <= 0.1f)
+            {
+                IsFinished = true;
+                //ゲームオーバー処理
+                GameOver();
+            }
+        }
+
+        //テスト用
+        if (Input.GetKeyDown(KeyCode.P))
+        {
+            UIManager.PauseGame();
+        }
+        if (Input.GetKeyDown(KeyCode.F2))
+        {
+            SoundManager.instance.StopBGM(BGM_Name);
+        }
+    }
+
+    public void Initialize()
     {
         GameManagerScript.instance.Set(this);
         Score = 0;
@@ -68,18 +99,19 @@ public class StageManagerScript : MonoBehaviour
         IsStageComplete = false;
         ObstacleCollisionNumber = 0;
         ObstacleDestroyNumber = 0;
-        
+
         ProceduralGenerator = GetComponent<ProceduralGenerator>();
         ConstellationDatas = ConstellationLoadManager.instance.LoadData(SavedFileName);
         DrawLine = GetComponent<DrawConstellationLine>();
         MovableObstacleMgr = GetComponent<MovableObstacleManagerScript>();
         UIManager = GameObject.FindGameObjectWithTag("UIManager").GetComponent<UIManagerScript>();
-        Tutorial = GetComponent<TutorialScript>();
         MainCamera = GameObject.FindGameObjectWithTag("MainCamera");
 
-        //チュートリアルの時は生成しない
-        if (Tutorial != null)
-            return;
+        SoundManager.instance.PlayBGM(BGM_Name);
+    }
+
+    public virtual void CreateObjects()
+    {
         //星座データ無かったら生成しない
         if (ConstellationDatas == null)
             return;
@@ -122,33 +154,6 @@ public class StageManagerScript : MonoBehaviour
                 Missions[index] = new MissionScript(i);
                 index++;
             }
-        }
-
-        SoundManager.instance.PlayBGM(BGM_Name);
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        if (FinalDischargedStar != null && !IsFinished)
-        {
-            //星が停止した
-            if (Vector2.Dot(FinalDischargedStar.velocity, FinalDischargedStar.velocity) <= 0.1f)
-            {
-                IsFinished = true;
-                //ゲームオーバー処理
-                GameOver();
-            }
-        }
-
-        //テスト用
-        if (Input.GetKeyDown(KeyCode.P))
-        {
-            UIManager.PauseGame();
-        }
-        if (Input.GetKeyDown(KeyCode.F2))
-        {
-            SoundManager.instance.StopBGM(BGM_Name);
         }
     }
 
@@ -200,7 +205,7 @@ public class StageManagerScript : MonoBehaviour
 
     //星を飛ばすときの処理
     //rb : 飛ばした星
-    public void Discharge(Rigidbody2D rb)
+    public virtual void Discharge(Rigidbody2D rb)
     {
         DischargeNumber--;
 

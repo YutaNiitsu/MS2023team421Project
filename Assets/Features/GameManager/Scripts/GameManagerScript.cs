@@ -6,6 +6,7 @@ public class GameManagerScript : MonoBehaviour
 {
     //ƒVƒ“ƒOƒ‹ƒgƒ“
     public static GameManagerScript instance;
+
     private void Awake()
     {
         if (instance == null)
