@@ -52,18 +52,24 @@ MonoBehaviour:
     ConstellationImage: {fileID: 4628389302510208598, guid: 4f45c5cc93566444f92c4e5ff64963d9, type: 3}
     DischargeNumber: 10
     StageSize: {x: 200, y: 200}
-    Threshold: 0.779
-    NormalPoint: 0
-    RarePoint: 0.623
-    UniquePoint: 0.826
-    LegendaryPoint: 0.919
+    Threshold: 0.662
     SpecialPointNumber: 2
     ShieldNumber: 2
     ShieldHealthPoint: 4
-    Obstacle: 1
-    MovableObstacle: 1
-    Teleportation: 1
-    DarkHole: 1
+    ProbabilityObstacle: 0.421
+    ProbabilityTeleportation: 0.107
+    ProbabilityDarkHole: 0.113
+    ProbabilityStar: 0.269
+    ProbabilityMovableObstacle: 1
+    ProbabilityNormalStar: 0
+    ProbabilityBouncingStar: 0.586
+    ProbabilityIgnoreTeleportationStar: 0
+    ProbabilityTransfixStar: 0
+    ProbabilityExplosionStar: 0.589
+    NormalPoint: 0
+    RarePoint: 0.623
+    UniquePoint: 0.826
+    LegendaryPoint: 0.893
     MissionTypes: 0000000001000000020000000300000004000000
     ObstacleCollisionNumber: 3
     DischargeNumberWithinClear: 3
@@ -87,7 +93,8 @@ MonoBehaviour:
     score: 600
   - rarity: 3
     score: 1500
-  NextSceneName: Title
+  NextSceneName: Stage2
+  BGM_Name: 
 --- !u!114 &6697352170113118778
 MonoBehaviour:
   m_ObjectHideFlags: 0
