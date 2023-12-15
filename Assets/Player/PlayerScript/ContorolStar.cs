@@ -19,6 +19,8 @@ public class ContorolStar : MonoBehaviour
     //// float gaugeLength = 0.0f;
     // bool shotGaugeSet = false;
 
+    private StarScript _StarScript;
+
     Vector3 direction;
     Vector3 normal;
 
@@ -26,7 +28,7 @@ public class ContorolStar : MonoBehaviour
     {
         this.rigid2d = GetComponent<Rigidbody2D>();
         MoveTG = false;
-
+        _StarScript = GetComponent<StarScript>();
     }
 
     void Update()
@@ -90,6 +92,7 @@ public class ContorolStar : MonoBehaviour
     public void AddForce(Vector2 UpdateForce)
     {
         this.rigid2d.AddForce(UpdateForce);
+        _StarScript.PlayParticle();
     }
 
     public void StopMove(Vector2 UpdatePos)

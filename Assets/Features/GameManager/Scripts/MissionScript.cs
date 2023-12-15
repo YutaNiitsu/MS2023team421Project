@@ -16,8 +16,8 @@ public class MissionScript : MonoBehaviour
         [InspectorName("")]  MissionTypeMax
     }
 
-    private MissionType Type;
-    
+    public MissionType Type { get; protected set; }
+
 
     private MissionScript() { }
 
@@ -30,7 +30,7 @@ public class MissionScript : MonoBehaviour
     public bool IsMissionComplete()
     {
         bool success = false;
-        GameManagerScript gameManager = GameManagerScript.instance;
+        StageManagerScript gameManager = GameManagerScript.instance.StageManager;
 
         switch (Type)
         {
@@ -44,9 +44,10 @@ public class MissionScript : MonoBehaviour
             case MissionType.障害物衝突回数ｎ回以下:
                 if (gameManager.Setting.ObstacleCollisionNumber >= gameManager.ObstacleCollisionNumber)
                 {
-                    string s = gameManager.ObstacleCollisionNumber.ToString();
-                    s += "回障害物に衝突した";
+                    string s = gameManager.Setting.ObstacleCollisionNumber.ToString();
+                    s = "障害物衝突が" + s + "回以内";
                     Debug.Log(s);
+                    success = true;
                 }
                 break;
             case MissionType.特別ポイントにユニーク星をはめ込む:
@@ -57,7 +58,7 @@ public class MissionScript : MonoBehaviour
                 }
                 break;
             case MissionType.ｎターン以内にクリア:
-                if (gameManager.Setting.DischargeNumberWithinClear >= gameManager.DischargeNumber)
+                if (gameManager.Setting.DischargeNumberWithinClear >= gameManager.Setting.DischargeNumber - gameManager.DischargeNumber)
                 {
                     string s = gameManager.Setting.DischargeNumberWithinClear.ToString();
                     s += "ターン以内にクリアした";

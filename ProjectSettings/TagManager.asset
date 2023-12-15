@@ -8,7 +8,9 @@ TagManager:
   - dark hole
   - Star
   - Target
-  - GameManager
+  - Obstacle
+  - StageManager
+  - UIManager
   layers:
   - Default
   - TransparentFX
@@ -16,9 +18,9 @@ TagManager:
   - 
   - Water
   - UI
-  - 
-  - 
-  - 
+  - Shield
+  - ignoreTeleportation
+  - MovableObstacle
   - 
   - 
   - 

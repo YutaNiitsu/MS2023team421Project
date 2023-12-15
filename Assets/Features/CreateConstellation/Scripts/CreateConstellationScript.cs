@@ -284,7 +284,7 @@ public class CreateConstellationScript : MonoBehaviour
     {
         Initialize();
         SavedConstellationData = savedConstellationData;
-        ST_Constellation[] targets = savedConstellationData.constellations;
+        ST_Constellation[] targets = savedConstellationData.targets;
         Line[] lines = savedConstellationData.lines;
 
         //はめ込む型をインスタンス生成

@@ -4,26 +4,36 @@ using UnityEngine;
 
 public class TargetScript : MonoBehaviour
 {
+    [Header("スプライト")]
+    public Sprite normalSprite;
+    public Sprite SpecialPointSprite;
+    [Header("シールド")]
+    public GameObject Shield;
     //星がすでにはまっているかどうか
     public bool Goaled { get; protected set; }
     //はまっている星を参照する
     public StarScript StarGoaled { get; protected set; }
     //特別ポイントに指定されているかどうか
     public bool IsSpecialPoint { get; protected set; }
+    //シールド張るかどうか
+    public bool IsShield { get; protected set; }
+    private CircleCollider2D Collider2D;
+
     // Start is called before the first frame update
     void Start()
     {
         Goaled = false;
         StarGoaled = null;
+        Collider2D = GetComponent<CircleCollider2D>();
     }
 
     private void Update()
     {
         //テスト用
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetKeyDown(KeyCode.F1))
         {
             Goaled = true;
-            GameManagerScript.instance.AddScore(StarRarity.Normal, false);
+            GameManagerScript.instance.StageManager.AddScore(StarRarity.Normal, false);
         }
     }
 
@@ -32,6 +42,7 @@ public class TargetScript : MonoBehaviour
         GameObject obj = collision.gameObject;
 
         // 星だった時
+        
         if (obj.CompareTag("Star"))
         {
             obj.tag = "Untagged";
@@ -54,7 +65,7 @@ public class TargetScript : MonoBehaviour
             //スコア加算
             StarRarity rare = StarGoaled.Rarity;
 
-            GameManagerScript.instance.AddScore(rare, IsSpecialPoint);
+            GameManagerScript.instance.StageManager.AddScore(rare, IsSpecialPoint);
             
             // 自分を非表示にする
             gameObject.SetActive(false);
@@ -63,15 +74,48 @@ public class TargetScript : MonoBehaviour
 
     //生成時の設定
     //isSpecialPoint : 特別ポイントにするかどうか
-    public void Set(bool isSpecialPoint)
+    //isShield : シールド張るかどうか
+    public void Set(bool isSpecialPoint, bool isShield, int shieldHP)
     {
         IsSpecialPoint = isSpecialPoint;
+        IsShield = isShield;
+
+        //特別ポイント
+        SpriteRenderer sprite = GetComponent<SpriteRenderer>();
+        if (isSpecialPoint)
+        {
+            sprite.sprite = SpecialPointSprite;
+        }
+        else
+        {
+            sprite.sprite = normalSprite;
+        }
+
+        //シールド
+        Collider2D = GetComponent<CircleCollider2D>();
+        if (isShield)
+        {
+            //シールドをはる
+            Shield.SetActive(true);
+            Shield.GetComponent<TargetShieldScript>().Set(shieldHP);
+            Collider2D.enabled = false;
+
+
+        }
+        else
+        {
+            Shield.SetActive(false);
+            Collider2D.enabled = true;
+
+        }
+        
     }
 
     //特別ポイントに指定されている時、ユニーク以上のレアリティの星がはまっているかどうか
     public bool IsRareStarGoaledOnSpecialTarget()
     {
-        if (IsSpecialPoint && Goaled && (int)StarGoaled.Rarity >= 2)
+        if (IsSpecialPoint && Goaled 
+            && StarGoaled != null &&(int)StarGoaled.Rarity >= 2)
             return true;
 
         return false;

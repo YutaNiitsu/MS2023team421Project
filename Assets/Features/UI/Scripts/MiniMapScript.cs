@@ -14,7 +14,7 @@ public class MiniMapScript : MonoBehaviour
     void Start()
     {
         CameraTransform = GameObject.FindGameObjectWithTag("MainCamera").transform;
-        StageSize = GameManagerScript.instance.Setting.StageSize;
+        StageSize = GameManagerScript.instance.StageManager.Setting.StageSize;
         MapSize = gameObject.GetComponent<RectTransform>().sizeDelta;
     }
 

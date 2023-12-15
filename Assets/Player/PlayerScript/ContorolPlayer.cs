@@ -118,7 +118,7 @@ public class ContorolPlayer : MonoBehaviour
             {
                 //Debug.Log("AddddddåƒÇ—èoÇµämîF");
                 ContorolStarScript.AddForce(startDirection * speed);
-                GameManagerScript.instance.Discharge(ContorolStarScript.rigid2d);
+                GameManagerScript.instance.StageManager.Discharge(ContorolStarScript.rigid2d);
                 ContorolStarScript = null;
                 
             }

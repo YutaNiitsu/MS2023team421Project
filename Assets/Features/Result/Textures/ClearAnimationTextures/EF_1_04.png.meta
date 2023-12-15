@@ -1,0 +1,937 @@
+fileFormatVersion: 2
+guid: 89bb57d588cf4c6419649cb8e7e92c34
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 7149256671301857917
+    second: EF_1_04_0
+  - first:
+      213: -4883127343776044203
+    second: EF_1_04_1
+  - first:
+      213: 2520911458613262296
+    second: EF_1_04_2
+  - first:
+      213: 4559362879537263373
+    second: EF_1_04_3
+  - first:
+      213: -2583764461972547184
+    second: EF_1_04_4
+  - first:
+      213: -1151185305556866028
+    second: EF_1_04_5
+  - first:
+      213: 2476963378549735587
+    second: EF_1_04_6
+  - first:
+      213: -8732464916496493024
+    second: EF_1_04_7
+  - first:
+      213: 6514038789065106943
+    second: EF_1_04_8
+  - first:
+      213: -6729288734165582907
+    second: EF_1_04_9
+  - first:
+      213: 3198025394928290026
+    second: EF_1_04_10
+  - first:
+      213: -9135643654705950656
+    second: EF_1_04_11
+  - first:
+      213: 4907334204535255642
+    second: EF_1_04_12
+  - first:
+      213: -6876584243804596238
+    second: EF_1_04_13
+  - first:
+      213: 2528662690579789673
+    second: EF_1_04_14
+  - first:
+      213: -100066257814521980
+    second: EF_1_04_15
+  - first:
+      213: 4992010734150501535
+    second: EF_1_04_16
+  - first:
+      213: -3965678863177982817
+    second: EF_1_04_17
+  - first:
+      213: -8516977651593838465
+    second: EF_1_04_18
+  - first:
+      213: -6282749761265244581
+    second: EF_1_04_19
+  - first:
+      213: -3229030231277074775
+    second: EF_1_04_20
+  - first:
+      213: -4105817041296654589
+    second: EF_1_04_21
+  - first:
+      213: 7911836693644617986
+    second: EF_1_04_22
+  - first:
+      213: 283706231213328903
+    second: EF_1_04_23
+  - first:
+      213: 8883991669344791139
+    second: EF_1_04_24
+  - first:
+      213: -8954225581196389936
+    second: EF_1_04_25
+  - first:
+      213: -7985867336715922288
+    second: EF_1_04_26
+  - first:
+      213: 5042200072381129570
+    second: EF_1_04_27
+  - first:
+      213: 5509840257851332634
+    second: EF_1_04_28
+  - first:
+      213: -6569985328890266555
+    second: EF_1_04_29
+  - first:
+      213: 2393940488777534796
+    second: EF_1_04_30
+  - first:
+      213: -1641156410123719476
+    second: EF_1_04_31
+  - first:
+      213: -4925783159601061471
+    second: EF_1_04_32
+  externalObjects: {}
+  serializedVersion: 12
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 1
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: EF_1_04_0
+      rect:
+        serializedVersion: 2
+        x: 224
+        y: 412
+        width: 49
+        height: 20
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d72f90d6013473360800000000000000
+      internalID: 7149256671301857917
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EF_1_04_1
+      rect:
+        serializedVersion: 2
+        x: 280
+        y: 430
+        width: 40
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 55b6b318d85ab3cb0800000000000000
+      internalID: -4883127343776044203
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EF_1_04_2
+      rect:
+        serializedVersion: 2
+        x: 327
+        y: 412
+        width: 49
+        height: 20
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8d7fad08d931cf220800000000000000
+      internalID: 2520911458613262296
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EF_1_04_3
+      rect:
+        serializedVersion: 2
+        x: 196
+        y: 393
+        width: 11
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d03bbe4e16c164f30800000000000000
+      internalID: 4559362879537263373
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EF_1_04_4
+      rect:
+        serializedVersion: 2
+        x: 252
+        y: 393
+        width: 30
+        height: 21
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 09919d449ef942cd0800000000000000
+      internalID: -2583764461972547184
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EF_1_04_5
+      rect:
+        serializedVersion: 2
+        x: 318
+        y: 393
+        width: 39
+        height: 21
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 41c22a7501b2600f0800000000000000
+      internalID: -1151185305556866028
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EF_1_04_6
+      rect:
+        serializedVersion: 2
+        x: 393
+        y: 393
+        width: 11
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3a0cb1cb111ff5220800000000000000
+      internalID: 2476963378549735587
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EF_1_04_7
+      rect:
+        serializedVersion: 2
+        x: 168
+        y: 337
+        width: 20
+        height: 39
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0265aaecc6d00d680800000000000000
+      internalID: -8732464916496493024
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EF_1_04_8
+      rect:
+        serializedVersion: 2
+        x: 215
+        y: 355
+        width: 30
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ff5675b04c3866a50800000000000000
+      internalID: 6514038789065106943
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EF_1_04_9
+      rect:
+        serializedVersion: 2
+        x: 271
+        y: 355
+        width: 58
+        height: 21
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5cbb501bc83cc92a0800000000000000
+      internalID: -6729288734165582907
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EF_1_04_10
+      rect:
+        serializedVersion: 2
+        x: 355
+        y: 355
+        width: 30
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ae8016f172ba16c20800000000000000
+      internalID: 3198025394928290026
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EF_1_04_11
+      rect:
+        serializedVersion: 2
+        x: 411
+        y: 337
+        width: 21
+        height: 39
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 04053beaf7ca73180800000000000000
+      internalID: -9135643654705950656
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EF_1_04_12
+      rect:
+        serializedVersion: 2
+        x: 158
+        y: 280
+        width: 12
+        height: 49
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a52b277757a5a1440800000000000000
+      internalID: 4907334204535255642
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EF_1_04_13
+      rect:
+        serializedVersion: 2
+        x: 186
+        y: 318
+        width: 21
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2f79aff50177190a0800000000000000
+      internalID: -6876584243804596238
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EF_1_04_14
+      rect:
+        serializedVersion: 2
+        x: 224
+        y: 271
+        width: 21
+        height: 58
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 967bac4d15d971320800000000000000
+      internalID: 2528662690579789673
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EF_1_04_15
+      rect:
+        serializedVersion: 2
+        x: 271
+        y: 318
+        width: 58
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 48776f8c44e7c9ef0800000000000000
+      internalID: -100066257814521980
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EF_1_04_16
+      rect:
+        serializedVersion: 2
+        x: 355
+        y: 271
+        width: 21
+        height: 58
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f944afb505f274540800000000000000
+      internalID: 4992010734150501535
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EF_1_04_17
+      rect:
+        serializedVersion: 2
+        x: 393
+        y: 318
+        width: 20
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f9c5003c51417f8c0800000000000000
+      internalID: -3965678863177982817
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EF_1_04_18
+      rect:
+        serializedVersion: 2
+        x: 430
+        y: 271
+        width: 12
+        height: 58
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f700fc463fd9dc980800000000000000
+      internalID: -8516977651593838465
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EF_1_04_19
+      rect:
+        serializedVersion: 2
+        x: 168
+        y: 224
+        width: 20
+        height: 49
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b566d1b21603fc8a0800000000000000
+      internalID: -6282749761265244581
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EF_1_04_20
+      rect:
+        serializedVersion: 2
+        x: 186
+        y: 252
+        width: 21
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9a68bbfdc1e2033d0800000000000000
+      internalID: -3229030231277074775
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EF_1_04_21
+      rect:
+        serializedVersion: 2
+        x: 271
+        y: 252
+        width: 58
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 30f74cc87253507c0800000000000000
+      internalID: -4105817041296654589
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EF_1_04_22
+      rect:
+        serializedVersion: 2
+        x: 393
+        y: 252
+        width: 20
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 209a69ddd8d7ccd60800000000000000
+      internalID: 7911836693644617986
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EF_1_04_23
+      rect:
+        serializedVersion: 2
+        x: 411
+        y: 224
+        width: 21
+        height: 40
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 70a090c605defe300800000000000000
+      internalID: 283706231213328903
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EF_1_04_24
+      rect:
+        serializedVersion: 2
+        x: 215
+        y: 215
+        width: 30
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 36a63d69a574a4b70800000000000000
+      internalID: 8883991669344791139
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EF_1_04_25
+      rect:
+        serializedVersion: 2
+        x: 271
+        y: 224
+        width: 58
+        height: 21
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0d1d21286433cb380800000000000000
+      internalID: -8954225581196389936
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EF_1_04_26
+      rect:
+        serializedVersion: 2
+        x: 355
+        y: 215
+        width: 30
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 09417abd7ff7c2190800000000000000
+      internalID: -7985867336715922288
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EF_1_04_27
+      rect:
+        serializedVersion: 2
+        x: 196
+        y: 196
+        width: 11
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 263e9b8404e79f540800000000000000
+      internalID: 5042200072381129570
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EF_1_04_28
+      rect:
+        serializedVersion: 2
+        x: 252
+        y: 187
+        width: 30
+        height: 20
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a18106aa582e67c40800000000000000
+      internalID: 5509840257851332634
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EF_1_04_29
+      rect:
+        serializedVersion: 2
+        x: 318
+        y: 187
+        width: 30
+        height: 20
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 54cb7f31729b2d4a0800000000000000
+      internalID: -6569985328890266555
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EF_1_04_30
+      rect:
+        serializedVersion: 2
+        x: 327
+        y: 168
+        width: 77
+        height: 39
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c4d820fd03cf83120800000000000000
+      internalID: 2393940488777534796
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EF_1_04_31
+      rect:
+        serializedVersion: 2
+        x: 224
+        y: 168
+        width: 49
+        height: 21
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ccc68b1b0f07939e0800000000000000
+      internalID: -1641156410123719476
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EF_1_04_32
+      rect:
+        serializedVersion: 2
+        x: 280
+        y: 158
+        width: 40
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1a1a063705a14abb0800000000000000
+      internalID: -4925783159601061471
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    nameFileIdTable:
+      EF_1_04_0: 7149256671301857917
+      EF_1_04_1: -4883127343776044203
+      EF_1_04_10: 3198025394928290026
+      EF_1_04_11: -9135643654705950656
+      EF_1_04_12: 4907334204535255642
+      EF_1_04_13: -6876584243804596238
+      EF_1_04_14: 2528662690579789673
+      EF_1_04_15: -100066257814521980
+      EF_1_04_16: 4992010734150501535
+      EF_1_04_17: -3965678863177982817
+      EF_1_04_18: -8516977651593838465
+      EF_1_04_19: -6282749761265244581
+      EF_1_04_2: 2520911458613262296
+      EF_1_04_20: -3229030231277074775
+      EF_1_04_21: -4105817041296654589
+      EF_1_04_22: 7911836693644617986
+      EF_1_04_23: 283706231213328903
+      EF_1_04_24: 8883991669344791139
+      EF_1_04_25: -8954225581196389936
+      EF_1_04_26: -7985867336715922288
+      EF_1_04_27: 5042200072381129570
+      EF_1_04_28: 5509840257851332634
+      EF_1_04_29: -6569985328890266555
+      EF_1_04_3: 4559362879537263373
+      EF_1_04_30: 2393940488777534796
+      EF_1_04_31: -1641156410123719476
+      EF_1_04_32: -4925783159601061471
+      EF_1_04_4: -2583764461972547184
+      EF_1_04_5: -1151185305556866028
+      EF_1_04_6: 2476963378549735587
+      EF_1_04_7: -8732464916496493024
+      EF_1_04_8: 6514038789065106943
+      EF_1_04_9: -6729288734165582907
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

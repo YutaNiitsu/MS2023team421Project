@@ -472,7 +472,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1246885993402690261, guid: 96b319521bafd3f48b23504e9d219fe4, type: 3}
       propertyPath: SavedFileName
-      value: test1.save
+      value: Original.save
       objectReference: {fileID: 0}
     - target: {fileID: 1246885993402690261, guid: 96b319521bafd3f48b23504e9d219fe4, type: 3}
       propertyPath: SaveConstellationDisplay

@@ -30,7 +30,7 @@ public class SaveConstellationData
     // –¼‘O
     public string name { get; protected set; }
     // ¯‚ğ‚Í‚ß‚ŞŒ^‚ÌˆÊ’u
-    public ST_Constellation[] constellations { get; protected set; }
+    public ST_Constellation[] targets { get; protected set; }
     // ¯“¯m‚ğ‚Â‚È‚®ü
     public Line[] lines { get; protected set; }
 
@@ -45,7 +45,7 @@ public class SaveConstellationData
         day = _day;
         id = _id;
         name = _name;
-        constellations = _constellations;
+        targets = _constellations;
         lines = _lines;
 
         Conversion();
@@ -66,11 +66,11 @@ public class SaveConstellationData
         DataConv.day = day;
         DataConv.id = id;
         DataConv.name = name;
-        DataConv.constellations = new string[constellations.Length];
+        DataConv.targets = new string[targets.Length];
         int index = 0;
-        foreach (ST_Constellation i in constellations)
+        foreach (ST_Constellation i in targets)
         {
-            DataConv.constellations[index] = JsonUtility.ToJson(i);
+            DataConv.targets[index] = JsonUtility.ToJson(i);
             index++;
         }
         DataConv.lines = new string[lines.Length];
@@ -96,7 +96,7 @@ public class SaveConstellationData_Conv
     // –¼‘O
     public string name;
     // ¯‚ğ‚Í‚ß‚ŞŒ^‚ÌˆÊ’u
-    public string[] constellations;
+    public string[] targets;
     // ¯“¯m‚ğ‚Â‚È‚®ü
     public string[] lines;
 
@@ -105,9 +105,9 @@ public class SaveConstellationData_Conv
     {
         SaveConstellationData data = new SaveConstellationData();
 
-        ST_Constellation[] _constellations = new ST_Constellation[constellations.Length];
+        ST_Constellation[] _constellations = new ST_Constellation[targets.Length];
         int index = 0;
-        foreach (string i in constellations)
+        foreach (string i in targets)
         {
             _constellations[index] = JsonUtility.FromJson<ST_Constellation>(i);
             index++;
