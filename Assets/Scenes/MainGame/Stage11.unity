@@ -801,6 +801,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: StageManager
       objectReference: {fileID: 0}
+    - target: {fileID: 5105850875108164340, guid: 23cd3a265e427634aade1d6e486d211d, type: 3}
+      propertyPath: Setting.ConstellationName
+      value: otome
+      objectReference: {fileID: 0}
     - target: {fileID: 8602336333666789749, guid: 23cd3a265e427634aade1d6e486d211d, type: 3}
       propertyPath: m_LocalPosition.x
       value: -1.1748348

@@ -71,19 +71,22 @@ public class UIManagerScript : MonoBehaviour
     {
         SoundManager.instance.PlaySE("Select");
         SceneManager.LoadScene(StageManager.NextSceneName);
+        Time.timeScale = 1;
     }
 
     public void Retry()
     {
         SoundManager.instance.PlaySE("Select");
         string sceneName = SceneManager.GetActiveScene().name;
-        SceneManager.LoadScene(sceneName);
+        SceneManager.LoadScene(sceneName); 
+        Time.timeScale = 1;
     }
 
     public void TitleScene()
     {
         SoundManager.instance.PlaySE("Select");
         SceneManager.LoadScene("Title");
+        Time.timeScale = 1;
     }
 
     public void PauseGame()
