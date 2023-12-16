@@ -48,20 +48,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Setting:
-    ConstellationName: 
-    ConstellationImage: {fileID: 0}
-    DischargeNumber: 0
-    StageSize: {x: 0, y: 0}
-    Threshold: 0
+    ConstellationName: ohituzi
+    ConstellationImage: {fileID: 4628389302510208598, guid: 4f45c5cc93566444f92c4e5ff64963d9, type: 3}
+    DischargeNumber: 30
+    StageSize: {x: 200, y: 200}
+    Threshold: 0.744
     SpecialPointNumber: 0
     ShieldNumber: 0
     ShieldHealthPoint: 0
-    ProbabilityObstacle: 0
+    ProbabilityObstacle: 0.423
     ProbabilityTeleportation: 0
     ProbabilityDarkHole: 0
-    ProbabilityStar: 0
+    ProbabilityStar: 0.405
     ProbabilityMovableObstacle: 0
-    ProbabilityNormalStar: 0
+    ProbabilityNormalStar: 1
     ProbabilityBouncingStar: 0
     ProbabilityIgnoreTeleportationStar: 0
     ProbabilityTransfixStar: 0
@@ -74,11 +74,28 @@ MonoBehaviour:
     ObstacleCollisionNumber: 0
     DischargeNumberWithinClear: 0
     ObstacleDestroyNumber: 0
-  SavedFileName: 
-  TaregtScore: []
-  SpecialTaregtScore: []
+  SavedFileName: test1.save
+  TaregtScore:
+  - rarity: 0
+    score: 0
+  - rarity: 0
+    score: 0
+  - rarity: 0
+    score: 0
+  - rarity: 0
+    score: 0
+  SpecialTaregtScore:
+  - rarity: 0
+    score: 0
+  - rarity: 0
+    score: 0
+  - rarity: 0
+    score: 0
+  - rarity: 0
+    score: 0
   NextSceneName: 
   BGM_Name: 
+  TutorialUI: {fileID: 0}
 --- !u!114 &6972879153749195095
 MonoBehaviour:
   m_ObjectHideFlags: 0

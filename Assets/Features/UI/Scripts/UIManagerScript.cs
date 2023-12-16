@@ -64,6 +64,15 @@ public class UIManagerScript : MonoBehaviour
         GameOver.SetActive(true);
     }
 
+    public void SetUIActive(bool hud, bool miniMap, bool warningMark, bool result, bool pause, bool gameOver)
+    {
+        HUD.SetActive(hud);
+        MiniMap.SetActive(miniMap);
+        WarningMark.SetActive(warningMark);
+        Result.SetActive(result);
+        Pause.SetActive(pause);
+        GameOver.SetActive(gameOver);
+    }
 
     //ボタンアクション
     //次のシーンへ移行
