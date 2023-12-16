@@ -61,8 +61,8 @@ MonoBehaviour:
     ProbabilityDarkHole: 0.113
     ProbabilityStar: 0.269
     ProbabilityMovableObstacle: 1
-    ProbabilityNormalStar: 0
-    ProbabilityBouncingStar: 0.586
+    ProbabilityNormalStar: 0.678
+    ProbabilityBouncingStar: 0
     ProbabilityIgnoreTeleportationStar: 0
     ProbabilityTransfixStar: 0
     ProbabilityExplosionStar: 0.589

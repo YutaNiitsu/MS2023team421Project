@@ -66,7 +66,7 @@ public class TargetScript : MonoBehaviour
             StarRarity rare = StarGoaled.Rarity;
 
             GameManagerScript.instance.StageManager.AddScore(rare, IsSpecialPoint);
-            
+            GameManagerScript.instance.StageManager.PutOnTareget();
             // Ž©•ª‚ð”ñ•\Ž¦‚É‚·‚é
             gameObject.SetActive(false);
         }

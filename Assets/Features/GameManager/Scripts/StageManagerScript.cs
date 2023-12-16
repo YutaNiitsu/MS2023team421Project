@@ -38,8 +38,8 @@ public class StageManagerScript : MonoBehaviour
     public ProceduralGenerator ProceduralGenerator { get; protected set; }
     public SaveConstellationData[] ConstellationDatas { get; protected set; }
     public SaveConstellationData GenerateConstellation { get; protected set; }  //生成された星座
-    private MissionScript[] Missions;
-    private DrawConstellationLine DrawLine;
+    protected MissionScript[] Missions;
+    protected DrawConstellationLine DrawLine;
     public int Score { get; protected set; }
     public int DischargeNumber { get; protected set; }       //プレイヤーが星を発射できる回数
     private Rigidbody2D FinalDischargedStar;
@@ -49,7 +49,7 @@ public class StageManagerScript : MonoBehaviour
     public int ObstacleDestroyNumber { get; protected set; }     //障害物破壊回数
     private MovableObstacleManagerScript MovableObstacleMgr;
     public UIManagerScript UIManager { get; protected set; }
-    private GameObject MainCamera;
+    protected GameObject MainCamera;
 
     private void Awake()
     {
@@ -60,8 +60,8 @@ public class StageManagerScript : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        Initialize();
-        CreateObjects();
+        StageManagerStart();
+       
     }
 
     // Update is called once per frame
@@ -87,9 +87,16 @@ public class StageManagerScript : MonoBehaviour
         {
             SoundManager.instance.StopBGM(BGM_Name);
         }
+        
     }
 
-    public void Initialize()
+    public virtual void StageManagerStart()
+    {
+        Initialize();
+        CreateObjects();
+    }
+
+    public virtual void Initialize()
     {
         GameManagerScript.instance.Set(this);
         Score = 0;
@@ -156,11 +163,16 @@ public class StageManagerScript : MonoBehaviour
             }
         }
     }
+    //hs目込む型に星がはまった時
+    public virtual void PutOnTareget()
+    {
+
+    }
 
     //はめ込む型に星がはまるとスコア加算
     //starRarity : はまった星のレアリティ
     //isSpecialPoint : はめ込む型が特別ポイントかどうか
-    public void AddScore(StarRarity starRarity, bool isSpecialPoint)
+    public virtual void AddScore(StarRarity starRarity, bool isSpecialPoint)
     {
         switch (starRarity)
         {
@@ -197,10 +209,16 @@ public class StageManagerScript : MonoBehaviour
         {
             //全部はまっていた
             IsFinished = true;
-            StartCoroutine(StageComplete());
+            StageComplete();
         }
 
        
+    }
+
+    //星クリックした時
+    public virtual void ClickStar()
+    {
+        
     }
 
     //星を飛ばすときの処理
@@ -217,8 +235,9 @@ public class StageManagerScript : MonoBehaviour
         else
         {
             //動く障害物生成
-            int direction = UnityEngine.Random.Range(0, 7 + (int)(100 * Setting.ProbabilityMovableObstacle));
-            if (direction <= 7)
+            int direction = UnityEngine.Random.Range(0, 7);
+            float rand = UnityEngine.Random.Range(0.01f, 1.0f);
+            if (rand <= Setting.ProbabilityMovableObstacle)
             {
                 MovableObstacleMgr.Create(direction);
             }
@@ -228,7 +247,11 @@ public class StageManagerScript : MonoBehaviour
 
 
     //ステージクリア処理
-    IEnumerator StageComplete()
+    public virtual void StageComplete()
+    {
+        StartCoroutine(StageCompleteCoroutine());
+    }
+    IEnumerator StageCompleteCoroutine()
     {
         SoundManager.instance.StopBGM(BGM_Name);
         SoundManager.instance.PlaySE("Complete");

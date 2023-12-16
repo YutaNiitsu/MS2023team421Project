@@ -60,7 +60,7 @@ public class ContorolPlayer : MonoBehaviour
     // ショットゲージ関数
     void shotGaugeValue()
     {
-        Debug.Log("呼び出し確認");
+        //Debug.Log("呼び出し確認");
     }
 
     void PlayerContorol()
@@ -96,6 +96,7 @@ public class ContorolPlayer : MonoBehaviour
                 if (clickedGameObject.gameObject.CompareTag("Player")
                     || clickedGameObject.gameObject.CompareTag("Star"))
                     ContorolStarScript = clickedGameObject.GetComponent<ContorolStar>();
+                GameManagerScript.instance.StageManager.ClickStar();
             }
 
             //Debug.Log(clickedGameObject);
@@ -195,12 +196,12 @@ public class ContorolPlayer : MonoBehaviour
         // ジョイスティックが1つ以上接続されているかを判定
         if (joystickNames.Length > 0 && !string.IsNullOrEmpty(joystickNames[0]))
         {
-            Debug.Log("ジョイスティックが接続されています。");
+            //Debug.Log("ジョイスティックが接続されています。");
             return true;
         }
         else
         {
-            Debug.Log("ジョイスティックが接続されていません。");
+            //Debug.Log("ジョイスティックが接続されていません。");
             return false;
         }
     }

@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &2475248473750089530
+--- !u!1 &8546468782359792282
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,25 +8,25 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 1976993861128840065}
-  - component: {fileID: 4848639611213605157}
-  - component: {fileID: 6972879153749195095}
-  - component: {fileID: 8148704272744989466}
-  - component: {fileID: 110398281462304513}
+  - component: {fileID: 2097170742623459190}
+  - component: {fileID: 8367028094903968315}
+  - component: {fileID: 434880578803639365}
+  - component: {fileID: 790348697512291756}
+  - component: {fileID: 4405118489818888320}
   m_Layer: 0
-  m_Name: TutorialManager
+  m_Name: ChallemgeModeManager
   m_TagString: StageManager
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &1976993861128840065
+--- !u!4 &2097170742623459190
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2475248473750089530}
+  m_GameObject: {fileID: 8546468782359792282}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -1.1748348, y: 1.6280963, z: -0.10040799}
@@ -35,74 +35,73 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &4848639611213605157
+--- !u!114 &8367028094903968315
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2475248473750089530}
+  m_GameObject: {fileID: 8546468782359792282}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1e15d7292280588418d5110c178bbead, type: 3}
+  m_Script: {fileID: 11500000, guid: ec074259ac8f9c24690e12f76a73a52e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   Setting:
-    ConstellationName: ohituzi
-    ConstellationImage: {fileID: 4628389302510208598, guid: 4f45c5cc93566444f92c4e5ff64963d9, type: 3}
-    DischargeNumber: 30
-    StageSize: {x: 200, y: 200}
-    Threshold: 0.744
+    ConstellationName: 
+    ConstellationImage: {fileID: 0}
+    DischargeNumber: 0
+    StageSize: {x: 0, y: 0}
+    Threshold: 0.75
     SpecialPointNumber: 0
     ShieldNumber: 0
-    ShieldHealthPoint: 0
-    ProbabilityObstacle: 0.423
-    ProbabilityTeleportation: 0
-    ProbabilityDarkHole: 0
-    ProbabilityStar: 0.405
-    ProbabilityMovableObstacle: 0
-    ProbabilityNormalStar: 1
-    ProbabilityBouncingStar: 0
-    ProbabilityIgnoreTeleportationStar: 0
-    ProbabilityTransfixStar: 0
-    ProbabilityExplosionStar: 0
+    ShieldHealthPoint: 4
+    ProbabilityObstacle: 0.524
+    ProbabilityTeleportation: 0.363
+    ProbabilityDarkHole: 0.327
+    ProbabilityStar: 0.589
+    ProbabilityMovableObstacle: 0.065
+    ProbabilityNormalStar: 0.827
+    ProbabilityBouncingStar: 0.333
+    ProbabilityIgnoreTeleportationStar: 0.22
+    ProbabilityTransfixStar: 0.185
+    ProbabilityExplosionStar: 0.214
     NormalPoint: 0
-    RarePoint: 0
-    UniquePoint: 0
-    LegendaryPoint: 0
-    MissionTypes: 
-    ObstacleCollisionNumber: 0
-    DischargeNumberWithinClear: 0
-    ObstacleDestroyNumber: 0
-  SavedFileName: test1.save
+    RarePoint: 0.452
+    UniquePoint: 0.845
+    LegendaryPoint: 0.964
+    MissionTypes: 00000000
+    ObstacleCollisionNumber: 10
+    DischargeNumberWithinClear: 20
+    ObstacleDestroyNumber: 10
+  SavedFileName: Original.save
   TaregtScore:
   - rarity: 0
-    score: 0
-  - rarity: 0
-    score: 0
-  - rarity: 0
-    score: 0
-  - rarity: 0
-    score: 0
+    score: 50
+  - rarity: 1
+    score: 100
+  - rarity: 2
+    score: 200
+  - rarity: 3
+    score: 500
   SpecialTaregtScore:
   - rarity: 0
-    score: 0
-  - rarity: 0
-    score: 0
-  - rarity: 0
-    score: 0
-  - rarity: 0
-    score: 0
+    score: 150
+  - rarity: 1
+    score: 300
+  - rarity: 2
+    score: 600
+  - rarity: 3
+    score: 1500
   NextSceneName: 
-  BGM_Name: 
-  TutorialUI: {fileID: 0}
---- !u!114 &6972879153749195095
+  BGM_Name: OuterSpace
+--- !u!114 &434880578803639365
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2475248473750089530}
+  m_GameObject: {fileID: 8546468782359792282}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7707f01bc6777eb43b47e2b1ed66b8a7, type: 3}
@@ -122,13 +121,13 @@ MonoBehaviour:
   NormalObstacle: {fileID: 2507695156877649083, guid: e41a97d06a7505e4aaeb1531ef73c391, type: 3}
   DarkHoleObstacle: {fileID: 8860778915469388107, guid: 6c827ecef8574f745a033e9974b80028, type: 3}
   TeleportationObstacle: {fileID: 9029200387554804583, guid: 885c9e59ba82b694daaea919ac5cf58e, type: 3}
---- !u!114 &8148704272744989466
+--- !u!114 &790348697512291756
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2475248473750089530}
+  m_GameObject: {fileID: 8546468782359792282}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 3090730a634f96b43b9200f9d29b66a0, type: 3}
@@ -137,13 +136,13 @@ MonoBehaviour:
   DrawSpeed: 0.03
   LinePrefab: {fileID: 7414780173931433481, guid: 141301743f7c99d4ab5a1c72af2e8e4e, type: 3}
   ParticlePrefab: {fileID: 8663533263603270977, guid: 53678195771d7a34b9f6e0b6182ee1f8, type: 3}
---- !u!114 &110398281462304513
+--- !u!114 &4405118489818888320
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2475248473750089530}
+  m_GameObject: {fileID: 8546468782359792282}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9046fa8fc8512da48902d4d7995eeb0f, type: 3}
