@@ -38,8 +38,8 @@ public class StageManagerScript : MonoBehaviour
     public ProceduralGenerator ProceduralGenerator { get; protected set; }
     public SaveConstellationData[] ConstellationDatas { get; protected set; }
     public SaveConstellationData GenerateConstellation { get; protected set; }  //¶¬‚³‚ê‚½¯À
-    private MissionScript[] Missions;
-    private DrawConstellationLine DrawLine;
+    protected MissionScript[] Missions;
+    protected DrawConstellationLine DrawLine;
     public int Score { get; protected set; }
     public int DischargeNumber { get; protected set; }       //ƒvƒŒƒCƒ„[‚ª¯‚ğ”­Ë‚Å‚«‚é‰ñ”
     private Rigidbody2D FinalDischargedStar;
@@ -49,7 +49,7 @@ public class StageManagerScript : MonoBehaviour
     public int ObstacleDestroyNumber { get; protected set; }     //áŠQ•¨”j‰ó‰ñ”
     private MovableObstacleManagerScript MovableObstacleMgr;
     public UIManagerScript UIManager { get; protected set; }
-    private GameObject MainCamera;
+    protected GameObject MainCamera;
 
     private void Awake()
     {
