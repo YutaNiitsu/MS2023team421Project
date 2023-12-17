@@ -44,9 +44,7 @@ public class ContorolPlayer : MonoBehaviour
         // オブジェクトのサイズを取得
         objectSize = collider.bounds.size;
     }
-
-    // Update is called once per frame
-    void Update()
+    private void FixedUpdate()
     {
         //PlayerContorol();
         GetPosition = transform.position;
@@ -55,6 +53,11 @@ public class ContorolPlayer : MonoBehaviour
         CursorContorol();
 
         PlayerContorol();
+    }
+    // Update is called once per frame
+    void Update()
+    {
+        
     }
 
     // ショットゲージ関数

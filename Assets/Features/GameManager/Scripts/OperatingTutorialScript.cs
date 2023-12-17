@@ -32,9 +32,10 @@ public class OperatingTutorialScript : MonoBehaviour
         IsClickStar = false;
         IsDischarged = false;
         IsPutOnTareget = false;
+        TutorialManager.UIManager.SetUIActive(false, false, false, false, false, false);
     }
 
-    private void Update()
+    private void FixedUpdate()
     {
         Vector3 dis;
         Vector3 pos;
@@ -43,7 +44,8 @@ public class OperatingTutorialScript : MonoBehaviour
         {
             case 0:
                 //移動
-                TutorialManager.UIManager.SetUIActive(false, false, false, false, false, false);
+                TutorialManager.UIManager.MiniMap.SetActive(false);
+                TutorialManager.UIManager.HUD.SetActive(false);
                 TutorialManager.TutorialUI.SetActiveOperatingTutorial(0);
                 dis = PrePosition - Camera.transform.position;
                 //合計移動距離計算
@@ -61,7 +63,8 @@ public class OperatingTutorialScript : MonoBehaviour
                 break;
             case 1:
                 //カーソル移動
-                
+                TutorialManager.UIManager.MiniMap.SetActive(false);
+                TutorialManager.UIManager.HUD.SetActive(false);
                 dis = PrePosition - Input.mousePosition;
                 //合計移動距離計算
                 MoveDistance += new Vector2(Mathf.Abs(dis.x), Mathf.Abs(dis.y));
@@ -81,7 +84,8 @@ public class OperatingTutorialScript : MonoBehaviour
                 break;
             case 2:
                 //星をクリック
-               
+                TutorialManager.UIManager.MiniMap.SetActive(false);
+                TutorialManager.UIManager.HUD.SetActive(false);
                 if (IsClickStar)
                 {
                     MoveDistance = Vector2.zero;
@@ -92,7 +96,8 @@ public class OperatingTutorialScript : MonoBehaviour
                 break;
             case 3:
                 //発射方向決める
-                
+                TutorialManager.UIManager.MiniMap.SetActive(false);
+                TutorialManager.UIManager.HUD.SetActive(false);
                 dis = PrePosition - Input.mousePosition;
                 //合計移動距離計算
                 MoveDistance += new Vector2(Mathf.Abs(dis.x), Mathf.Abs(dis.y));
@@ -109,7 +114,8 @@ public class OperatingTutorialScript : MonoBehaviour
                 break;
             case 4:
                 //発射
-                
+                TutorialManager.UIManager.MiniMap.SetActive(false);
+                TutorialManager.UIManager.HUD.SetActive(false);
                 if (IsDischarged)
                 {
                     State = 5;
@@ -122,9 +128,10 @@ public class OperatingTutorialScript : MonoBehaviour
                 break;
             case 5:
                 //はめ込む型に星をはめ込む
-               
-               
-                if(IsPutOnTareget)
+                TutorialManager.UIManager.MiniMap.SetActive(false);
+                TutorialManager.UIManager.HUD.SetActive(false);
+
+                if (IsPutOnTareget)
                 {
                     State = 6;
                     TutorialManager.UIManager.SetUIActive(true, true, true, false, false, false);
@@ -138,7 +145,7 @@ public class OperatingTutorialScript : MonoBehaviour
                 }
                 break;
             case 6:
-                
+
                 if (IsDischarged)
                 {
                     State = 7;
@@ -146,10 +153,19 @@ public class OperatingTutorialScript : MonoBehaviour
                 }
                 break;
             case 7:
-                
+
                 break;
             default:
                 break;
+        }
+    }
+
+    private void Update()
+    {
+        //ポーズ中にも反映させるため
+        if (State == 3)
+        {
+            PrePosition = Input.mousePosition;
         }
 
     }
