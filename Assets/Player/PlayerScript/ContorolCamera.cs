@@ -47,7 +47,7 @@ public class ContorolCamera : MonoBehaviour
                 float verticalInput = Input.GetAxis("Debug Vertical");
 
                 // “ü—Í‚ÉŠî‚Ã‚¢‚ÄˆÚ“®•ûŒü‚ðŒvŽZ
-                Vector3 movementDirection = new Vector3(horizontalInput, verticalInput, 0.0f).normalized;
+                Vector3 movementDirection = new Vector3(horizontalInput, - verticalInput, 0.0f).normalized;
 
                 // ˆÚ“®•ûŒü‚É‘¬“x‚ðŠ|‚¯‚ÄˆÚ“®
                 transform.Translate(movementDirection * 0.05f);
