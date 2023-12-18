@@ -5,7 +5,7 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 1
+  - enabled: 0
     path: Assets/Features/TitleMenu/Title.unity
     guid: f4d1175672d91da408a4ee4daef3ea4a
   - enabled: 0
@@ -17,7 +17,7 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/Scenes/NiitsuTest.unity
     guid: c5e60144e7af09741a0af6caaeec1359
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/MainGame/Tutorial.unity
     guid: 48b7b102f822fb743ab608d3bbe546dd
   - enabled: 1

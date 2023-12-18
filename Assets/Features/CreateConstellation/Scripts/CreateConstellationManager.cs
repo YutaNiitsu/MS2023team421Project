@@ -328,4 +328,9 @@ public class CreateConstellationManager : MonoBehaviour
         LoadButton.interactable = loadButton;
         DeleteSavedDataButton.interactable = deleteSavedDataButton;
     }
+
+    public void TitleScene()
+    {
+
+    }
 }
