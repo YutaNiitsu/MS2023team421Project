@@ -380,7 +380,7 @@ public class ProceduralGenerator : MonoBehaviour
         };
         //’†S‚©‚ç‚Ì‹——£‚Ì2æ
         float lenSq = Vector2.Dot(pos, pos);
-        float t = lenSq / ((float)Math.Pow(stageSize.x * 0.5f, 2.0f) * (float)Math.Pow(stageSize.y * 0.5f, 2.0f));
+        float t = lenSq / ((float)Math.Pow(stageSize.x * 0.5f, 2.0f) + (float)Math.Pow(stageSize.y * 0.5f, 2.0f));
 
         result = (StarRarity)SelectRandomExp(p,t);
 
