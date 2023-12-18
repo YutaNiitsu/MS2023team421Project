@@ -5,7 +5,7 @@ using System.Reflection;
 using TMPro;
 using Unity.VisualScripting;
 using UnityEditor;
-using UnityEditor.SearchService;
+//using UnityEditor.SearchService;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.SocialPlatforms.Impl;
@@ -254,6 +254,7 @@ public class StageManagerScript : MonoBehaviour
     }
     IEnumerator StageCompleteCoroutine()
     {
+        SoundManager.instance.StopBGM("BGM1");
         SoundManager.instance.StopBGM(BGM_Name);
         SoundManager.instance.PlaySE("Complete");
         Debug.Log("ステージクリア");

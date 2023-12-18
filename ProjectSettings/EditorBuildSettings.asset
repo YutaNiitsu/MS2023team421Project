@@ -8,13 +8,13 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Features/TitleMenu/Title.unity
     guid: f4d1175672d91da408a4ee4daef3ea4a
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/SampleScene.unity
     guid: 2cda990e2423bbf4892e6590ba056729
-  - enabled: 1
+  - enabled: 0
     path: Assets/Features/dark hole/game_over.unity
     guid: 73c21c402ae8e1d4e8712487e6b5c808
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/NiitsuTest.unity
     guid: c5e60144e7af09741a0af6caaeec1359
   - enabled: 1
@@ -56,6 +56,9 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/MainGame/Stage12.unity
     guid: 008610065ceff6d47aa061f9621e8cde
+  - enabled: 1
+    path: Assets/Scenes/MainGame/ChallengeMode.unity
+    guid: 9e21c3fdb0203f244b2ac94f5bb5dd94
   - enabled: 1
     path: Assets/Features/CreateConstellation/Scene/CreateConstellationScene.unity
     guid: cc1f3e48a26295d4b937f8937a924a5c

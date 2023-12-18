@@ -3,10 +3,10 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Reflection;
-using TreeEditor;
+//using TreeEditor;
 using UnityEngine;
 using UnityEngine.UIElements;
-using static UnityEditor.PlayerSettings;
+//using static UnityEditor.PlayerSettings;
 // ゲーム開始時に星とそれをはめ込む場所を配置するシステム
 public class ProceduralGenerator : MonoBehaviour
 {
