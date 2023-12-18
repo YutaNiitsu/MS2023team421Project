@@ -532,7 +532,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f043b9f0d23a9784388ae915fd45e3a3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  StartSceneName: PlayMode
+  StartSceneName: StageSelect
 --- !u!4 &546420096
 Transform:
   m_ObjectHideFlags: 0

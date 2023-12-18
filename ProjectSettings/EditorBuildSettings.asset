@@ -17,7 +17,7 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/Scenes/NiitsuTest.unity
     guid: c5e60144e7af09741a0af6caaeec1359
-  - enabled: 0
+  - enabled: 1
     path: Assets/Scenes/MainGame/Tutorial.unity
     guid: 48b7b102f822fb743ab608d3bbe546dd
   - enabled: 1
@@ -62,5 +62,8 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Features/CreateConstellation/Scene/CreateConstellationScene.unity
     guid: cc1f3e48a26295d4b937f8937a924a5c
+  - enabled: 1
+    path: Assets/Features/StageSelect/StageSelect.unity
+    guid: 34ca9cfc355f18d4d9c8a34375f4d2ce
   m_configObjects: {}
   m_UseUCBPForAssetBundles: 0
