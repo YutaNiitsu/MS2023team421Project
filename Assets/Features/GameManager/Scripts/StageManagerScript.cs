@@ -32,12 +32,14 @@ public class StageManagerScript : MonoBehaviour
     public ST_StarRarity[] SpecialTaregtScore;
     [Header("次のSceneの名前")]
     public string NextSceneName;
+    [Header("BGMの名前")]
+    public string BGM_Name;
 
     public ProceduralGenerator ProceduralGenerator { get; protected set; }
     public SaveConstellationData[] ConstellationDatas { get; protected set; }
     public SaveConstellationData GenerateConstellation { get; protected set; }  //生成された星座
-    private MissionScript[] Missions;
-    private DrawConstellationLine DrawLine;
+    protected MissionScript[] Missions;
+    protected DrawConstellationLine DrawLine;
     public int Score { get; protected set; }
     public int DischargeNumber { get; protected set; }       //プレイヤーが星を発射できる回数
     private Rigidbody2D FinalDischargedStar;
@@ -47,17 +49,56 @@ public class StageManagerScript : MonoBehaviour
     public int ObstacleDestroyNumber { get; protected set; }     //障害物破壊回数
     private MovableObstacleManagerScript MovableObstacleMgr;
     public UIManagerScript UIManager { get; protected set; }
-    public TutorialScript Tutorial { get; protected set; }
+    protected GameObject MainCamera;
 
     private void Awake()
     {
         GameManagerScript.instance.Set(this);
+
     }
     
     // Start is called before the first frame update
     void Start()
     {
+        StageManagerStart();
+       
+    }
 
+    // Update is called once per frame
+    void Update()
+    {
+        if (FinalDischargedStar != null && !IsFinished)
+        {
+            //星が停止した
+            if (Vector2.Dot(FinalDischargedStar.velocity, FinalDischargedStar.velocity) <= 0.1f)
+            {
+                IsFinished = true;
+                //ゲームオーバー処理
+                GameOver();
+            }
+        }
+
+        //テスト用
+        if (Input.GetKeyDown(KeyCode.P))
+        {
+            UIManager.PauseGame();
+        }
+        if (Input.GetKeyDown(KeyCode.F2))
+        {
+            SoundManager.instance.StopBGM(BGM_Name);
+        }
+        
+    }
+
+    public virtual void StageManagerStart()
+    {
+        Initialize();
+        CreateObjects();
+    }
+
+    public virtual void Initialize()
+    {
+        GameManagerScript.instance.Set(this);
         Score = 0;
         DischargeNumber = Setting.DischargeNumber;
         FinalDischargedStar = null;
@@ -65,16 +106,21 @@ public class StageManagerScript : MonoBehaviour
         IsStageComplete = false;
         ObstacleCollisionNumber = 0;
         ObstacleDestroyNumber = 0;
-        
+
         ProceduralGenerator = GetComponent<ProceduralGenerator>();
         ConstellationDatas = ConstellationLoadManager.instance.LoadData(SavedFileName);
         DrawLine = GetComponent<DrawConstellationLine>();
         MovableObstacleMgr = GetComponent<MovableObstacleManagerScript>();
         UIManager = GameObject.FindGameObjectWithTag("UIManager").GetComponent<UIManagerScript>();
-        Tutorial = GetComponent<TutorialScript>();
+        MainCamera = GameObject.FindGameObjectWithTag("MainCamera");
 
-        //チュートリアルの時は生成しない
-        if (Tutorial != null)
+        SoundManager.instance.PlayBGM(BGM_Name);
+    }
+
+    public virtual void CreateObjects()
+    {
+        //星座データ無かったら生成しない
+        if (ConstellationDatas == null)
             return;
 
         //星と障害物を配置
@@ -116,39 +162,17 @@ public class StageManagerScript : MonoBehaviour
                 index++;
             }
         }
-
-        SoundManager.instance.PlayBGM("BGM1");
     }
-
-    // Update is called once per frame
-    void Update()
+    //hs目込む型に星がはまった時
+    public virtual void PutOnTareget()
     {
-        if (FinalDischargedStar != null && !IsFinished)
-        {
-            //星が停止した
-            if (Vector2.Dot(FinalDischargedStar.velocity, FinalDischargedStar.velocity) <= 0.1f)
-            {
-                IsFinished = true;
-                //ゲームオーバー処理
-                GameOver();
-            }
-        }
 
-        //テスト用
-        if (Input.GetKeyDown(KeyCode.P))
-        {
-            UIManager.PauseGame();
-        }
-        if (Input.GetKeyDown(KeyCode.F2))
-        {
-            SoundManager.instance.StopBGM("BGM1");
-        }
     }
 
     //はめ込む型に星がはまるとスコア加算
     //starRarity : はまった星のレアリティ
     //isSpecialPoint : はめ込む型が特別ポイントかどうか
-    public void AddScore(StarRarity starRarity, bool isSpecialPoint)
+    public virtual void AddScore(StarRarity starRarity, bool isSpecialPoint)
     {
         switch (starRarity)
         {
@@ -185,15 +209,21 @@ public class StageManagerScript : MonoBehaviour
         {
             //全部はまっていた
             IsFinished = true;
-            StartCoroutine(StageComplete());
+            StageComplete();
         }
 
        
     }
 
+    //星クリックした時
+    public virtual void ClickStar()
+    {
+        
+    }
+
     //星を飛ばすときの処理
     //rb : 飛ばした星
-    public void Discharge(Rigidbody2D rb)
+    public virtual void Discharge(Rigidbody2D rb)
     {
         DischargeNumber--;
 
@@ -205,8 +235,9 @@ public class StageManagerScript : MonoBehaviour
         else
         {
             //動く障害物生成
-            int direction = UnityEngine.Random.Range(0, 7 + (int)(100 * Setting.ProbabilityMovableObstacle));
-            if (direction <= 7)
+            int direction = UnityEngine.Random.Range(0, 7);
+            float rand = UnityEngine.Random.Range(0.01f, 1.0f);
+            if (rand <= Setting.ProbabilityMovableObstacle)
             {
                 MovableObstacleMgr.Create(direction);
             }
@@ -216,12 +247,19 @@ public class StageManagerScript : MonoBehaviour
 
 
     //ステージクリア処理
-    IEnumerator StageComplete()
+    public virtual void StageComplete()
     {
-        SoundManager.instance.StopBGM("BGM1");
+        StartCoroutine(StageCompleteCoroutine());
+    }
+    IEnumerator StageCompleteCoroutine()
+    {
+        SoundManager.instance.StopBGM(BGM_Name);
         SoundManager.instance.PlaySE("Complete");
         Debug.Log("ステージクリア");
         Debug.Log(Score);
+
+        //カメラの位置を初期位置にする
+        MainCamera.transform.position = new Vector3(0.0f, 0.0f, -11.0f);
         IsStageComplete = true;
         DrawLine.DrawLine();
 

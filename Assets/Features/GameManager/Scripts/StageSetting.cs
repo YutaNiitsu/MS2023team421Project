@@ -18,9 +18,9 @@ public struct StageSetting
     [Header("閾値、この値が低いほど生成される星と障害物が多くなる")]
     [SerializeField, Range(0f, 1f)]
     public float Threshold;
-    [Header("特別ポイントの数")]
+    [Header("特別ポイントに指定するはめ込む型の数")]
     public int SpecialPointNumber;
-    [Header("シールドの数")]
+    [Header("シールドをはるはめ込む型の数")]
     public int ShieldNumber;
     [Header("シールドの耐久値")]
     [SerializeField, Range(1, 4)]
