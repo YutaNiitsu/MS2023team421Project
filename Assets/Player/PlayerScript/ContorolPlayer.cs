@@ -46,17 +46,21 @@ public class ContorolPlayer : MonoBehaviour
     }
     private void FixedUpdate()
     {
-        //PlayerContorol();
-        GetPosition = transform.position;
-        ContorolerTG = isContoroler();
-
-        CursorContorol();
-
-        PlayerContorol();
+        
     }
     // Update is called once per frame
     void Update()
     {
+        if (Time.timeScale == 1 && !GameManagerScript.instance.StageManager.IsFinished)
+        {
+            //PlayerContorol();
+            GetPosition = transform.position;
+            ContorolerTG = isContoroler();
+
+            CursorContorol();
+
+            PlayerContorol();
+        }
         
     }
 
