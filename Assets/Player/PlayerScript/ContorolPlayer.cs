@@ -44,17 +44,24 @@ public class ContorolPlayer : MonoBehaviour
         // オブジェクトのサイズを取得
         objectSize = collider.bounds.size;
     }
-
+    private void FixedUpdate()
+    {
+        
+    }
     // Update is called once per frame
     void Update()
     {
-        //PlayerContorol();
-        GetPosition = transform.position;
-        ContorolerTG = isContoroler();
+        if (Time.timeScale == 1 && !GameManagerScript.instance.StageManager.IsFinished)
+        {
+            //PlayerContorol();
+            GetPosition = transform.position;
+            ContorolerTG = isContoroler();
 
-        CursorContorol();
+            CursorContorol();
 
-        PlayerContorol();
+            PlayerContorol();
+        }
+        
     }
 
     // ショットゲージ関数

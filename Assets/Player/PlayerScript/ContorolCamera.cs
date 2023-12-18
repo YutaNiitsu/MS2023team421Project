@@ -17,40 +17,43 @@ public class ContorolCamera : MonoBehaviour
     {
         ContorolerTG = isContoroler();
         Input.GetAxis("Debug Horizontal");
-
-        if (!ContorolerTG)
+        if (Time.timeScale == 1 && !GameManagerScript.instance.StageManager.IsFinished)
         {
-            if (Input.GetKey("w"))
+            if (!ContorolerTG)
             {
-                this.transform.position += new Vector3(0.0f, 0.05f, 0.0f);
+                if (Input.GetKey("w"))
+                {
+                    this.transform.position += new Vector3(0.0f, 0.05f, 0.0f);
+                }
+                else if (Input.GetKey("s"))
+                {
+                    this.transform.position += new Vector3(0.0f, -0.05f, 0.0f);
+                }
+                if (Input.GetKey("a"))
+                {
+                    this.transform.position += new Vector3(-0.05f, 0.0f, 0.0f);
+                }
+                else if (Input.GetKey("d"))
+                {
+                    this.transform.position += new Vector3(0.05f, 0.0f, 0.0f);
+                }
             }
-            else if (Input.GetKey("s"))
+            else if (ContorolerTG)
             {
-                this.transform.position += new Vector3(0.0f, -0.05f, 0.0f);
-            }
-            if (Input.GetKey("a"))
-            {
-                this.transform.position += new Vector3(-0.05f, 0.0f, 0.0f);
-            }
-            else if (Input.GetKey("d"))
-            {
-                this.transform.position += new Vector3(0.05f, 0.0f, 0.0f);
+                // 左スティックの水平方向の入力を取得
+                float horizontalInput = Input.GetAxis("Debug Horizontal");
+
+                // 左スティックの垂直方向の入力を取得
+                float verticalInput = Input.GetAxis("Debug Vertical");
+
+                // 入力に基づいて移動方向を計算
+                Vector3 movementDirection = new Vector3(horizontalInput, verticalInput, 0.0f).normalized;
+
+                // 移動方向に速度を掛けて移動
+                transform.Translate(movementDirection * 0.05f);
             }
         }
-        else if(ContorolerTG)
-        {
-            // 左スティックの水平方向の入力を取得
-            float horizontalInput = Input.GetAxis("Debug Horizontal");
-
-            // 左スティックの垂直方向の入力を取得
-            float verticalInput = Input.GetAxis("Debug Vertical");
-
-            // 入力に基づいて移動方向を計算
-            Vector3 movementDirection = new Vector3(horizontalInput, verticalInput, 0.0f).normalized;
-
-            // 移動方向に速度を掛けて移動
-            transform.Translate(movementDirection * 0.05f);
-        }
+        
     }
 
     bool isContoroler()

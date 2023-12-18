@@ -28,8 +28,12 @@ public class ResultScript : MonoBehaviour
         ScoreText.gameObject.SetActive(false);
         ButtonObjects.SetActive(false);
         missionResult.gameObject.SetActive(false);
-        ConstellationImage.sprite = GameManagerScript.instance.StageManager.Setting.ConstellationImage;
-        ConstellationImage.color = new Color(1.0f, 1.0f, 1.0f, ImageAlpha);
+        if (ConstellationImage != null)
+        {
+            ConstellationImage.sprite = GameManagerScript.instance.StageManager.Setting.ConstellationImage;
+            ConstellationImage.color = new Color(1.0f, 1.0f, 1.0f, ImageAlpha);
+        }
+        
         StartCoroutine(FadeIn());
     }
 
@@ -44,7 +48,8 @@ public class ResultScript : MonoBehaviour
         while (ImageAlpha < 1.0f)
         {
             ImageAlpha += FadeSpeed;
-            ConstellationImage.color = new Color(1.0f, 1.0f, 1.0f, ImageAlpha);
+            if (ConstellationImage != null)
+                ConstellationImage.color = new Color(1.0f, 1.0f, 1.0f, ImageAlpha);
             yield return new WaitForSeconds(0.02f);
         }
 

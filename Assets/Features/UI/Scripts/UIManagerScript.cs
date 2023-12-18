@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class UIManagerScript : MonoBehaviour
 {
@@ -11,6 +12,8 @@ public class UIManagerScript : MonoBehaviour
     public GameObject Result;
     public GameObject Pause;
     public GameObject GameOver;
+    public Button PauseFocusButton;
+    public Button ResultFocusButton;
 
     private StageManagerScript StageManager;
 
@@ -30,7 +33,7 @@ public class UIManagerScript : MonoBehaviour
     //ƒŠƒUƒ‹ƒg•\Ž¦
     public void DisplayResult()
     {
-        
+        ResultFocusButton.Select();
         HUD.SetActive(false);
         MiniMap.SetActive(false);
         WarningMark.SetActive(false);
@@ -58,6 +61,7 @@ public class UIManagerScript : MonoBehaviour
 
     public void DisplayGameOver()
     {
+        ResultFocusButton.Select();
         HUD.SetActive(false);
         MiniMap.SetActive(false);
         WarningMark.SetActive(false);
@@ -100,9 +104,11 @@ public class UIManagerScript : MonoBehaviour
 
     public void PauseGame()
     {
+
         SoundManager.instance.PlaySE("Select");
         if (Time.timeScale != 0)
         {
+            PauseFocusButton.Select();
             StageManager.UIManager.DisplayPauseMenu();
             Time.timeScale = 0;
         }

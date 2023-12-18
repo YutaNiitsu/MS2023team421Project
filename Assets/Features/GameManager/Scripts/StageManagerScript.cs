@@ -38,8 +38,8 @@ public class StageManagerScript : MonoBehaviour
     public ProceduralGenerator ProceduralGenerator { get; protected set; }
     public SaveConstellationData[] ConstellationDatas { get; protected set; }
     public SaveConstellationData GenerateConstellation { get; protected set; }  //生成された星座
-    private MissionScript[] Missions;
-    private DrawConstellationLine DrawLine;
+    protected MissionScript[] Missions;
+    protected DrawConstellationLine DrawLine;
     public int Score { get; protected set; }
     public int DischargeNumber { get; protected set; }       //プレイヤーが星を発射できる回数
     private Rigidbody2D FinalDischargedStar;
@@ -49,7 +49,7 @@ public class StageManagerScript : MonoBehaviour
     public int ObstacleDestroyNumber { get; protected set; }     //障害物破壊回数
     private MovableObstacleManagerScript MovableObstacleMgr;
     public UIManagerScript UIManager { get; protected set; }
-    private GameObject MainCamera;
+    protected GameObject MainCamera;
 
     private void Awake()
     {
@@ -67,10 +67,11 @@ public class StageManagerScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (FinalDischargedStar != null && !IsFinished)
+        if (FinalDischargedStar != null)
         {
-            //星が停止した
-            if (Vector2.Dot(FinalDischargedStar.velocity, FinalDischargedStar.velocity) <= 0.1f)
+            StartCoroutine(FinalDischarged());
+            // 破壊された
+            if (FinalDischargedStar.IsDestroyed())
             {
                 IsFinished = true;
                 //ゲームオーバー処理
@@ -282,12 +283,35 @@ public class StageManagerScript : MonoBehaviour
         Debug.Log("ステージクリア処理終了");
     }
 
+    IEnumerator FinalDischarged()
+    {
+        yield return new WaitForSeconds(0.1f);
+        while (true)
+        {
+            if (FinalDischargedStar == null)
+            {
+                break;
+            }
+            //星が停止した
+            if (FinalDischargedStar.velocity.magnitude <= 0.1f && !IsFinished)
+            {
+                break;
+            }
+            
+            yield return new WaitForSeconds(0.1f);
+        }
+        yield return new WaitForSeconds(0.0f);
+        IsFinished = true;
+        //ゲームオーバー処理
+        GameOver();
+    }
+
     //ゲームオーバー処理
     void GameOver()
     {
         SoundManager.instance.StopBGM("BGM1");
         SoundManager.instance.PlaySE("GameOver");
-        Time.timeScale = 0;
+        //Time.timeScale = 0;
         UIManager.DisplayGameOver();
         Debug.Log("GameOver");
     }
