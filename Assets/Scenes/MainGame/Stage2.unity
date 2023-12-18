@@ -531,6 +531,17 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0ac9260a8b0aaac499242aafa37b6cf8, type: 3}
+--- !u!114 &844103251 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5757091331543033853, guid: 0ac9260a8b0aaac499242aafa37b6cf8, type: 3}
+  m_PrefabInstance: {fileID: 844103250}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0336cf8f714e78442addfbb10ee543f2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &922564435 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8369293343795846151, guid: 756325d7dd0a6934d80f29f6041ea2dd, type: 3}
@@ -880,7 +891,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f4e3776cb7712004d9d447836a4b70ec, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  contorolPlayerScript: {fileID: 0}
+  contorolPlayerScript: {fileID: 844103251}
   arrowPrefab: {fileID: 0}
   lineRenderer: {fileID: 1779695021}
 --- !u!120 &1779695021
