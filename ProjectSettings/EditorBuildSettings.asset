@@ -17,7 +17,7 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/Scenes/NiitsuTest.unity
     guid: c5e60144e7af09741a0af6caaeec1359
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/MainGame/Tutorial.unity
     guid: 48b7b102f822fb743ab608d3bbe546dd
   - enabled: 1
