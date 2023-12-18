@@ -31,6 +31,8 @@ public class ChallengeModeManagerScript : StageManagerScript
         //はめ込む型の数からステージを設定
         int targetNum = GenerateConstellation.targets.Length;
         Setting.DischargeNumber = targetNum * 10;
+        Setting.ShieldNumber = targetNum / 2;
+        Setting.SpecialPointNumber = targetNum / 2;
 
 
         //星と障害物を配置

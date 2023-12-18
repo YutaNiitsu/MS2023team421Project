@@ -152,44 +152,15 @@ public class ProceduralGenerator : MonoBehaviour
         SetRandomPositions(out positions, stageSize, threshold);
         //既に何か生成されているかどうかの判別用
         bool[] determination = new bool[positions.Length];
-
-        //星と障害物の生成
         int index = 0;
+        //ワープの生成
         foreach (Vector2 i in positions)
         {
-            float max = setting.ProbabilityObstacle + setting.ProbabilityDarkHole + setting.ProbabilityTeleportation + setting.ProbabilityStar;
+            float max = setting.ProbabilityObstacle + setting.ProbabilityDarkHole + setting.ProbabilityTeleportation * 0.5f + setting.ProbabilityStar;
             float rand = UnityEngine.Random.Range(0.0f, max);
             if (!determination[index])
             {
-                float min = 0.0f;
-                max = setting.ProbabilityStar;
-                //星の生成
-                if (setting.ProbabilityStar > 0.0f
-                    && max >= rand)
-                {
-                    CreateStars(new Vector3(i.x, i.y, 0.0f));
-                    determination[index] = true;
-                }
-                min += setting.ProbabilityStar;
-                max = setting.ProbabilityObstacle;
-                //動かない障害物の生成
-                if (setting.ProbabilityObstacle > 0.0f
-                    && rand > min && max >= rand)
-                {
-                    Instantiate(Obstacle, new Vector3(i.x, i.y, 0.0f), Quaternion.identity);
-                    determination[index] = true;
-                }
-                min += setting.ProbabilityObstacle;
-                max += setting.ProbabilityDarkHole;
-                //ダークホール生成
-                if (setting.ProbabilityDarkHole > 0.0f 
-                    && rand > min && max >= rand)
-                {
-                    Instantiate(DarkHole, new Vector3(i.x, i.y, 0.0f), Quaternion.identity);
-                    determination[index] = true;
-                }
-                min += setting.ProbabilityDarkHole;
-                max += setting.ProbabilityTeleportation;
+                float min = setting.ProbabilityObstacle + setting.ProbabilityDarkHole + setting.ProbabilityStar;
                 //ワープ生成
                 if (setting.ProbabilityTeleportation > 0.0f
                     && rand > min && max >= rand)
@@ -211,6 +182,69 @@ public class ProceduralGenerator : MonoBehaviour
                         determination[indexs[1]] = true;
                     }
                 }
+
+            }
+            index++;
+        }
+
+        index = 0;
+        //星と障害物（ワープ以外）の生成
+        foreach (Vector2 i in positions)
+        {
+            float max = setting.ProbabilityObstacle + setting.ProbabilityDarkHole + setting.ProbabilityTeleportation + setting.ProbabilityStar;
+            float rand = UnityEngine.Random.Range(0.0f, max);
+            if (!determination[index])
+            {
+                float min = 0.0f;
+                max = setting.ProbabilityStar;
+                //星の生成
+                if (setting.ProbabilityStar > 0.0f
+                    && max >= rand)
+                {
+                    CreateStars(new Vector3(i.x, i.y, 0.0f));
+                    determination[index] = true;
+                }
+                min += setting.ProbabilityStar;
+                max += setting.ProbabilityObstacle;
+                //動かない障害物の生成
+                if (setting.ProbabilityObstacle > 0.0f
+                    && rand > min && max >= rand)
+                {
+                    Instantiate(Obstacle, new Vector3(i.x, i.y, 0.0f), Quaternion.identity);
+                    determination[index] = true;
+                }
+                min += setting.ProbabilityObstacle;
+                max += setting.ProbabilityDarkHole;
+                //ダークホール生成
+                if (setting.ProbabilityDarkHole > 0.0f 
+                    && rand > min && max >= rand)
+                {
+                    Instantiate(DarkHole, new Vector3(i.x, i.y, 0.0f), Quaternion.identity);
+                    determination[index] = true;
+                }
+                //min += setting.ProbabilityDarkHole;
+                //max += setting.ProbabilityTeleportation;
+                ////ワープ生成
+                //if (setting.ProbabilityTeleportation > 0.0f
+                //    && rand > min && max >= rand)
+                //{
+                //    //ワープ障害物の生成
+                //    //2か所位置決める
+                //    List<int> indexs = SelectRandomElements(2, 0, positions.Length - 1);
+                //    //何も置かれてなかったら生成
+                //    if (!determination[indexs[0]] && !determination[indexs[1]])
+                //    {
+                //        GameObject obj = Instantiate(Teleportation, new Vector3(0.0f, 0.0f, 0.0f), Quaternion.identity);
+                //        Color color = new Color();
+                //        color.r = UnityEngine.Random.Range(0f, 1f);
+                //        color.g = UnityEngine.Random.Range(0f, 1f);
+                //        color.b = UnityEngine.Random.Range(0f, 1f);
+                //        color.a = 1.0f;
+                //        obj.GetComponent<TeleportationScript>().Set(positions[indexs[0]], positions[indexs[1]], color);
+                //        determination[indexs[0]] = true;
+                //        determination[indexs[1]] = true;
+                //    }
+                //}
                 
             }
             index++;
@@ -233,7 +267,7 @@ public class ProceduralGenerator : MonoBehaviour
             Instantiate(NormalStar, pos, Quaternion.identity);
         }
         min += setting.ProbabilityNormalStar;
-        max = setting.ProbabilityBouncingStar;
+        max += setting.ProbabilityBouncingStar;
         //バウンスの生成
         if (setting.ProbabilityBouncingStar > 0.0f
             && rand > min && max >= rand)
