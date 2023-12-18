@@ -11,11 +11,12 @@ public class Title : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        SoundManager.instance.PlayBGM("BGM1");
     }
 
     public void SwitchScene()
     {
         SceneManager.LoadScene(StartSceneName, LoadSceneMode.Single);
+        SoundManager.instance.StopBGM("BGM1");
     }
 }
