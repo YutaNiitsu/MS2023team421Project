@@ -21,9 +21,12 @@ public class MiniMapScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Vector3 cameraPos = new Vector3(CameraTransform.position.x * MapSize.x / StageSize.x,
-            CameraTransform.position.y * MapSize.y / StageSize.y, 0.0f);
-        CameraLocationPoint.localPosition = cameraPos;
-        //CameraLocationPoint.transform.position = CameraTransform.position;
+        if (StageSize.y > 0.0f)
+        {
+            Vector3 cameraPos = new Vector3(CameraTransform.position.x * MapSize.x / StageSize.x,
+           CameraTransform.position.y * MapSize.y / StageSize.y, 0.0f);
+            CameraLocationPoint.localPosition = cameraPos;
+        }
+       
     }
 }

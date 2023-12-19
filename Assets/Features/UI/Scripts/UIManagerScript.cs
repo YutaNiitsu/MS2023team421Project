@@ -82,7 +82,7 @@ public class UIManagerScript : MonoBehaviour
     //éüÇÃÉVÅ[ÉìÇ÷à⁄çs
     public void NextScene()
     {
-        SoundManager.instance.StopBGM("BGM1");
+        SoundManager.instance.StopBGM(GameManagerScript.instance.StageManager.BGM_Name);
         SoundManager.instance.PlaySE("Select");
         SceneManager.LoadScene(StageManager.NextSceneName);
         Time.timeScale = 1;
@@ -90,7 +90,7 @@ public class UIManagerScript : MonoBehaviour
 
     public void Retry()
     {
-        SoundManager.instance.StopBGM("BGM1");
+        SoundManager.instance.StopBGM(GameManagerScript.instance.StageManager.BGM_Name);
         SoundManager.instance.PlaySE("Select");
         string sceneName = SceneManager.GetActiveScene().name;
         SceneManager.LoadScene(sceneName); 
@@ -99,7 +99,7 @@ public class UIManagerScript : MonoBehaviour
 
     public void TitleScene()
     {
-        SoundManager.instance.StopBGM("BGM1");
+        SoundManager.instance.StopBGM(GameManagerScript.instance.StageManager.BGM_Name);
         SoundManager.instance.PlaySE("Select");
         SceneManager.LoadScene("Title");
         Time.timeScale = 1;

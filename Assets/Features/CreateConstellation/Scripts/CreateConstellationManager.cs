@@ -5,6 +5,7 @@ using System.Reflection;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.EventSystems;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using static SaveConstellationDIsplayScript;
 
@@ -331,6 +332,6 @@ public class CreateConstellationManager : MonoBehaviour
 
     public void TitleScene()
     {
-
+        SceneManager.LoadScene("Title"); 
     }
 }
