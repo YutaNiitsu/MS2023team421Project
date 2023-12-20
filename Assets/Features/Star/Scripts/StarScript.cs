@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Drawing;
 using Unity.VisualScripting;
 using UnityEngine;
 using static UnityEngine.ParticleSystem;
@@ -25,6 +26,8 @@ public class StarScript : MonoBehaviour
     public ParticleSystem MovingParticle;
     [Header("消滅自のパーティクルのプレハブ")]
     public ParticleSystem ExplosionParticle;
+    [Header("移動中のパーティクルの色")]
+    public UnityEngine.Color MovingParticleColor;
 
     public Rigidbody2D Rigidbody { get; protected set; }
     private bool IsPlaying;
@@ -52,7 +55,8 @@ public class StarScript : MonoBehaviour
                 Collider2D = i;
             }
         }
-
+        var main = MovingParticle.main;
+        main.startColor = new ParticleSystem.MinMaxGradient(MovingParticleColor);
         SetRarity();
     }
 
@@ -138,12 +142,12 @@ public class StarScript : MonoBehaviour
             case StarRarity.Unique:
                 obj = Instantiate(UniqueParticle, gameObject.transform.position, new Quaternion());
                 obj.transform.parent = gameObject.transform;
-                sprite.color = Color.blue;
+                //sprite.color = UnityEngine.Color.blue;
                 break;
             case StarRarity.Legendary:
                 obj = Instantiate(LegendaryParticle, gameObject.transform.position, new Quaternion());
                 obj.transform.parent = gameObject.transform;
-                sprite.color = Color.yellow;
+                //sprite.color = UnityEngine.Color.yellow;
                 break;
             default:
                 break;

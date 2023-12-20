@@ -116,7 +116,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 4
 --- !u!58 &2145372222123575533
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -171,6 +171,7 @@ MonoBehaviour:
   LegendaryParticle: {fileID: 1353305731699379709, guid: 482989270e1868c44ba38436e5d15852, type: 3}
   MovingParticle: {fileID: 3777658199795284839}
   ExplosionParticle: {fileID: 0}
+  MovingParticleColor: {r: 1, g: 0.90058327, b: 0, a: 1}
 --- !u!114 &4409970266393799464
 MonoBehaviour:
   m_ObjectHideFlags: 0
