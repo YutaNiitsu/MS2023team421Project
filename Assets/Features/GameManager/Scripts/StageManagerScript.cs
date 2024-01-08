@@ -263,7 +263,12 @@ public class StageManagerScript : MonoBehaviour
         //ƒJƒƒ‰‚ÌˆÊ’u‚ğ‰ŠúˆÊ’u‚É‚·‚é
         MainCamera.transform.position = new Vector3(0.0f, 0.0f, -11.0f);
         IsStageComplete = true;
-        DrawLine.DrawLine();
+
+        //¯À‚Ìü•`‰æ
+        ST_Constellation[] targets = GameManagerScript.instance.StageManager.GenerateConstellation.targets;
+        Line[] lines = GameManagerScript.instance.StageManager.GenerateConstellation.lines;
+
+        DrawLine.DrawLine(targets, lines);
 
         foreach (MissionScript i in Missions)
         {
