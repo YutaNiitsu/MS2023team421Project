@@ -1947,7 +1947,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   DrawSpeed: 0.197
   LinePrefab: {fileID: 7414780173931433481, guid: 141301743f7c99d4ab5a1c72af2e8e4e, type: 3}
-  ParticlePrefab: {fileID: 3723668583072069919, guid: 263fd307957b1074d9e3146bd30d290d, type: 3}
+  ParticlePrefab: {fileID: 2024142958695840414, guid: 263fd307957b1074d9e3146bd30d290d, type: 3}
 --- !u!114 &1010524303
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2645,7 +2645,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   DrawSpeed: 0.186
   LinePrefab: {fileID: 7414780173931433481, guid: 141301743f7c99d4ab5a1c72af2e8e4e, type: 3}
-  ParticlePrefab: {fileID: 3723668583072069919, guid: 263fd307957b1074d9e3146bd30d290d, type: 3}
+  ParticlePrefab: {fileID: 2024142958695840414, guid: 263fd307957b1074d9e3146bd30d290d, type: 3}
 --- !u!114 &1531507612
 MonoBehaviour:
   m_ObjectHideFlags: 0

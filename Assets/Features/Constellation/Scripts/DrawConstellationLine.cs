@@ -13,7 +13,7 @@ public class DrawConstellationLine : MonoBehaviour
     [Header("ラインレンダラーを持つプレハブ")]
     public GameObject LinePrefab;
     [Header("パーティクルのプレハブ")]
-    public ParticleSystem ParticlePrefab;
+    public TrailRenderer ParticlePrefab;
 
     private ProceduralGenerator ProceduralGenerator;
     private bool IsStartedDrawing;
@@ -26,7 +26,7 @@ public class DrawConstellationLine : MonoBehaviour
     private GameObject[] LineObject;
     private LineRenderer lineRenderer;
     private int DrawNumber;    //始点から終点まで描画するまでのフレーム数
-    private ParticleSystem Particle;
+    private TrailRenderer Particle;
     private ST_Constellation[] Targets;
     private Line[] Lines;
 
@@ -69,7 +69,7 @@ public class DrawConstellationLine : MonoBehaviour
                 CurPos = DrawStart;
                 state = 2;
                 DrawNumber = (int)(Vector3.Distance(DrawStart, DrawEnd) / DrawSpeed);
-                Particle.Play();
+                //Particle.Play();
                 Particle.gameObject.transform.position = CurPos;
                 break;
             case 2:
@@ -92,7 +92,7 @@ public class DrawConstellationLine : MonoBehaviour
                 if (CurLineIndex >= Lines.Length)
                 {
                     //線の描画完了
-                    Particle.Stop();
+                    Particle.gameObject.GetComponent<ParticleSystem>().Stop();
                     Destroy(Particle.gameObject, 1.0f);
                     state = 4;
                     CurLineIndex = 0;
