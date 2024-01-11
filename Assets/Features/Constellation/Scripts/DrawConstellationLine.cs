@@ -7,6 +7,8 @@ using static UnityEngine.ParticleSystem;
 
 public class DrawConstellationLine : MonoBehaviour
 {
+    [Header("ƒ‰ƒCƒ“‚Ì‘¾‚³")]
+    public float Width;
     [Header("ƒ‰ƒCƒ“‚ª‚Ğ‚Æ‚Â‚¸‚ÂŒq‚ª‚Á‚Ä‚­‚Ì‘¬‚³")]
     [SerializeField, Range(0f, 1.0f)]
     public float DrawSpeed;
@@ -76,8 +78,8 @@ public class DrawConstellationLine : MonoBehaviour
                 //ü‚ği‚ß‚é
                 if (DrawNumber <= 0)
                     state = 3;
-                lineRenderer.startWidth = 0.1f;
-                lineRenderer.endWidth = 0.1f;
+                lineRenderer.startWidth = Width;
+                lineRenderer.endWidth = Width;
                 lineRenderer.positionCount = 2;
                 lineRenderer.SetPosition(0, DrawStart);
                 lineRenderer.SetPosition(1, CurPos);

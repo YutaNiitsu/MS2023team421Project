@@ -134,6 +134,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3090730a634f96b43b9200f9d29b66a0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Width: 0.2
   DrawSpeed: 0.03
   LinePrefab: {fileID: 7414780173931433481, guid: 141301743f7c99d4ab5a1c72af2e8e4e, type: 3}
   ParticlePrefab: {fileID: 2024142958695840414, guid: 263fd307957b1074d9e3146bd30d290d, type: 3}
