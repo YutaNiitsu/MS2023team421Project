@@ -6,7 +6,8 @@ Shader "Unlit/MovingEffectShader"
     }
     SubShader
     {
-        Tags { "RenderType"="Opaque" }
+        Tags { "RenderType"="Transparent" "Queue" = "Transparent" }
+        Blend SrcAlpha OneMinusSrcAlpha
         LOD 100
 
         Pass
@@ -49,7 +50,7 @@ Shader "Unlit/MovingEffectShader"
                 // sample the texture
                 fixed4 col = tex2D(_MainTex, i.uv);
     
-                col.a *= 0.5f - abs(i.uv.y - 0.5f);
+    col.a = 1.0f - abs(i.uv.y - 0.5f) * 2.0f - _SinTime;
                 //col.a = 0;
                 // apply fog
                 UNITY_APPLY_FOG(i.fogCoord, col);
