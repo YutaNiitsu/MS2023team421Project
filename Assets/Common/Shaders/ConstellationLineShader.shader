@@ -1,4 +1,4 @@
-Shader "Unlit/MovingEffectShader"
+Shader "Unlit/ConstellationLineShader"
 {
     Properties
     {
@@ -85,8 +85,8 @@ float fbm2(in float2 vec, in int octave, in float2 offset = 0.0)
 
             fixed4 frag (v2f i) : SV_Target
             {
-                // sample the texture
-                fixed4 col = tex2D(_MainTex, i.uv);
+                   // sample the texture
+    fixed4 col = tex2D(_MainTex, i.uv);
     float2 pos = i.vertex.xy;
     pos.xy += _Time * 10.0f;
     
@@ -101,14 +101,14 @@ float fbm2(in float2 vec, in int octave, in float2 offset = 0.0)
     col.r = 1.1f - pow(saturate(1.0f - abs(i.uv.y - 0.5f * noise) * 2.0f), 5);
     //col.rg = 1.1f - pow(saturate(1.0f - abs(i.uv.y - 0.5f * noise2) * 2.0f), 5);
     col.a += pow(saturate(0.9f - abs(i.uv.y - 0.5f) * 2.0f), 8) * noise;
-    col.a *= pow(saturate(0.9f - abs(i.uv.y - 0.5f) * 2.0f), 5);
+    col.a *= pow(saturate(1.0f - abs(i.uv.y - 0.5f) * 2.0f), 5);
                 //col.a = 0;
                 // apply fog
-                UNITY_APPLY_FOG(i.fogCoord, col);
+    UNITY_APPLY_FOG(i.fogCoord, col);
     
     
-                return col;
-            }
+    return col;
+}
             ENDCG
         }
     }
