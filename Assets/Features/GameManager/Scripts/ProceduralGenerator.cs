@@ -92,7 +92,7 @@ public class ProceduralGenerator : MonoBehaviour
         GameObject.FindGameObjectsWithTag("Obstacle", obstacles);
         int index = 0;
         //スクリーンのサイズをワールド内のサイズに変換
-        Vector3 worldScreen = Camera.main.ScreenToWorldPoint(new Vector3(Screen.currentResolution.width, Screen.currentResolution.height, 0.0f));
+        Vector3 worldScreen = Camera.main.ScreenToWorldPoint(new Vector3(Screen.currentResolution.width / 1.4f, Screen.currentResolution.height / 1.4f, 0.0f));
         
         for (int y = 0; y < (int)stageSize.y; y += 2)
         {

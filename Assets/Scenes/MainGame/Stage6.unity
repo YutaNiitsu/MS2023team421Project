@@ -813,6 +813,10 @@ PrefabInstance:
       value: StageManager
       objectReference: {fileID: 0}
     - target: {fileID: 5105850875108164340, guid: 23cd3a265e427634aade1d6e486d211d, type: 3}
+      propertyPath: NextSceneName
+      value: Stage7
+      objectReference: {fileID: 0}
+    - target: {fileID: 5105850875108164340, guid: 23cd3a265e427634aade1d6e486d211d, type: 3}
       propertyPath: Setting.ProbabilityStar
       value: 0.388
       objectReference: {fileID: 0}
