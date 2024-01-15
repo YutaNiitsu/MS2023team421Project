@@ -28,6 +28,9 @@ public class StarScript : MonoBehaviour
     public ParticleSystem ExplosionParticle;
     [Header("移動中のパーティクルの色")]
     public UnityEngine.Color MovingParticleColor;
+    [Header("移動中の軌跡の色")]
+    public UnityEngine.Color TrailColor1;
+    public UnityEngine.Color TrailColor2;
 
     public Rigidbody2D Rigidbody { get; protected set; }
     private bool IsPlaying;
@@ -37,12 +40,16 @@ public class StarScript : MonoBehaviour
     //Start is called before the first frame update
     void Start()
     {
-        //ParticleSystem.MainModule particle;
-        //if (Particle != null)
-        //{
-        //    particle = Particle.main;
-        //    particle.loop = false;
-        //}
+        //スプライトとエフェクト類の描画順設定
+        SpriteRenderer sr = GetComponent<SpriteRenderer>();
+        sr.sortingOrder = 1;
+        TrailRenderer tr = MovingParticle.gameObject.GetComponent<TrailRenderer>();
+        tr.sortingOrder = 0;
+        
+        //軌跡の色設定
+        tr.material.SetColor("_Color01", TrailColor1);
+        tr.material.SetColor("_Color02", TrailColor2);
+
         IsPlaying = false;
         IsMoving = false;
         Rigidbody = gameObject.GetComponent<Rigidbody2D>();
