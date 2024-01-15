@@ -128,7 +128,8 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      TrailImage03_0: 2625729799090412431
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

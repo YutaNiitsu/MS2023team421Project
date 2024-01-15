@@ -172,6 +172,8 @@ MonoBehaviour:
   MovingParticle: {fileID: 3777658199795284839}
   ExplosionParticle: {fileID: 0}
   MovingParticleColor: {r: 1, g: 0.90058327, b: 0, a: 1}
+  TrailColor1: {r: 0.6930852, g: 0, b: 1, a: 0}
+  TrailColor2: {r: 1, g: 0.78035855, b: 0, a: 0}
 --- !u!114 &4409970266393799464
 MonoBehaviour:
   m_ObjectHideFlags: 0
