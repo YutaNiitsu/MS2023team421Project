@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Drawing;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.VFX;
 using static UnityEngine.ParticleSystem;
 
 public enum StarRarity
@@ -36,6 +37,8 @@ public class StarScript : MonoBehaviour
     private bool IsPlaying;
     public bool IsMoving { get; protected set; }
     private CircleCollider2D Collider2D;
+    private VisualEffect TrailHeadEffect;
+    private TrailRenderer TrailEffect;
 
     //Start is called before the first frame update
     void Start()
@@ -43,12 +46,15 @@ public class StarScript : MonoBehaviour
         //スプライトとエフェクト類の描画順設定
         SpriteRenderer sr = GetComponent<SpriteRenderer>();
         sr.sortingOrder = 1;
-        TrailRenderer tr = MovingParticle.gameObject.GetComponent<TrailRenderer>();
-        tr.sortingOrder = 0;
-        
+        TrailEffect = MovingParticle.gameObject.GetComponent<TrailRenderer>();
+        TrailEffect.sortingOrder = 0;
+        TrailHeadEffect = MovingParticle.gameObject.GetComponent<VisualEffect>();
+        TrailHeadEffect.Stop();
+
         //軌跡の色設定
-        tr.material.SetColor("_Color01", TrailColor1);
-        tr.material.SetColor("_Color02", TrailColor2);
+        TrailEffect.material.SetColor("_Color01", TrailColor1);
+        TrailEffect.material.SetColor("_Color02", TrailColor2);
+        TrailHeadEffect.SetVector4("Color", TrailColor2);
 
         IsPlaying = false;
         IsMoving = false;
@@ -114,6 +120,8 @@ public class StarScript : MonoBehaviour
         {
             IsPlaying = true;
             MovingParticle.Play();
+            TrailEffect.enabled = true;
+            TrailHeadEffect.Play();
             Debug.Log("PlayParticle");
         }
     }
@@ -124,6 +132,8 @@ public class StarScript : MonoBehaviour
         {
             IsPlaying = false;
             MovingParticle.Stop();
+            TrailEffect.enabled = false;
+            TrailHeadEffect.Stop();
             Debug.Log("StopParticle");
         }
     }
