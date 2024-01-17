@@ -1,11 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class HUDScript : MonoBehaviour
 {
-    public Image DischargeNumber;
+    public UI_ValueScript DischargeNumber;
     private int PreDischargeNumber;
 
     // Start is called before the first frame update
@@ -21,7 +22,11 @@ public class HUDScript : MonoBehaviour
         if (CurDischargeNumber != PreDischargeNumber)
         {
             PreDischargeNumber = CurDischargeNumber;
-            DischargeNumber.material.SetFloat("_Number", 0);
+            DischargeNumber.SetValue(CurDischargeNumber);
+        }
+        if (Input.GetKeyDown(KeyCode.F3))
+        {
+            
         }
     }
 }
