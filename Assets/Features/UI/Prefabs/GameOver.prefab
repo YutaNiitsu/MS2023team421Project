@@ -67,8 +67,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
-  m_Type: 1
+  m_Sprite: {fileID: -5081949855336221306, guid: 386b01829c43ede46a98134d5c1767d2, type: 3}
+  m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
@@ -470,6 +470,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18fb85aa1455ad1499e813ae3c8bf688, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  GameClearImage: {fileID: 0}
   ConstellationImage: {fileID: 7342800232817532202}
   ScoreText: {fileID: 0}
   ButtonObjects: {fileID: 6703191407449219218}
@@ -556,7 +557,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &2032354404934584526
 RectTransform:
   m_ObjectHideFlags: 0
