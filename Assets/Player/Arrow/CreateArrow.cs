@@ -27,7 +27,7 @@ public class CreateArrow : MonoBehaviour
     {
     
         //lineRenderer.SetPosition(0,new Vector3(0.0f,0.0f,1.0f));
-        Debug.Log($"•‚¯‚Ä{contorolPlayerScript.GetPos()}");
+        //Debug.Log($"•‚¯‚Ä{contorolPlayerScript.GetPos()}");
        // lineRenderer.SetPosition(1, new Vector3(10.0f, 10.0f, 1.0f));
        //Vector2 inputMoveAxis = MovePointer.ReadValue<Vector2>();
         if ((Input.GetMouseButtonDown(0) || Input.GetButtonDown("Fire1")) && StatusTg == 0) // ¶ƒNƒŠƒbƒN

@@ -111,24 +111,28 @@ public class ContorolPlayer : MonoBehaviour
                     
                 GameManagerScript.instance.StageManager.ClickStar();
             }
-
+           
             //Debug.Log(clickedGameObject);
         }
+        if (StarScriptRef != null)
+            StarScriptRef.Charging(startDirection.magnitude);
+
+        Vector2 endPos = transform.position;
+        startDirection = -1 * (endPos - startPos);
 
         // マウスを離した地点の座標から、発射方向を計算
         if (Input.GetMouseButtonUp(0) || Input.GetButtonUp("Fire1"))
         {
             Vector3 CursurPoint = Camera.main.ScreenToWorldPoint(transform.position);
             
-            //Vector2 endPos = CursurPoint;
-            Vector2 endPos = transform.position;
-            //Vector2 endPos = Input.mousePosition;
-            startDirection = -1 * (endPos - startPos);
+            ////Vector2 endPos = CursurPoint;
+            //Vector2 endPos = transform.position;
+            ////Vector2 endPos = Input.mousePosition;
+            //startDirection = -1 * (endPos - startPos);
           
             shotGaugeSet = false;
 
-            if (StarScriptRef != null)
-                StarScriptRef.Charging(startDirection.magnitude);
+            
 
             Debug.Log(startDirection);
             //Debug.Log("UUUUUUdddddd呼び出し確認");
@@ -138,7 +142,7 @@ public class ContorolPlayer : MonoBehaviour
                 ContorolStarScript.AddForce(startDirection * speed);
                 GameManagerScript.instance.StageManager.Discharge(ContorolStarScript.rigid2d);
                 ContorolStarScript = null;
-                
+                StarScriptRef = null;
             }
         }
 

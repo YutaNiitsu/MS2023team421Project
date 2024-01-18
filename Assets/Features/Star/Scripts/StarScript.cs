@@ -39,6 +39,7 @@ public class StarScript : MonoBehaviour
     private CircleCollider2D Collider2D;
     private VisualEffect TrailHeadEffect;
     private TrailRenderer TrailEffect;
+    private bool IsCharging;
 
     //Start is called before the first frame update
     void Start()
@@ -50,6 +51,7 @@ public class StarScript : MonoBehaviour
         TrailEffect.sortingOrder = 0;
         TrailHeadEffect = MovingParticle.gameObject.GetComponent<VisualEffect>();
         TrailHeadEffect.Stop();
+        //TrailHeadEffect.SetFloat("Size", 0);
 
         //軌跡の色設定
         TrailEffect.material.SetColor("_Color01", TrailColor1);
@@ -58,6 +60,8 @@ public class StarScript : MonoBehaviour
 
         IsPlaying = false;
         IsMoving = false;
+        IsCharging = false;
+
         Rigidbody = gameObject.GetComponent<Rigidbody2D>();
 
         foreach (CircleCollider2D i in GetComponents<CircleCollider2D>())
@@ -94,6 +98,7 @@ public class StarScript : MonoBehaviour
                 //動いていない時は動く障害物に衝突しない
                 Collider2D.excludeLayers = LayerMask.GetMask("MovableObstacle");
             }
+            
         }
         
     }
@@ -123,7 +128,7 @@ public class StarScript : MonoBehaviour
             TrailEffect.enabled = true;
             TrailHeadEffect.Play();
             TrailHeadEffect.SetFloat("Size", 5);
-            Debug.Log("PlayParticle");
+            IsCharging = false;
         }
     }
 
@@ -134,8 +139,11 @@ public class StarScript : MonoBehaviour
             IsPlaying = false;
             MovingParticle.Stop();
             TrailEffect.enabled = false;
-            TrailHeadEffect.Stop();
-            Debug.Log("StopParticle");
+            
+            if (!IsCharging)
+                TrailHeadEffect.Stop();
+
+            //Debug.Log("StopParticle");
         }
     }
 
@@ -176,7 +184,14 @@ public class StarScript : MonoBehaviour
     //発射チャージ中処理
     public void Charging(float power)
     {
-        TrailHeadEffect.Play();
-        TrailHeadEffect.SetFloat("Size", power);
+        if (!IsCharging)
+        {
+            TrailHeadEffect.Play();
+
+        }
+        IsCharging = true;
+         TrailHeadEffect.SetFloat("Size", power);
+
+        Debug.Log(power);
     }
 }
