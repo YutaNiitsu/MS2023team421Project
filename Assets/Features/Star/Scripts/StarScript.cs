@@ -122,6 +122,7 @@ public class StarScript : MonoBehaviour
             MovingParticle.Play();
             TrailEffect.enabled = true;
             TrailHeadEffect.Play();
+            TrailHeadEffect.SetFloat("Size", 5);
             Debug.Log("PlayParticle");
         }
     }
@@ -170,5 +171,12 @@ public class StarScript : MonoBehaviour
                 break;
         }
 
+    }
+
+    //”­Ëƒ`ƒƒ[ƒW’†ˆ—
+    public void Charging(float power)
+    {
+        TrailHeadEffect.Play();
+        TrailHeadEffect.SetFloat("Size", power);
     }
 }

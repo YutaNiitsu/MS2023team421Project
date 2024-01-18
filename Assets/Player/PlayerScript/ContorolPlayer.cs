@@ -32,6 +32,8 @@ public class ContorolPlayer : MonoBehaviour
     Vector3 objectSize;
 
     Vector3 GetPosition;
+    private StarScript StarScriptRef;
+
     void Start()
     {
         //maxDistance = GetComponent<GameObject>().transform.lossyScale.x / 2.0f;
@@ -102,7 +104,11 @@ public class ContorolPlayer : MonoBehaviour
                 clickedGameObject = hit2d.transform.gameObject;
                 if (clickedGameObject.gameObject.CompareTag("Player")
                     || clickedGameObject.gameObject.CompareTag("Star"))
+                {
                     ContorolStarScript = clickedGameObject.GetComponent<ContorolStar>();
+                    StarScriptRef = clickedGameObject.GetComponent<StarScript>();
+                }
+                    
                 GameManagerScript.instance.StageManager.ClickStar();
             }
 
@@ -120,6 +126,10 @@ public class ContorolPlayer : MonoBehaviour
             startDirection = -1 * (endPos - startPos);
           
             shotGaugeSet = false;
+
+            if (StarScriptRef != null)
+                StarScriptRef.Charging(startDirection.magnitude);
+
             Debug.Log(startDirection);
             //Debug.Log("UUUUUUddddddåƒÇ—èoÇµämîF");
             if (ContorolStarScript != null)

@@ -138,7 +138,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5105850875108164340, guid: 23cd3a265e427634aade1d6e486d211d, type: 3}
       propertyPath: Setting.Threshold
-      value: 0.711
+      value: 0.888
       objectReference: {fileID: 0}
     - target: {fileID: 5105850875108164340, guid: 23cd3a265e427634aade1d6e486d211d, type: 3}
       propertyPath: Setting.NormalPoint
@@ -705,26 +705,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1764013143}
     m_Modifications:
-    - target: {fileID: 1608131823714784175, guid: 756325d7dd0a6934d80f29f6041ea2dd, type: 3}
-      propertyPath: m_Spacing
-      value: -19.23
-      objectReference: {fileID: 0}
-    - target: {fileID: 1935437505330357492, guid: 756325d7dd0a6934d80f29f6041ea2dd, type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: -350
-      objectReference: {fileID: 0}
-    - target: {fileID: 1935437505330357492, guid: 756325d7dd0a6934d80f29f6041ea2dd, type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: -348
-      objectReference: {fileID: 0}
-    - target: {fileID: 3980910067469627828, guid: 756325d7dd0a6934d80f29f6041ea2dd, type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: -9
-      objectReference: {fileID: 0}
-    - target: {fileID: 3980910067469627828, guid: 756325d7dd0a6934d80f29f6041ea2dd, type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: 6
-      objectReference: {fileID: 0}
     - target: {fileID: 8369293343795846151, guid: 756325d7dd0a6934d80f29f6041ea2dd, type: 3}
       propertyPath: m_LocalPosition.x
       value: -235.0946
