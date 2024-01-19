@@ -8,7 +8,7 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: M_BackGround
-  m_Shader: {fileID: 10750, guid: 0000000000000000f000000000000000, type: 0}
+  m_Shader: {fileID: 4800000, guid: 54a5b89c82787554ebd5667feadabf9f, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
   m_ValidKeywords: []
@@ -70,6 +70,7 @@ Material:
     - _ColorMask: 15
     - _Cutoff: 0.834
     - _DetailNormalMapScale: 1
+    - _Dispersion: 12.1
     - _DstBlend: 0
     - _EnableExternalAlpha: 0
     - _GlossMapScale: 1
@@ -78,7 +79,9 @@ Material:
     - _Metallic: 0
     - _Mode: 0
     - _OcclusionStrength: 1
+    - _Offset: 0.01
     - _Parallax: 0.02
+    - _SamplingTexelAmount: 26.64
     - _SmoothnessTextureChannel: 0
     - _SpecularHighlights: 1
     - _SrcBlend: 1
@@ -87,6 +90,8 @@ Material:
     - _StencilOp: 0
     - _StencilReadMask: 255
     - _StencilWriteMask: 255
+    - _StepSize: 0.002
+    - _TexelInterval: 2.15
     - _UVSec: 0
     - _UseUIAlphaClip: 0
     - _ZWrite: 1
