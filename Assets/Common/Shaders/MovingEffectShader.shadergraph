@@ -203,20 +203,6 @@
         {
             "m_OutputSlot": {
                 "m_Node": {
-                    "m_Id": "4065a215fdcc43a89ba1d3fe863e8fd4"
-                },
-                "m_SlotId": 1
-            },
-            "m_InputSlot": {
-                "m_Node": {
-                    "m_Id": "eec328973f7d4ed8a3db5406f3e38788"
-                },
-                "m_SlotId": 2
-            }
-        },
-        {
-            "m_OutputSlot": {
-                "m_Node": {
                     "m_Id": "42b89753960e4723ab37ad1cc1fe2f89"
                 },
                 "m_SlotId": 0
@@ -338,6 +324,20 @@
                     "m_Id": "d3a89fd62e06485eab8aaf48a68916aa"
                 },
                 "m_SlotId": 1
+            }
+        },
+        {
+            "m_OutputSlot": {
+                "m_Node": {
+                    "m_Id": "a96a68c7be6e468898c04b2bfae0325d"
+                },
+                "m_SlotId": 1
+            },
+            "m_InputSlot": {
+                "m_Node": {
+                    "m_Id": "eec328973f7d4ed8a3db5406f3e38788"
+                },
+                "m_SlotId": 2
             }
         },
         {
@@ -692,10 +692,10 @@
         "m_Expanded": true,
         "m_Position": {
             "serializedVersion": "2",
-            "x": -418.00006103515627,
-            "y": 85.00003051757813,
-            "width": 208.0,
-            "height": 301.9999694824219
+            "x": -316.00006103515627,
+            "y": 4.000002384185791,
+            "width": 208.00001525878907,
+            "height": 302.0
         }
     },
     "m_Slots": [
@@ -3465,7 +3465,7 @@
     "m_Hidden": false,
     "m_ShaderOutputName": "AlphaClipThreshold",
     "m_StageCapability": 2,
-    "m_Value": 0.5,
+    "m_Value": 0.019999999552965165,
     "m_DefaultValue": 0.5,
     "m_Labels": []
 }
@@ -3503,10 +3503,10 @@
         "m_Expanded": true,
         "m_Position": {
             "serializedVersion": "2",
-            "x": -235.00003051757813,
-            "y": 467.0000305175781,
-            "width": 208.00003051757813,
-            "height": 325.9999694824219
+            "x": -74.0,
+            "y": 430.0,
+            "width": 208.00001525878907,
+            "height": 326.00006103515627
         }
     },
     "m_Slots": [
@@ -3548,7 +3548,7 @@
     "m_ZTestMode": 4,
     "m_ZWriteControl": 0,
     "m_AlphaMode": 0,
-    "m_RenderFace": 0,
+    "m_RenderFace": 2,
     "m_AlphaClip": true,
     "m_CastShadows": true,
     "m_ReceiveShadows": true,

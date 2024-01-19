@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Drawing;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.VFX;
 using static UnityEngine.ParticleSystem;
 
 public enum StarRarity
@@ -31,11 +32,19 @@ public class StarScript : MonoBehaviour
     [Header("移動中の軌跡の色")]
     public UnityEngine.Color TrailColor1;
     public UnityEngine.Color TrailColor2;
+    [Header("チャージ中のパーティクル")]
+    public ParticleSystem ChargingParticle;
+    public ParticleSystemRenderer ChargingParticleRenderer;
+    [Header("チャージ中の稲妻の密度")]
+    public float ChargingParticleDensity = 0.5f;
 
     public Rigidbody2D Rigidbody { get; protected set; }
     private bool IsPlaying;
     public bool IsMoving { get; protected set; }
     private CircleCollider2D Collider2D;
+    private VisualEffect TrailHeadEffect;
+    private TrailRenderer TrailEffect;
+    private bool IsCharging;
 
     //Start is called before the first frame update
     void Start()
@@ -43,15 +52,25 @@ public class StarScript : MonoBehaviour
         //スプライトとエフェクト類の描画順設定
         SpriteRenderer sr = GetComponent<SpriteRenderer>();
         sr.sortingOrder = 1;
-        TrailRenderer tr = MovingParticle.gameObject.GetComponent<TrailRenderer>();
-        tr.sortingOrder = 0;
-        
+        TrailEffect = MovingParticle.gameObject.GetComponent<TrailRenderer>();
+        TrailEffect.sortingOrder = 0;
+        ChargingParticleRenderer.sortingOrder = 2;
+
+        TrailHeadEffect = MovingParticle.gameObject.GetComponent<VisualEffect>();
+        TrailHeadEffect.Stop();
+        //TrailHeadEffect.SetFloat("Size", 0);
+
         //軌跡の色設定
-        tr.material.SetColor("_Color01", TrailColor1);
-        tr.material.SetColor("_Color02", TrailColor2);
+        TrailEffect.material.SetColor("_Color01", TrailColor1);
+        TrailEffect.material.SetColor("_Color02", TrailColor2);
+        TrailHeadEffect.SetVector4("Color", TrailColor2);
+
+        ChargingParticle.Stop();
 
         IsPlaying = false;
         IsMoving = false;
+        IsCharging = false;
+
         Rigidbody = gameObject.GetComponent<Rigidbody2D>();
 
         foreach (CircleCollider2D i in GetComponents<CircleCollider2D>())
@@ -88,6 +107,7 @@ public class StarScript : MonoBehaviour
                 //動いていない時は動く障害物に衝突しない
                 Collider2D.excludeLayers = LayerMask.GetMask("MovableObstacle");
             }
+            
         }
         
     }
@@ -114,7 +134,11 @@ public class StarScript : MonoBehaviour
         {
             IsPlaying = true;
             MovingParticle.Play();
-            Debug.Log("PlayParticle");
+            TrailEffect.enabled = true;
+            TrailHeadEffect.Play();
+            TrailHeadEffect.SetFloat("Size", 5);
+            ChargingParticle.Stop();
+            IsCharging = false;
         }
     }
 
@@ -124,7 +148,12 @@ public class StarScript : MonoBehaviour
         {
             IsPlaying = false;
             MovingParticle.Stop();
-            Debug.Log("StopParticle");
+            TrailEffect.enabled = false;
+            
+            if (!IsCharging)
+                TrailHeadEffect.Stop();
+
+            //Debug.Log("StopParticle");
         }
     }
 
@@ -160,5 +189,20 @@ public class StarScript : MonoBehaviour
                 break;
         }
 
+    }
+
+    //発射チャージ中処理
+    public void Charging(float power)
+    {
+        if (!IsCharging)
+        {
+            TrailHeadEffect.Play();
+            ChargingParticle.Play();
+        }
+        IsCharging = true;
+        TrailHeadEffect.SetFloat("Size", power);
+        ParticleSystem.EmissionModule em = ChargingParticle.emission;
+        em.rateOverTime = (int)power * power * ChargingParticleDensity;
+        Debug.Log(power);
     }
 }

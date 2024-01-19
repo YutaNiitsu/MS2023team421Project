@@ -216,6 +216,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: ButtonObject (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 4524531004491443308, guid: 09dcd916633cc474c831d38c4d3c7e3b, type: 3}
+      propertyPath: m_Type
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4524531004491443308, guid: 09dcd916633cc474c831d38c4d3c7e3b, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: -6312944442052042323, guid: c74ffb72e48cd4f49a28c12cba29a54c, type: 3}
     - target: {fileID: 4818337397857669217, guid: 09dcd916633cc474c831d38c4d3c7e3b, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
       value: 1
@@ -247,6 +255,10 @@ PrefabInstance:
     - target: {fileID: 4818337397857669217, guid: 09dcd916633cc474c831d38c4d3c7e3b, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 5814168051358075686, guid: 09dcd916633cc474c831d38c4d3c7e3b, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7219260187263413929, guid: 09dcd916633cc474c831d38c4d3c7e3b, type: 3}
       propertyPath: m_AnchoredPosition.x
@@ -357,6 +369,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: ButtonObject (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 4524531004491443308, guid: 09dcd916633cc474c831d38c4d3c7e3b, type: 3}
+      propertyPath: m_Type
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4524531004491443308, guid: 09dcd916633cc474c831d38c4d3c7e3b, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: -1661505896614779537, guid: 316cfae4b5d7b4f4d8ca191dc6bea2f1, type: 3}
     - target: {fileID: 4818337397857669217, guid: 09dcd916633cc474c831d38c4d3c7e3b, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
       value: 1
@@ -389,6 +409,10 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
+    - target: {fileID: 5814168051358075686, guid: 09dcd916633cc474c831d38c4d3c7e3b, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7219260187263413929, guid: 09dcd916633cc474c831d38c4d3c7e3b, type: 3}
       propertyPath: m_AnchoredPosition.x
       value: 184
@@ -407,6 +431,37 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 228729388946194143, guid: 09dcd916633cc474c831d38c4d3c7e3b, type: 3}
   m_PrefabInstance: {fileID: 934340919}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &141020766
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 141020767}
+  m_Layer: 0
+  m_Name: UI_Value
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &141020767
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 141020766}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 87.33911, y: -276.45282, z: -6.1504846}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 799991681}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &269008571
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -503,6 +558,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: ButtonObject (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 4524531004491443308, guid: 09dcd916633cc474c831d38c4d3c7e3b, type: 3}
+      propertyPath: m_Type
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4524531004491443308, guid: 09dcd916633cc474c831d38c4d3c7e3b, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 9151926681263658094, guid: 3918e42f3a43c494ebd4e251a20a24b7, type: 3}
     - target: {fileID: 4818337397857669217, guid: 09dcd916633cc474c831d38c4d3c7e3b, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
       value: 1
@@ -530,6 +593,10 @@ PrefabInstance:
     - target: {fileID: 4818337397857669217, guid: 09dcd916633cc474c831d38c4d3c7e3b, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 5814168051358075686, guid: 09dcd916633cc474c831d38c4d3c7e3b, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7219260187263413929, guid: 09dcd916633cc474c831d38c4d3c7e3b, type: 3}
       propertyPath: m_AnchoredPosition.x
@@ -645,6 +712,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: ButtonObject (10)
       objectReference: {fileID: 0}
+    - target: {fileID: 4524531004491443308, guid: 09dcd916633cc474c831d38c4d3c7e3b, type: 3}
+      propertyPath: m_Type
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4524531004491443308, guid: 09dcd916633cc474c831d38c4d3c7e3b, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 6056761991317353397, guid: 24672efb11c65434b96a34190e542cc1, type: 3}
     - target: {fileID: 4818337397857669217, guid: 09dcd916633cc474c831d38c4d3c7e3b, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
       value: 1
@@ -676,6 +751,10 @@ PrefabInstance:
     - target: {fileID: 4818337397857669217, guid: 09dcd916633cc474c831d38c4d3c7e3b, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 5814168051358075686, guid: 09dcd916633cc474c831d38c4d3c7e3b, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7219260187263413929, guid: 09dcd916633cc474c831d38c4d3c7e3b, type: 3}
       propertyPath: m_AnchoredPosition.x
@@ -786,6 +865,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: ButtonObject (4)
       objectReference: {fileID: 0}
+    - target: {fileID: 4524531004491443308, guid: 09dcd916633cc474c831d38c4d3c7e3b, type: 3}
+      propertyPath: m_Type
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4524531004491443308, guid: 09dcd916633cc474c831d38c4d3c7e3b, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 6452226792665240061, guid: a3115da4e26a25045bec7b2c443e44a7, type: 3}
     - target: {fileID: 4818337397857669217, guid: 09dcd916633cc474c831d38c4d3c7e3b, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
       value: 1
@@ -817,6 +904,10 @@ PrefabInstance:
     - target: {fileID: 4818337397857669217, guid: 09dcd916633cc474c831d38c4d3c7e3b, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 5814168051358075686, guid: 09dcd916633cc474c831d38c4d3c7e3b, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7219260187263413929, guid: 09dcd916633cc474c831d38c4d3c7e3b, type: 3}
       propertyPath: m_AnchoredPosition.x
@@ -932,6 +1023,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: ButtonObject (4)
       objectReference: {fileID: 0}
+    - target: {fileID: 4524531004491443308, guid: 09dcd916633cc474c831d38c4d3c7e3b, type: 3}
+      propertyPath: m_Type
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4524531004491443308, guid: 09dcd916633cc474c831d38c4d3c7e3b, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 3336483088545175783, guid: c4bc805931bbca846b933ff24df13aa6, type: 3}
     - target: {fileID: 4818337397857669217, guid: 09dcd916633cc474c831d38c4d3c7e3b, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
       value: 1
@@ -959,6 +1058,10 @@ PrefabInstance:
     - target: {fileID: 4818337397857669217, guid: 09dcd916633cc474c831d38c4d3c7e3b, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 5814168051358075686, guid: 09dcd916633cc474c831d38c4d3c7e3b, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7219260187263413929, guid: 09dcd916633cc474c831d38c4d3c7e3b, type: 3}
       propertyPath: m_AnchoredPosition.x
@@ -1182,6 +1285,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: ButtonObject
       objectReference: {fileID: 0}
+    - target: {fileID: 4524531004491443308, guid: 09dcd916633cc474c831d38c4d3c7e3b, type: 3}
+      propertyPath: m_Type
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4524531004491443308, guid: 09dcd916633cc474c831d38c4d3c7e3b, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: -6329194182499055214, guid: 24fc5fa9190992348be1aa98bb1d38f7, type: 3}
     - target: {fileID: 4818337397857669217, guid: 09dcd916633cc474c831d38c4d3c7e3b, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
       value: 1
@@ -1213,6 +1324,10 @@ PrefabInstance:
     - target: {fileID: 4818337397857669217, guid: 09dcd916633cc474c831d38c4d3c7e3b, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 5814168051358075686, guid: 09dcd916633cc474c831d38c4d3c7e3b, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7219260187263413929, guid: 09dcd916633cc474c831d38c4d3c7e3b, type: 3}
       propertyPath: m_AnchoredPosition.x
@@ -1330,6 +1445,7 @@ RectTransform:
   - {fileID: 1010524304}
   - {fileID: 1531507609}
   - {fileID: 759012030}
+  - {fileID: 141020767}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -1433,6 +1549,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: ButtonObject (12)
       objectReference: {fileID: 0}
+    - target: {fileID: 4524531004491443308, guid: 09dcd916633cc474c831d38c4d3c7e3b, type: 3}
+      propertyPath: m_Type
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4524531004491443308, guid: 09dcd916633cc474c831d38c4d3c7e3b, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: -5081949855336221306, guid: 386b01829c43ede46a98134d5c1767d2, type: 3}
     - target: {fileID: 4818337397857669217, guid: 09dcd916633cc474c831d38c4d3c7e3b, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
       value: 1
@@ -1464,6 +1588,10 @@ PrefabInstance:
     - target: {fileID: 4818337397857669217, guid: 09dcd916633cc474c831d38c4d3c7e3b, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 5814168051358075686, guid: 09dcd916633cc474c831d38c4d3c7e3b, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7219260187263413929, guid: 09dcd916633cc474c831d38c4d3c7e3b, type: 3}
       propertyPath: m_AnchoredPosition.x
@@ -1574,6 +1702,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: ButtonObject (3)
       objectReference: {fileID: 0}
+    - target: {fileID: 4524531004491443308, guid: 09dcd916633cc474c831d38c4d3c7e3b, type: 3}
+      propertyPath: m_Type
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4524531004491443308, guid: 09dcd916633cc474c831d38c4d3c7e3b, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: -4850520899695651601, guid: fe8465acdf353ed4abf621f9a1e3160c, type: 3}
     - target: {fileID: 4818337397857669217, guid: 09dcd916633cc474c831d38c4d3c7e3b, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
       value: 1
@@ -1605,6 +1741,10 @@ PrefabInstance:
     - target: {fileID: 4818337397857669217, guid: 09dcd916633cc474c831d38c4d3c7e3b, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 5814168051358075686, guid: 09dcd916633cc474c831d38c4d3c7e3b, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7219260187263413929, guid: 09dcd916633cc474c831d38c4d3c7e3b, type: 3}
       propertyPath: m_AnchoredPosition.x
@@ -1724,6 +1864,14 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 4524531004491443308, guid: 09dcd916633cc474c831d38c4d3c7e3b, type: 3}
+      propertyPath: m_Type
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4524531004491443308, guid: 09dcd916633cc474c831d38c4d3c7e3b, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: -5483600634716222798, guid: c4e35150e95096040a3ecff588989c21, type: 3}
     - target: {fileID: 4818337397857669217, guid: 09dcd916633cc474c831d38c4d3c7e3b, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
       value: 1
@@ -1755,6 +1903,10 @@ PrefabInstance:
     - target: {fileID: 4818337397857669217, guid: 09dcd916633cc474c831d38c4d3c7e3b, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 5814168051358075686, guid: 09dcd916633cc474c831d38c4d3c7e3b, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7219260187263413929, guid: 09dcd916633cc474c831d38c4d3c7e3b, type: 3}
       propertyPath: m_AnchoredPosition.x
@@ -1865,6 +2017,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: ButtonObject (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 4524531004491443308, guid: 09dcd916633cc474c831d38c4d3c7e3b, type: 3}
+      propertyPath: m_Type
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4524531004491443308, guid: 09dcd916633cc474c831d38c4d3c7e3b, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: -2266272555268460858, guid: 59d088ff0869d2141bb1785cbeb91c95, type: 3}
     - target: {fileID: 4818337397857669217, guid: 09dcd916633cc474c831d38c4d3c7e3b, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
       value: 1
@@ -1896,6 +2056,10 @@ PrefabInstance:
     - target: {fileID: 4818337397857669217, guid: 09dcd916633cc474c831d38c4d3c7e3b, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 5814168051358075686, guid: 09dcd916633cc474c831d38c4d3c7e3b, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7219260187263413929, guid: 09dcd916633cc474c831d38c4d3c7e3b, type: 3}
       propertyPath: m_AnchoredPosition.x
@@ -2229,6 +2393,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: ButtonObject (9)
       objectReference: {fileID: 0}
+    - target: {fileID: 4524531004491443308, guid: 09dcd916633cc474c831d38c4d3c7e3b, type: 3}
+      propertyPath: m_Type
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4524531004491443308, guid: 09dcd916633cc474c831d38c4d3c7e3b, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 2044813950391216045, guid: 51c6921ed002fe048a0f2a27c5ca273b, type: 3}
     - target: {fileID: 4818337397857669217, guid: 09dcd916633cc474c831d38c4d3c7e3b, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
       value: 1
@@ -2260,6 +2432,10 @@ PrefabInstance:
     - target: {fileID: 4818337397857669217, guid: 09dcd916633cc474c831d38c4d3c7e3b, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 5814168051358075686, guid: 09dcd916633cc474c831d38c4d3c7e3b, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7219260187263413929, guid: 09dcd916633cc474c831d38c4d3c7e3b, type: 3}
       propertyPath: m_AnchoredPosition.x
@@ -2370,6 +2546,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: ButtonObject
       objectReference: {fileID: 0}
+    - target: {fileID: 4524531004491443308, guid: 09dcd916633cc474c831d38c4d3c7e3b, type: 3}
+      propertyPath: m_Type
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4524531004491443308, guid: 09dcd916633cc474c831d38c4d3c7e3b, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: -5081949855336221306, guid: 386b01829c43ede46a98134d5c1767d2, type: 3}
     - target: {fileID: 4818337397857669217, guid: 09dcd916633cc474c831d38c4d3c7e3b, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
       value: 1
@@ -2397,6 +2581,10 @@ PrefabInstance:
     - target: {fileID: 4818337397857669217, guid: 09dcd916633cc474c831d38c4d3c7e3b, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 5814168051358075686, guid: 09dcd916633cc474c831d38c4d3c7e3b, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -2499,6 +2687,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: ButtonObject (3)
       objectReference: {fileID: 0}
+    - target: {fileID: 4524531004491443308, guid: 09dcd916633cc474c831d38c4d3c7e3b, type: 3}
+      propertyPath: m_Type
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4524531004491443308, guid: 09dcd916633cc474c831d38c4d3c7e3b, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: -4441088575252397148, guid: d3d2cb2044a920141a78b5117790fc78, type: 3}
     - target: {fileID: 4818337397857669217, guid: 09dcd916633cc474c831d38c4d3c7e3b, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
       value: 1
@@ -2538,6 +2734,10 @@ PrefabInstance:
     - target: {fileID: 7219260187263413929, guid: 09dcd916633cc474c831d38c4d3c7e3b, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: -43
+      objectReference: {fileID: 0}
+    - target: {fileID: 8702708415918411891, guid: 09dcd916633cc474c831d38c4d3c7e3b, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -2801,6 +3001,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: ButtonObject (8)
       objectReference: {fileID: 0}
+    - target: {fileID: 4524531004491443308, guid: 09dcd916633cc474c831d38c4d3c7e3b, type: 3}
+      propertyPath: m_Type
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4524531004491443308, guid: 09dcd916633cc474c831d38c4d3c7e3b, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 3319661240397347741, guid: d06e31abcaad2c04aaf5d860ff0a0c6a, type: 3}
     - target: {fileID: 4818337397857669217, guid: 09dcd916633cc474c831d38c4d3c7e3b, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
       value: 1
@@ -2832,6 +3040,10 @@ PrefabInstance:
     - target: {fileID: 4818337397857669217, guid: 09dcd916633cc474c831d38c4d3c7e3b, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 5814168051358075686, guid: 09dcd916633cc474c831d38c4d3c7e3b, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7219260187263413929, guid: 09dcd916633cc474c831d38c4d3c7e3b, type: 3}
       propertyPath: m_AnchoredPosition.x
@@ -2942,6 +3154,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: ButtonObject (5)
       objectReference: {fileID: 0}
+    - target: {fileID: 4524531004491443308, guid: 09dcd916633cc474c831d38c4d3c7e3b, type: 3}
+      propertyPath: m_Type
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4524531004491443308, guid: 09dcd916633cc474c831d38c4d3c7e3b, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 6207733416467555023, guid: 833329f1951915d49bc99f2e0c0710fd, type: 3}
     - target: {fileID: 4818337397857669217, guid: 09dcd916633cc474c831d38c4d3c7e3b, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
       value: 1
@@ -2973,6 +3193,10 @@ PrefabInstance:
     - target: {fileID: 4818337397857669217, guid: 09dcd916633cc474c831d38c4d3c7e3b, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 5814168051358075686, guid: 09dcd916633cc474c831d38c4d3c7e3b, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7219260187263413929, guid: 09dcd916633cc474c831d38c4d3c7e3b, type: 3}
       propertyPath: m_AnchoredPosition.x
@@ -3229,6 +3453,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: ButtonObject (7)
       objectReference: {fileID: 0}
+    - target: {fileID: 4524531004491443308, guid: 09dcd916633cc474c831d38c4d3c7e3b, type: 3}
+      propertyPath: m_Type
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4524531004491443308, guid: 09dcd916633cc474c831d38c4d3c7e3b, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 4399773885818687982, guid: 27dfc054a75e8ae418cc782e29ffedb6, type: 3}
     - target: {fileID: 4818337397857669217, guid: 09dcd916633cc474c831d38c4d3c7e3b, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
       value: 1
@@ -3260,6 +3492,10 @@ PrefabInstance:
     - target: {fileID: 4818337397857669217, guid: 09dcd916633cc474c831d38c4d3c7e3b, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 5814168051358075686, guid: 09dcd916633cc474c831d38c4d3c7e3b, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7219260187263413929, guid: 09dcd916633cc474c831d38c4d3c7e3b, type: 3}
       propertyPath: m_AnchoredPosition.x
@@ -3370,6 +3606,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: ButtonObject (5)
       objectReference: {fileID: 0}
+    - target: {fileID: 4524531004491443308, guid: 09dcd916633cc474c831d38c4d3c7e3b, type: 3}
+      propertyPath: m_Type
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4524531004491443308, guid: 09dcd916633cc474c831d38c4d3c7e3b, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: -7430639357368408248, guid: 189758b93116b1946869b76347ce0f89, type: 3}
     - target: {fileID: 4818337397857669217, guid: 09dcd916633cc474c831d38c4d3c7e3b, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
       value: 1
@@ -3397,6 +3641,10 @@ PrefabInstance:
     - target: {fileID: 4818337397857669217, guid: 09dcd916633cc474c831d38c4d3c7e3b, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 5814168051358075686, guid: 09dcd916633cc474c831d38c4d3c7e3b, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7219260187263413929, guid: 09dcd916633cc474c831d38c4d3c7e3b, type: 3}
       propertyPath: m_AnchoredPosition.x
@@ -3512,6 +3760,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: ButtonObject (11)
       objectReference: {fileID: 0}
+    - target: {fileID: 4524531004491443308, guid: 09dcd916633cc474c831d38c4d3c7e3b, type: 3}
+      propertyPath: m_Type
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4524531004491443308, guid: 09dcd916633cc474c831d38c4d3c7e3b, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 129242119414080546, guid: ab3b86f3ff8814f4c8d7245330507eca, type: 3}
     - target: {fileID: 4818337397857669217, guid: 09dcd916633cc474c831d38c4d3c7e3b, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
       value: 1
@@ -3543,6 +3799,10 @@ PrefabInstance:
     - target: {fileID: 4818337397857669217, guid: 09dcd916633cc474c831d38c4d3c7e3b, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 5814168051358075686, guid: 09dcd916633cc474c831d38c4d3c7e3b, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7219260187263413929, guid: 09dcd916633cc474c831d38c4d3c7e3b, type: 3}
       propertyPath: m_AnchoredPosition.x
@@ -3649,6 +3909,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: ButtonObject
       objectReference: {fileID: 0}
+    - target: {fileID: 4524531004491443308, guid: 09dcd916633cc474c831d38c4d3c7e3b, type: 3}
+      propertyPath: m_Type
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4524531004491443308, guid: 09dcd916633cc474c831d38c4d3c7e3b, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: -2155970453367365409, guid: b6e9d2e338d32774d9c6b4d16ec7e8a6, type: 3}
     - target: {fileID: 4818337397857669217, guid: 09dcd916633cc474c831d38c4d3c7e3b, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
       value: 1
@@ -3680,6 +3948,10 @@ PrefabInstance:
     - target: {fileID: 4818337397857669217, guid: 09dcd916633cc474c831d38c4d3c7e3b, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 5814168051358075686, guid: 09dcd916633cc474c831d38c4d3c7e3b, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7219260187263413929, guid: 09dcd916633cc474c831d38c4d3c7e3b, type: 3}
       propertyPath: m_AnchoredPosition.x
