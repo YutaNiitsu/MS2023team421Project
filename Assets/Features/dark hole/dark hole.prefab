@@ -176,7 +176,12 @@ PrefabInstance:
     - target: {fileID: 396170666181723988, guid: 41e3e8f53b4894045a07e3b0003de7ca,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3365464621724152091, guid: 41e3e8f53b4894045a07e3b0003de7ca,
+        type: 3}
+      propertyPath: ShapeModule.radius.value
+      value: 3.46
       objectReference: {fileID: 0}
     - target: {fileID: 6626638640005887663, guid: 41e3e8f53b4894045a07e3b0003de7ca,
         type: 3}
@@ -247,6 +252,11 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1623731459398655908}
     m_Modifications:
+    - target: {fileID: 3118697221032868538, guid: 5bbbf6005e593a749930557deadc2915,
+        type: 3}
+      propertyPath: Density
+      value: 0.818
+      objectReference: {fileID: 0}
     - target: {fileID: 3278424521271745882, guid: 5bbbf6005e593a749930557deadc2915,
         type: 3}
       propertyPath: m_Name
