@@ -82,8 +82,13 @@ public class ContorolPlayer : MonoBehaviour
         //{
         //    transform.position = Input.mousePosition;
         //}
-            // マウスを押した地点の座標を記録
-            if (Input.GetMouseButtonDown(0) || Input.GetButtonDown("Fire1"))
+
+        //ターン数０になったら実行しない
+        if (GameManagerScript.instance.StageManager.DischargeNumber <= 0)
+            return;
+
+        // マウスを押した地点の座標を記録
+        if (Input.GetMouseButtonDown(0) || Input.GetButtonDown("Fire1"))
         {
             //Debug.Log("SSSSdddddd呼び出し確認");
             //Vector3 CursurPoint = Camera.main.ScreenToWorldPoint(transform.position);
