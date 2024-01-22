@@ -1,8 +1,10 @@
-Shader "Unlit/ShieldEffectShader2"
+Shader"Unlit/ShieldEffectShader2"
 {
     Properties
     {
         _MainTex ("Texture", 2D) = "white" {}
+        _Speed ("Speed", Float) = 0.5
+        _Frequency ("Frequency", Float) = 5.0
     }
     SubShader
     {
@@ -35,6 +37,8 @@ Blend SrcAlpha OneMinusSrcAlpha
 
             sampler2D _MainTex;
             float4 _MainTex_ST;
+            float _Speed;
+            float _Frequency;
 
             v2f vert (appdata v)
             {
@@ -49,11 +53,37 @@ Blend SrcAlpha OneMinusSrcAlpha
             {
                 // sample the texture
                 fixed4 col = tex2D(_MainTex, i.uv);
-    float time = (float)_Time.y;
-    time = (float) time * 0.02f;
     
-                // apply fog
-                UNITY_APPLY_FOG(i.fogCoord, col);
+   
+    float time = fmod(_Time.w * _Speed, _Frequency) - _Frequency * 0.5f;
+    float2 vec = float2(-1.0f, 1.0f);
+    {
+        float a = i.uv.x * vec.x + i.uv.y * vec.y + time;
+        float dist = a * a / dot(vec, vec) * 0.5f;
+        dist = saturate(dist);
+        float powresult = pow(1.0f - dist, 100);
+        //col.rgb *= powresult + 1.0f;
+        col.rgb = lerp(col.rgb, 1.0f, powresult);
+        col.a *= 0.8f;
+        col.a = lerp(col.a, 1.0f, powresult);
+    }
+  
+    
+    //スペキュラー
+    //float4 eyePos = float4(0.0f, 0.0f, -5.0f, 1.0f); //視点座標
+    //float4 pntlightPos = float4(time, time * vec.y / vec.x, -10.0f, 1.0f); //点光源座標
+    //pntlightPos.x += -vec.x * 0.5f;
+    //pntlightPos.y += vec.y * 0.5f;
+    //float4 pntlightCol = 1.0f; //点光源の色
+    //float3 posw = float3(i.uv.x, i.uv.y, 0.0f);
+    //float3 norw = float3(0.0f, 0.0f, -1.0f);
+    //float2 dist = pntlightPos.xy - posw.xy;
+    //dist = dot(dist, dist);
+    //dist = saturate(dist);
+    //float spe = pow(1.0f - dist, 10);
+    
+    //col += spe;
+    //col.a += spe;
                 return col;
             }
             ENDCG
