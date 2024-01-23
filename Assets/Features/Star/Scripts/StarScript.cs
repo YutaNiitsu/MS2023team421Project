@@ -84,6 +84,9 @@ public class StarScript : MonoBehaviour
         var main = MovingParticle.main;
         main.startColor = new ParticleSystem.MinMaxGradient(MovingParticleColor);
         SetRarity();
+
+        //“®‚­áŠQ•¨‚Éí‚ÉÕ“Ë
+        Collider2D.excludeLayers = LayerMask.GetMask("Nothing");
     }
 
     // Update is called once per frame
@@ -105,7 +108,7 @@ public class StarScript : MonoBehaviour
                 StopParticle();
                 IsMoving = false;
                 //“®‚¢‚Ä‚¢‚È‚¢‚Í“®‚­áŠQ•¨‚ÉÕ“Ë‚µ‚È‚¢
-                Collider2D.excludeLayers = LayerMask.GetMask("MovableObstacle");
+                //Collider2D.excludeLayers = LayerMask.GetMask("MovableObstacle");
             }
             
         }

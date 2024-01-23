@@ -9,7 +9,7 @@ public class ResultScript : MonoBehaviour
 {
     public Image GameClearImage;
     public Image ConstellationImage;
-    public Text ScoreText;
+    public UI_ValueScript ScoreText;
     public GameObject ButtonObjects;
     public MissionResultManagerScript missionResult;
     public float FadeSpeed;
@@ -55,7 +55,7 @@ public class ResultScript : MonoBehaviour
 
         yield return new WaitForSeconds(0.0f);
         ScoreText.gameObject.SetActive(true);
-        ScoreText.text = GameManagerScript.instance.StageManager.Score.ToString();
+        ScoreText.SetValue(GameManagerScript.instance.StageManager.Score);
         ButtonObjects.SetActive(true);
         missionResult.gameObject.SetActive(true);
         Debug.Log("ƒŠƒUƒ‹ƒg•\Ž¦Š®—¹");
