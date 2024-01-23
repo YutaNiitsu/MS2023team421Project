@@ -956,6 +956,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5105850875108164340, guid: 23cd3a265e427634aade1d6e486d211d,
         type: 3}
+      propertyPath: NextSceneName
+      value: Stage6
+      objectReference: {fileID: 0}
+    - target: {fileID: 5105850875108164340, guid: 23cd3a265e427634aade1d6e486d211d,
+        type: 3}
       propertyPath: Setting.DischargeNumber
       value: 50
       objectReference: {fileID: 0}
@@ -969,6 +974,12 @@ PrefabInstance:
       propertyPath: Setting.ConstellationName
       value: uo
       objectReference: {fileID: 0}
+    - target: {fileID: 5105850875108164340, guid: 23cd3a265e427634aade1d6e486d211d,
+        type: 3}
+      propertyPath: Setting.ConstellationImage
+      value: 
+      objectReference: {fileID: 3880717110733408833, guid: d014639353c578844a327413c78a0e22,
+        type: 3}
     - target: {fileID: 5105850875108164340, guid: 23cd3a265e427634aade1d6e486d211d,
         type: 3}
       propertyPath: Setting.ProbabilityDarkHole

@@ -1012,6 +1012,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5105850875108164340, guid: 23cd3a265e427634aade1d6e486d211d,
         type: 3}
+      propertyPath: NextSceneName
+      value: Stage9
+      objectReference: {fileID: 0}
+    - target: {fileID: 5105850875108164340, guid: 23cd3a265e427634aade1d6e486d211d,
+        type: 3}
       propertyPath: Setting.StageSize.x
       value: 200
       objectReference: {fileID: 0}
@@ -1035,6 +1040,12 @@ PrefabInstance:
       propertyPath: Setting.ConstellationName
       value: ousi
       objectReference: {fileID: 0}
+    - target: {fileID: 5105850875108164340, guid: 23cd3a265e427634aade1d6e486d211d,
+        type: 3}
+      propertyPath: Setting.ConstellationImage
+      value: 
+      objectReference: {fileID: 8525316066529106972, guid: 3b853604b6994154fb8fe10d115909f8,
+        type: 3}
     - target: {fileID: 5105850875108164340, guid: 23cd3a265e427634aade1d6e486d211d,
         type: 3}
       propertyPath: Setting.ProbabilityDarkHole
