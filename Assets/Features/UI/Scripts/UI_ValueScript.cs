@@ -69,10 +69,16 @@ public class UI_ValueScript : MonoBehaviour
         {
             //Œ…”Œ¸‚Á‚½
             int tmp = NumberTexts.Count - digit;
-            for (int i = 0; i < tmp; i++)
+            for (int i = 0; i < NumberTexts.Count; i++)
             {
                 Destroy(NumberTexts[i]);
-                NumberTexts.RemoveAt(i);
+            }
+            NumberTexts.Clear();
+            for (int i = 0; i < digit; i++)
+            {
+                TextMeshProUGUI text = Instantiate(NumberTextPrefab).GetComponent<TextMeshProUGUI>();
+                text.gameObject.transform.parent = transform;
+                NumberTexts.Add(text);
             }
 
             CalcNumbers(ref numbers, value);
