@@ -154,11 +154,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Shield
       objectReference: {fileID: 0}
-    - target: {fileID: 7395158569462657398, guid: b2f985cfef2d17a41aaaab0f2f93d74e,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 7625406851340096193, guid: b2f985cfef2d17a41aaaab0f2f93d74e,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -172,7 +167,7 @@ PrefabInstance:
     - target: {fileID: 7625406851340096193, guid: b2f985cfef2d17a41aaaab0f2f93d74e,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7625406851340096193, guid: b2f985cfef2d17a41aaaab0f2f93d74e,
         type: 3}
@@ -209,13 +204,9 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 7758223336041372000, guid: b2f985cfef2d17a41aaaab0f2f93d74e,
-        type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0.54
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_RemovedGameObjects: []
+    m_RemovedGameObjects:
+    - {fileID: 7395158569462657398, guid: b2f985cfef2d17a41aaaab0f2f93d74e, type: 3}
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b2f985cfef2d17a41aaaab0f2f93d74e, type: 3}

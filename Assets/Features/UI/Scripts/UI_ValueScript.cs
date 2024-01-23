@@ -8,41 +8,23 @@ using static UnityEngine.Rendering.DebugUI;
 
 public class UI_ValueScript : MonoBehaviour
 {
+    public float FontSize;
+    public int Value;
     public GameObject NumberTextPrefab;
-    List<TextMeshProUGUI> NumberTexts;
+    private List<TextMeshProUGUI> NumberTexts;
 
     // Start is called before the first frame update
     void Start()
     {
-        TextMeshProUGUI text = Instantiate(NumberTextPrefab).GetComponent<TextMeshProUGUI>();
-        NumberTexts = new List<TextMeshProUGUI>();
-
-        text.gameObject.transform.parent = transform;
-        SetNumberText(ref text, 0);
-        NumberTexts.Add(text);
-
-        //int[] numbers = new int[0];
-        //CalcNumbers(ref numbers, 123);
-
-        //img = Instantiate(NumberPrefab).GetComponent<Image>();
-        //img.gameObject.transform.parent = transform;
-        //Numbers.Add(img);
-        //img = Instantiate(NumberPrefab).GetComponent<Image>();
-        //img.gameObject.transform.parent = transform;
-        //Numbers.Add(img);
-        //img.material.SetFloat("_Number", 5);
-        //int index = 0;
-        //foreach (Image i in Numbers)
-        //{
-        //    i.material.SetFloat("_Number", numbers[index]);
-        //    index++;
-        //}
-
-        SetValue(1234);
+       
+        SetValue(Value);
     }
 
     public void SetValue(int value)
     {
+        if (NumberTexts == null)
+            NumberTexts = new List<TextMeshProUGUI>();
+
         //Œ…”’²‚×‚é
         int digit = value.ToString().Length;
         int[] numbers = new int[0];
@@ -56,13 +38,7 @@ public class UI_ValueScript : MonoBehaviour
         {
             //Œ…”‘‚¦‚½
             int tmp = digit - NumberTexts.Count;
-            for (int i = 0; i < tmp; i++)
-            {
-                TextMeshProUGUI text = Instantiate(NumberTextPrefab).GetComponent<TextMeshProUGUI>();
-                text.gameObject.transform.parent = transform;
-                NumberTexts.Add(text);
-            }
-
+            CreateText(ref NumberTexts, tmp);
             CalcNumbers(ref numbers, value);
         }
         else if (digit < NumberTexts.Count)
@@ -71,16 +47,12 @@ public class UI_ValueScript : MonoBehaviour
             int tmp = NumberTexts.Count - digit;
             for (int i = 0; i < NumberTexts.Count; i++)
             {
-                Destroy(NumberTexts[i]);
+                Destroy(NumberTexts[i].gameObject);
+                
             }
+            transform.DetachChildren();
             NumberTexts.Clear();
-            for (int i = 0; i < digit; i++)
-            {
-                TextMeshProUGUI text = Instantiate(NumberTextPrefab).GetComponent<TextMeshProUGUI>();
-                text.gameObject.transform.parent = transform;
-                NumberTexts.Add(text);
-            }
-
+            CreateText(ref NumberTexts, digit);
             CalcNumbers(ref numbers, value);
         }
         for (int i = 0; i < NumberTexts.Count; i++)
@@ -89,9 +61,15 @@ public class UI_ValueScript : MonoBehaviour
         }
     }
 
-    void SetNumberText(ref TextMeshProUGUI text, int value)
+    void CreateText(ref List<TextMeshProUGUI> texts, int addNum)
     {
-        text.text = "<sprite=" + value.ToString() + ">";
+        for (int i = 0; i < addNum; i++)
+        {
+            TextMeshProUGUI text = Instantiate(NumberTextPrefab).GetComponent<TextMeshProUGUI>();
+            text.fontSize = FontSize;
+            text.gameObject.transform.parent = transform;
+            texts.Add(text);
+        }
     }
 
     void CalcNumbers(ref int[] numbers, int value)
