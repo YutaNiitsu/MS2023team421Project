@@ -3,9 +3,7 @@ Shader "Unlit/BackGroundShader"
     Properties
     {
         _MainTex ("Texture", 2D) = "white" {}
-         _Dispersion("Dispersion", float) = 1 //分散具合を調整
-        _SamplingTexelAmount("Sampling Texel Amount", int) = 1 //何個先のテクセルまでサンプリングするか
-        _TexelInterval("Texel Interval", float) = 2 //サンプリングするテクセルの間隔
+
     }
     SubShader
     {
@@ -15,7 +13,8 @@ ZTest Always // ZTestは常に通す
 
 ZWrite Off // ZWriteは不要
 
-        Tags { "RenderType"="Opaque" }
+        Tags { "RenderType"="Transparent" "Queue" = "Transparent" }
+Blend SrcAlpha OneMinusSrcAlpha
         LOD 100
 
         Pass
@@ -43,12 +42,20 @@ ZWrite Off // ZWriteは不要
 
             sampler2D _MainTex;
             float4 _MainTex_ST;
-float2 _MainTex_TexelSize; //テクセルサイズ
+#define iterations 17
+#define formuparam 0.53
 
-float2 _Direction; //C#から渡されるブラーをかける方向の変数
-float _Dispersion;
-int _SamplingTexelAmount;
-float _TexelInterval;
+#define volsteps 20
+#define stepsize 0.1
+
+#define zoom   0.800
+#define tile   0.850
+#define speed  0.010 
+
+#define brightness 0.0015
+#define darkmatter 0.300
+#define distfading 0.730
+#define saturation 0.850
 
             v2f vert (appdata v)
             {
@@ -59,50 +66,60 @@ float _TexelInterval;
                 return o;
             }
 
-float GetGaussianWeight(float distance);
-
             fixed4 frag (v2f i) : SV_Target
             {
-    float2 dir = _Direction * _MainTex_TexelSize.xy; //サンプリングの方向を決定
+    fixed4 color = tex2D(_MainTex, i.uv);
+    
+    //星
+    //get coords and direction
+    float2 uv = /*fragCoord.xy / iResolution.xy - .5*/i.uv;
+    uv.y *= unity_OrthoParams.y / unity_OrthoParams.x;
+    float3 dir = float3(uv * zoom, 1.);
+    float time = _Time * speed + .25;
 
-                /*
-                //////ガウス関数を事前計算した重みテーブル
-                float weights[8] = 
-                {
-                    0.12445063, 0.116910554, 0.096922256, 0.070909835,
-                    0.04578283, 0.02608627,  0.013117,    0.0058206334
-                };
-                //////
-
-                //////ウェイトを決め打ちする場合
-                fixed4 color = 0;
-                for (int j = 0; j < 8; j++) 
-                {
-                    float2 offset = dir * ((j + 1) * _TexelInterval - 1); //_TexelIntervalでサンプリング距離を調整
-                    color.rgb += tex2D(_MainTex, i.uv + offset) * weights[j]; //順方向をサンプリング＆重みづけして加算
-                    color.rgb += tex2D(_MainTex, i.uv - offset) * weights[j]; //逆方向をサンプリング＆重みづけして加算
-                }
-                color.a = 1;
-                //////
-                */
-                
-                //////ウェイトを動的に導出する場合
-    fixed4 color = 0;
-    for (int j = 0; j < _SamplingTexelAmount; j++)
+	//mouse rotation
+    float a1 = .5/* + iMouse.x / iResolution.x * 2.*/;
+    float a2 = .8/* + iMouse.y / iResolution.y * 2.*/;
+    float2x2 rot1 = float2x2(cos(a1), sin(a1), -sin(a1), cos(a1));
+    float2x2 rot2 = float2x2(cos(a2), sin(a2), -sin(a2), cos(a2));
+    dir.xz = mul(dir.xz, rot1);
+    dir.xy = mul(dir.xy, rot2);
+    float3 from = float3(1., .5, 0.5);
+    from += float3(time * 2., time, -2.);
+    from.xz = mul(from.xz, rot1);
+    from.xy = mul(from.xy, rot2);
+	
+	//volumetric rendering
+    float s = 0.1, fade = 1.;
+    float3 v = 0.0f;
+    for (int r = 0; r < volsteps; r++)
     {
-        float2 offset = dir * ((j + 1) * _TexelInterval - 1); //_TexelIntervalでサンプリング距離を調整
-        float weight = GetGaussianWeight(j + 1); //ウェイトを計算
-        color.rgb += tex2D(_MainTex, i.uv + offset) * weight; //順方向をサンプリング＆重みづけして加算
-        color.rgb += tex2D(_MainTex, i.uv - offset) * weight; //逆方向をサンプリング＆重みづけして加算
+        float3 p = from + s * dir * .5;
+        p = abs(float3(tile, tile, tile) - fmod(p, float3(tile * 2., tile * 2., tile * 2.))); // tiling fold
+        float pa, a = pa = 0.;
+        for (int i = 0; i < iterations; i++)
+        {
+            p = abs(p) / dot(p, p) - formuparam; // the magic formula
+            a += abs(length(p) - pa); // absolute sum of average change
+            pa = length(p);
+        }
+        float dm = max(0., darkmatter - a * a * .001); //dark matter
+        a *= a * a; // add contrast
+        if (r > 6)
+            fade *= 1. - dm; // dark matter, don't render near
+		//v+=float3(dm,dm*.5,0.);
+        v += fade;
+        v += float3(s, s * s, s * s * s * s) * a * brightness * fade; // coloring based on distance
+        fade *= distfading; // distance fading
+        s += stepsize;
     }
-                //////
+    float l = length(v);
+    v = lerp(float3(l, l, l), v, saturation); //color adjust
+    color = fixed4(v * .01, 1.0f);
+    
     return color;
-}
+            }
 
-inline float GetGaussianWeight(float distance)
-{
-    return exp((-distance * distance) / (2 * _Dispersion * _Dispersion)) / _Dispersion;
-}
             ENDCG
         }
     }

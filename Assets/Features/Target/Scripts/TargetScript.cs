@@ -9,6 +9,8 @@ public class TargetScript : MonoBehaviour
     public Sprite SpecialPointSprite;
     [Header("シールド")]
     public GameObject Shield;
+    [Header("型にはまった時のエフェクトのプレハブ")]
+    public GameObject CombinationParticle;
     //星がすでにはまっているかどうか
     public bool Goaled { get; protected set; }
     //はまっている星を参照する
@@ -67,6 +69,10 @@ public class TargetScript : MonoBehaviour
 
             GameManagerScript.instance.StageManager.AddScore(rare, IsSpecialPoint);
             GameManagerScript.instance.StageManager.PutOnTareget();
+
+            //エフェクト発生
+            Instantiate(CombinationParticle, transform.position, new Quaternion());
+
             // 自分を非表示にする
             gameObject.SetActive(false);
         }
