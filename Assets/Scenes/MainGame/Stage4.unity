@@ -951,6 +951,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5105850875108164340, guid: 23cd3a265e427634aade1d6e486d211d,
         type: 3}
+      propertyPath: NextSceneName
+      value: Stage5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5105850875108164340, guid: 23cd3a265e427634aade1d6e486d211d,
+        type: 3}
       propertyPath: Setting.ProbabilityStar
       value: 0.651
       objectReference: {fileID: 0}
@@ -959,6 +964,12 @@ PrefabInstance:
       propertyPath: Setting.ConstellationName
       value: yagi
       objectReference: {fileID: 0}
+    - target: {fileID: 5105850875108164340, guid: 23cd3a265e427634aade1d6e486d211d,
+        type: 3}
+      propertyPath: Setting.ConstellationImage
+      value: 
+      objectReference: {fileID: -9017480430562522206, guid: 713ac7eee69bfd546864512ad6d9f5ad,
+        type: 3}
     - target: {fileID: 5105850875108164340, guid: 23cd3a265e427634aade1d6e486d211d,
         type: 3}
       propertyPath: Setting.ProbabilityDarkHole

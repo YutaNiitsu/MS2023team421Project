@@ -700,6 +700,11 @@ PrefabInstance:
       objectReference: {fileID: 1525265945}
     - target: {fileID: 4848639611213605157, guid: 587550b7c5faa024fa783699042c7306,
         type: 3}
+      propertyPath: NextSceneName
+      value: Title
+      objectReference: {fileID: 0}
+    - target: {fileID: 4848639611213605157, guid: 587550b7c5faa024fa783699042c7306,
+        type: 3}
       propertyPath: StarTypeTutorialPrefab
       value: 
       objectReference: {fileID: 673093457735256178, guid: 3deba3631ce85444c8726b2b381fab42,
