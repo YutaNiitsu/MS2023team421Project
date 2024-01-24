@@ -1,9 +1,9 @@
-Shader "Unlit/BackGroundShader"
+Shader"Unlit/BackGroundShader"
 {
     Properties
     {
         _MainTex ("Texture", 2D) = "white" {}
-
+        _Zoom ("Zoom", Range (0.0, 10.0)) = 0.80
     }
     SubShader
     {
@@ -42,13 +42,15 @@ Blend SrcAlpha OneMinusSrcAlpha
 
             sampler2D _MainTex;
             float4 _MainTex_ST;
+
+            float _Zoom;
 #define iterations 17
 #define formuparam 0.53
 
 #define volsteps 20
 #define stepsize 0.1
 
-#define zoom   0.800
+
 #define tile   0.850
 #define speed  0.010 
 
@@ -74,8 +76,8 @@ Blend SrcAlpha OneMinusSrcAlpha
     //get coords and direction
     float2 uv = /*fragCoord.xy / iResolution.xy - .5*/i.uv;
     uv.y *= unity_OrthoParams.y / unity_OrthoParams.x;
-    float3 dir = float3(uv * zoom, 1.);
-    float time = _Time * speed + .25;
+    float3 dir = float3(uv * _Zoom, 1.);
+    float time = /*_Time * speed + */.25;
 
 	//mouse rotation
     float a1 = .5/* + iMouse.x / iResolution.x * 2.*/;
