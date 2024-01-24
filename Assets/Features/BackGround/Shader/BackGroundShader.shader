@@ -4,6 +4,12 @@ Shader"Unlit/BackGroundShader"
     {
         _MainTex ("Texture", 2D) = "white" {}
         _Zoom ("Zoom", Range (0.0, 10.0)) = 0.80
+_Volsteps ("Volsteps", Range (0, 100)) = 20
+_Stepsize ("Stepsize", Range (0.0, 1.0)) = 0.1
+_Brightness ("Brightness", Range (0.0, 1.0)) = 0.0015
+_Darkmatter ("Darkmatter",  Range (0.0, 1.0)) = 0.300
+_Distfading ("Distfading", Range (0.0, 1.0)) = 0.730
+_Saturation ("Saturation", Range (0.0, 1.0)) = 0.850
     }
     SubShader
     {
@@ -44,20 +50,21 @@ Blend SrcAlpha OneMinusSrcAlpha
             float4 _MainTex_ST;
 
             float _Zoom;
+            int _Volsteps;
+            float _Stepsize;
+float _Brightness;
+float _Darkmatter;
+float _Distfading;
+float _Saturation;
+
 #define iterations 17
 #define formuparam 0.53
-
-#define volsteps 20
-#define stepsize 0.1
 
 
 #define tile   0.850
 #define speed  0.010 
 
-#define brightness 0.0015
-#define darkmatter 0.300
-#define distfading 0.730
-#define saturation 0.850
+
 
             v2f vert (appdata v)
             {
@@ -70,7 +77,7 @@ Blend SrcAlpha OneMinusSrcAlpha
 
             fixed4 frag (v2f i) : SV_Target
             {
-    fixed4 color = tex2D(_MainTex, i.uv);
+    fixed4 color = /*tex2D(_MainTex, i.uv)*/0;
     
     //êØ
     //get coords and direction
@@ -94,7 +101,7 @@ Blend SrcAlpha OneMinusSrcAlpha
 	//volumetric rendering
     float s = 0.1, fade = 1.;
     float3 v = 0.0f;
-    for (int r = 0; r < volsteps; r++)
+    for (int r = 0; r < _Volsteps; r++)
     {
         float3 p = from + s * dir * .5;
         p = abs(float3(tile, tile, tile) - fmod(p, float3(tile * 2., tile * 2., tile * 2.))); // tiling fold
@@ -105,18 +112,18 @@ Blend SrcAlpha OneMinusSrcAlpha
             a += abs(length(p) - pa); // absolute sum of average change
             pa = length(p);
         }
-        float dm = max(0., darkmatter - a * a * .001); //dark matter
+        float dm = max(0., _Darkmatter - a * a * .001); //dark matter
         a *= a * a; // add contrast
         if (r > 6)
             fade *= 1. - dm; // dark matter, don't render near
 		//v+=float3(dm,dm*.5,0.);
         v += fade;
-        v += float3(s, s * s, s * s * s * s) * a * brightness * fade; // coloring based on distance
-        fade *= distfading; // distance fading
-        s += stepsize;
+        v += float3(s, s * s, s * s * s * s) * a * _Brightness * fade; // coloring based on distance
+        fade *= _Distfading; // distance fading
+        s += _Stepsize;
     }
     float l = length(v);
-    v = lerp(float3(l, l, l), v, saturation); //color adjust
+    v = lerp(float3(l, l, l), v, _Saturation); //color adjust
     color = fixed4(v * .01, 1.0f);
     
     return color;
