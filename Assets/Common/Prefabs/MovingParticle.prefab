@@ -4846,7 +4846,7 @@ TrailRenderer:
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
   m_StaticShadowCaster: 0
-  m_MotionVectors: 0
+  m_MotionVectors: 1
   m_LightProbeUsage: 0
   m_ReflectionProbeUsage: 0
   m_RayTracingMode: 0
@@ -4894,12 +4894,12 @@ TrailRenderer:
         outWeight: 0.3544776
       - serializedVersion: 3
         time: 1
-        value: 0
-        inSlope: -2.7862246
-        outSlope: -2.7862246
+        value: 0.8421064
+        inSlope: -0.48456082
+        outSlope: -0.48456082
         tangentMode: 0
         weightedMode: 0
-        inWeight: 0.100746274
+        inWeight: 0.108614326
         outWeight: 0
       m_PreInfinity: 2
       m_PostInfinity: 2
@@ -4934,10 +4934,10 @@ TrailRenderer:
       m_ColorSpace: -1
       m_NumColorKeys: 2
       m_NumAlphaKeys: 2
-    numCornerVertices: 1
+    numCornerVertices: 0
     numCapVertices: 0
     alignment: 0
-    textureMode: 0
+    textureMode: 2
     textureScale: {x: 1, y: 1}
     shadowBias: 0.5
     generateLightingData: 0

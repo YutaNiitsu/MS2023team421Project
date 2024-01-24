@@ -27,6 +27,8 @@ public class TargetScript : MonoBehaviour
         Goaled = false;
         StarGoaled = null;
         Collider2D = GetComponent<CircleCollider2D>();
+        //ìÆÇ≠è·äQï®Ç…è’ìÀÇµÇ»Ç¢
+        Collider2D.excludeLayers = LayerMask.GetMask("MovableObstacle");
     }
 
     private void Update()
@@ -60,6 +62,8 @@ public class TargetScript : MonoBehaviour
                 rb.velocity = Vector3.zero;
                 //è’ìÀÇµÇƒÇ‡ìÆÇ©Ç»Ç¢ÇÊÇ§Ç…Ç∑ÇÈ
                 rb.bodyType = RigidbodyType2D.Static;
+                //ìÆÇ≠è·äQï®Ç…è’ìÀÇµÇ»Ç¢
+                collision.excludeLayers = LayerMask.GetMask("MovableObstacle");
             }
 
             StarGoaled = obj.GetComponent<StarScript>();

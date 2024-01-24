@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using static TMPro.SpriteAssetUtilities.TexturePacker_JsonArray;
 //using static UnityEditor.PlayerSettings;
@@ -49,41 +50,46 @@ public class TeleportationGateScript : MonoBehaviour
 
     IEnumerator StartTeleportation(GameObject star, GameObject camera, Vector3 exitPos, Rigidbody2D rb)
     {
-        SoundManager.instance.PlaySE("Teleportation");
+        if (!star.IsDestroyed())
+        {
+            SoundManager.instance.PlaySE("Teleportation");
 
-        Vector2 vel = new Vector2(rb.velocity.x, rb.velocity.y);
-        star.transform.position = gameObject.transform.position;
-        rb.velocity = Vector2.zero;
-        star.SetActive(false);
-        //入る時
-        while (Frame < 60)
-        {
-            yield return new WaitForSeconds(1.0f / 60.0f);
-            Frame++;
+            Vector2 vel = new Vector2(rb.velocity.x, rb.velocity.y);
+            star.transform.position = gameObject.transform.position;
+            rb.velocity = Vector2.zero;
+            star.SetActive(false);
+            //入る時
+            while (Frame < 60)
+            {
+                yield return new WaitForSeconds(1.0f / 60.0f);
+                Frame++;
+            }
+
+            Frame = 0;
+            //出口までカメラ移動
+            //while (Frame < 30)
+            //{
+            //    Vector3 pos = new Vector3(exitPos.x, exitPos.y, camera.transform.position.z);
+            //    camera.transform.position = Vector3.Lerp(camera.transform.position, pos, (float)Frame / 30.0f);
+            //    yield return new WaitForSeconds(1.0f / 60.0f);
+            //    Frame++;
+            //}
+            Vector3 pos = new Vector3(exitPos.x, exitPos.y, camera.transform.position.z);
+            camera.transform.position = pos;
+            //出るとき
+            Frame = 0;
+
+            star.transform.position = exitPos;
+            while (Frame < 60)
+            {
+                yield return new WaitForSeconds(1.0f / 60.0f);
+                Frame++;
+            }
+            yield return new WaitForSeconds(0);
+            star.SetActive(true);
+            rb.velocity = vel;
         }
-       
-        Frame = 0;
-        //出口までカメラ移動
-        //while (Frame < 30)
-        //{
-        //    Vector3 pos = new Vector3(exitPos.x, exitPos.y, camera.transform.position.z);
-        //    camera.transform.position = Vector3.Lerp(camera.transform.position, pos, (float)Frame / 30.0f);
-        //    yield return new WaitForSeconds(1.0f / 60.0f);
-        //    Frame++;
-        //}
-        Vector3 pos = new Vector3(exitPos.x, exitPos.y, camera.transform.position.z);
-        camera.transform.position = pos;
-        //出るとき
-        Frame = 0;
-        
-        star.transform.position = exitPos;
-        while (Frame < 60)
-        {
-            yield return new WaitForSeconds(1.0f / 60.0f);
-            Frame++;
-        }
+
         yield return new WaitForSeconds(0);
-        star.SetActive(true);
-        rb.velocity = vel;
     }
 }
