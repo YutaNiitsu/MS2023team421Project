@@ -77,6 +77,9 @@ public class TargetScript : MonoBehaviour
             //エフェクト発生
             Instantiate(CombinationParticle, transform.position, new Quaternion());
 
+            //効果音
+            SoundManager.instance.PlaySE("Combination");
+
             // 自分を非表示にする
             gameObject.SetActive(false);
         }
