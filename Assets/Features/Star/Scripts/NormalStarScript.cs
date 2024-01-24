@@ -30,11 +30,11 @@ public class NormalStarScript : MonoBehaviour
             //Destroy(collision.collider.gameObject);
             
         }
-        //if (collision.collider.CompareTag("Obstacle"))
-        //{
-        //    //障害物の衝突回数カウント
-        //    GameManagerScript.instance.StageManager.CollisionObstacle();
+        if (collision.collider.CompareTag("Obstacle"))
+        {
+            //障害物の衝突回数カウント
+            GameManagerScript.instance.StageManager.CollisionObstacle();
 
-        //}
+        }
     }
 }

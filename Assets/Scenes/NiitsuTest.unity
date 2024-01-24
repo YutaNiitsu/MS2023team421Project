@@ -141,7 +141,7 @@ PrefabInstance:
     - target: {fileID: 5105850875108164340, guid: 23cd3a265e427634aade1d6e486d211d,
         type: 3}
       propertyPath: Setting.Threshold
-      value: 0.78
+      value: 0.739
       objectReference: {fileID: 0}
     - target: {fileID: 5105850875108164340, guid: 23cd3a265e427634aade1d6e486d211d,
         type: 3}
@@ -181,22 +181,22 @@ PrefabInstance:
     - target: {fileID: 5105850875108164340, guid: 23cd3a265e427634aade1d6e486d211d,
         type: 3}
       propertyPath: Setting.ProbabilityNormalStar
-      value: 0.163
+      value: 0.319
       objectReference: {fileID: 0}
     - target: {fileID: 5105850875108164340, guid: 23cd3a265e427634aade1d6e486d211d,
         type: 3}
       propertyPath: Setting.ProbabilityBouncingStar
-      value: 0
+      value: 0.29
       objectReference: {fileID: 0}
     - target: {fileID: 5105850875108164340, guid: 23cd3a265e427634aade1d6e486d211d,
         type: 3}
       propertyPath: Setting.ProbabilityTransfixStar
-      value: 0
+      value: 0.326
       objectReference: {fileID: 0}
     - target: {fileID: 5105850875108164340, guid: 23cd3a265e427634aade1d6e486d211d,
         type: 3}
       propertyPath: Setting.ProbabilityExplosionStar
-      value: 0.199
+      value: 0.341
       objectReference: {fileID: 0}
     - target: {fileID: 5105850875108164340, guid: 23cd3a265e427634aade1d6e486d211d,
         type: 3}
@@ -211,7 +211,7 @@ PrefabInstance:
     - target: {fileID: 5105850875108164340, guid: 23cd3a265e427634aade1d6e486d211d,
         type: 3}
       propertyPath: Setting.ProbabilityIgnoreTeleportationStar
-      value: 0
+      value: 0.283
       objectReference: {fileID: 0}
     - target: {fileID: 8602336333666789749, guid: 23cd3a265e427634aade1d6e486d211d,
         type: 3}
@@ -1442,82 +1442,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3205941495445861769, guid: 3a5457b2f20b2354db34d5316110d377,
         type: 3}
-      propertyPath: MasterVolume
+      propertyPath: BGMVolume
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3205941495445861769, guid: 3a5457b2f20b2354db34d5316110d377,
+        type: 3}
+      propertyPath: MasterVolume
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3a5457b2f20b2354db34d5316110d377, type: 3}
---- !u!1001 &2145378329
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 1623731459398655908, guid: 6c827ecef8574f745a033e9974b80028,
-        type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -8.17
-      objectReference: {fileID: 0}
-    - target: {fileID: 1623731459398655908, guid: 6c827ecef8574f745a033e9974b80028,
-        type: 3}
-      propertyPath: m_LocalPosition.y
-      value: -3.91
-      objectReference: {fileID: 0}
-    - target: {fileID: 1623731459398655908, guid: 6c827ecef8574f745a033e9974b80028,
-        type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1623731459398655908, guid: 6c827ecef8574f745a033e9974b80028,
-        type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1623731459398655908, guid: 6c827ecef8574f745a033e9974b80028,
-        type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1623731459398655908, guid: 6c827ecef8574f745a033e9974b80028,
-        type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1623731459398655908, guid: 6c827ecef8574f745a033e9974b80028,
-        type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1623731459398655908, guid: 6c827ecef8574f745a033e9974b80028,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1623731459398655908, guid: 6c827ecef8574f745a033e9974b80028,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1623731459398655908, guid: 6c827ecef8574f745a033e9974b80028,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8860778915469388107, guid: 6c827ecef8574f745a033e9974b80028,
-        type: 3}
-      propertyPath: m_Name
-      value: dark hole
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 6c827ecef8574f745a033e9974b80028, type: 3}
 --- !u!1001 &6816364304989145735
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1601,4 +1538,3 @@ SceneRoots:
   - {fileID: 6816364304989145735}
   - {fileID: 1050019034}
   - {fileID: 1752370606}
-  - {fileID: 2145378329}
