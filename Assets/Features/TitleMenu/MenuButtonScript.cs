@@ -32,12 +32,14 @@ public class MenuButtonScript : MonoBehaviour
     //ボタンにホバーした時
     public void Hover()
     {
-        Rect.localScale = new Vector3(HoveredScale, HoveredScale, 1.0f);
+        if (Rect != null)
+            Rect.localScale = new Vector3(HoveredScale, HoveredScale, 1.0f);
     }
     //ホバーされなくなった時
     public void UnHover()
     {
-        Rect.localScale = new Vector3(1.0f, 1.0f, 1.0f);
+        if (Rect != null)
+            Rect.localScale = new Vector3(1.0f, 1.0f, 1.0f);
     }
 
     private void OnApplicationFocus(bool focus)
