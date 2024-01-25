@@ -61,6 +61,8 @@ public class TitleMenuScript : MonoBehaviour
         //•\Ž¦
         if (enable)
         {
+            if (FirstSelect != null)
+                EventSystem.current.SetSelectedGameObject(FirstSelect);
             DrawLine.DrawLine(Targets, Lines);
             gameObject.SetActive(true);
             StartCoroutine(DisplayCoroutine());
@@ -68,6 +70,8 @@ public class TitleMenuScript : MonoBehaviour
         //”ñ•\Ž¦
         else
         {
+            if (FirstSelect != null)
+                EventSystem.current.SetSelectedGameObject(null);
             DrawLine.DeleteLine();
             foreach (MenuButtonScript i in Buttons)
             {
