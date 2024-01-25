@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 public class MenuButtonScript : MonoBehaviour
@@ -16,6 +17,17 @@ public class MenuButtonScript : MonoBehaviour
         ButtonObject = transform.GetChild(0).gameObject.GetComponent<Button>();
         Rect = ButtonObject.GetComponent<RectTransform>();
     }
+    private void Update()
+    {
+        //if (gameObject == EventSystem.current.currentSelectedGameObject)
+        //{
+        //    Hover();
+        //}
+        //else
+        //{
+        //    UnHover();
+        //}
+    }
 
     //ボタンにホバーした時
     public void Hover()
@@ -26,5 +38,10 @@ public class MenuButtonScript : MonoBehaviour
     public void UnHover()
     {
         Rect.localScale = new Vector3(1.0f, 1.0f, 1.0f);
+    }
+
+    private void OnApplicationFocus(bool focus)
+    {
+        
     }
 }

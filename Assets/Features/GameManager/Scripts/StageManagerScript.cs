@@ -34,6 +34,8 @@ public class StageManagerScript : MonoBehaviour
     public string NextSceneName;
     [Header("BGMの名前")]
     public string BGM_Name;
+    [Header("背景のスクロールスピード")]
+    public float ScrollSpeed = 0.1f;
 
     public ProceduralGenerator ProceduralGenerator { get; protected set; }
     public SaveConstellationData[] ConstellationDatas { get; protected set; }
@@ -50,6 +52,8 @@ public class StageManagerScript : MonoBehaviour
     private MovableObstacleManagerScript MovableObstacleMgr;
     public UIManagerScript UIManager { get; protected set; }
     protected GameObject MainCamera;
+
+    private BackGroundScript Background;
 
     private void Awake()
     {
@@ -80,15 +84,36 @@ public class StageManagerScript : MonoBehaviour
         }
 
         //テスト用
-        if (Input.GetKeyDown(KeyCode.P))
-        {
-            UIManager.PauseGame();
-        }
-        if (Input.GetKeyDown(KeyCode.F2))
-        {
-            SoundManager.instance.StopBGM(BGM_Name);
-        }
+        //if (Input.GetKeyDown(KeyCode.P))
+        //{
+        //    UIManager.PauseGame();
+        //}
+        //if (Input.GetKeyDown(KeyCode.F2))
+        //{
+        //    SoundManager.instance.StopBGM(BGM_Name);
+        //}
+
         
+        //ポーズ中
+        if (Time.timeScale == 0)
+        {
+            if (Input.GetButtonDown("Pause"))
+            {
+                UIManager.ResumeGame();
+            }
+               
+        }
+        else
+        {
+            //ポーズ
+            if (Input.GetButtonDown("Pause"))
+            {
+                UIManager.PauseGame();
+            }
+        }
+
+        //カメラに追従
+        Background.CameraScroll(ScrollSpeed);
     }
 
     public virtual void StageManagerStart()
@@ -114,6 +139,7 @@ public class StageManagerScript : MonoBehaviour
         MovableObstacleMgr = GetComponent<MovableObstacleManagerScript>();
         UIManager = GameObject.FindGameObjectWithTag("UIManager").GetComponent<UIManagerScript>();
         MainCamera = GameObject.FindGameObjectWithTag("MainCamera");
+        Background = GameObject.FindGameObjectWithTag("BackGround").GetComponent<BackGroundScript>();
 
         SoundManager.instance.PlayBGM(BGM_Name);
     }

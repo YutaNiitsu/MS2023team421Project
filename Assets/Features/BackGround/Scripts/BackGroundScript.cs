@@ -5,9 +5,9 @@ using UnityEngine.UI;
 
 public class BackGroundScript : MonoBehaviour
 {
-    public float ScrollSpeed;
     private Material BG_Material;
     private GameObject Camera;
+    private Vector2 Offset;
 
     // Start is called before the first frame update
     void Start()
@@ -20,19 +20,31 @@ public class BackGroundScript : MonoBehaviour
         {
             Camera = camra;
         }
+
+        Offset = new Vector2();
     }
 
     // Update is called once per frame
     void Update()
     {
-        //カメラに追従
+        
+    }
+
+    public void CameraScroll(float scrollSpeed)
+    {
         Vector3 pos = Camera.transform.position;
         pos.z = 1.0f;
         gameObject.transform.position = pos;
         //UVをスクロール
-        var x = Camera.transform.position.x * ScrollSpeed * 0.01f;
-        var y = Camera.transform.position.y * ScrollSpeed * 0.01f;
+        var x = pos.x * scrollSpeed * 0.01f;
+        var y = pos.y * scrollSpeed * 0.01f;
         var offset = new Vector2(x, y);
         BG_Material.SetTextureOffset("_MainTex", offset);
+    }
+
+    public void Scroll(Vector2 vel)
+    {
+        Offset += vel * 0.001f;
+        BG_Material.SetTextureOffset("_MainTex", Offset);
     }
 }

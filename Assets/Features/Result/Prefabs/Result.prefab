@@ -225,7 +225,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 7315534374526380238, guid: a56ca948c9f7c3a47a1d2098de0bd118, type: 3}
+  m_Sprite: {fileID: 21300000, guid: a56ca948c9f7c3a47a1d2098de0bd118, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -356,7 +356,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: -1077201996842883958, guid: 3543cac40f41b1a44a49d2416850178a, type: 3}
+  m_Sprite: {fileID: -1077201996842883958, guid: 3543cac40f41b1a44a49d2416850178a,
+    type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -433,7 +434,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: -5081949855336221306, guid: 386b01829c43ede46a98134d5c1767d2, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 386b01829c43ede46a98134d5c1767d2, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -728,7 +729,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 64f8cce421969384ebe197e541cd00c1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MissionResultPrefab: {fileID: 5132313971667007511, guid: 7fe8f3792d66b904d94b608d6b5a86c3, type: 3}
+  MissionResultPrefab: {fileID: 5132313971667007511, guid: 7fe8f3792d66b904d94b608d6b5a86c3,
+    type: 3}
 --- !u!1 &5527009153455606294
 GameObject:
   m_ObjectHideFlags: 0
@@ -784,7 +786,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   GameClearImage: {fileID: 8860617286714081042}
   ConstellationImage: {fileID: 3535982027290875508}
-  ScoreText: {fileID: 1289578412473864527}
+  ScoreText: {fileID: 0}
   ButtonObjects: {fileID: 8082874155827608675}
   missionResult: {fileID: 2315639253362122650}
   FadeSpeed: 0.02
@@ -855,8 +857,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
-  m_Type: 1
+  m_Sprite: {fileID: 21300000, guid: 0d68f43c74b92d1409110983531907b8, type: 3}
+  m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4

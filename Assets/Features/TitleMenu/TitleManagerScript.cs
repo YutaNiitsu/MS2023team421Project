@@ -8,6 +8,8 @@ public class TitleManagerScript : MonoBehaviour
     public TitleMenuScript TitleMenu;
     public TitleMenuScript StageSelectMenu;
     public GameObject Credit;
+    public Vector2 BG_ScrollVelocity;
+    private BackGroundScript BackGround;
 
     // Start is called before the first frame update
     void Start()
@@ -16,12 +18,13 @@ public class TitleManagerScript : MonoBehaviour
         TitleMenu.Display(true);
         StageSelectMenu.Display(false);
         Credit.SetActive(false);
+        BackGround = GameObject.FindGameObjectWithTag("BackGround").GetComponent<BackGroundScript>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        BackGround.Scroll(BG_ScrollVelocity);
     }
 
     //ÉVÅ[ÉìêÿÇËë÷Ç¶

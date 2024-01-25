@@ -66,14 +66,14 @@ Material:
     m_Ints: []
     m_Floats:
     - PixelSnap: 0
-    - _Brightness: 0.002
+    - _Brightness: 0.001
     - _BumpScale: 1
     - _ColorMask: 15
     - _Cutoff: 0.834
-    - _Darkmatter: 0.16
+    - _Darkmatter: 0.44
     - _DetailNormalMapScale: 1
     - _Dispersion: 12.1
-    - _Distfading: 0.643
+    - _Distfading: 0.64
     - _DstBlend: 0
     - _EnableExternalAlpha: 0
     - _GlossMapScale: 1
@@ -85,7 +85,7 @@ Material:
     - _Offset: 0.01
     - _Parallax: 0.02
     - _SamplingTexelAmount: 26.64
-    - _Saturation: 0.144
+    - _Saturation: 0.1
     - _SmoothnessTextureChannel: 0
     - _SpecularHighlights: 1
     - _SrcBlend: 1
@@ -95,7 +95,7 @@ Material:
     - _StencilReadMask: 255
     - _StencilWriteMask: 255
     - _StepSize: 0.002
-    - _Stepsize: 0.054
+    - _Stepsize: 0.09
     - _TexelInterval: 2.15
     - _UVSec: 0
     - _UseUIAlphaClip: 0

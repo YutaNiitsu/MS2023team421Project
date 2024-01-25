@@ -1,9 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class TitleMenuScript : MonoBehaviour
 {
+    [Header("最初にフォーカスするボタン")]
+    [SerializeField] private GameObject FirstSelect;
     private DrawConstellationLine DrawLine;
     private MenuButtonScript[] Buttons;
     private ST_Constellation[] Targets;
@@ -43,7 +46,8 @@ public class TitleMenuScript : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-
+        if (FirstSelect != null) 
+            EventSystem.current.SetSelectedGameObject(FirstSelect);
     }
 
     // Update is called once per frame
