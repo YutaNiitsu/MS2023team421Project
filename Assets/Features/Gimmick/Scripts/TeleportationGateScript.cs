@@ -50,7 +50,7 @@ public class TeleportationGateScript : MonoBehaviour
 
     IEnumerator StartTeleportation(GameObject star, GameObject camera, Vector3 exitPos, Rigidbody2D rb)
     {
-        if (!star.IsDestroyed())
+        if (star != null && !star.IsDestroyed())
         {
             SoundManager.instance.PlaySE("Teleportation");
 

@@ -44,7 +44,7 @@ public class BackGroundScript : MonoBehaviour
 
     public void Scroll(Vector2 vel)
     {
-        Offset += vel * 0.001f;
+        Offset += vel * 0.0001f;
         BG_Material.SetTextureOffset("_MainTex", Offset);
     }
 }

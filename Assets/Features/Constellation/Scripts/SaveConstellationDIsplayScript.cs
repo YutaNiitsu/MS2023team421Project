@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using UnityEngine;
 using UnityEngine.UI;
+using static UnityEngine.GraphicsBuffer;
 
 public class SaveConstellationDIsplayScript : MonoBehaviour
 {
@@ -12,7 +13,10 @@ public class SaveConstellationDIsplayScript : MonoBehaviour
         SavedData,    // セーブデータからの読み込みだった場合
     }
 
-    public Button SavedButton;
+    public InputField Input;
+    public Button NewSaveButton;
+    public Button OverwriteSaveButton;
+    public Button CancelButton;
 
     // Start is called before the first frame update
     void Start()
@@ -27,28 +31,34 @@ public class SaveConstellationDIsplayScript : MonoBehaviour
         {
             case SaveConstellationType.NewData:
                 // 新規作成した星座だった場合は上書きセーブ用ボタンを無効にする
-                SavedButton.interactable = false;
+                OverwriteSaveButton.interactable = false;
+
+                //ナビゲーションの設定
+                SetNavigation(Input, NewSaveButton, NewSaveButton, null, null);
+                SetNavigation(NewSaveButton, Input, Input, CancelButton, CancelButton);
+                SetNavigation(CancelButton, Input, Input, NewSaveButton, NewSaveButton);
+
                 break;
             case SaveConstellationType.SavedData:
                 // セーブデータからの読み込みだった場合は上書きセーブ用ボタンを有効にする
-                SavedButton.interactable = true;
+                OverwriteSaveButton.interactable = true;
+
+                //ナビゲーションの設定
+
                 break;
             default:
                 break;
         }
-
     }
 
-    //public void NewSave()
-    //{
-
-    //}
-    //public void Overwrite()
-    //{
-
-    //}
-    //public void Cancel()
-    //{
-
-    //}
+    private void SetNavigation(Selectable target, Selectable up, Selectable down,
+        Selectable left, Selectable right)
+    {
+        Navigation nav = target.navigation;
+        nav.selectOnUp = up;
+        nav.selectOnDown = down;
+        nav.selectOnLeft = left;
+        nav.selectOnRight = right;
+        target.navigation = nav;
+    }
 }
