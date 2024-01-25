@@ -6,16 +6,20 @@ using UnityEngine.UIElements;
 
 public class ContorolStar : MonoBehaviour
 {
-    public PlayerStock PlayerStockScript;
+    //public PlayerStock PlayerStockScript;
+    //public GameManagerScript UseGameManagerScript;
+    private bool MoveTG;
 
-    Rigidbody2D rigid2d;
-    Vector2 startPos;
-    Vector2 startDirection;
+    public Rigidbody2D rigid2d { get; protected set; }
+    // Vector2 startPos;
+    // Vector2 startDirection;
 
-    //public Slider shotGauge;
-    float speed = 4.5f;
-   // float gaugeLength = 0.0f;
-    bool shotGaugeSet = false;
+    // //public Slider shotGauge;
+    // float speed = 4.5f;
+    //// float gaugeLength = 0.0f;
+    // bool shotGaugeSet = false;
+
+    private StarScript _StarScript;
 
     Vector3 direction;
     Vector3 normal;
@@ -23,50 +27,14 @@ public class ContorolStar : MonoBehaviour
     void Start()
     {
         this.rigid2d = GetComponent<Rigidbody2D>();
-
+        MoveTG = false;
+        _StarScript = GetComponent<StarScript>();
     }
 
     void Update()
     {
-
-        // マウスを押した地点の座標を記録
-        if (Input.GetMouseButtonDown(0))
-        {
-            this.startPos = Input.mousePosition;
-            shotGaugeSet = true;
-        }
-
-        // マウスを離した地点の座標から、発射方向を計算
-        if (Input.GetMouseButtonUp(0))
-        {
-            Vector2 endPos = Input.mousePosition;
-            //Vector2 aaaa = new Vector2(100, 100);
-            //startDirection = -1 * (endPos - startPos).normalized;
-            startDirection = -1 * (endPos - startPos);
-            this.rigid2d.AddForce(startDirection * speed);
-            //this.rigid2d.AddForce(aaaa);
-            //this.rigid2d.velocity = (startDirection * speed);
-            shotGaugeSet = false;
-            Debug.Log(startDirection);
-        }
-
-        ////移動
-        //this.rigid2d.velocity = (startDirection * speed);
-        ////減速
+        //UseGameManagerScript.Discharge(rigid2d);
         FixedUpdate();
-
-        // マウスが押されている間 ショットゲージを呼ぶ
-        if (shotGaugeSet)
-        {
-            shotGaugeValue();
-        }
-
-        // テスト用：スペースキー押下で停止
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            this.rigid2d.velocity *= 0;
-        }
-
     }
 
     void FixedUpdate()
@@ -96,16 +64,44 @@ public class ContorolStar : MonoBehaviour
         Vector3 result = Vector3.Reflect(direction, normal);
 
         rigid2d.velocity = result;
-
-        if (other.gameObject.CompareTag("Point"))
+        //UseGameManagerScript.Discharge(rigid2d);
+        if (other.gameObject.CompareTag("Target"))
         {
-            PlayerStockScript.Sporn();
-            Destroy(this.gameObject);
+            //UseGameManagerScript.Discharge(rigid2d); 
+            //PlayerStockScript.Sporn();
+            //Destroy(this.gameObject);
         }
         //// directionの更新
         //direction = rb.velocity;
     }
 
+    public void ChangeMoveTG()
+    {
+        if (MoveTG == false)
+        {
+            MoveTG = true;
+            this.gameObject.tag = "StarStop";
+        }
+        else if (MoveTG == true)
+        {
+            MoveTG = false;
+            this.gameObject.tag = "Star";
+        }
+    }
+
+    public void AddForce(Vector2 UpdateForce)
+    {
+        this.rigid2d.AddForce(UpdateForce);
+        _StarScript.PlayParticle();
+    }
+
+    public void StopMove(Vector2 UpdatePos)
+    {
+        transform.position = UpdatePos;
+
+        this.rigid2d.velocity *= 0.0f;
+        this.gameObject.tag = "StarStop";
+    }
 }
 
 

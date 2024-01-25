@@ -1,0 +1,104 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &647792872594485674
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 177974836818238214}
+  - component: {fileID: 3205941495445861769}
+  m_Layer: 0
+  m_Name: SoundManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &177974836818238214
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 647792872594485674}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 1137.1631, y: 569.15857, z: -3.7510586}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &3205941495445861769
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 647792872594485674}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0ba1205591a7da548b52aefeac93104f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  MasterVolume: 1
+  BGMVolume: 1
+  SEVolume: 1
+  audioSourceNumber: 20
+  BGM_Datas:
+  - name: BGM1
+    audioClip: {fileID: 8300000, guid: 944b54a741552d94fa005a2af9c05f3d, type: 3}
+    volume: 0.13
+    pitch: 1
+  - name: OuterSpace
+    audioClip: {fileID: 8300000, guid: ade1d5e1b31737245b16788b78e9647b, type: 3}
+    volume: 0.493
+    pitch: 1
+  SE_Datas:
+  - name: Explosion
+    audioClip: {fileID: 8300000, guid: 664a356c80af26d40a9aa121faa2980d, type: 3}
+    volume: 0.35
+    pitch: 1
+  - name: HitShield
+    audioClip: {fileID: 8300000, guid: 87cadc88c87dc7c46ab5e2ae7b5ef58d, type: 3}
+    volume: 1
+    pitch: 1
+  - name: Complete
+    audioClip: {fileID: 8300000, guid: 029109e8baac7ad48b9b01919aff99d7, type: 3}
+    volume: 1
+    pitch: 1
+  - name: HitDarkHole
+    audioClip: {fileID: 8300000, guid: 8b23bbd309b57bf418b66b7654770bd8, type: 3}
+    volume: 1
+    pitch: 1
+  - name: GameOver
+    audioClip: {fileID: 8300000, guid: fe76c6f29db605546948d0906b9d8606, type: 3}
+    volume: 1
+    pitch: 1
+  - name: Determination
+    audioClip: {fileID: 8300000, guid: 75a6b8f44d604894a973127fe949d0dc, type: 3}
+    volume: 1
+    pitch: 1
+  - name: CreateLine
+    audioClip: {fileID: 8300000, guid: 9f37ed5fc1a98c646859bd8eb24483b1, type: 3}
+    volume: 1
+    pitch: 1
+  - name: Select
+    audioClip: {fileID: 8300000, guid: 7553ef929bfb06741809d074b43a1564, type: 3}
+    volume: 1
+    pitch: 1
+  - name: Collision
+    audioClip: {fileID: 8300000, guid: 055f85f9c89f83e47a1d0942008dc1b3, type: 3}
+    volume: 1
+    pitch: 1
+  - name: Teleportation
+    audioClip: {fileID: 8300000, guid: 1f64045569185d44286172147e757b57, type: 3}
+    volume: 1
+    pitch: 1
+  - name: Combination
+    audioClip: {fileID: 8300000, guid: 0782f3e71bfa4894290694f442869ea5, type: 3}
+    volume: 1
+    pitch: 1

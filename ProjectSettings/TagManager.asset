@@ -4,7 +4,13 @@
 TagManager:
   serializedVersion: 2
   tags:
-  - Point
+  - UIManager
+  - Target
+  - StageManager
+  - Obstacle
+  - Star
+  - dark hole
+  - BackGround
   layers:
   - Default
   - TransparentFX
@@ -13,8 +19,8 @@ TagManager:
   - Water
   - UI
   - 
-  - 
-  - 
+  - IgnoreTelep
+  - MovableObstacle
   - 
   - 
   - 
