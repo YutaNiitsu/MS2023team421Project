@@ -390,9 +390,9 @@ public class CreateConstellationScript : MonoBehaviour
     {
         if (IsGamePad() && pad)
         {
-            float moveX = Input.GetAxis("Horizontal") + Input.GetAxis("Mouse X");
-            float moveY = -Input.GetAxis("Vertical") - Input.GetAxis("Mouse Y");
-            CursorPosition += new Vector3(moveX, moveY, 0.0f) * 10.0f;
+            float moveX = Input.GetAxis("Horizontal") * 5.0f + Input.GetAxis("Mouse X") * 10.0f;
+            float moveY = -Input.GetAxis("Vertical") * 5.0f - Input.GetAxis("Mouse Y") * 10.0f;
+            CursorPosition += new Vector3(moveX, moveY, 0.0f);
         }
         else
         {
@@ -410,7 +410,7 @@ public class CreateConstellationScript : MonoBehaviour
             CursorPosition = new Vector3(CursorPosition.x, 0.0f, 0.0f);
         if (CursorPosition.y >= Screen.height)
             CursorPosition = new Vector3(CursorPosition.x, Screen.height, 0.0f);
-        //Debug.Log(CursorPosition);
+        Debug.Log(CursorPosition);
         SetCursorPos((int)CursorPosition.x, (int)CursorPosition.y);
     }
 }

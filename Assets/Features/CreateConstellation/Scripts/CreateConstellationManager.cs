@@ -85,12 +85,12 @@ public class CreateConstellationManager : MonoBehaviour
             return;
 
         //右クリックで削除
-        if (Input.GetMouseButtonDown(1))
+        if (Input.GetMouseButtonDown(1) || Input.GetButtonDown("delete"))
         {
             createConstellationScript.DeleteTarget();
         }
         //左クリックで設置
-        if (Input.GetMouseButtonDown(0))
+        if (Input.GetMouseButtonDown(0) || Input.GetButtonDown("put"))
         {
             //マウス座標の取得
             Vector3 mousePos = Input.mousePosition;
