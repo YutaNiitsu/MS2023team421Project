@@ -1223,6 +1223,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: UI_Value
       objectReference: {fileID: 0}
+    - target: {fileID: 7665264341572365982, guid: be7a79908bef8bb43b75981d4fddf111,
+        type: 3}
+      propertyPath: FontSize
+      value: 30
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1720,6 +1725,12 @@ PrefabInstance:
       propertyPath: m_FontData.m_FontSize
       value: 54
       objectReference: {fileID: 0}
+    - target: {fileID: 3521692076938594066, guid: be51918a78ed9d54da509fde3f058c00,
+        type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 1205426467, guid: 0d68f43c74b92d1409110983531907b8,
+        type: 3}
     - target: {fileID: 4327776863089600700, guid: be51918a78ed9d54da509fde3f058c00,
         type: 3}
       propertyPath: m_Colors.m_NormalColor.b
@@ -1820,11 +1831,23 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 3118381014134219728}
+    - target: {fileID: 5883255621859299528, guid: be51918a78ed9d54da509fde3f058c00,
+        type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: -1405230519, guid: 386b01829c43ede46a98134d5c1767d2,
+        type: 3}
     - target: {fileID: 5934542904820505293, guid: be51918a78ed9d54da509fde3f058c00,
         type: 3}
       propertyPath: m_Name
       value: PauseMenu
       objectReference: {fileID: 0}
+    - target: {fileID: 6413585561879743454, guid: be51918a78ed9d54da509fde3f058c00,
+        type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: -743243955, guid: 6963f4bca91fca74eb6b0140eeff4620,
+        type: 3}
     - target: {fileID: 6638269126686848844, guid: be51918a78ed9d54da509fde3f058c00,
         type: 3}
       propertyPath: m_Text
