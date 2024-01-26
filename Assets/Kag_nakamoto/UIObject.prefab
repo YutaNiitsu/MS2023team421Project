@@ -318,6 +318,7 @@ MonoBehaviour:
   GameOver: {fileID: 9144344539658633400}
   PauseFocusButton: {fileID: 2789537962612252907}
   ResultFocusButton: {fileID: 1856144099111072503}
+  GameOverFocusButton: {fileID: 0}
 --- !u!1001 &360622780560704975
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1990,7 +1991,7 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: -743243955, guid: 6963f4bca91fca74eb6b0140eeff4620,
+      objectReference: {fileID: 1254927571, guid: a6241838e4d72b540849f9f35c98c8fe,
         type: 3}
     - target: {fileID: 6638269126686848844, guid: be51918a78ed9d54da509fde3f058c00,
         type: 3}
