@@ -97,8 +97,8 @@ float fbm2(in float2 vec, in int octave, in float2 offset = 0.0)
     float noise2 = saturate(saturate(fbm2(pos * 0.03f, 2)) + 0.3f) + _SinTime;
     //col.a = noise;
      //ü‚Ì’†S‚É‹ß‚¢‚Ù‚Ç”Z‚­‚È‚é
-    col.a = pow(saturate(1.0f - abs(i.uv.y - 0.5f * noise) * 2.0f), 5);
-    col.r = 1.1f - pow(saturate(1.0f - abs(i.uv.y - 0.5f * noise) * 2.0f), 5);
+    col.a = pow(saturate(1.0f - abs(i.uv.y - 0.5f * noise) * 2.0f), 5)*1.2f;
+    col.r = 1.1f - pow(saturate(1.0f - abs(i.uv.y - 0.5f * noise) * 2.0f), 5)1.2f;
     //col.rg = 1.1f - pow(saturate(1.0f - abs(i.uv.y - 0.5f * noise2) * 2.0f), 5);
     col.a += pow(saturate(0.9f - abs(i.uv.y - 0.5f) * 2.0f), 8) * noise;
     col.a *= pow(saturate(1.0f - abs(i.uv.y - 0.5f) * 2.0f), 5);
