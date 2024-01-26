@@ -64,7 +64,7 @@ public class MovableObstacleManagerScript : MonoBehaviour
         Vector3 screenSize = new Vector3(Screen.currentResolution.width, Screen.currentResolution.height, 0.0f);
 
         //ê∂ê¨à íu
-        Vector3 popPos = Vector3.Scale(SpawnPos[dir], screenSize) * 0.45f;
+        Vector3 popPos = Vector3.Scale(SpawnPos[dir], screenSize) * 1.2f;
        
         //åxçêï\é¶
         WarningMark.StartWarning(popPos, Interval);
