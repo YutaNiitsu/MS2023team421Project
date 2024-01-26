@@ -14,6 +14,7 @@ public class UIManagerScript : MonoBehaviour
     public GameObject GameOver;
     public Button PauseFocusButton;
     public Button ResultFocusButton;
+    public Button GameOverFocusButton;
 
     private StageManagerScript StageManager;
 
@@ -61,6 +62,7 @@ public class UIManagerScript : MonoBehaviour
 
     public void DisplayGameOver()
     {
+        GameOverFocusButton.Select();
         ResultFocusButton.Select();
         HUD.SetActive(false);
         MiniMap.SetActive(false);

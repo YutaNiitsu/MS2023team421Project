@@ -11,6 +11,8 @@ public class TargetScript : MonoBehaviour
     public GameObject Shield;
     [Header("型にはまった時のエフェクトのプレハブ")]
     public GameObject CombinationParticle;
+    [Header("型にはまった時の星のマテリアル")]
+    public Material CombinationStarMaterial;
     //星がすでにはまっているかどうか
     public bool Goaled { get; protected set; }
     //はまっている星を参照する
@@ -65,6 +67,8 @@ public class TargetScript : MonoBehaviour
                 //動く障害物に衝突しない
                 collision.excludeLayers = LayerMask.GetMask("MovableObstacle");
             }
+
+            obj.GetComponent<SpriteRenderer>().material = CombinationStarMaterial;
 
             StarGoaled = obj.GetComponent<StarScript>();
 

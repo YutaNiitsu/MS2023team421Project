@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.InteropServices;
 using UnityEngine;
+using static SaveConstellationDIsplayScript;
 
 public class ContorolPlayer : MonoBehaviour
 {
@@ -33,6 +35,10 @@ public class ContorolPlayer : MonoBehaviour
 
     Vector3 GetPosition;
     private StarScript StarScriptRef;
+    public Vector3 CursorPosition { get; protected set; }
+
+    [DllImport("user32.dll")]
+    static extern bool SetCursorPos(int X, int Y);
 
     void Start()
     {
@@ -45,6 +51,8 @@ public class ContorolPlayer : MonoBehaviour
 
         // オブジェクトのサイズを取得
         objectSize = collider.bounds.size;
+
+        CursorPosition = new Vector2(Screen.width / 2, Screen.height / 2);
     }
     private void FixedUpdate()
     {
@@ -180,36 +188,36 @@ public class ContorolPlayer : MonoBehaviour
 
     void CursorContorol()
     {
-        if (ContorolerTG)
-        {
-            // 左スティックの水平方向の入力を取得
-            float horizontalInput = Input.GetAxis("Horizontal");
-            //Input.GetAxis("Debug Horizontal");
-            // 左スティックの垂直方向の入力を取得
-            float verticalInput = Input.GetAxis("Vertical");
-            // 入力に基づいて移動方向を計算
-            Vector3 movementDirection = new Vector3(horizontalInput, verticalInput, 0.0f).normalized;
+        //if (ContorolerTG)
+        //{
+        //    // 左スティックの水平方向の入力を取得
+        //    float horizontalInput = Input.GetAxis("Horizontal");
+        //    //Input.GetAxis("Debug Horizontal");
+        //    // 左スティックの垂直方向の入力を取得
+        //    float verticalInput = Input.GetAxis("Vertical");
+        //    // 入力に基づいて移動方向を計算
+        //    Vector3 movementDirection = new Vector3(horizontalInput, verticalInput, 0.0f).normalized;
 
-            // 移動方向に速度を掛けて移動
-            transform.Translate(movementDirection * 0.05f);
+        //    // 移動方向に速度を掛けて移動
+        //    transform.Translate(movementDirection * 0.05f);
 
-            //// スティックの傾きを計算
-            //float stickAngle = Mathf.Atan2(verticalInput, horizontalInput) * Mathf.Rad2Deg;
+        //    //// スティックの傾きを計算
+        //    //float stickAngle = Mathf.Atan2(verticalInput, horizontalInput) * Mathf.Rad2Deg;
 
-            //// スティックの感度を適用
-            //stickAngle *= sensitivity;
+        //    //// スティックの感度を適用
+        //    //stickAngle *= sensitivity;
 
-            //// 結果を表示（デバッグ用）
-            //Debug.Log("Stick Angle: " + stickAngle);
-        }
-        ////////////////////////////////////////////////////////////////////////////////
-        else
-        {
-            Vector3 mousePos = Input.mousePosition;
-            mousePos.z = 10.0f;
-            Vector3 objPos = Camera.main.ScreenToWorldPoint(mousePos);
-            transform.position = new Vector2(objPos.x, objPos.y);
-        }
+        //    //// 結果を表示（デバッグ用）
+        //    //Debug.Log("Stick Angle: " + stickAngle);
+        //}
+        //////////////////////////////////////////////////////////////////////////////////
+        //else
+        //{
+        //    Vector3 mousePos = Input.mousePosition;
+        //    mousePos.z = 10.0f;
+        //    Vector3 objPos = Camera.main.ScreenToWorldPoint(mousePos);
+        //    transform.position = new Vector2(objPos.x, objPos.y);
+        //}
 
         MoveInCamera();
 
@@ -234,36 +242,65 @@ public class ContorolPlayer : MonoBehaviour
 
     void MoveInCamera()
     {
-        Vector3 pointLB = Camera.main.ScreenToWorldPoint(Vector3.zero);
-        Vector3 pointRU = Camera.main.ScreenToWorldPoint(new Vector3(Screen.width - 1, Screen.height - 1, 0));
-        // 画面外判定
+        //Vector3 pointLB = Camera.main.ScreenToWorldPoint(Vector3.zero);
+        //Vector3 pointRU = Camera.main.ScreenToWorldPoint(new Vector3(Screen.width - 1, Screen.height - 1, 0));
+        //// 画面外判定
+        //{
+
+        //    // 画像サイズの半分の値
+        //    float x = objectSize.x;
+        //    float y = objectSize.y;
+
+        //    // 左
+        //    if ((transform.position.x - x) < pointLB.x)
+        //    {
+        //        transform.position = new Vector2(pointLB.x + x, transform.position.y);
+        //    }
+        //    // 下
+        //    if ((transform.position.y - y) < pointLB.y)
+        //    {
+        //        transform.position = new Vector2(transform.position.x, pointLB.y + y);
+        //    }
+        //    // 右
+        //    if ((transform.position.x + x) > pointRU.x)
+        //    {
+        //        transform.position = new Vector2(pointRU.x - x, transform.position.y);
+        //    }
+        //    // 上
+        //    if ((transform.position.y + y) > pointRU.y)
+        //    {
+        //        transform.position = new Vector2(transform.position.x, pointRU.y - y);
+        //    }
+        //}
+
+        if (ContorolerTG)
         {
-
-            // 画像サイズの半分の値
-            float x = objectSize.x;
-            float y = objectSize.y;
-
-            // 左
-            if ((transform.position.x - x) < pointLB.x)
-            {
-                transform.position = new Vector2(pointLB.x + x, transform.position.y);
-            }
-            // 下
-            if ((transform.position.y - y) < pointLB.y)
-            {
-                transform.position = new Vector2(transform.position.x, pointLB.y + y);
-            }
-            // 右
-            if ((transform.position.x + x) > pointRU.x)
-            {
-                transform.position = new Vector2(pointRU.x - x, transform.position.y);
-            }
-            // 上
-            if ((transform.position.y + y) > pointRU.y)
-            {
-                transform.position = new Vector2(transform.position.x, pointRU.y - y);
-            }
+            float moveX = Input.GetAxis("RS_X") * 5.0f * sensitivity + Input.GetAxis("Mouse X") * 10.0f;
+            float moveY = Input.GetAxis("RS_Y") * 5.0f * sensitivity - Input.GetAxis("Mouse Y") * 10.0f;
+            CursorPosition += new Vector3(moveX, moveY, 0.0f);
         }
+        else
+        {
+            float moveX = Input.GetAxis("Mouse X");
+            float moveY = -Input.GetAxis("Mouse Y");
+            CursorPosition += new Vector3(moveX, moveY, 0.0f) * 10.0f;
+
+        }
+
+        if (CursorPosition.x <= 0.0f)
+            CursorPosition = new Vector3(0.0f, CursorPosition.y, 0.0f);
+        if (CursorPosition.x >= Screen.width)
+            CursorPosition = new Vector3(Screen.width, CursorPosition.y, 0.0f);
+        if (CursorPosition.y <= 0.0f)
+            CursorPosition = new Vector3(CursorPosition.x, 0.0f, 0.0f);
+        if (CursorPosition.y >= Screen.height)
+            CursorPosition = new Vector3(CursorPosition.x, Screen.height, 0.0f);
+        //Debug.Log(CursorPosition);
+        SetCursorPos((int)CursorPosition.x, (int)CursorPosition.y);
+        Vector3 mousePos = Input.mousePosition;
+        mousePos.z = 10.0f;
+        Vector3 objPos = Camera.main.ScreenToWorldPoint(mousePos);
+        transform.position = new Vector2(objPos.x, objPos.y);
     }
 
     public Vector3 GetPos()

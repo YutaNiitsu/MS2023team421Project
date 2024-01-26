@@ -84,16 +84,16 @@ public class StageManagerScript : MonoBehaviour
         }
 
         //テスト用
-        //if (Input.GetKeyDown(KeyCode.P))
-        //{
-        //    UIManager.PauseGame();
-        //}
+        if (Input.GetKeyDown(KeyCode.P))
+        {
+            UIManager.PauseGame();
+        }
         //if (Input.GetKeyDown(KeyCode.F2))
         //{
         //    SoundManager.instance.StopBGM(BGM_Name);
         //}
 
-        
+
         //ポーズ中
         if (Time.timeScale == 0)
         {

@@ -143,6 +143,8 @@ MonoBehaviour:
   Shield: {fileID: 3515769647202005841}
   CombinationParticle: {fileID: 1782950757517721312, guid: 854599086cf50724398f7e3bc93b263b,
     type: 3}
+  CombinationStarMaterial: {fileID: 2100000, guid: f8f3427cbed209d479fdaca2f23c6ab1,
+    type: 2}
 --- !u!1001 &4326244646111949314
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -1798,6 +1798,12 @@ PrefabInstance:
       propertyPath: m_Name
       value: TitleMenuButton
       objectReference: {fileID: 0}
+    - target: {fileID: 4524531004491443308, guid: 09dcd916633cc474c831d38c4d3c7e3b,
+        type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: -1405230519, guid: 386b01829c43ede46a98134d5c1767d2,
+        type: 3}
     - target: {fileID: 4818337397857669217, guid: 09dcd916633cc474c831d38c4d3c7e3b,
         type: 3}
       propertyPath: m_TargetGraphic
@@ -1836,6 +1842,11 @@ PrefabInstance:
     - target: {fileID: 5105135640145272775, guid: 09dcd916633cc474c831d38c4d3c7e3b,
         type: 3}
       propertyPath: m_Color.a
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5814168051358075686, guid: 09dcd916633cc474c831d38c4d3c7e3b,
+        type: 3}
+      propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7219260187263413929, guid: 09dcd916633cc474c831d38c4d3c7e3b,
@@ -2006,6 +2017,12 @@ PrefabInstance:
       propertyPath: m_Name
       value: SaveButton
       objectReference: {fileID: 0}
+    - target: {fileID: 4524531004491443308, guid: 09dcd916633cc474c831d38c4d3c7e3b,
+        type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 709568845, guid: bfc9719f2b9c9e34abcbf6bcb5cec62f,
+        type: 3}
     - target: {fileID: 4818337397857669217, guid: 09dcd916633cc474c831d38c4d3c7e3b,
         type: 3}
       propertyPath: m_TargetGraphic
@@ -2060,6 +2077,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Color.r
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5814168051358075686, guid: 09dcd916633cc474c831d38c4d3c7e3b,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7219260187263413929, guid: 09dcd916633cc474c831d38c4d3c7e3b,
         type: 3}
@@ -2234,6 +2256,12 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 4524531004491443308, guid: 09dcd916633cc474c831d38c4d3c7e3b,
+        type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 2065779648, guid: e5f430bcfdf16124aa7b4588551927fa,
+        type: 3}
     - target: {fileID: 4818337397857669217, guid: 09dcd916633cc474c831d38c4d3c7e3b,
         type: 3}
       propertyPath: m_TargetGraphic
@@ -2277,6 +2305,11 @@ PrefabInstance:
     - target: {fileID: 5105135640145272775, guid: 09dcd916633cc474c831d38c4d3c7e3b,
         type: 3}
       propertyPath: m_Color.a
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5814168051358075686, guid: 09dcd916633cc474c831d38c4d3c7e3b,
+        type: 3}
+      propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7219260187263413929, guid: 09dcd916633cc474c831d38c4d3c7e3b,
@@ -2447,6 +2480,12 @@ PrefabInstance:
       propertyPath: m_Name
       value: NewButton
       objectReference: {fileID: 0}
+    - target: {fileID: 4524531004491443308, guid: 09dcd916633cc474c831d38c4d3c7e3b,
+        type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: -1602988526, guid: 251189c4b438b2545834cc3dfd8659a9,
+        type: 3}
     - target: {fileID: 4818337397857669217, guid: 09dcd916633cc474c831d38c4d3c7e3b,
         type: 3}
       propertyPath: m_TargetGraphic
@@ -2490,6 +2529,11 @@ PrefabInstance:
     - target: {fileID: 5105135640145272775, guid: 09dcd916633cc474c831d38c4d3c7e3b,
         type: 3}
       propertyPath: m_Color.a
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5814168051358075686, guid: 09dcd916633cc474c831d38c4d3c7e3b,
+        type: 3}
+      propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7219260187263413929, guid: 09dcd916633cc474c831d38c4d3c7e3b,
@@ -2660,6 +2704,17 @@ PrefabInstance:
       propertyPath: m_Name
       value: ListCancelButton
       objectReference: {fileID: 0}
+    - target: {fileID: 4524531004491443308, guid: 09dcd916633cc474c831d38c4d3c7e3b,
+        type: 3}
+      propertyPath: m_Type
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4524531004491443308, guid: 09dcd916633cc474c831d38c4d3c7e3b,
+        type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 37e9c83498370f54f8c18af8479acb08,
+        type: 3}
     - target: {fileID: 4818337397857669217, guid: 09dcd916633cc474c831d38c4d3c7e3b,
         type: 3}
       propertyPath: m_TargetGraphic
@@ -2693,6 +2748,11 @@ PrefabInstance:
     - target: {fileID: 5105135640145272775, guid: 09dcd916633cc474c831d38c4d3c7e3b,
         type: 3}
       propertyPath: m_Color.a
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5814168051358075686, guid: 09dcd916633cc474c831d38c4d3c7e3b,
+        type: 3}
+      propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -2848,6 +2908,12 @@ PrefabInstance:
       propertyPath: m_Name
       value: DeleteButton
       objectReference: {fileID: 0}
+    - target: {fileID: 4524531004491443308, guid: 09dcd916633cc474c831d38c4d3c7e3b,
+        type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: -1093724419, guid: 94974d0fedfaf7749a2879bc9a8a697a,
+        type: 3}
     - target: {fileID: 4818337397857669217, guid: 09dcd916633cc474c831d38c4d3c7e3b,
         type: 3}
       propertyPath: m_TargetGraphic
@@ -2886,6 +2952,11 @@ PrefabInstance:
     - target: {fileID: 5105135640145272775, guid: 09dcd916633cc474c831d38c4d3c7e3b,
         type: 3}
       propertyPath: m_Color.a
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5814168051358075686, guid: 09dcd916633cc474c831d38c4d3c7e3b,
+        type: 3}
+      propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7219260187263413929, guid: 09dcd916633cc474c831d38c4d3c7e3b,
@@ -3056,6 +3127,17 @@ PrefabInstance:
       propertyPath: m_Name
       value: SaveCancelButton
       objectReference: {fileID: 0}
+    - target: {fileID: 4524531004491443308, guid: 09dcd916633cc474c831d38c4d3c7e3b,
+        type: 3}
+      propertyPath: m_Type
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4524531004491443308, guid: 09dcd916633cc474c831d38c4d3c7e3b,
+        type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 37e9c83498370f54f8c18af8479acb08,
+        type: 3}
     - target: {fileID: 4818337397857669217, guid: 09dcd916633cc474c831d38c4d3c7e3b,
         type: 3}
       propertyPath: m_TargetGraphic
@@ -3099,6 +3181,11 @@ PrefabInstance:
     - target: {fileID: 5105135640145272775, guid: 09dcd916633cc474c831d38c4d3c7e3b,
         type: 3}
       propertyPath: m_Color.a
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5814168051358075686, guid: 09dcd916633cc474c831d38c4d3c7e3b,
+        type: 3}
+      propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -3242,6 +3329,12 @@ PrefabInstance:
       propertyPath: m_Name
       value: OverwriteDeterminationButton
       objectReference: {fileID: 0}
+    - target: {fileID: 4524531004491443308, guid: 09dcd916633cc474c831d38c4d3c7e3b,
+        type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 423806492, guid: 74b4a4d1054d9ff48af0c7b959106e44,
+        type: 3}
     - target: {fileID: 4818337397857669217, guid: 09dcd916633cc474c831d38c4d3c7e3b,
         type: 3}
       propertyPath: m_TargetGraphic
@@ -3285,6 +3378,11 @@ PrefabInstance:
     - target: {fileID: 5105135640145272775, guid: 09dcd916633cc474c831d38c4d3c7e3b,
         type: 3}
       propertyPath: m_Color.a
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5814168051358075686, guid: 09dcd916633cc474c831d38c4d3c7e3b,
+        type: 3}
+      propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -3428,6 +3526,12 @@ PrefabInstance:
       propertyPath: m_Name
       value: LoadButton
       objectReference: {fileID: 0}
+    - target: {fileID: 4524531004491443308, guid: 09dcd916633cc474c831d38c4d3c7e3b,
+        type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 1422021384, guid: 9284657aa36cc5646abb8ce6dba2b80f,
+        type: 3}
     - target: {fileID: 4818337397857669217, guid: 09dcd916633cc474c831d38c4d3c7e3b,
         type: 3}
       propertyPath: m_TargetGraphic
@@ -3466,6 +3570,11 @@ PrefabInstance:
     - target: {fileID: 5105135640145272775, guid: 09dcd916633cc474c831d38c4d3c7e3b,
         type: 3}
       propertyPath: m_Color.a
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5814168051358075686, guid: 09dcd916633cc474c831d38c4d3c7e3b,
+        type: 3}
+      propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7219260187263413929, guid: 09dcd916633cc474c831d38c4d3c7e3b,
@@ -3641,6 +3750,12 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 4524531004491443308, guid: 09dcd916633cc474c831d38c4d3c7e3b,
+        type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 1595196879, guid: 529645f32bcd8be4984f126b3ed62e6f,
+        type: 3}
     - target: {fileID: 4818337397857669217, guid: 09dcd916633cc474c831d38c4d3c7e3b,
         type: 3}
       propertyPath: m_TargetGraphic
@@ -3699,6 +3814,11 @@ PrefabInstance:
     - target: {fileID: 5105135640145272775, guid: 09dcd916633cc474c831d38c4d3c7e3b,
         type: 3}
       propertyPath: m_Color.r
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5814168051358075686, guid: 09dcd916633cc474c831d38c4d3c7e3b,
+        type: 3}
+      propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7219260187263413929, guid: 09dcd916633cc474c831d38c4d3c7e3b,
@@ -3869,6 +3989,17 @@ PrefabInstance:
       propertyPath: m_Name
       value: DeterminationButton (Select)
       objectReference: {fileID: 0}
+    - target: {fileID: 4524531004491443308, guid: 09dcd916633cc474c831d38c4d3c7e3b,
+        type: 3}
+      propertyPath: m_Type
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4524531004491443308, guid: 09dcd916633cc474c831d38c4d3c7e3b,
+        type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: d02820da9ac489d4e877915b138af042,
+        type: 3}
     - target: {fileID: 4818337397857669217, guid: 09dcd916633cc474c831d38c4d3c7e3b,
         type: 3}
       propertyPath: m_Interactable
@@ -3887,6 +4018,11 @@ PrefabInstance:
     - target: {fileID: 5105135640145272775, guid: 09dcd916633cc474c831d38c4d3c7e3b,
         type: 3}
       propertyPath: m_Color.a
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5814168051358075686, guid: 09dcd916633cc474c831d38c4d3c7e3b,
+        type: 3}
+      propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7219260187263413929, guid: 09dcd916633cc474c831d38c4d3c7e3b,
@@ -4047,6 +4183,12 @@ PrefabInstance:
       propertyPath: m_Name
       value: NewSaveDeterminationButton
       objectReference: {fileID: 0}
+    - target: {fileID: 4524531004491443308, guid: 09dcd916633cc474c831d38c4d3c7e3b,
+        type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: -1602988526, guid: 251189c4b438b2545834cc3dfd8659a9,
+        type: 3}
     - target: {fileID: 4818337397857669217, guid: 09dcd916633cc474c831d38c4d3c7e3b,
         type: 3}
       propertyPath: m_TargetGraphic
@@ -4090,6 +4232,11 @@ PrefabInstance:
     - target: {fileID: 5105135640145272775, guid: 09dcd916633cc474c831d38c4d3c7e3b,
         type: 3}
       propertyPath: m_Color.a
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5814168051358075686, guid: 09dcd916633cc474c831d38c4d3c7e3b,
+        type: 3}
+      propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
