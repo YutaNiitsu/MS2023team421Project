@@ -91,18 +91,6 @@ TextureImporter:
     overridden: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
-  - serializedVersion: 3
-    buildTarget: Android
-    maxTextureSize: 2048
-    resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 1
-    compressionQuality: 50
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    overridden: 0
-    androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
@@ -110,17 +98,10 @@ TextureImporter:
       name: "\u30B3\u30F3\u30C6\u30A3\u30CB\u30E5\u30FC_0"
       rect:
         serializedVersion: 2
-<<<<<<< HEAD
-        x: 107
-        y: 211
-        width: 1411
-        height: 393
-=======
         x: 96
         y: 216
         width: 1420
         height: 380
->>>>>>> niitsu
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -128,13 +109,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-<<<<<<< HEAD
-      spriteID: 1baa0dc90427b9c4e921f99069f867f7
-      internalID: -743243955
-=======
       spriteID: 9d27aff0e127da442b6677de60592bd0
       internalID: 830578831
->>>>>>> niitsu
       vertices: []
       indices: 
       edges: []
@@ -150,11 +126,7 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-<<<<<<< HEAD
-      "\u30B3\u30F3\u30C6\u30A3\u30CB\u30E5\u30FC_0": -743243955
-=======
       "\u30B3\u30F3\u30C6\u30A3\u30CB\u30E5\u30FC_0": 830578831
->>>>>>> niitsu
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
