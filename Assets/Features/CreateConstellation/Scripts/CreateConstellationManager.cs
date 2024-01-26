@@ -69,6 +69,8 @@ public class CreateConstellationManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        createConstellationScript.MoveCursor(PutDeterminationButton.interactable);
+
         //セーブ画面開いていたら実行しない
         if (SaveConstellationDisplay.gameObject.activeSelf)
             return;

@@ -9,6 +9,8 @@ using UnityEngine.EventSystems;
 using UnityEngine.UI;
 //using static UnityEditor.PlayerSettings;
 using static UnityEngine.GraphicsBuffer;
+using System.Runtime.InteropServices;
+using UnityEngine.InputSystem;
 
 public class ConstellationLine : MonoBehaviour
 {
@@ -68,11 +70,17 @@ public class CreateConstellationScript : MonoBehaviour
     //セーブデータから読み込んだデータ
     private SaveConstellationData SavedConstellationData = null;
 
+    public Vector3 CursorPosition { get; protected set; }
+
+    [DllImport("user32.dll")]
+    static extern bool SetCursorPos(int X, int Y);
+
     // Start is called before the first frame update
     void Start()
     {
         Targets = new List<TargetInCreateModeScript>();
         ConstellationLines = new List<ConstellationLine>();
+        CursorPosition = new Vector2(Screen.width / 2, Screen.height / 2);
 
         SelectedTarget = null;
         TargetKey = 0;
@@ -317,6 +325,8 @@ public class CreateConstellationScript : MonoBehaviour
     //カーソルとはめ込む型の当たり判定
     private bool CheckCursorHitTarget()
     {
+       
+
         //レイキャスト
         var ray = Camera.main.ScreenPointToRay(Input.mousePosition);
         RaycastHit2D hit = Physics2D.Raycast(ray.origin, ray.direction);
@@ -362,5 +372,45 @@ public class CreateConstellationScript : MonoBehaviour
         return false;
     }
 
-    
+    private bool IsGamePad()
+    {
+        
+        string[] joystickNames = Input.GetJoystickNames();
+
+        // ジョイスティックが1つ以上接続されているかを判定
+        if (joystickNames.Length > 0 && !string.IsNullOrEmpty(joystickNames[0]))
+        {
+            return true;
+        }
+
+        return false;
+    }
+
+    public void MoveCursor(bool pad)
+    {
+        if (IsGamePad() && pad)
+        {
+            float moveX = Input.GetAxis("Horizontal") + Input.GetAxis("Mouse X");
+            float moveY = -Input.GetAxis("Vertical") - Input.GetAxis("Mouse Y");
+            CursorPosition += new Vector3(moveX, moveY, 0.0f) * 10.0f;
+        }
+        else
+        {
+            float moveX = Input.GetAxis("Mouse X");
+            float moveY = -Input.GetAxis("Mouse Y");
+            CursorPosition += new Vector3(moveX, moveY, 0.0f) * 10.0f;
+
+        }
+
+        if (CursorPosition.x <= 0.0f)
+            CursorPosition = new Vector3(0.0f, CursorPosition.y, 0.0f);
+        if (CursorPosition.x >= Screen.width)
+            CursorPosition = new Vector3(Screen.width, CursorPosition.y, 0.0f);
+        if (CursorPosition.y <= 0.0f)
+            CursorPosition = new Vector3(CursorPosition.x, 0.0f, 0.0f);
+        if (CursorPosition.y >= Screen.height)
+            CursorPosition = new Vector3(CursorPosition.x, Screen.height, 0.0f);
+        //Debug.Log(CursorPosition);
+        SetCursorPos((int)CursorPosition.x, (int)CursorPosition.y);
+    }
 }
