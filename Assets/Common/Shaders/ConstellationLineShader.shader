@@ -33,10 +33,10 @@ float perlinNoise2(in float2 vec)
     float2 ivec = floor(vec);
     float2 fvec = frac(vec);
 
-    float a = dot(random22(ivec + float2(0.0, 0.0)) * 2.0 - 1.0, fvec - float2(0.0, 0.0));
-    float b = dot(random22(ivec + float2(1.0, 0.0)) * 2.0 - 1.0, fvec - float2(1.0, 0.0));
-    float c = dot(random22(ivec + float2(0.0, 1.0)) * 2.0 - 1.0, fvec - float2(0.0, 1.0));
-    float d = dot(random22(ivec + float2(1.0, 1.0)) * 2.0 - 1.0, fvec - float2(1.0, 1.0));
+    float a = dot(random22(ivec + float2(0.0, 0.0)) * 2.0 - 10.0, fvec - float2(0.0, 0.0));
+    float b = dot(random22(ivec + float2(1.0, 0.0)) * 2.0 - 10.0, fvec - float2(100.0, 0.0));
+    float c = dot(random22(ivec + float2(0.0, 1.0)) * 2.0 - 10.0, fvec - float2(0.0, 100.0));
+    float d = dot(random22(ivec + float2(1.0, 1.0)) * 2.0 - 10.0, fvec - float2(100.0, 100.0));
 
     fvec = smoothstep(0.0, 1.0, fvec);
 
@@ -97,8 +97,8 @@ float fbm2(in float2 vec, in int octave, in float2 offset = 0.0)
     float noise2 = saturate(saturate(fbm2(pos * 0.03f, 2)) + 0.3f) + _SinTime;
     //col.a = noise;
      //ê¸ÇÃíÜêSÇ…ãﬂÇ¢ÇŸÇ«îZÇ≠Ç»ÇÈ
-    col.a = pow(saturate(1.0f - abs(i.uv.y - 0.5f * noise) * 2.0f), 5)*1.2f;
-    col.r = 1.1f - pow(saturate(1.0f - abs(i.uv.y - 0.5f * noise) * 2.0f), 5)1.2f;
+    col.a = (pow(saturate(1.0f - abs(i.uv.y - 0.5f * noise) * 2.0f), 5));
+    col.r = (1.1f - pow(saturate(1.0f - abs(i.uv.y - 0.5f * noise) * 2.0f), 5));
     //col.rg = 1.1f - pow(saturate(1.0f - abs(i.uv.y - 0.5f * noise2) * 2.0f), 5);
     col.a += pow(saturate(0.9f - abs(i.uv.y - 0.5f) * 2.0f), 8) * noise;
     col.a *= pow(saturate(1.0f - abs(i.uv.y - 0.5f) * 2.0f), 5);
