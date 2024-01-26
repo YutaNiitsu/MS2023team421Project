@@ -374,7 +374,6 @@ public class CreateConstellationScript : MonoBehaviour
 
     private bool IsGamePad()
     {
-        
         string[] joystickNames = Input.GetJoystickNames();
 
         // ジョイスティックが1つ以上接続されているかを判定
