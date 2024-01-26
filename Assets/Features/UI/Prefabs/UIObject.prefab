@@ -35,8 +35,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 645, y: 447}
-  m_SizeDelta: {x: 340.3152, y: 136.2618}
+  m_AnchoredPosition: {x: 574.64954, y: 465.0716}
+  m_SizeDelta: {x: 481.0159, y: 100.1184}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &4861676856268439906
 CanvasRenderer:
@@ -68,7 +68,7 @@ MonoBehaviour:
       m_Calls: []
   m_Sprite: {fileID: -1503152615, guid: 0e469773b22693e449c84ac9b60b542a, type: 3}
   m_Type: 0
-  m_PreserveAspect: 1
+  m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
   m_FillAmount: 1
@@ -2023,12 +2023,12 @@ PrefabInstance:
     - target: {fileID: 83800582531177988, guid: be7a79908bef8bb43b75981d4fddf111,
         type: 3}
       propertyPath: m_SizeDelta.x
-      value: 60.9564
+      value: 80.3188
       objectReference: {fileID: 0}
     - target: {fileID: 83800582531177988, guid: be7a79908bef8bb43b75981d4fddf111,
         type: 3}
       propertyPath: m_SizeDelta.y
-      value: 75.439
+      value: 63.8214
       objectReference: {fileID: 0}
     - target: {fileID: 83800582531177988, guid: be7a79908bef8bb43b75981d4fddf111,
         type: 3}
@@ -2068,12 +2068,12 @@ PrefabInstance:
     - target: {fileID: 83800582531177988, guid: be7a79908bef8bb43b75981d4fddf111,
         type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 27.782
+      value: 18.1007
       objectReference: {fileID: 0}
     - target: {fileID: 83800582531177988, guid: be7a79908bef8bb43b75981d4fddf111,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -0.000021935
+      value: 5.8088
       objectReference: {fileID: 0}
     - target: {fileID: 83800582531177988, guid: be7a79908bef8bb43b75981d4fddf111,
         type: 3}
@@ -2098,7 +2098,7 @@ PrefabInstance:
     - target: {fileID: 7665264341572365982, guid: be7a79908bef8bb43b75981d4fddf111,
         type: 3}
       propertyPath: FontSize
-      value: 40
+      value: 46
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -2245,7 +2245,7 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 21300000, guid: 6963f4bca91fca74eb6b0140eeff4620,
+      objectReference: {fileID: 830578831, guid: 6963f4bca91fca74eb6b0140eeff4620,
         type: 3}
     - target: {fileID: 4818337397857669217, guid: 09dcd916633cc474c831d38c4d3c7e3b,
         type: 3}
