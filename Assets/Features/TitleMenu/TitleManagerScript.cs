@@ -1,7 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class TitleManagerScript : MonoBehaviour
 {
@@ -52,6 +54,7 @@ public class TitleManagerScript : MonoBehaviour
         TitleMenu.Display(false);
         StageSelectMenu.Display(false);
         Credit.SetActive(true);
+        EventSystem.current.SetSelectedGameObject(Credit.transform.GetChild(0).GetChild(0).gameObject);
     }
     //ÉQÅ[ÉÄèIóπ
     public void QuitGame()

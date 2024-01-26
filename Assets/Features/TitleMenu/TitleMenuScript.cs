@@ -61,8 +61,7 @@ public class TitleMenuScript : MonoBehaviour
         //•\Ž¦
         if (enable)
         {
-            if (FirstSelect != null)
-                EventSystem.current.SetSelectedGameObject(FirstSelect);
+            
             DrawLine.DrawLine(Targets, Lines);
             gameObject.SetActive(true);
             StartCoroutine(DisplayCoroutine());
@@ -93,6 +92,9 @@ public class TitleMenuScript : MonoBehaviour
             i.gameObject.SetActive(true);
             yield return new WaitForSeconds(0.05f);
         }
+
+        if (FirstSelect != null)
+            EventSystem.current.SetSelectedGameObject(FirstSelect);
     }
     //”ñ•\Ž¦
     IEnumerator NonDisplayCoroutine()
