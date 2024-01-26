@@ -844,6 +844,16 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5105850875108164340, guid: 23cd3a265e427634aade1d6e486d211d,
         type: 3}
+      propertyPath: Setting.Threshold
+      value: 0.7
+      objectReference: {fileID: 0}
+    - target: {fileID: 5105850875108164340, guid: 23cd3a265e427634aade1d6e486d211d,
+        type: 3}
+      propertyPath: Setting.DischargeNumber
+      value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 5105850875108164340, guid: 23cd3a265e427634aade1d6e486d211d,
+        type: 3}
       propertyPath: Setting.ProbabilityStar
       value: 0.651
       objectReference: {fileID: 0}
@@ -866,6 +876,11 @@ PrefabInstance:
     - target: {fileID: 5105850875108164340, guid: 23cd3a265e427634aade1d6e486d211d,
         type: 3}
       propertyPath: Setting.ProbabilityObstacle
+      value: 0.21
+      objectReference: {fileID: 0}
+    - target: {fileID: 5105850875108164340, guid: 23cd3a265e427634aade1d6e486d211d,
+        type: 3}
+      propertyPath: Setting.ObstacleDestroyNumber
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5105850875108164340, guid: 23cd3a265e427634aade1d6e486d211d,
@@ -882,6 +897,11 @@ PrefabInstance:
         type: 3}
       propertyPath: Setting.ProbabilityTeleportation
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5105850875108164340, guid: 23cd3a265e427634aade1d6e486d211d,
+        type: 3}
+      propertyPath: Setting.DischargeNumberWithinClear
+      value: 30
       objectReference: {fileID: 0}
     - target: {fileID: 5105850875108164340, guid: 23cd3a265e427634aade1d6e486d211d,
         type: 3}
