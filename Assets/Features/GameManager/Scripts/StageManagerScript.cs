@@ -65,9 +65,12 @@ public class StageManagerScript : MonoBehaviour
     void Start()
     {
         StageManagerStart();
-       
-    }
 
+        //エラーテスト
+        //int v = 0;
+        //v /= 0;
+    }
+    
     // Update is called once per frame
     void Update()
     {
@@ -84,14 +87,17 @@ public class StageManagerScript : MonoBehaviour
         }
 
         //テスト用
-        if (Input.GetKeyDown(KeyCode.P))
-        {
-            UIManager.PauseGame();
-        }
-        //if (Input.GetKeyDown(KeyCode.F2))
+        //if (Input.GetKeyDown(KeyCode.P))
         //{
-        //    SoundManager.instance.StopBGM(BGM_Name);
+        //    UIManager.PauseGame();
         //}
+        if (Input.GetKeyDown(KeyCode.F1))
+        {
+            SoundManager.instance.StopBGM(BGM_Name);
+            SoundManager.instance.PlaySE("Select");
+            SceneManager.LoadScene("Title");
+            Time.timeScale = 1;
+        }
 
 
         //ポーズ中
@@ -114,6 +120,9 @@ public class StageManagerScript : MonoBehaviour
 
         //カメラに追従
         Background.CameraScroll(ScrollSpeed);
+
+       
+
     }
 
     public virtual void StageManagerStart()

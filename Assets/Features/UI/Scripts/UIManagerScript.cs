@@ -15,6 +15,7 @@ public class UIManagerScript : MonoBehaviour
     public Button PauseFocusButton;
     public Button ResultFocusButton;
     public Button GameOverFocusButton;
+    public GameObject ErrorDialog;
 
     private StageManagerScript StageManager;
 
@@ -29,6 +30,8 @@ public class UIManagerScript : MonoBehaviour
         GameOver.SetActive(false);
 
         StageManager = GameManagerScript.instance.StageManager;
+
+       
     }
 
     //リザルト表示
@@ -128,5 +131,15 @@ public class UIManagerScript : MonoBehaviour
         SoundManager.instance.PlaySE("Select");
         StageManager.UIManager.HiddenPauseMenu();
         Time.timeScale = 1;
+    }
+
+    //ゲーム終了
+    public void QuitGame()
+    {
+#if UNITY_EDITOR
+        UnityEditor.EditorApplication.isPlaying = false;
+#else
+      Application.Quit();
+#endif
     }
 }

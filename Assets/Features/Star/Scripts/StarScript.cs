@@ -87,6 +87,8 @@ public class StarScript : MonoBehaviour
 
         //“®‚­áŠQ•¨‚Éí‚ÉÕ“Ë
         Collider2D.excludeLayers = LayerMask.GetMask("Nothing");
+
+        
     }
 
     // Update is called once per frame

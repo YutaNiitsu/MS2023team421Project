@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameManagerScript : MonoBehaviour
 {
@@ -26,5 +27,15 @@ public class GameManagerScript : MonoBehaviour
     public void Set(StageManagerScript stageManager)
     {
         StageManager = stageManager;
+    }
+
+    private void Update()
+    {
+        SceneManager.sceneLoaded += (Scene scene, LoadSceneMode type) => {
+            if (scene.name == "errorScene")
+            {
+                Destroy(gameObject);
+            }
+        };
     }
 }

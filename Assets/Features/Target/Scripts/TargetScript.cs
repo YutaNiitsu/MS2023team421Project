@@ -35,12 +35,14 @@ public class TargetScript : MonoBehaviour
 
     private void Update()
     {
+#if UNITY_EDITOR
         //テスト用
         if (Input.GetKeyDown(KeyCode.F1))
         {
             Goaled = true;
             GameManagerScript.instance.StageManager.AddScore(StarRarity.Normal, false);
         }
+#endif
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
