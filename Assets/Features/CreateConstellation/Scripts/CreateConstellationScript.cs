@@ -58,7 +58,7 @@ public class CreateConstellationScript : MonoBehaviour
     public GameObject LineRendererPrefab;
     
     //入力欄
-    public GameObject InputName;
+    public GameObject InputField;
     // 設置されたはめ込む型
     private List<TargetInCreateModeScript> Targets;
     private int TargetKey;
@@ -260,10 +260,12 @@ public class CreateConstellationScript : MonoBehaviour
             constellations[index].Key = i.Key;
             index++;
         }
-
-        InputField input = InputName.GetComponent<InputField>();
+        
+        InputField input = InputField.GetComponent<InputField>();
         //入力された星座の名前
         string name = input.text;
+        //時刻を名前にする
+        name = System.DateTime.Now.ToString();
         uint id = 0;
 
         //セーブデータから読み込んだ星座ならIDコピー
@@ -409,7 +411,7 @@ public class CreateConstellationScript : MonoBehaviour
             CursorPosition = new Vector3(CursorPosition.x, 0.0f, 0.0f);
         if (CursorPosition.y >= Screen.height)
             CursorPosition = new Vector3(CursorPosition.x, Screen.height, 0.0f);
-        Debug.Log(CursorPosition);
+        //Debug.Log(CursorPosition);
         SetCursorPos((int)CursorPosition.x, (int)CursorPosition.y);
     }
 }

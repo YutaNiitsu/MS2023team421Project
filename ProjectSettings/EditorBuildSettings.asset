@@ -53,5 +53,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/MainGame/Stage12.unity
     guid: 008610065ceff6d47aa061f9621e8cde
-  m_configObjects: {}
+  m_configObjects:
+    com.unity.input.settings: {fileID: 11400000, guid: 141c4150ae61f3e47a92aa304b8a10fd,
+      type: 2}
   m_UseUCBPForAssetBundles: 0

@@ -103,7 +103,7 @@ MonoBehaviour:
     type: 3}
   LineRendererPrefab: {fileID: 8738179956497816048, guid: 6f957253f8313fd44be44c2083a4b004,
     type: 3}
-  InputName: {fileID: 5369194576393037768}
+  InputField: {fileID: 5369194576393037768}
 --- !u!1 &1470949064967910552
 GameObject:
   m_ObjectHideFlags: 0
@@ -2707,13 +2707,13 @@ PrefabInstance:
     - target: {fileID: 4524531004491443308, guid: 09dcd916633cc474c831d38c4d3c7e3b,
         type: 3}
       propertyPath: m_Type
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4524531004491443308, guid: 09dcd916633cc474c831d38c4d3c7e3b,
         type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 21300000, guid: 37e9c83498370f54f8c18af8479acb08,
+      objectReference: {fileID: -1386213651, guid: 37e9c83498370f54f8c18af8479acb08,
         type: 3}
     - target: {fileID: 4818337397857669217, guid: 09dcd916633cc474c831d38c4d3c7e3b,
         type: 3}
@@ -3130,13 +3130,13 @@ PrefabInstance:
     - target: {fileID: 4524531004491443308, guid: 09dcd916633cc474c831d38c4d3c7e3b,
         type: 3}
       propertyPath: m_Type
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4524531004491443308, guid: 09dcd916633cc474c831d38c4d3c7e3b,
         type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 21300000, guid: 37e9c83498370f54f8c18af8479acb08,
+      objectReference: {fileID: -1386213651, guid: 37e9c83498370f54f8c18af8479acb08,
         type: 3}
     - target: {fileID: 4818337397857669217, guid: 09dcd916633cc474c831d38c4d3c7e3b,
         type: 3}
@@ -3992,13 +3992,13 @@ PrefabInstance:
     - target: {fileID: 4524531004491443308, guid: 09dcd916633cc474c831d38c4d3c7e3b,
         type: 3}
       propertyPath: m_Type
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4524531004491443308, guid: 09dcd916633cc474c831d38c4d3c7e3b,
         type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 21300000, guid: d02820da9ac489d4e877915b138af042,
+      objectReference: {fileID: 1088814650, guid: d02820da9ac489d4e877915b138af042,
         type: 3}
     - target: {fileID: 4818337397857669217, guid: 09dcd916633cc474c831d38c4d3c7e3b,
         type: 3}

@@ -34,17 +34,24 @@ public class SaveConstellationDIsplayScript : MonoBehaviour
                 OverwriteSaveButton.interactable = false;
 
                 //ナビゲーションの設定
-                SetNavigation(Input, NewSaveButton, NewSaveButton, null, null);
-                SetNavigation(NewSaveButton, Input, Input, CancelButton, CancelButton);
-                SetNavigation(CancelButton, Input, Input, NewSaveButton, NewSaveButton);
-
+                //SetNavigation(Input, NewSaveButton, NewSaveButton, null, null);
+                //SetNavigation(NewSaveButton, Input, Input, CancelButton, CancelButton);
+                //SetNavigation(CancelButton, Input, Input, NewSaveButton, NewSaveButton);
+                SetNavigation(NewSaveButton, null, null, CancelButton, CancelButton);
+                SetNavigation(CancelButton, null, null, NewSaveButton, NewSaveButton);
                 break;
             case SaveConstellationType.SavedData:
                 // セーブデータからの読み込みだった場合は上書きセーブ用ボタンを有効にする
                 OverwriteSaveButton.interactable = true;
 
                 //ナビゲーションの設定
-
+                //SetNavigation(Input, NewSaveButton, NewSaveButton, null, null);
+                //SetNavigation(NewSaveButton, Input, Input, CancelButton, OverwriteSaveButton);
+                //SetNavigation(OverwriteSaveButton, Input, Input, NewSaveButton, CancelButton);
+                //SetNavigation(CancelButton, Input, Input, OverwriteSaveButton, NewSaveButton);
+                SetNavigation(NewSaveButton, null, null, CancelButton, OverwriteSaveButton);
+                SetNavigation(OverwriteSaveButton, null, null, NewSaveButton, CancelButton);
+                SetNavigation(CancelButton, null, null, OverwriteSaveButton, NewSaveButton);
                 break;
             default:
                 break;

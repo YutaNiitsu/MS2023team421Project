@@ -42,6 +42,7 @@ public class CreateConstellationManager : MonoBehaviour
     private ConstellationSaveManager constellationSaveManager;
     private CreateConstellationScript createConstellationScript;
 
+    private InputField SaveInputField;
 
     // Start is called before the first frame update
     void Start()
@@ -71,9 +72,25 @@ public class CreateConstellationManager : MonoBehaviour
     {
         createConstellationScript.MoveCursor(PutDeterminationButton.interactable);
 
-        //セーブ画面開いていたら実行しない
+        //セーブ画面開いていた
         if (SaveConstellationDisplay.gameObject.activeSelf)
+        {
+            //createConstellationScript.MoveCursor(true);
+            //            if (SaveInputField != null)
+            //            {
+            //                if (SaveInputField.isFocused && Input.GetButtonDown("Debug Validate"))
+            //                {
+            //                    SaveInputField.ActivateInputField();
+            //                    //仮想キーボード表示
+            //#if UNITY_STANDALONE_WIN
+            //                    System.Diagnostics.Process.Start("osk.exe");
+
+            //#endif
+            //                }
+            //            }
             return;
+        }
+
         //星座データ一覧が表示されちたら実行しない
         if (ConstellationListDisplay.activeSelf)
             return;
@@ -98,6 +115,7 @@ public class CreateConstellationManager : MonoBehaviour
             Vector3 worldPos = Camera.main.ScreenToWorldPoint(new Vector3(mousePos.x, mousePos.y, 10f));
             createConstellationScript.PutTarget(worldPos);
         }
+
     }
 
     //新規作成
@@ -212,6 +230,7 @@ public class CreateConstellationManager : MonoBehaviour
         DeterminationButton.onClick.RemoveAllListeners();
         //決定ボタンを有効にする
         DeterminationButton.interactable = true;
+        EventSystem.current.SetSelectedGameObject(DeterminationButton.gameObject);
         //決定ボタン押したときに処理する関数を追加
         DeterminationButton.onClick.AddListener(clickAction);
     }
@@ -281,14 +300,18 @@ public class CreateConstellationManager : MonoBehaviour
         SetButtonInteractable(false, false, false, false, false, false, false);
         SaveConstellationDisplay.gameObject.SetActive(true);
         //フォーカスするボタン
-        EventSystem.current.SetSelectedGameObject(createConstellationScript.InputName);
+        EventSystem.current.SetSelectedGameObject(/*createConstellationScript.InputField*/SaveConstellationDisplay.NewSaveButton.gameObject);
 
         if (createConstellationScript.IsSavedData())
             SaveConstellationDisplay.SetVisibility(SaveConstellationType.SavedData);
         else
             SaveConstellationDisplay.SetVisibility(SaveConstellationType.NewData);
 
-        
+        //仮想キーボード表示
+//#if UNITY_STANDALONE_WIN
+//        System.Diagnostics.Process.Start("osk.exe");
+//#endif
+        SaveInputField = createConstellationScript.InputField.GetComponent<InputField>();
 
     }
 
