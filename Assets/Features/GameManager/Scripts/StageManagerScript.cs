@@ -21,7 +21,7 @@ public class StageManagerScript : MonoBehaviour
         public int score;
     }
 
-
+    public bool First;
     [Header("ステージセッティング")]
     public StageSetting Setting;
     [Header("星座データのファイル名")]
@@ -65,7 +65,7 @@ public class StageManagerScript : MonoBehaviour
     void Start()
     {
         StageManagerStart();
-
+        First = true;
         //エラーテスト
         //int v = 0;
         //v /= 0;
@@ -74,6 +74,11 @@ public class StageManagerScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (First)
+        {
+            StartCoroutine(StageCompleteCoroutine());
+            First = false;
+        }
         if (FinalDischargedStar != null)
         {
             StartCoroutine(FinalDischarged());

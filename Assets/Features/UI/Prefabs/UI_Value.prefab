@@ -49,7 +49,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 396984bed9517ff4990f4a76e83eb0a0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  FontSize: 46
+  FontSize: 64
   Value: 0
   NumberTextPrefab: {fileID: 5996934064867968675, guid: 316fe984003c5ff488d6dad14774ae45,
     type: 3}
