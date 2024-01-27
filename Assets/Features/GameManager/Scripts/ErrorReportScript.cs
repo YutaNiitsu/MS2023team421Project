@@ -10,10 +10,13 @@ using UnityEngine.UI;
 public class ErrorReportScript : MonoBehaviour
 {
     private bool OccurredException;
+    private bool once;
+
     // Start is called before the first frame update
     void Start()
     {
         OccurredException = false;
+        once = true;
     }
 
     private void Update()
@@ -85,12 +88,18 @@ public class ErrorReportScript : MonoBehaviour
 
     private IEnumerator SendToMessage()
     {
-        yield return DiscordUtils.SendMessage
-        (
-            url: "https://discord.com/api/webhooks/1200815206977257572/7GGAmQch9kQg-f-1qyL7uqVVORLrmwVYQ9FLtLl40qJ453Vr7BgFerVD34ME5iBSWuaF",
-            message: "エラーが発生しました",
-            onSuccess: () => Debug.Log("成功"),
-            onError: error => Debug.LogError("失敗：" + error)
-        );
+        if (once)
+        {
+            once = false;
+            yield return DiscordUtils.SendMessage
+       (
+           url: "https://discord.com/api/webhooks/1200815206977257572/7GGAmQch9kQg-f-1qyL7uqVVORLrmwVYQ9FLtLl40qJ453Vr7BgFerVD34ME5iBSWuaF",
+           message: "エラーが発生しました",
+           onSuccess: () => Debug.Log("成功"),
+           onError: error => Debug.LogError("失敗：" + error)
+       );
+            
+        }
+        yield return 0;
     }
 }
