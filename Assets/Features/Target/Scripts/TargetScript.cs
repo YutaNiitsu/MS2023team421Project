@@ -37,7 +37,7 @@ public class TargetScript : MonoBehaviour
     {
 #if UNITY_EDITOR
         //テスト用
-        if (Input.GetKeyDown(KeyCode.F1))
+        if (Input.GetKeyDown(KeyCode.F3))
         {
             Goaled = true;
             GameManagerScript.instance.StageManager.AddScore(StarRarity.Normal, false);

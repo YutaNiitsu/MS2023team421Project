@@ -51,7 +51,8 @@ public class ExplosionStarScript : MonoBehaviour
         if ((collision.CompareTag("Star") || collision.CompareTag("Obstacle")) 
             && gameObject.tag != "Untagged" && collision.gameObject.GetComponent<ExplosionStarScript>() == null)
         {
-            Destroy(collision.gameObject);
+            if (!collision.CompareTag("Target"))
+                Destroy(collision.gameObject);
         }
     }
 }

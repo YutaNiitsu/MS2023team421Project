@@ -74,11 +74,11 @@ public class StageManagerScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (First)
-        {
-            StartCoroutine(StageCompleteCoroutine());
-            First = false;
-        }
+        //if (First)
+        //{
+        //    StartCoroutine(StageCompleteCoroutine());
+        //    First = false;
+        //}
         if (FinalDischargedStar != null)
         {
             StartCoroutine(FinalDischarged());

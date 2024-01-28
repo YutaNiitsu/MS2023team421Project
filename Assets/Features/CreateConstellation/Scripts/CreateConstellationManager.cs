@@ -64,7 +64,7 @@ public class CreateConstellationManager : MonoBehaviour
         SetButtonInteractable(true, true, false, true, true, true, true);
 
         //フォーカスするボタン
-        EventSystem.current.SetSelectedGameObject(NewButton.gameObject);
+        //EventSystem.current.SetSelectedGameObject(NewButton.gameObject);
     }
     
     // Update is called once per frame

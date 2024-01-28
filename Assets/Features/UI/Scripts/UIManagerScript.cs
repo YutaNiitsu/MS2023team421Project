@@ -66,7 +66,7 @@ public class UIManagerScript : MonoBehaviour
     public void DisplayGameOver()
     {
         GameOverFocusButton.Select();
-        ResultFocusButton.Select();
+        //ResultFocusButton.Select();
         HUD.SetActive(false);
         MiniMap.SetActive(false);
         WarningMark.SetActive(false);

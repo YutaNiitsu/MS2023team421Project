@@ -65,6 +65,7 @@ public class TransfixStarScript : MonoBehaviour
         //はめ込む型にはまってUntaggedになってたら実行しない
         if (collision.CompareTag("Star") && gameObject.tag != "Untagged")
         {
+            SoundManager.instance.PlaySE("Explosion");
             //衝突パーティクル生成
             if (Particle != null)
             {
@@ -74,8 +75,9 @@ public class TransfixStarScript : MonoBehaviour
             }
             Destroy(collision.gameObject);
         }
-        if (collision.CompareTag("Obstacle"))
+        if (collision.CompareTag("Obstacle") && collision.gameObject.layer != 8)
         {
+            SoundManager.instance.PlaySE("Explosion");
             //衝突パーティクル生成
             if (Particle != null)
             {

@@ -32,7 +32,7 @@ public class TitleManagerScript : MonoBehaviour
     //シーン切り替え
     public void ChangeScene(string sceneName)
     {
-        SceneManager.LoadScene(sceneName, LoadSceneMode.Single);
+        SceneManager.LoadScene(sceneName/*, LoadSceneMode.Single*/);
         SoundManager.instance.StopBGM("BGM1");
     }
     //ステージセレクトメニューの表示

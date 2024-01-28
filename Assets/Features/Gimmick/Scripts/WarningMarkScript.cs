@@ -17,14 +17,14 @@ public class WarningMarkScript : MonoBehaviour
 
     public void StartWarning(Vector3 pos, float interval)
     {
-        _Coroutine = StartCoroutine(WarningCoroutine());
-        gameObject.GetComponent<RectTransform>().localPosition = pos;
-        Interval = interval;
+        //_Coroutine = StartCoroutine(WarningCoroutine());
+        //gameObject.GetComponent<RectTransform>().localPosition = pos;
+        //Interval = interval;
     }
     public void StopWarning()
     {
-        StopCoroutine(_Coroutine);
-        WarningMark.color = new Color(1.0f, 1.0f, 1.0f, 0.0f);
+        //StopCoroutine(_Coroutine);
+        //WarningMark.color = new Color(1.0f, 1.0f, 1.0f, 0.0f);
     }
 
     IEnumerator WarningCoroutine()

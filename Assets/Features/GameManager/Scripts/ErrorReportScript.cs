@@ -38,13 +38,11 @@ public class ErrorReportScript : MonoBehaviour
     
     void OnEnable()
     {
-        if (!OccurredException)
             Application.logMessageReceived += HandleLog;
     }
 
     void OnDisable()
     {
-        if (!OccurredException)
             Application.logMessageReceived -= HandleLog;
     }
 
@@ -59,7 +57,7 @@ public class ErrorReportScript : MonoBehaviour
             case LogType.Assert:
                 break;
             case LogType.Error:
-                
+                OccurredException = true;
                 break;
             case LogType.Exception:
                 OccurredException = true;
